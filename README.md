@@ -8,7 +8,7 @@
 
 > [!IMPORTANT]
 > **Amoeba is currently in Phase 2 (Parsing & Code Structure).**
-> It provides repository scanning, file discovery, and Tree-sitter powered syntax parsing and structural code extraction (classes, structs, functions, methods, includes, calls) for C/C++. Indexing and search functionality remain planned for subsequent phases.
+> It provides repository scanning, file discovery, and Tree-sitter powered syntax parsing and structural code extraction across C, C++, Python, Java, Go, Rust, JavaScript, TypeScript, JSX, TSX, HTML, and CSS, along with lightweight React, Next.js, and Tailwind CSS structural awareness. Indexing and search functionality remain planned for subsequent phases.
 
 ---
 
@@ -34,7 +34,7 @@ $$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \
 
 * **Language**: C++20 (ISO/IEC 14882:2020)
 * **Build System**: CMake 3.20+ with CMake Presets
-* **Parsing Runtime**: Tree-sitter (C/C++ grammars)
+* **Parsing Runtime**: Tree-sitter (C, C++, Python, Java, Go, Rust, JS, TS, HTML, CSS grammars)
 * **Dependency Manager**: vcpkg / CMake FetchContent
 * **Testing Framework**: GoogleTest
 * **Code Formatting**: clang-format

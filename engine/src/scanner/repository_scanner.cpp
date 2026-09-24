@@ -23,7 +23,7 @@ struct ExtensionMapping {
     string_view language;
 };
 
-constexpr array<ExtensionMapping, 16> SUPPORTED_EXTENSIONS = {{
+constexpr array<ExtensionMapping, 19> SUPPORTED_EXTENSIONS = {{
     {.extension = ".c", .language = "C"},
     {.extension = ".h", .language = "C/C++ Header"},
     {.extension = ".cc", .language = "C++"},
@@ -40,6 +40,9 @@ constexpr array<ExtensionMapping, 16> SUPPORTED_EXTENSIONS = {{
     {.extension = ".java", .language = "Java"},
     {.extension = ".go", .language = "Go"},
     {.extension = ".rs", .language = "Rust"},
+    {.extension = ".html", .language = "HTML"},
+    {.extension = ".htm", .language = "HTML"},
+    {.extension = ".css", .language = "CSS"},
 }};
 
 bool iequals(string_view a, string_view b) noexcept {

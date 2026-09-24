@@ -14,10 +14,20 @@ using namespace std;
 enum class ElementKind {
     Class,
     Struct,
+    Interface,
     Function,
     Method,
     Include,
     Call,
+    JSXElement,
+    JSXComponent,
+    Selector,
+    Property,
+    Attribute,
+    UtilityClass,
+    Component,
+    Hook,
+    Route,
     Unknown,
 };
 
@@ -27,6 +37,8 @@ enum class ElementKind {
         return "Class";
     case ElementKind::Struct:
         return "Struct";
+    case ElementKind::Interface:
+        return "Interface";
     case ElementKind::Function:
         return "Function";
     case ElementKind::Method:
@@ -35,6 +47,24 @@ enum class ElementKind {
         return "Include";
     case ElementKind::Call:
         return "Call";
+    case ElementKind::JSXElement:
+        return "JSXElement";
+    case ElementKind::JSXComponent:
+        return "JSXComponent";
+    case ElementKind::Selector:
+        return "Selector";
+    case ElementKind::Property:
+        return "Property";
+    case ElementKind::Attribute:
+        return "Attribute";
+    case ElementKind::UtilityClass:
+        return "UtilityClass";
+    case ElementKind::Component:
+        return "Component";
+    case ElementKind::Hook:
+        return "Hook";
+    case ElementKind::Route:
+        return "Route";
     default:
         return "Unknown";
     }
@@ -69,6 +99,7 @@ struct CodeElement {
     string name;
     SourceRange location;
     string parent_context;
+    string detail;
 
     [[nodiscard]] bool operator==(const CodeElement&) const = default;
 };

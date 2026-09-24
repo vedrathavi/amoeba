@@ -105,17 +105,30 @@ void handle_parse_command(const path& file_path) {
                 if (!elem.parent_context.empty()) {
                     cout << " (in " << elem.parent_context << ")";
                 }
+                if (!elem.detail.empty()) {
+                    cout << " [" << elem.detail << "]";
+                }
                 cout << " (Line " << elem.location.start.line << ")\n";
             }
             cout << "\n";
         };
 
+        print_kind_group(amoeba::parser::ElementKind::Route, "Route / Page");
         print_kind_group(amoeba::parser::ElementKind::Class, "Class");
         print_kind_group(amoeba::parser::ElementKind::Struct, "Struct");
+        print_kind_group(amoeba::parser::ElementKind::Interface, "Interface / Type");
+        print_kind_group(amoeba::parser::ElementKind::Component, "Component");
         print_kind_group(amoeba::parser::ElementKind::Function, "Function");
         print_kind_group(amoeba::parser::ElementKind::Method, "Method");
-        print_kind_group(amoeba::parser::ElementKind::Include, "Include");
+        print_kind_group(amoeba::parser::ElementKind::Hook, "Hook");
+        print_kind_group(amoeba::parser::ElementKind::Include, "Include / Import");
         print_kind_group(amoeba::parser::ElementKind::Call, "Call");
+        print_kind_group(amoeba::parser::ElementKind::JSXComponent, "JSX Component");
+        print_kind_group(amoeba::parser::ElementKind::JSXElement, "JSX / HTML Element");
+        print_kind_group(amoeba::parser::ElementKind::Attribute, "Attribute / Prop");
+        print_kind_group(amoeba::parser::ElementKind::UtilityClass, "Utility Class");
+        print_kind_group(amoeba::parser::ElementKind::Selector, "CSS Selector");
+        print_kind_group(amoeba::parser::ElementKind::Property, "CSS Property");
 
     } catch (const invalid_argument& ex) {
         cerr << "Error: " << ex.what() << "\n";

@@ -49,7 +49,98 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
-FetchContent_MakeAvailable(tree_sitter tree_sitter_cpp tree_sitter_c)
+# 4. Tree-sitter Python grammar
+FetchContent_Declare(
+    tree_sitter_python
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-python.git
+    GIT_TAG v0.21.0
+    GIT_SHALLOW TRUE
+)
+
+# 5. Tree-sitter Java grammar
+FetchContent_Declare(
+    tree_sitter_java
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-java.git
+    GIT_TAG v0.21.0
+    GIT_SHALLOW TRUE
+)
+
+# 6. Tree-sitter Go grammar
+FetchContent_Declare(
+    tree_sitter_go
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-go.git
+    GIT_TAG v0.21.0
+    GIT_SHALLOW TRUE
+)
+
+# 7. Tree-sitter Rust grammar
+FetchContent_Declare(
+    tree_sitter_rust
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-rust.git
+    GIT_TAG v0.21.2
+    GIT_SHALLOW TRUE
+)
+
+# 8. Tree-sitter JavaScript grammar
+FetchContent_Declare(
+    tree_sitter_javascript
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-javascript.git
+    GIT_TAG v0.21.4
+    GIT_SHALLOW TRUE
+)
+
+# 9. Tree-sitter TypeScript / TSX grammar
+FetchContent_Declare(
+    tree_sitter_typescript
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-typescript.git
+    GIT_TAG v0.21.2
+    GIT_SHALLOW TRUE
+)
+
+# 10. Tree-sitter HTML grammar
+FetchContent_Declare(
+    tree_sitter_html
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-html.git
+    GIT_TAG v0.20.3
+    GIT_SHALLOW TRUE
+)
+
+# 11. Tree-sitter CSS grammar
+FetchContent_Declare(
+    tree_sitter_css
+    GIT_REPOSITORY https://github.com/tree-sitter/tree-sitter-css.git
+    GIT_TAG v0.21.0
+    GIT_SHALLOW TRUE
+)
+
+FetchContent_MakeAvailable(
+    tree_sitter
+    tree_sitter_cpp
+    tree_sitter_c
+    tree_sitter_python
+    tree_sitter_java
+    tree_sitter_go
+    tree_sitter_rust
+    tree_sitter_javascript
+    tree_sitter_typescript
+    tree_sitter_html
+    tree_sitter_css
+)
+
+function(amoeba_add_c_grammar target_name source_files include_dirs)
+    if(NOT TARGET ${target_name})
+        add_library(${target_name} STATIC ${source_files})
+        target_include_directories(${target_name} PUBLIC
+            ${include_dirs}
+            ${tree_sitter_SOURCE_DIR}/lib/include
+        )
+        if(MSVC)
+            target_compile_options(${target_name} PRIVATE /w)
+        else()
+            target_compile_options(${target_name} PRIVATE -w)
+        endif()
+    endif()
+endfunction()
 
 if(NOT TARGET tree_sitter_lib)
     add_library(tree_sitter_lib STATIC
@@ -66,36 +157,60 @@ if(NOT TARGET tree_sitter_lib)
     endif()
 endif()
 
-if(NOT TARGET tree_sitter_cpp_lib)
-    add_library(tree_sitter_cpp_lib STATIC
-        ${tree_sitter_cpp_SOURCE_DIR}/src/parser.c
-        ${tree_sitter_cpp_SOURCE_DIR}/src/scanner.c
-    )
-    target_include_directories(tree_sitter_cpp_lib PUBLIC
-        ${tree_sitter_cpp_SOURCE_DIR}/src
-        ${tree_sitter_SOURCE_DIR}/lib/include
-    )
-    if(MSVC)
-        target_compile_options(tree_sitter_cpp_lib PRIVATE /w)
-    else()
-        target_compile_options(tree_sitter_cpp_lib PRIVATE -w)
-    endif()
-endif()
+amoeba_add_c_grammar(tree_sitter_cpp_lib
+    "${tree_sitter_cpp_SOURCE_DIR}/src/parser.c;${tree_sitter_cpp_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_cpp_SOURCE_DIR}/src"
+)
 
-if(NOT TARGET tree_sitter_c_lib)
-    add_library(tree_sitter_c_lib STATIC
-        ${tree_sitter_c_SOURCE_DIR}/src/parser.c
-    )
-    target_include_directories(tree_sitter_c_lib PUBLIC
-        ${tree_sitter_c_SOURCE_DIR}/src
-        ${tree_sitter_SOURCE_DIR}/lib/include
-    )
-    if(MSVC)
-        target_compile_options(tree_sitter_c_lib PRIVATE /w)
-    else()
-        target_compile_options(tree_sitter_c_lib PRIVATE -w)
-    endif()
-endif()
+amoeba_add_c_grammar(tree_sitter_c_lib
+    "${tree_sitter_c_SOURCE_DIR}/src/parser.c"
+    "${tree_sitter_c_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_python_lib
+    "${tree_sitter_python_SOURCE_DIR}/src/parser.c;${tree_sitter_python_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_python_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_java_lib
+    "${tree_sitter_java_SOURCE_DIR}/src/parser.c"
+    "${tree_sitter_java_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_go_lib
+    "${tree_sitter_go_SOURCE_DIR}/src/parser.c"
+    "${tree_sitter_go_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_rust_lib
+    "${tree_sitter_rust_SOURCE_DIR}/src/parser.c;${tree_sitter_rust_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_rust_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_javascript_lib
+    "${tree_sitter_javascript_SOURCE_DIR}/src/parser.c;${tree_sitter_javascript_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_javascript_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_typescript_lib
+    "${tree_sitter_typescript_SOURCE_DIR}/typescript/src/parser.c;${tree_sitter_typescript_SOURCE_DIR}/typescript/src/scanner.c"
+    "${tree_sitter_typescript_SOURCE_DIR}/typescript/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_tsx_lib
+    "${tree_sitter_typescript_SOURCE_DIR}/tsx/src/parser.c;${tree_sitter_typescript_SOURCE_DIR}/tsx/src/scanner.c"
+    "${tree_sitter_typescript_SOURCE_DIR}/tsx/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_html_lib
+    "${tree_sitter_html_SOURCE_DIR}/src/parser.c;${tree_sitter_html_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_html_SOURCE_DIR}/src"
+)
+
+amoeba_add_c_grammar(tree_sitter_css_lib
+    "${tree_sitter_css_SOURCE_DIR}/src/parser.c;${tree_sitter_css_SOURCE_DIR}/src/scanner.c"
+    "${tree_sitter_css_SOURCE_DIR}/src"
+)
 
 # -----------------------------------------------------------------------------
 # 1. amoeba_engine (Core Library Target)
@@ -104,6 +219,14 @@ add_library(amoeba_engine
     engine/src/engine.cpp
     engine/src/scanner/repository_scanner.cpp
     engine/src/parser/source_parser.cpp
+    engine/src/parser/extractors/cpp_extractor.cpp
+    engine/src/parser/extractors/python_extractor.cpp
+    engine/src/parser/extractors/java_extractor.cpp
+    engine/src/parser/extractors/go_extractor.cpp
+    engine/src/parser/extractors/rust_extractor.cpp
+    engine/src/parser/extractors/js_ts_extractor.cpp
+    engine/src/parser/extractors/web_extractor.cpp
+    engine/src/parser/extractors/nextjs_extractor.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -119,6 +242,15 @@ target_link_libraries(amoeba_engine
         tree_sitter_lib
         tree_sitter_cpp_lib
         tree_sitter_c_lib
+        tree_sitter_python_lib
+        tree_sitter_java_lib
+        tree_sitter_go_lib
+        tree_sitter_rust_lib
+        tree_sitter_javascript_lib
+        tree_sitter_typescript_lib
+        tree_sitter_tsx_lib
+        tree_sitter_html_lib
+        tree_sitter_css_lib
 )
 
 target_compile_features(amoeba_engine PUBLIC cxx_std_20)

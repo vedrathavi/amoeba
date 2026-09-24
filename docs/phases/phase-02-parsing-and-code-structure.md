@@ -63,17 +63,34 @@ It is critical to distinguish the different layers of code analysis:
 
 ---
 
-## 6. Language Scope
+## 6. Supported Languages & Formats
 
-| Language | Status | Notes |
+| Language / Format | Extensions | Structural Extractions |
 | :--- | :--- | :--- |
-| **C++** | **Supported** | `tree-sitter-cpp` grammar (`.cpp`, `.hpp`, `.cc`, `.hh`, `.cxx`, `.hxx`) |
-| **C** | **Supported** | `tree-sitter-c` grammar (`.c`, `.h`) |
-| **Python / JS / TS / Java / Go / Rust** | *Planned (Future Phases)* | Will be enabled as language modules expand |
+| **C** | `.c`, `.h` | Structs, functions, header includes, function calls |
+| **C++** | `.cpp`, `.hpp`, `.cc`, `.hh`, `.cxx`, `.hxx` | Classes, structs, functions, methods, includes, calls |
+| **Python** | `.py` | Classes, functions, methods, imports (`import`, `from ... import`), calls |
+| **Java** | `.java` | Classes, interfaces, methods, imports, method invocations |
+| **Go** | `.go` | Structs, interfaces, functions, receiver methods, imports, calls |
+| **Rust** | `.rs` | Structs, traits/interfaces, impl methods, functions, `use` declarations, calls |
+| **JavaScript** | `.js`, `.jsx` | Classes, functions, arrow components, methods, imports (`import`/`require`), calls, JSX elements, JSX components, attributes, Tailwind utility classes |
+| **TypeScript** | `.ts`, `.tsx` | Classes, interfaces, type aliases, functions, arrow components, methods, imports, calls, JSX elements, JSX components, attributes, Tailwind utility classes |
+| **HTML** | `.html`, `.htm` | HTML tags/elements, attributes (`id`, `class`, `href`, `src`), Tailwind utility class tokens |
+| **CSS** | `.css` | Selectors (`.class`, `#id`, tag), declarations/properties (`display`, `color`, `padding`), `@import` / at-rules |
 
 ---
 
-## 7. Amoeba Code Representation
+## 7. Web Ecosystem Structural Awareness
+
+| Ecosystem | Current Structural Support | Boundaries / Limitations |
+| :--- | :--- | :--- |
+| **React** | Component-like declarations (`Function`, `Arrow Component`), JSX components (`<Button />`), JSX elements (`<div />`), props/attributes (`onClick`, `className`), hooks (`useState`, `useEffect`) | Syntactic extraction only; no component lifecycle or cross-file prop-type verification |
+| **Next.js** | Route convention awareness based on file paths (`app/page.tsx`, `app/[id]/page.tsx`, `app/layout.tsx`, `pages/api/*.ts`) emitting `ElementKind::Route` metadata (`Next.js Page`, `Next.js Dynamic Page`, `Next.js Layout`, `Next.js API Route`) | File and directory convention detection only; no routing graph execution or SSR resolution |
+| **Tailwind CSS** | Tokenizes space-separated utility classes from `className` and `class` attributes into distinct `ElementKind::UtilityClass` items (`flex`, `items-center`, `justify-between`, `px-4`, `py-2`) | Syntactic token extraction only; does NOT execute Tailwind compiler or resolve arbitrary CSS themes |
+
+---
+
+## 8. Amoeba Code Representation
 
 Amoeba encapsulates extracted structural data in clean, decoupled data structures:
 
@@ -82,21 +99,32 @@ Amoeba encapsulates extracted structural data in clean, decoupled data structure
 enum class ElementKind {
     Class,
     Struct,
+    Interface,
     Function,
     Method,
     Include,
     Call,
-    Unknown
+    JSXElement,
+    JSXComponent,
+    Selector,
+    Property,
+    Attribute,
+    UtilityClass,
+    Component,
+    Hook,
+    Route,
+    Unknown,
 };
 ```
 
 ### `CodeElement`
 ```cpp
 struct CodeElement {
-    ElementKind kind;
+    ElementKind kind{ElementKind::Unknown};
     string name;
     SourceRange location;     // 1-indexed start/end line, column, byte offset
-    string parent_context;    // Enclosing class/struct name if applicable
+    string parent_context;    // Enclosing class, struct, component, or rule
+    string detail;            // Optional lightweight detail (e.g. prop value, route type)
 };
 ```
 
@@ -113,82 +141,46 @@ struct ParsedFile {
 
 ---
 
-## 8. Tree Traversal & Extraction Approach
+## 9. Tree Traversal & Architecture
 
-A clean depth-first recursive traversal inspects CST nodes:
-* `class_specifier` & `struct_specifier`: Extracts type name and sets `parent_context` for inner declarations.
-* `function_definition`: Extracts identifier/qualified name from declarator; categorizes as `Method` if within a class context or containing `::`.
-* `declaration` / `field_declaration`: Extracts method prototypes declared inside class definitions.
-* `preproc_include`: Extracts included header string literals and system library paths (`"..."`, `<...>`).
-* `call_expression`: Extracts function or method call invocations (`authenticate(...)`, `obj.login(...)`).
-
----
-
-## 9. CLI Usage
-
-Use the `parse` or `inspect` command to analyze any C/C++ source file:
-
-```bash
-amoeba parse <file-path>
-```
-
-### Example Output
+The parser architecture is organized around an extensible, composition-based registry:
 ```text
-Amoeba
-Source Code Search & Indexing Engine
-
-File:
-  ./engine/include/amoeba/scanner/repository_scanner.hpp
-
-Language:
-  C++
-
-Parsing:
-  success
-
-Structural elements:
-  Class:
-    RepositoryScanner (Line 29)
-
-  Struct:
-    ScanResult (Line 17)
-
-  Method:
-    total_files_included (in ScanResult) (Line 23)
-    RepositoryScanner (in RepositoryScanner) (Line 31)
-    scan (in RepositoryScanner) (Line 39)
-    is_excluded_directory (in RepositoryScanner) (Line 44)
-    is_supported_extension (in RepositoryScanner) (Line 49)
-    get_language_name (in RepositoryScanner) (Line 54)
-
-  Include:
-    "amoeba/scanner/file_info.hpp" (Line 3)
-    <filesystem> (Line 5)
-    <string_view> (Line 6)
-    <vector> (Line 7)
-
-  Call:
-    size (in ScanResult) (Line 23)
+Source File / Path
+        ↓
+Language Identification (detect_language)
+        ↓
+Language Registry Lookup
+        ↓
+Tree-sitter Grammar Execution
+        ↓
+Concrete Syntax Tree (CST)
+        ↓
+Language-Specific Structural Extractor
+        ↓
+ParsedFile (CodeElement[])
 ```
 
----
-
-## 10. Known Limitations (Phase 2)
-
-* **Syntactic Scope Only**: No semantic symbol resolution or type deduction across files.
-* **Initial Languages**: Restricted to C and C++ grammars.
-* **In-Memory Single-Pass**: Syntax trees are parsed and released immediately; no persistent AST cache is stored on disk yet.
+Tree-sitter handles (`TSParser*`, `TSTree*`, `TSNode`) remain strictly internal to the engine implementation (PIMPL pattern) and never leak into Amoeba's public APIs.
 
 ---
 
-## 11. Phase 2 Checkpoint Criteria
+## 10. Known Limitations & Phase Boundary
 
-- [x] Tree-sitter core runtime and C/C++ grammars integrated via CMake `FetchContent`.
-- [x] C/C++ source text parsed reliably into syntax trees.
-- [x] Tree traversal extracts classes, structs, functions, methods, includes, and calls.
+* **Syntactic Scope Only**: No cross-file semantic symbol resolution, type inferencing, or call-graph resolution.
+* **In-Memory Single-Pass**: Syntax trees are parsed and converted immediately into `ParsedFile`; no persistent index is written yet.
+* **Phase Boundaries Respected**: Indexing (inverted/trigram index), search, ranking, embeddings, vector search, persistence, and client/server APIs remain strictly deferred to subsequent phases.
+
+---
+
+## 11. Checkpoint Criteria
+
+- [x] Tree-sitter core runtime and 10 language grammars integrated via CMake `FetchContent`.
+- [x] Support for C, C++, Python, Java, Go, Rust, JavaScript, TypeScript, JSX, TSX, HTML, and CSS.
+- [x] Lightweight React component, hook, and JSX tag extraction.
+- [x] Next.js file-convention route classification (`Route` elements).
+- [x] Tailwind CSS utility-class extraction from `className` and `class` attributes.
 - [x] Exact 1-indexed line and column source locations captured.
 - [x] Incomplete/malformed source code handled gracefully without crashes (`has_syntax_errors = true`).
-- [x] Dedicated GoogleTest suite added (12 unit tests for parser).
-- [x] All Phase 0 and Phase 1 tests continue to pass (22/22 total tests pass).
-- [x] CLI `parse` command demonstrates structural extraction.
-- [x] Code formatting (`clang-format`) and static analysis (`clang-tidy`) pass.
+- [x] Comprehensive GoogleTest suite passing (31/31 total tests pass).
+- [x] CLI `parse` command demonstrates multi-language and web ecosystem inspection.
+- [x] Code formatting (`clang-format`) and static analysis passing with zero warnings.
