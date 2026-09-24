@@ -61,6 +61,22 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
 
     const string_view type = ts_node_type(node);
 
+    if (type == "namespace_definition") {
+        TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
+        string ns_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+        string ctx = current_class.empty()
+                         ? ns_name
+                         : (!ns_name.empty() ? current_class + "::" + ns_name : current_class);
+        TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
+        if (!ts_node_is_null(body_node)) {
+            const uint32_t child_count = ts_node_named_child_count(body_node);
+            for (uint32_t i = 0; i < child_count; ++i) {
+                extract_cpp(ts_node_named_child(body_node, i), source, ctx, out_elements);
+            }
+        }
+        return;
+    }
+
     if (type == "class_specifier" || type == "struct_specifier") {
         const bool is_class = (type == "class_specifier");
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
@@ -104,7 +120,7 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
 
         TSNode body = ts_node_child_by_field_name(node, "body", 4);
         if (!ts_node_is_null(body)) {
-            extract_cpp(body, source, current_class, out_elements);
+            extract_cpp(body, source, func_name.empty() ? current_class : func_name, out_elements);
         }
         return;
     }

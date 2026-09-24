@@ -55,7 +55,8 @@ void extract_python(TSNode node, string_view source, const string& current_class
 
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
         if (!ts_node_is_null(body_node)) {
-            extract_python(body_node, source, current_class, out_elements);
+            extract_python(body_node, source, func_name.empty() ? current_class : func_name,
+                           out_elements);
         }
         return;
     }
