@@ -2,11 +2,13 @@
 
 namespace amoeba {
 
+using namespace std;
+
 namespace {
-constexpr std::string_view ENGINE_VERSION = "0.1.0";
+constexpr string_view ENGINE_VERSION = "0.1.0";
 }  // namespace
 
-std::string_view get_version() noexcept {
+string_view get_version() noexcept {
     return ENGINE_VERSION;
 }
 

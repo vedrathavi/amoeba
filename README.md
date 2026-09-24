@@ -7,8 +7,8 @@
 ## Current Status
 
 > [!IMPORTANT]
-> **Amoeba is currently in Phase 0 (Project Foundation).**
-> It does **not** yet provide code search, indexing, tokenization, or parsing functionality. The current phase establishes a clean, robust, and modern C++20 engineering foundation.
+> **Amoeba is currently in Phase 1 (Repository Scanner).**
+> It provides repository traversal, filtering, and source-code file discovery. Full tokenization, parsing, indexing, and search functionality remain planned for subsequent phases.
 
 ---
 
@@ -48,7 +48,7 @@ $$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \
 amoeba/
 │
 ├── engine/             # Core C++ engine library
-│   ├── include/        # Public C++ API headers (amoeba/*.hpp)
+│   ├── include/        # Public C++ API headers (amoeba/*.hpp, amoeba/scanner/*.hpp)
 │   ├── src/            # Engine implementation files
 │   └── tests/          # Engine unit tests (GoogleTest)
 │
@@ -114,20 +114,31 @@ cmake --build build
 
 ## Running the CLI
 
-After building, run the native CLI executable:
+Scan a local repository and inspect discovered source files using the `index` command:
 
 ```bash
-# On Windows
-./build/debug/apps/cli/amoeba_cli.exe
-
-# On Linux / macOS
-./build/debug/apps/cli/amoeba_cli
+# Run scan on a repository
+./build/debug/apps/cli/amoeba_cli index <repository-path>
 ```
 
-**Expected Output:**
+**Example Output:**
 ```text
 Amoeba
 Source Code Search & Indexing Engine
+
+Repository:
+  ./sample-project
+
+Scan complete.
+
+Files discovered: 42
+Files included:   27
+Files ignored:    15
+
+Language Breakdown:
+  C++:         12
+  TypeScript:   8
+  Python:       7
 ```
 
 ---

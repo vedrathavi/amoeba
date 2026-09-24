@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace std;
+
 TEST(FoundationSmokeTest, BasicSanity) {
     EXPECT_TRUE(true);
 }

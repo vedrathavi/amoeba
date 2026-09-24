@@ -21,5 +21,8 @@ CheckOptions:
   readability-identifier-naming.StructCase: CamelCase
   readability-identifier-naming.FunctionCase: lower_case
   readability-identifier-naming.VariableCase: lower_case
-  readability-identifier-naming.ConstantCase: UPPER_CASE
+  readability-identifier-naming.LocalVariableCase: lower_case
+  readability-identifier-naming.LocalConstantCase: lower_case
+  readability-identifier-naming.GlobalConstantCase: UPPER_CASE
+  readability-identifier-naming.ConstexprVariableCase: UPPER_CASE
 ...

@@ -24,6 +24,7 @@ option(AMOEBA_BUILD_CLI "Build Amoeba CLI application" ON)
 # -----------------------------------------------------------------------------
 add_library(amoeba_engine
     engine/src/engine.cpp
+    engine/src/scanner/repository_scanner.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -87,6 +88,7 @@ if(AMOEBA_BUILD_TESTS)
 
     add_executable(amoeba_engine_tests
         engine/tests/smoke_test.cpp
+        engine/tests/scanner/repository_scanner_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
