@@ -227,6 +227,9 @@ add_library(amoeba_engine
     engine/src/parser/extractors/js_ts_extractor.cpp
     engine/src/parser/extractors/web_extractor.cpp
     engine/src/parser/extractors/nextjs_extractor.cpp
+    engine/src/index/code_tokenizer.cpp
+    engine/src/index/inverted_index.cpp
+    engine/src/index/search_engine.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -309,6 +312,11 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/smoke_test.cpp
         engine/tests/scanner/repository_scanner_test.cpp
         engine/tests/parser/source_parser_test.cpp
+        engine/tests/index/code_tokenizer_test.cpp
+        engine/tests/index/inverted_index_test.cpp
+        engine/tests/index/search_engine_test.cpp
+        engine/tests/index/index_benchmark_test.cpp
+        engine/tests/index/retrieval_integration_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
