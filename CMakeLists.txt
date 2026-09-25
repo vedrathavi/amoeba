@@ -249,6 +249,9 @@ add_library(amoeba_engine
     engine/src/semantic/semantic_retriever.cpp
     engine/src/eval/ranking_metrics.cpp
     engine/src/eval/benchmark_result.cpp
+    engine/src/hybrid/score_normalizer.cpp
+    engine/src/hybrid/fusion_strategy.cpp
+    engine/src/hybrid/hybrid_retriever.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -356,6 +359,9 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/semantic/semantic_retriever_test.cpp
         engine/tests/semantic/semantic_retrieval_benchmark_test.cpp
         engine/tests/eval/ranking_metrics_test.cpp
+        engine/tests/hybrid/score_normalizer_test.cpp
+        engine/tests/hybrid/fusion_strategy_test.cpp
+        engine/tests/hybrid/hybrid_retriever_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests

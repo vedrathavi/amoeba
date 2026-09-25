@@ -1,0 +1,887 @@
+{
+  "corpus": "demo_test_projects/calendar",
+  "total_elements": 2820,
+  "total_queries": 10,
+  "aggregate_results": [
+    {
+      "Method": "Baseline Lexical",
+      "P@1": 0.1,
+      "P@3": 0.1,
+      "P@5": 0.1,
+      "Recall@5": 0.3,
+      "Recall@10": 0.4333,
+      "MRR": 0.2491,
+      "NDCG@5": 0.1947,
+      "NDCG@10": 0.2481,
+      "LatencyMs": 0.35,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "BM25",
+      "P@1": 0.2,
+      "P@3": 0.1333,
+      "P@5": 0.1,
+      "Recall@5": 0.3167,
+      "Recall@10": 0.5333,
+      "MRR": 0.3587,
+      "NDCG@5": 0.2689,
+      "NDCG@10": 0.3606,
+      "LatencyMs": 0.32,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 1.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "CodeAware",
+      "P@1": 0.1,
+      "P@3": 0.1,
+      "P@5": 0.08,
+      "Recall@5": 0.2667,
+      "Recall@10": 0.5333,
+      "MRR": 0.2525,
+      "NDCG@5": 0.1782,
+      "NDCG@10": 0.2896,
+      "LatencyMs": 0.24,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Semantic",
+      "P@1": 0.2,
+      "P@3": 0.1333,
+      "P@5": 0.08,
+      "Recall@5": 0.2333,
+      "Recall@10": 0.3,
+      "MRR": 0.3192,
+      "NDCG@5": 0.21,
+      "NDCG@10": 0.2409,
+      "LatencyMs": 12.94,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 1.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Hybrid alpha=0.5",
+      "P@1": 0.1,
+      "P@3": 0.1333,
+      "P@5": 0.12,
+      "Recall@5": 0.3667,
+      "Recall@10": 0.4,
+      "MRR": 0.2756,
+      "NDCG@5": 0.2362,
+      "NDCG@10": 0.251,
+      "LatencyMs": 13.21,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Hybrid alpha=0.3",
+      "P@1": 0.1,
+      "P@3": 0.1333,
+      "P@5": 0.08,
+      "Recall@5": 0.2333,
+      "Recall@10": 0.3,
+      "MRR": 0.2765,
+      "NDCG@5": 0.1874,
+      "NDCG@10": 0.2166,
+      "LatencyMs": 13.2,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Hybrid RRF (k=60)",
+      "P@1": 0.1,
+      "P@3": 0.1,
+      "P@5": 0.08,
+      "Recall@5": 0.2833,
+      "Recall@10": 0.4,
+      "MRR": 0.2441,
+      "NDCG@5": 0.1794,
+      "NDCG@10": 0.2302,
+      "LatencyMs": 13.21,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 0.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    }
+  ],
+  "per_query_results": [
+    {
+      "query_id": "Q1",
+      "query": "CalendarGrid",
+      "category": "Exact Identifier",
+      "expected_target": "CalendarGrid (src/components/calendar/CalendarGrid.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 1077,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 3,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.775
+        },
+        "BM25": {
+          "top_id": 1035,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 6,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.517
+        },
+        "CodeAware": {
+          "top_id": 1077,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 5,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.36
+        },
+        "Semantic": {
+          "top_id": 1106,
+          "top_name": "isRangeEnd",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 19,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 51.345
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 1077,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 13,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 51.747
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 1077,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 19,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 51.734
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 1077,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 8,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 51.734
+        }
+      }
+    },
+    {
+      "query_id": "Q2",
+      "query": "use calendar",
+      "category": "Normalized Identifier",
+      "expected_target": "useCalendar (src/hooks/useCalendar.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 2739,
+          "top_name": "useState",
+          "top_kind": "Hook",
+          "top_file": "src/hooks/useCalendar.ts",
+          "target_rank": 22,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.657
+        },
+        "BM25": {
+          "top_id": 2739,
+          "top_name": "useState",
+          "top_kind": "Hook",
+          "top_file": "src/hooks/useCalendar.ts",
+          "target_rank": 13,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.726
+        },
+        "CodeAware": {
+          "top_id": 168,
+          "top_name": "import React, { useEffect, useMemo, useState } from \"react\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 22,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.585
+        },
+        "Semantic": {
+          "top_id": 107,
+          "top_name": "[data-month=\"7\"]",
+          "top_kind": "Selector",
+          "top_file": "src/app/globals.css",
+          "target_rank": 143,
+          "relevance": "INCORRECT",
+          "latency_ms": 10.355
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 107,
+          "top_name": "[data-month=\"7\"]",
+          "top_kind": "Selector",
+          "top_file": "src/app/globals.css",
+          "target_rank": 999,
+          "relevance": "INCORRECT",
+          "latency_ms": 10.964
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 107,
+          "top_name": "[data-month=\"7\"]",
+          "top_kind": "Selector",
+          "top_file": "src/app/globals.css",
+          "target_rank": 999,
+          "relevance": "INCORRECT",
+          "latency_ms": 10.956
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 107,
+          "top_name": "[data-month=\"7\"]",
+          "top_kind": "Selector",
+          "top_file": "src/app/globals.css",
+          "target_rank": 999,
+          "relevance": "INCORRECT",
+          "latency_ms": 10.96
+        }
+      }
+    },
+    {
+      "query_id": "Q3",
+      "query": "LocalStorage",
+      "category": "Partial/Subword",
+      "expected_target": "useLocalStorage (src/hooks/useLocalStorage.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.071
+        },
+        "BM25": {
+          "top_id": 2767,
+          "top_name": "useLocalStorage",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 0.077
+        },
+        "CodeAware": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.047
+        },
+        "Semantic": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 12,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.965
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 5,
+          "relevance": "INCORRECT",
+          "latency_ms": 9.029
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 11,
+          "relevance": "INCORRECT",
+          "latency_ms": 9.021
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 171,
+          "top_name": "import { useLocalStorage } from \"@/hooks/useLocalStorage\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 5,
+          "relevance": "INCORRECT",
+          "latency_ms": 9.028
+        }
+      }
+    },
+    {
+      "query_id": "Q4",
+      "query": "FloatingToolbar action",
+      "category": "Multi-Term",
+      "expected_target": "FloatingToolbar (src/components/floating-toolbar/FloatingToolbar.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 178,
+          "top_name": "import {\n  FloatingToolbar,\n  type ToolbarAction,\n} from \"@/components/floating-toolbar/FloatingToolbar\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 13,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.386
+        },
+        "BM25": {
+          "top_id": 1779,
+          "top_name": "onClick",
+          "top_kind": "Attribute",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 19,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.343
+        },
+        "CodeAware": {
+          "top_id": 178,
+          "top_name": "import {\n  FloatingToolbar,\n  type ToolbarAction,\n} from \"@/components/floating-toolbar/FloatingToolbar\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 12,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.258
+        },
+        "Semantic": {
+          "top_id": 1751,
+          "top_name": "onAction",
+          "top_kind": "Call",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 121,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.173
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 1751,
+          "top_name": "onAction",
+          "top_kind": "Call",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 16,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.449
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 1751,
+          "top_name": "onAction",
+          "top_kind": "Call",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 17,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.443
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 1751,
+          "top_name": "onAction",
+          "top_kind": "Call",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 16,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.447
+        }
+      }
+    },
+    {
+      "query_id": "Q5",
+      "query": "formatDate formatStr",
+      "category": "Contextual Lexical",
+      "expected_target": "formatDate (src/lib/dateUtils.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 4,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.137
+        },
+        "BM25": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.097
+        },
+        "CodeAware": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 3,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.075
+        },
+        "Semantic": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.135
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.227
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.222
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 2784,
+          "top_name": "format",
+          "top_kind": "Call",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 9.226
+        }
+      }
+    },
+    {
+      "query_id": "Q6",
+      "query": "RootLayout Next.js metadata",
+      "category": "Framework",
+      "expected_target": "RootLayout (src/app/layout.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 0.102
+        },
+        "BM25": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 0.093
+        },
+        "CodeAware": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 0.067
+        },
+        "Semantic": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 7.913
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 7.996
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 7.99
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 142,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 7.995
+        }
+      }
+    },
+    {
+      "query_id": "Q7",
+      "query": "Dialog",
+      "category": "Ambiguous",
+      "expected_target": "Dialog (src/components/ui/dialog.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 180,
+          "top_name": "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n} from \"@/components/ui/dialog\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 27,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.154
+        },
+        "BM25": {
+          "top_id": 180,
+          "top_name": "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n} from \"@/components/ui/dialog\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 27,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.137
+        },
+        "CodeAware": {
+          "top_id": 180,
+          "top_name": "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n} from \"@/components/ui/dialog\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 28,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.114
+        },
+        "Semantic": {
+          "top_id": 2394,
+          "top_name": "cn",
+          "top_kind": "Call",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 55,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 8.396
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 180,
+          "top_name": "import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n} from \"@/components/ui/dialog\";",
+          "top_kind": "Include",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 999,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.527
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 2394,
+          "top_name": "cn",
+          "top_kind": "Call",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 999,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 8.521
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 2397,
+          "top_name": "DialogOverlay",
+          "top_kind": "JSXComponent",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 999,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 8.526
+        }
+      }
+    },
+    {
+      "query_id": "Q8",
+      "query": "Where is the location destination photo and travel description rendered for each month?",
+      "category": "Conceptual/Semantic",
+      "expected_target": "ImagePanel (src/components/calendar/ImagePanel.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 896,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarDay.tsx",
+          "target_rank": 84,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.229
+        },
+        "BM25": {
+          "top_id": 2796,
+          "top_name": "MonthLocation",
+          "top_kind": "Interface",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.143
+        },
+        "CodeAware": {
+          "top_id": 896,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/calendar/CalendarDay.tsx",
+          "target_rank": 24,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.113
+        },
+        "Semantic": {
+          "top_id": 2800,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "latency_ms": 8.541
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 3,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.673
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.671
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.68
+        }
+      }
+    },
+    {
+      "query_id": "Q9",
+      "query": "MonthLocation getImagePanelData",
+      "category": "Cross-File",
+      "expected_target": "MonthLocation (src/lib/monthLocationData.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 2547,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/ui/sheet.tsx",
+          "target_rank": 8,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.495
+        },
+        "BM25": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 0.458
+        },
+        "CodeAware": {
+          "top_id": 2547,
+          "top_name": "className",
+          "top_kind": "Attribute",
+          "top_file": "src/components/ui/sheet.tsx",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.352
+        },
+        "Semantic": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 7.484
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 7.852
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 7.847
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 2801,
+          "top_name": "getMonth",
+          "top_kind": "Call",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 3,
+          "relevance": "PARTIALLY_RELEVANT",
+          "latency_ms": 7.852
+        }
+      }
+    },
+    {
+      "query_id": "Q10",
+      "query": "CalendarDay rendered inside CalendarGrid",
+      "category": "Component Relationship",
+      "expected_target": "CalendarDay (src/components/calendar/CalendarDay.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_id": 1034,
+          "top_name": "import { CalendarDay } from \"./CalendarDay\";",
+          "top_kind": "Include",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 9,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.542
+        },
+        "BM25": {
+          "top_id": 1101,
+          "top_name": "CalendarDay",
+          "top_kind": "JSXComponent",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 9,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.658
+        },
+        "CodeAware": {
+          "top_id": 1034,
+          "top_name": "import { CalendarDay } from \"./CalendarDay\";",
+          "top_kind": "Include",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "latency_ms": 0.478
+        },
+        "Semantic": {
+          "top_id": 1054,
+          "top_name": "div",
+          "top_kind": "JSXElement",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 45,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.129
+        },
+        "Hybrid alpha=0.5": {
+          "top_id": 1101,
+          "top_name": "CalendarDay",
+          "top_kind": "JSXComponent",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 12,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.63
+        },
+        "Hybrid alpha=0.3": {
+          "top_id": 1101,
+          "top_name": "CalendarDay",
+          "top_kind": "JSXComponent",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 16,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.623
+        },
+        "Hybrid RRF (k=60)": {
+          "top_id": 1101,
+          "top_name": "CalendarDay",
+          "top_kind": "JSXComponent",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 13,
+          "relevance": "INCORRECT",
+          "latency_ms": 8.631
+        }
+      }
+    }
+  ]
+}

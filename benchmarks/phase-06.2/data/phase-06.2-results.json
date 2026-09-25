@@ -1,0 +1,366 @@
+{
+  "experiment_id": "EXP-P6.2-HYBRID-EVALUATION",
+  "phase": "6.2",
+  "experiment_name": "Hybrid Lexical + Semantic Retrieval Evaluation",
+  "dataset": "Amoeba Multi-Language Retrieval Benchmark (Validation Suite)",
+  "dataset_version": "1.0.0",
+  "query_count": 10,
+  "corpus_size": 7,
+  "model": "all-MiniLM-L6-v2",
+  "model_version": "sentence-transformers/all-MiniLM-L6-v2 (revision: fa97f96)",
+  "embedding_dimension": 384,
+  "default_alpha": 0.5,
+  "fusion_methods_evaluated": [
+    "WeightedScore",
+    "ReciprocalRank"
+  ],
+  "normalization_method": "Min-Max Normalization over Candidate Pool",
+  "environment": {
+    "os": "Windows 11 x86_64",
+    "cpu": "x86_64 Multi-Core CPU",
+    "compiler": "MinGW Clang++ C++20 / Python 3.12"
+  },
+  "timestamp": "2026-09-26T00:13:08.086273",
+  "performance": {
+    "lexical_retrieval_latency_ms": 0.08,
+    "query_embedding_latency_ms": 9.68,
+    "semantic_scan_latency_ms": 0.013,
+    "candidate_union_and_fusion_latency_ms": 0.022,
+    "total_hybrid_query_latency_ms": 9.8,
+    "lexical_only_total_ms": 0.08,
+    "semantic_only_total_ms": 9.69,
+    "candidate_counts": {
+      "lexical_candidate_count_avg": 2.6,
+      "semantic_candidate_count_avg": 7.0,
+      "unified_candidate_count_avg": 7.0
+    }
+  },
+  "methods": {
+    "Baseline Lexical": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4333,
+        "P@5": 0.26,
+        "Recall@5": 0.95,
+        "Recall@10": 0.95,
+        "MRR": 0.9333,
+        "NDCG@5": 0.9307,
+        "NDCG@10": 0.9307,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "latency_ms": 0.02
+    },
+    "BM25": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4667,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 0.95,
+        "NDCG@5": 0.9693,
+        "NDCG@10": 0.9693,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "latency_ms": 0.04
+    },
+    "CodeAware": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4333,
+        "P@5": 0.26,
+        "Recall@5": 0.95,
+        "Recall@10": 0.95,
+        "MRR": 0.9333,
+        "NDCG@5": 0.9307,
+        "NDCG@10": 0.9307,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "latency_ms": 0.08
+    },
+    "Semantic (all-MiniLM-L6-v2)": {
+      "metrics": {
+        "P@1": 1.0,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 1.0,
+        "NDCG@5": 0.9967,
+        "NDCG@10": 0.9967,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 1.0
+        }
+      },
+      "latency_ms": 9.69
+    },
+    "Hybrid (alpha=0.5 Weighted)": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 0.9333,
+        "NDCG@5": 0.9571,
+        "NDCG@10": 0.9571,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "latency_ms": 9.8
+    },
+    "Hybrid (RRF k=60)": {
+      "metrics": {
+        "P@1": 1.0,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 1.0,
+        "NDCG@5": 0.9877,
+        "NDCG@10": 0.9877,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 1.0
+        }
+      },
+      "latency_ms": 9.8
+    }
+  },
+  "weight_sweep": [
+    {
+      "alpha": 0.0,
+      "P@1": 1.0,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9967,
+      "NDCG@10": 0.9967
+    },
+    {
+      "alpha": 0.1,
+      "P@1": 1.0,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9967,
+      "NDCG@10": 0.9967
+    },
+    {
+      "alpha": 0.2,
+      "P@1": 1.0,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9967,
+      "NDCG@10": 0.9967
+    },
+    {
+      "alpha": 0.3,
+      "P@1": 1.0,
+      "P@3": 0.4667,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 1.0,
+      "NDCG@10": 1.0
+    },
+    {
+      "alpha": 0.4,
+      "P@1": 0.9,
+      "P@3": 0.4667,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.95,
+      "NDCG@5": 0.9693,
+      "NDCG@10": 0.9693
+    },
+    {
+      "alpha": 0.5,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    },
+    {
+      "alpha": 0.6,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    },
+    {
+      "alpha": 0.7,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    },
+    {
+      "alpha": 0.8,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    },
+    {
+      "alpha": 0.9,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    },
+    {
+      "alpha": 1.0,
+      "P@1": 0.9,
+      "P@3": 0.4333,
+      "P@5": 0.28,
+      "Recall@5": 1.0,
+      "Recall@10": 1.0,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "NDCG@10": 0.9571
+    }
+  ],
+  "candidate_depth_analysis": [
+    {
+      "candidate_depth_k": 3,
+      "P@1": 0.9,
+      "MRR": 0.95,
+      "NDCG@5": 0.9693,
+      "fusion_latency_ms": 0.020999999999999998
+    },
+    {
+      "candidate_depth_k": 5,
+      "P@1": 0.9,
+      "MRR": 0.95,
+      "NDCG@5": 0.9693,
+      "fusion_latency_ms": 0.025
+    },
+    {
+      "candidate_depth_k": 7,
+      "P@1": 0.9,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "fusion_latency_ms": 0.028999999999999998
+    },
+    {
+      "candidate_depth_k": 10,
+      "P@1": 0.9,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "fusion_latency_ms": 0.035
+    },
+    {
+      "candidate_depth_k": 20,
+      "P@1": 0.9,
+      "MRR": 0.9333,
+      "NDCG@5": 0.9571,
+      "fusion_latency_ms": 0.055
+    }
+  ],
+  "complementarity_analysis": {
+    "contingency_table": {
+      "lex_correct_sem_correct": 9,
+      "lex_correct_sem_wrong": 0,
+      "lex_wrong_sem_correct": 1,
+      "lex_wrong_sem_wrong": 0
+    },
+    "win_loss_summary": {
+      "HYBRID_IMPROVED": 0,
+      "HYBRID_PRESERVED": 9,
+      "HYBRID_REGRESSED": 0,
+      "LEXICAL_ONLY_BETTER": 0,
+      "SEMANTIC_ONLY_BETTER": 1,
+      "TIE": 0
+    }
+  }
+}

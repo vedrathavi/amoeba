@@ -1,0 +1,11 @@
+QueryIndex,Query,Category,ExpectedRelevant,LexicalTopResult,LexicalRankRelevant,SemanticTopResult,SemanticRankRelevant,HybridTopResult,HybridRankRelevant,Outcome
+1,authenticateUser,Exact Identifier,ts_auth_authenticate,ts_auth_authenticate,1,ts_auth_authenticate,1,ts_auth_authenticate,1,HYBRID_PRESERVED
+2,find user by id,Normalized Identifier,cpp_db_repo,cpp_db_repo,1,cpp_db_repo,1,cpp_db_repo,1,HYBRID_PRESERVED
+3,validate creds,Partial/Subword,cpp_auth_validate,cpp_auth_validate,1,cpp_auth_validate,1,cpp_auth_validate,1,HYBRID_PRESERVED
+4,process payment transactions and charge invoices,Multi-Term,go_payment_process,go_payment_process,1,go_payment_process,1,go_payment_process,1,HYBRID_PRESERVED
+5,auth service session token,Contextual Lexical,cpp_auth_validate|py_token_refresh,cpp_auth_validate,1,cpp_auth_validate,1,cpp_auth_validate,1,HYBRID_PRESERVED
+6,services/token_service.py,Path/Repository,py_token_refresh,py_token_refresh,1,py_token_refresh,1,py_token_refresh,1,HYBRID_PRESERVED
+7,export const UserProfileCard,Framework,tsx_user_profile,tsx_user_profile,1,tsx_user_profile,1,tsx_user_profile,1,HYBRID_PRESERVED
+8,user,Ambiguous,cpp_db_repo|ts_auth_authenticate|tsx_user_profile,cpp_db_repo,1,cpp_db_repo,1,cpp_db_repo,1,HYBRID_PRESERVED
+9,hash password with salt,Cross-Language,py_hash_password,py_hash_password,1,py_hash_password,1,py_hash_password,1,HYBRID_PRESERVED
+10,where do we check user login credentials?,Conceptual/Semantic,cpp_auth_validate|ts_auth_authenticate,cpp_db_repo,3,cpp_auth_validate,1,cpp_db_repo,3,SEMANTIC_ONLY_BETTER

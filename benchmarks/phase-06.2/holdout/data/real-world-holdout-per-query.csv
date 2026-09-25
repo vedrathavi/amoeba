@@ -1,0 +1,105 @@
+QueryId,Query,Category,Method,TopResultName,TopResultKind,TopResultFile,TargetRank,Relevance,LatencyMs
+Q1,CalendarGrid,Exact Identifier,Baseline Lexical,className,Attribute,src/components/calendar/CalendarGrid.tsx,3,PARTIALLY_RELEVANT,0.775
+Q1,CalendarGrid,Exact Identifier,BM25,CalendarGridProps,Interface,src/components/calendar/CalendarGrid.tsx,6,PARTIALLY_RELEVANT,0.517
+Q1,CalendarGrid,Exact Identifier,CodeAware,className,Attribute,src/components/calendar/CalendarGrid.tsx,5,PARTIALLY_RELEVANT,0.36
+Q1,CalendarGrid,Exact Identifier,Semantic,isRangeEnd,Attribute,src/components/calendar/CalendarGrid.tsx,19,PARTIALLY_RELEVANT,51.345
+Q1,CalendarGrid,Exact Identifier,Hybrid alpha=0.5,className,Attribute,src/components/calendar/CalendarGrid.tsx,13,PARTIALLY_RELEVANT,51.747
+Q1,CalendarGrid,Exact Identifier,Hybrid alpha=0.3,className,Attribute,src/components/calendar/CalendarGrid.tsx,19,PARTIALLY_RELEVANT,51.734
+Q1,CalendarGrid,Exact Identifier,Hybrid RRF (k=60),className,Attribute,src/components/calendar/CalendarGrid.tsx,8,PARTIALLY_RELEVANT,51.734
+Q2,use calendar,Normalized Identifier,Baseline Lexical,useState,Hook,src/hooks/useCalendar.ts,22,PARTIALLY_RELEVANT,0.657
+Q2,use calendar,Normalized Identifier,BM25,useState,Hook,src/hooks/useCalendar.ts,13,PARTIALLY_RELEVANT,0.726
+Q2,use calendar,Normalized Identifier,CodeAware,"import React, { useEffect, useMemo, useState } from ""react"";",Include,src/app/page.tsx,22,INCORRECT,0.585
+Q2,use calendar,Normalized Identifier,Semantic,"[data-month=""7""]",Selector,src/app/globals.css,143,INCORRECT,10.355
+Q2,use calendar,Normalized Identifier,Hybrid alpha=0.5,"[data-month=""7""]",Selector,src/app/globals.css,999,INCORRECT,10.964
+Q2,use calendar,Normalized Identifier,Hybrid alpha=0.3,"[data-month=""7""]",Selector,src/app/globals.css,999,INCORRECT,10.956
+Q2,use calendar,Normalized Identifier,Hybrid RRF (k=60),"[data-month=""7""]",Selector,src/app/globals.css,999,INCORRECT,10.96
+Q3,LocalStorage,Partial/Subword,Baseline Lexical,"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,2,INCORRECT,0.071
+Q3,LocalStorage,Partial/Subword,BM25,useLocalStorage,Function,src/hooks/useLocalStorage.ts,1,CORRECT,0.077
+Q3,LocalStorage,Partial/Subword,CodeAware,"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,2,INCORRECT,0.047
+Q3,LocalStorage,Partial/Subword,Semantic,"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,12,INCORRECT,8.965
+Q3,LocalStorage,Partial/Subword,Hybrid alpha=0.5,"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,5,INCORRECT,9.029
+Q3,LocalStorage,Partial/Subword,Hybrid alpha=0.3,"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,11,INCORRECT,9.021
+Q3,LocalStorage,Partial/Subword,Hybrid RRF (k=60),"import { useLocalStorage } from ""@/hooks/useLocalStorage"";",Include,src/app/page.tsx,5,INCORRECT,9.028
+Q4,FloatingToolbar action,Multi-Term,Baseline Lexical,"import {
+  FloatingToolbar,
+  type ToolbarAction,
+} from ""@/components/floating-toolbar/FloatingToolbar"";",Include,src/app/page.tsx,13,INCORRECT,0.386
+Q4,FloatingToolbar action,Multi-Term,BM25,onClick,Attribute,src/components/floating-toolbar/FloatingToolbar.tsx,19,PARTIALLY_RELEVANT,0.343
+Q4,FloatingToolbar action,Multi-Term,CodeAware,"import {
+  FloatingToolbar,
+  type ToolbarAction,
+} from ""@/components/floating-toolbar/FloatingToolbar"";",Include,src/app/page.tsx,12,INCORRECT,0.258
+Q4,FloatingToolbar action,Multi-Term,Semantic,onAction,Call,src/components/floating-toolbar/FloatingToolbar.tsx,121,PARTIALLY_RELEVANT,9.173
+Q4,FloatingToolbar action,Multi-Term,Hybrid alpha=0.5,onAction,Call,src/components/floating-toolbar/FloatingToolbar.tsx,16,PARTIALLY_RELEVANT,9.449
+Q4,FloatingToolbar action,Multi-Term,Hybrid alpha=0.3,onAction,Call,src/components/floating-toolbar/FloatingToolbar.tsx,17,PARTIALLY_RELEVANT,9.443
+Q4,FloatingToolbar action,Multi-Term,Hybrid RRF (k=60),onAction,Call,src/components/floating-toolbar/FloatingToolbar.tsx,16,PARTIALLY_RELEVANT,9.447
+Q5,formatDate formatStr,Contextual Lexical,Baseline Lexical,format,Call,src/lib/dateUtils.ts,4,PARTIALLY_RELEVANT,0.137
+Q5,formatDate formatStr,Contextual Lexical,BM25,format,Call,src/lib/dateUtils.ts,2,PARTIALLY_RELEVANT,0.097
+Q5,formatDate formatStr,Contextual Lexical,CodeAware,format,Call,src/lib/dateUtils.ts,3,PARTIALLY_RELEVANT,0.075
+Q5,formatDate formatStr,Contextual Lexical,Semantic,format,Call,src/lib/dateUtils.ts,2,PARTIALLY_RELEVANT,9.135
+Q5,formatDate formatStr,Contextual Lexical,Hybrid alpha=0.5,format,Call,src/lib/dateUtils.ts,2,PARTIALLY_RELEVANT,9.227
+Q5,formatDate formatStr,Contextual Lexical,Hybrid alpha=0.3,format,Call,src/lib/dateUtils.ts,2,PARTIALLY_RELEVANT,9.222
+Q5,formatDate formatStr,Contextual Lexical,Hybrid RRF (k=60),format,Call,src/lib/dateUtils.ts,2,PARTIALLY_RELEVANT,9.226
+Q6,RootLayout Next.js metadata,Framework,Baseline Lexical,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,0.102
+Q6,RootLayout Next.js metadata,Framework,BM25,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,0.093
+Q6,RootLayout Next.js metadata,Framework,CodeAware,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,0.067
+Q6,RootLayout Next.js metadata,Framework,Semantic,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,7.913
+Q6,RootLayout Next.js metadata,Framework,Hybrid alpha=0.5,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,7.996
+Q6,RootLayout Next.js metadata,Framework,Hybrid alpha=0.3,demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,7.99
+Q6,RootLayout Next.js metadata,Framework,Hybrid RRF (k=60),demo_test_projects/calendar/src/app/layout.tsx,Route,src/app/layout.tsx,1,CORRECT,7.995
+Q7,Dialog,Ambiguous,Baseline Lexical,"import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from ""@/components/ui/dialog"";",Include,src/app/page.tsx,27,INCORRECT,0.154
+Q7,Dialog,Ambiguous,BM25,"import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from ""@/components/ui/dialog"";",Include,src/app/page.tsx,27,INCORRECT,0.137
+Q7,Dialog,Ambiguous,CodeAware,"import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from ""@/components/ui/dialog"";",Include,src/app/page.tsx,28,INCORRECT,0.114
+Q7,Dialog,Ambiguous,Semantic,cn,Call,src/components/ui/dialog.tsx,55,PARTIALLY_RELEVANT,8.396
+Q7,Dialog,Ambiguous,Hybrid alpha=0.5,"import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from ""@/components/ui/dialog"";",Include,src/app/page.tsx,999,INCORRECT,8.527
+Q7,Dialog,Ambiguous,Hybrid alpha=0.3,cn,Call,src/components/ui/dialog.tsx,999,PARTIALLY_RELEVANT,8.521
+Q7,Dialog,Ambiguous,Hybrid RRF (k=60),DialogOverlay,JSXComponent,src/components/ui/dialog.tsx,999,PARTIALLY_RELEVANT,8.526
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,Baseline Lexical,className,Attribute,src/components/calendar/CalendarDay.tsx,84,INCORRECT,0.229
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,BM25,MonthLocation,Interface,src/lib/monthLocationData.ts,7,INCORRECT,0.143
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,CodeAware,className,Attribute,src/components/calendar/CalendarDay.tsx,24,INCORRECT,0.113
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,Semantic,getImagePanelData,Function,src/lib/monthLocationData.ts,1,CORRECT,8.541
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,Hybrid alpha=0.5,getMonth,Call,src/lib/monthLocationData.ts,3,INCORRECT,8.673
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,Hybrid alpha=0.3,getMonth,Call,src/lib/monthLocationData.ts,2,INCORRECT,8.671
+Q8,Where is the location destination photo and travel description rendered for each month?,Conceptual/Semantic,Hybrid RRF (k=60),getMonth,Call,src/lib/monthLocationData.ts,7,INCORRECT,8.68
+Q9,MonthLocation getImagePanelData,Cross-File,Baseline Lexical,className,Attribute,src/components/ui/sheet.tsx,8,INCORRECT,0.495
+Q9,MonthLocation getImagePanelData,Cross-File,BM25,getMonth,Call,src/lib/monthLocationData.ts,2,PARTIALLY_RELEVANT,0.458
+Q9,MonthLocation getImagePanelData,Cross-File,CodeAware,className,Attribute,src/components/ui/sheet.tsx,7,INCORRECT,0.352
+Q9,MonthLocation getImagePanelData,Cross-File,Semantic,getMonth,Call,src/lib/monthLocationData.ts,2,PARTIALLY_RELEVANT,7.484
+Q9,MonthLocation getImagePanelData,Cross-File,Hybrid alpha=0.5,getMonth,Call,src/lib/monthLocationData.ts,2,PARTIALLY_RELEVANT,7.852
+Q9,MonthLocation getImagePanelData,Cross-File,Hybrid alpha=0.3,getMonth,Call,src/lib/monthLocationData.ts,2,PARTIALLY_RELEVANT,7.847
+Q9,MonthLocation getImagePanelData,Cross-File,Hybrid RRF (k=60),getMonth,Call,src/lib/monthLocationData.ts,3,PARTIALLY_RELEVANT,7.852
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,Baseline Lexical,"import { CalendarDay } from ""./CalendarDay"";",Include,src/components/calendar/CalendarGrid.tsx,9,INCORRECT,0.542
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,BM25,CalendarDay,JSXComponent,src/components/calendar/CalendarGrid.tsx,9,INCORRECT,0.658
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,CodeAware,"import { CalendarDay } from ""./CalendarDay"";",Include,src/components/calendar/CalendarGrid.tsx,7,INCORRECT,0.478
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,Semantic,div,JSXElement,src/components/calendar/CalendarGrid.tsx,45,INCORRECT,8.129
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,Hybrid alpha=0.5,CalendarDay,JSXComponent,src/components/calendar/CalendarGrid.tsx,12,INCORRECT,8.63
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,Hybrid alpha=0.3,CalendarDay,JSXComponent,src/components/calendar/CalendarGrid.tsx,16,INCORRECT,8.623
+Q10,CalendarDay rendered inside CalendarGrid,Component Relationship,Hybrid RRF (k=60),CalendarDay,JSXComponent,src/components/calendar/CalendarGrid.tsx,13,INCORRECT,8.631
