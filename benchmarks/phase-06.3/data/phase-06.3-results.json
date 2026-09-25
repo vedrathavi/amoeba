@@ -1,0 +1,1317 @@
+{
+  "corpus": "demo_test_projects/calendar",
+  "total_ast_elements": 2820,
+  "total_retrieval_units": 183,
+  "results": [
+    {
+      "Method": "Baseline Lexical",
+      "P@1": 0.2,
+      "P@3": 0.2333,
+      "P@5": 0.18,
+      "Recall@5": 0.5182,
+      "Recall@10": 0.6773,
+      "MRR": 0.4228,
+      "NDCG@5": 0.3745,
+      "NDCG@10": 0.4186,
+      "LatencyMs": 0.07,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "BM25",
+      "P@1": 0.5,
+      "P@3": 0.3,
+      "P@5": 0.22,
+      "Recall@5": 0.6682,
+      "Recall@10": 0.7182,
+      "MRR": 0.6217,
+      "NDCG@5": 0.5718,
+      "NDCG@10": 0.5717,
+      "LatencyMs": 0.04,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 1.0,
+        "Framework": 1.0,
+        "Ambiguous": 1.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 1.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "CodeAware",
+      "P@1": 0.3,
+      "P@3": 0.2667,
+      "P@5": 0.22,
+      "Recall@5": 0.6273,
+      "Recall@10": 0.6773,
+      "MRR": 0.4865,
+      "NDCG@5": 0.4831,
+      "NDCG@10": 0.479,
+      "LatencyMs": 0.03,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 1.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 0.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 0.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Semantic",
+      "P@1": 0.4,
+      "P@3": 0.3667,
+      "P@5": 0.26,
+      "Recall@5": 0.6364,
+      "Recall@10": 0.9455,
+      "MRR": 0.6018,
+      "NDCG@5": 0.5544,
+      "NDCG@10": 0.6338,
+      "LatencyMs": 9.81,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 0.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 1.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 1.0,
+        "Component Relationship": 0.0
+      }
+    },
+    {
+      "Method": "Hybrid alpha=0.5",
+      "P@1": 0.7,
+      "P@3": 0.3667,
+      "P@5": 0.28,
+      "Recall@5": 0.7364,
+      "Recall@10": 0.8955,
+      "MRR": 0.7683,
+      "NDCG@5": 0.7016,
+      "NDCG@10": 0.7272,
+      "LatencyMs": 9.86,
+      "Category_P@1": {
+        "Exact Identifier": 1.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 1.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 1.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 1.0,
+        "Component Relationship": 1.0
+      }
+    },
+    {
+      "Method": "Hybrid alpha=0.3",
+      "P@1": 0.6,
+      "P@3": 0.3667,
+      "P@5": 0.3,
+      "Recall@5": 0.7864,
+      "Recall@10": 0.9045,
+      "MRR": 0.7311,
+      "NDCG@5": 0.6921,
+      "NDCG@10": 0.7061,
+      "LatencyMs": 9.85,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 1.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 1.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 1.0,
+        "Component Relationship": 1.0
+      }
+    },
+    {
+      "Method": "Hybrid RRF (k=60)",
+      "P@1": 0.6,
+      "P@3": 0.2667,
+      "P@5": 0.26,
+      "Recall@5": 0.7682,
+      "Recall@10": 0.9182,
+      "MRR": 0.7167,
+      "NDCG@5": 0.6484,
+      "NDCG@10": 0.683,
+      "LatencyMs": 9.86,
+      "Category_P@1": {
+        "Exact Identifier": 0.0,
+        "Normalized Identifier": 0.0,
+        "Partial/Subword": 1.0,
+        "Multi-Term": 1.0,
+        "Contextual Lexical": 1.0,
+        "Framework": 1.0,
+        "Ambiguous": 0.0,
+        "Conceptual/Semantic": 0.0,
+        "Cross-File": 1.0,
+        "Component Relationship": 1.0
+      }
+    }
+  ],
+  "per_query": [
+    {
+      "query_id": "Q1",
+      "query": "CalendarGrid",
+      "category": "Exact Identifier",
+      "expected_target": "CalendarGrid (src/components/calendar/CalendarGrid.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.324
+        },
+        "BM25": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 0.052
+        },
+        "CodeAware": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.033
+        },
+        "Semantic": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 42.954
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 48,
+          "top_name": "CalendarGrid",
+          "top_kind": "Component",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 86,
+          "sample_evidence": [
+            "getHoverRange",
+            "motion.div",
+            "className",
+            "h-[52vh]"
+          ],
+          "latency_ms": 43.006
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 42.998
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 43.004
+        }
+      }
+    },
+    {
+      "query_id": "Q2",
+      "query": "use calendar",
+      "category": "Normalized Identifier",
+      "expected_target": "useCalendar (src/hooks/useCalendar.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 25,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.097
+        },
+        "BM25": {
+          "top_unit_id": 152,
+          "top_name": "useState",
+          "top_kind": "Hook",
+          "top_file": "src/hooks/useCalendar.ts",
+          "target_rank": 17,
+          "relevance": "INCORRECT",
+          "evidence_count": 0,
+          "sample_evidence": [],
+          "latency_ms": 0.066
+        },
+        "CodeAware": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 18,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.052
+        },
+        "Semantic": {
+          "top_unit_id": 49,
+          "top_name": "CalendarHeaderProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarHeader.tsx",
+          "target_rank": 8,
+          "relevance": "INCORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "import { motion } from \"framer-motion\";",
+            "import { format } from \"date-fns\";",
+            "import { ChevronLeft, ChevronRight } from \"lucide-react\";",
+            "import { Button } from \"@/components/ui/button\";"
+          ],
+          "latency_ms": 6.843
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 10,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 6.911
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 49,
+          "top_name": "CalendarHeaderProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarHeader.tsx",
+          "target_rank": 9,
+          "relevance": "INCORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "import { motion } from \"framer-motion\";",
+            "import { format } from \"date-fns\";",
+            "import { ChevronLeft, ChevronRight } from \"lucide-react\";",
+            "import { Button } from \"@/components/ui/button\";"
+          ],
+          "latency_ms": 6.907
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 38,
+          "top_name": "CalendarDayProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarDay.tsx",
+          "target_rank": 6,
+          "relevance": "INCORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "import { useRef, useState } from \"react\";",
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { isToday, getDate, isSameMonth } from \"date-fns\";",
+            "import { cn } from \"@/lib/utils\";"
+          ],
+          "latency_ms": 6.912
+        }
+      }
+    },
+    {
+      "query_id": "Q3",
+      "query": "LocalStorage",
+      "category": "Partial/Subword",
+      "expected_target": "useLocalStorage (src/hooks/useLocalStorage.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 5,
+          "top_name": "demo_test_projects/calendar/src/app/page.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 17,
+          "sample_evidence": [
+            "import React, { useEffect, useMemo, useState } from \"react\";",
+            "import { isWithinInterval, format } from \"date-fns\";",
+            "import { useCalendar } from \"@/hooks/useCalendar\";",
+            "import { useLocalStorage } from \"@/hooks/useLocalStorage\";"
+          ],
+          "latency_ms": 0.024
+        },
+        "BM25": {
+          "top_unit_id": 165,
+          "top_name": "useState",
+          "top_kind": "Hook",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 3,
+          "relevance": "INCORRECT",
+          "evidence_count": 0,
+          "sample_evidence": [],
+          "latency_ms": 0.017
+        },
+        "CodeAware": {
+          "top_unit_id": 164,
+          "top_name": "useLocalStorage",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 1,
+          "sample_evidence": [
+            "import { useState, useEffect } from \"react\";"
+          ],
+          "latency_ms": 0.012
+        },
+        "Semantic": {
+          "top_unit_id": 168,
+          "top_name": "setValue",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 4,
+          "relevance": "INCORRECT",
+          "evidence_count": 5,
+          "sample_evidence": [
+            "value",
+            "setStoredValue",
+            "setItem",
+            "stringify"
+          ],
+          "latency_ms": 5.781
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 164,
+          "top_name": "useLocalStorage",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 1,
+          "sample_evidence": [
+            "import { useState, useEffect } from \"react\";"
+          ],
+          "latency_ms": 5.805
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 164,
+          "top_name": "useLocalStorage",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 1,
+          "sample_evidence": [
+            "import { useState, useEffect } from \"react\";"
+          ],
+          "latency_ms": 5.801
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 164,
+          "top_name": "useLocalStorage",
+          "top_kind": "Function",
+          "top_file": "src/hooks/useLocalStorage.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 1,
+          "sample_evidence": [
+            "import { useState, useEffect } from \"react\";"
+          ],
+          "latency_ms": 5.806
+        }
+      }
+    },
+    {
+      "query_id": "Q4",
+      "query": "FloatingToolbar action",
+      "category": "Multi-Term",
+      "expected_target": "FloatingToolbar (src/components/floating-toolbar/FloatingToolbar.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 75,
+          "top_name": "FloatingToolbar",
+          "top_kind": "Component",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 236,
+          "sample_evidence": [
+            "ChevronLeft",
+            "className",
+            "size-4",
+            "ChevronRight"
+          ],
+          "latency_ms": 0.041
+        },
+        "BM25": {
+          "top_unit_id": 101,
+          "top_name": "handleAction",
+          "top_kind": "Function",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "setIsPinned",
+            "setIsVisible",
+            "setIsIdle",
+            "onAction"
+          ],
+          "latency_ms": 0.034
+        },
+        "CodeAware": {
+          "top_unit_id": 75,
+          "top_name": "FloatingToolbar",
+          "top_kind": "Component",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 236,
+          "sample_evidence": [
+            "ChevronLeft",
+            "className",
+            "size-4",
+            "ChevronRight"
+          ],
+          "latency_ms": 0.025
+        },
+        "Semantic": {
+          "top_unit_id": 101,
+          "top_name": "handleAction",
+          "top_kind": "Function",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "setIsPinned",
+            "setIsVisible",
+            "setIsIdle",
+            "onAction"
+          ],
+          "latency_ms": 6.228
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 101,
+          "top_name": "handleAction",
+          "top_kind": "Function",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "setIsPinned",
+            "setIsVisible",
+            "setIsIdle",
+            "onAction"
+          ],
+          "latency_ms": 6.266
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 101,
+          "top_name": "handleAction",
+          "top_kind": "Function",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "setIsPinned",
+            "setIsVisible",
+            "setIsIdle",
+            "onAction"
+          ],
+          "latency_ms": 6.262
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 101,
+          "top_name": "handleAction",
+          "top_kind": "Function",
+          "top_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 4,
+          "sample_evidence": [
+            "setIsPinned",
+            "setIsVisible",
+            "setIsIdle",
+            "onAction"
+          ],
+          "latency_ms": 6.267
+        }
+      }
+    },
+    {
+      "query_id": "Q5",
+      "query": "formatDate formatStr",
+      "category": "Contextual Lexical",
+      "expected_target": "formatDate (src/lib/dateUtils.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 3,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.033
+        },
+        "BM25": {
+          "top_unit_id": 169,
+          "top_name": "formatDate",
+          "top_kind": "Function",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { format, getMonth } from \"date-fns\";",
+            "format"
+          ],
+          "latency_ms": 0.028
+        },
+        "CodeAware": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 3,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.03
+        },
+        "Semantic": {
+          "top_unit_id": 169,
+          "top_name": "formatDate",
+          "top_kind": "Function",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { format, getMonth } from \"date-fns\";",
+            "format"
+          ],
+          "latency_ms": 6.365
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 169,
+          "top_name": "formatDate",
+          "top_kind": "Function",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { format, getMonth } from \"date-fns\";",
+            "format"
+          ],
+          "latency_ms": 6.41
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 169,
+          "top_name": "formatDate",
+          "top_kind": "Function",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { format, getMonth } from \"date-fns\";",
+            "format"
+          ],
+          "latency_ms": 6.406
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 169,
+          "top_name": "formatDate",
+          "top_kind": "Function",
+          "top_file": "src/lib/dateUtils.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { format, getMonth } from \"date-fns\";",
+            "format"
+          ],
+          "latency_ms": 6.41
+        }
+      }
+    },
+    {
+      "query_id": "Q6",
+      "query": "RootLayout Next.js metadata",
+      "category": "Framework",
+      "expected_target": "RootLayout (src/app/layout.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 0.033
+        },
+        "BM25": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 0.024
+        },
+        "CodeAware": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 0.018
+        },
+        "Semantic": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 5.755
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 5.788
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 5.784
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 3,
+          "top_name": "demo_test_projects/calendar/src/app/layout.tsx",
+          "top_kind": "Route",
+          "top_file": "src/app/layout.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import type { Metadata } from \"next\";",
+            "import { TooltipProvider } from \"@/components/ui/tooltip\";",
+            "import \"./globals.css\";"
+          ],
+          "latency_ms": 5.788
+        }
+      }
+    },
+    {
+      "query_id": "Q7",
+      "query": "Dialog",
+      "category": "Ambiguous",
+      "expected_target": "Dialog (src/components/ui/dialog.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 6,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.018
+        },
+        "BM25": {
+          "top_unit_id": 126,
+          "top_name": "Dialog",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 7,
+          "sample_evidence": [
+            "import * as React from \"react\";",
+            "import { Dialog as DialogPrimitive } from \"@base-ui/react/dialog\";",
+            "import { cn } from \"@/lib/utils\";",
+            "import { Button } from \"@/components/ui/button\";"
+          ],
+          "latency_ms": 0.013
+        },
+        "CodeAware": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 4,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.009
+        },
+        "Semantic": {
+          "top_unit_id": 130,
+          "top_name": "DialogOverlay",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "evidence_count": 18,
+          "sample_evidence": [
+            "DialogPrimitive.Backdrop",
+            "data-slot",
+            "className",
+            "{cn("
+          ],
+          "latency_ms": 5.366
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 131,
+          "top_name": "DialogContent",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 3,
+          "relevance": "INCORRECT",
+          "evidence_count": 54,
+          "sample_evidence": [
+            "DialogPortal",
+            "DialogOverlay",
+            "DialogPrimitive.Popup",
+            "data-slot"
+          ],
+          "latency_ms": 5.387
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 131,
+          "top_name": "DialogContent",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 5,
+          "relevance": "INCORRECT",
+          "evidence_count": 54,
+          "sample_evidence": [
+            "DialogPortal",
+            "DialogOverlay",
+            "DialogPrimitive.Popup",
+            "data-slot"
+          ],
+          "latency_ms": 5.384
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 131,
+          "top_name": "DialogContent",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/dialog.tsx",
+          "target_rank": 4,
+          "relevance": "INCORRECT",
+          "evidence_count": 54,
+          "sample_evidence": [
+            "DialogPortal",
+            "DialogOverlay",
+            "DialogPrimitive.Popup",
+            "data-slot"
+          ],
+          "latency_ms": 5.389
+        }
+      }
+    },
+    {
+      "query_id": "Q8",
+      "query": "Where is the location destination photo and travel description rendered for each month?",
+      "category": "Conceptual/Semantic",
+      "expected_target": "ImagePanel (src/components/calendar/ImagePanel.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 2,
+          "top_name": "globals.css",
+          "top_kind": "Route",
+          "top_file": "src/app/globals.css",
+          "target_rank": 9,
+          "relevance": "INCORRECT",
+          "evidence_count": 140,
+          "sample_evidence": [
+            "@import \"tailwindcss\";",
+            "@import \"tw-animate-css\";",
+            "@import \"shadcn/tailwind.css\";",
+            "@theme inline {\n  --color-background: var(--background);\n  --color-foreground: var(--foreground);\n  --font-sans: var(--font-primary);\n  --font-mono: var(--font-primary);\n  --font-heading: var(--font-primary);\n  --color-sidebar-ring: var(--sidebar-ring);\n  --color-sidebar-border: var(--sidebar-border);\n  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\n  --color-sidebar-accent: var(--sidebar-accent);\n  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\n  --color-sidebar-primary: var(--sidebar-primary);\n  --color-sidebar-foreground: var(--sidebar-foreground);\n  --color-sidebar: var(--sidebar);\n  --color-chart-5: var(--chart-5);\n  --color-chart-4: var(--chart-4);\n  --color-chart-3: var(--chart-3);\n  --color-chart-2: var(--chart-2);\n  --color-chart-1: var(--chart-1);\n  --color-ring: var(--ring);\n  --color-input: var(--input);\n  --color-border: var(--border);\n  --color-destructive: var(--destructive);\n  --color-accent-foreground: var(--accent-foreground);\n  --color-accent: var(--accent);\n  --color-muted-foreground: var(--muted-foreground);\n  --color-muted: var(--muted);\n  --color-secondary-foreground: var(--secondary-foreground);\n  --color-secondary: var(--secondary);\n  --color-primary-foreground: var(--primary-foreground);\n  --color-primary: var(--primary);\n  --color-popover-foreground: var(--popover-foreground);\n  --color-popover: var(--popover);\n  --color-card-foreground: var(--card-foreground);\n  --color-card: var(--card);\n  --radius-sm: calc(var(--radius) * 0.6);\n  --radius-md: calc(var(--radius) * 0.8);\n  --radius-lg: var(--radius);\n  --radius-xl: calc(var(--radius) * 1.4);\n  --radius-2xl: calc(var(--radius) * 1.8);\n  --radius-3xl: calc(var(--radius) * 2.2);\n  --radius-4xl: calc(var(--radius) * 2.6);\n}"
+          ],
+          "latency_ms": 0.048
+        },
+        "BM25": {
+          "top_unit_id": 150,
+          "top_name": "DateRange",
+          "top_kind": "Interface",
+          "top_file": "src/hooks/useCalendar.ts",
+          "target_rank": 5,
+          "relevance": "INCORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "import { useState, useCallback } from \"react\";",
+            "import {\r\n  startOfMonth,\r\n  endOfMonth,\r\n  eachDayOfInterval,\r\n  isWithinInterval,\r\n  isSameDay,\r\n  addMonths,\r\n  startOfWeek,\r\n  endOfWeek,\r\n} from \"date-fns\";"
+          ],
+          "latency_ms": 0.047
+        },
+        "CodeAware": {
+          "top_unit_id": 2,
+          "top_name": "globals.css",
+          "top_kind": "Route",
+          "top_file": "src/app/globals.css",
+          "target_rank": 12,
+          "relevance": "INCORRECT",
+          "evidence_count": 140,
+          "sample_evidence": [
+            "@import \"tailwindcss\";",
+            "@import \"tw-animate-css\";",
+            "@import \"shadcn/tailwind.css\";",
+            "@theme inline {\n  --color-background: var(--background);\n  --color-foreground: var(--foreground);\n  --font-sans: var(--font-primary);\n  --font-mono: var(--font-primary);\n  --font-heading: var(--font-primary);\n  --color-sidebar-ring: var(--sidebar-ring);\n  --color-sidebar-border: var(--sidebar-border);\n  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\n  --color-sidebar-accent: var(--sidebar-accent);\n  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\n  --color-sidebar-primary: var(--sidebar-primary);\n  --color-sidebar-foreground: var(--sidebar-foreground);\n  --color-sidebar: var(--sidebar);\n  --color-chart-5: var(--chart-5);\n  --color-chart-4: var(--chart-4);\n  --color-chart-3: var(--chart-3);\n  --color-chart-2: var(--chart-2);\n  --color-chart-1: var(--chart-1);\n  --color-ring: var(--ring);\n  --color-input: var(--input);\n  --color-border: var(--border);\n  --color-destructive: var(--destructive);\n  --color-accent-foreground: var(--accent-foreground);\n  --color-accent: var(--accent);\n  --color-muted-foreground: var(--muted-foreground);\n  --color-muted: var(--muted);\n  --color-secondary-foreground: var(--secondary-foreground);\n  --color-secondary: var(--secondary);\n  --color-primary-foreground: var(--primary-foreground);\n  --color-primary: var(--primary);\n  --color-popover-foreground: var(--popover-foreground);\n  --color-popover: var(--popover);\n  --color-card-foreground: var(--card-foreground);\n  --color-card: var(--card);\n  --radius-sm: calc(var(--radius) * 0.6);\n  --radius-md: calc(var(--radius) * 0.8);\n  --radius-lg: var(--radius);\n  --radius-xl: calc(var(--radius) * 1.4);\n  --radius-2xl: calc(var(--radius) * 1.8);\n  --radius-3xl: calc(var(--radius) * 2.2);\n  --radius-4xl: calc(var(--radius) * 2.6);\n}"
+          ],
+          "latency_ms": 0.03
+        },
+        "Semantic": {
+          "top_unit_id": 176,
+          "top_name": "ImagePanelMonthData",
+          "top_kind": "Interface",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 0,
+          "sample_evidence": [],
+          "latency_ms": 6.875
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 176,
+          "top_name": "ImagePanelMonthData",
+          "top_kind": "Interface",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 4,
+          "relevance": "INCORRECT",
+          "evidence_count": 0,
+          "sample_evidence": [],
+          "latency_ms": 6.92
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 176,
+          "top_name": "ImagePanelMonthData",
+          "top_kind": "Interface",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 0,
+          "sample_evidence": [],
+          "latency_ms": 6.916
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 4,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 6.922
+        }
+      }
+    },
+    {
+      "query_id": "Q9",
+      "query": "MonthLocation getImagePanelData",
+      "category": "Cross-File",
+      "expected_target": "MonthLocation (src/lib/monthLocationData.ts)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 141,
+          "top_name": "SheetContent",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/sheet.tsx",
+          "target_rank": 13,
+          "relevance": "INCORRECT",
+          "evidence_count": 67,
+          "sample_evidence": [
+            "SheetPortal",
+            "SheetOverlay",
+            "SheetPrimitive.Popup",
+            "data-slot"
+          ],
+          "latency_ms": 0.073
+        },
+        "BM25": {
+          "top_unit_id": 178,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "getMonth",
+            "buildMapsLink"
+          ],
+          "latency_ms": 0.06
+        },
+        "CodeAware": {
+          "top_unit_id": 141,
+          "top_name": "SheetContent",
+          "top_kind": "Component",
+          "top_file": "src/components/ui/sheet.tsx",
+          "target_rank": 7,
+          "relevance": "INCORRECT",
+          "evidence_count": 67,
+          "sample_evidence": [
+            "SheetPortal",
+            "SheetOverlay",
+            "SheetPrimitive.Popup",
+            "data-slot"
+          ],
+          "latency_ms": 0.047
+        },
+        "Semantic": {
+          "top_unit_id": 178,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "getMonth",
+            "buildMapsLink"
+          ],
+          "latency_ms": 5.8
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 178,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "getMonth",
+            "buildMapsLink"
+          ],
+          "latency_ms": 5.867
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 178,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "getMonth",
+            "buildMapsLink"
+          ],
+          "latency_ms": 5.859
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 178,
+          "top_name": "getImagePanelData",
+          "top_kind": "Function",
+          "top_file": "src/lib/monthLocationData.ts",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 2,
+          "sample_evidence": [
+            "getMonth",
+            "buildMapsLink"
+          ],
+          "latency_ms": 5.862
+        }
+      }
+    },
+    {
+      "query_id": "Q10",
+      "query": "CalendarDay rendered inside CalendarGrid",
+      "category": "Component Relationship",
+      "expected_target": "CalendarDay (src/components/calendar/CalendarDay.tsx)",
+      "methods": {
+        "Baseline Lexical": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.055
+        },
+        "BM25": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 8,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 0.053
+        },
+        "CodeAware": {
+          "top_unit_id": 7,
+          "top_name": "Home",
+          "top_kind": "Component",
+          "top_file": "src/app/page.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 581,
+          "sample_evidence": [
+            "getMonthString",
+            "parseInt",
+            "getYearString",
+            "getImagePanelData"
+          ],
+          "latency_ms": 0.041
+        },
+        "Semantic": {
+          "top_unit_id": 47,
+          "top_name": "CalendarGridProps",
+          "top_kind": "Interface",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 2,
+          "relevance": "INCORRECT",
+          "evidence_count": 3,
+          "sample_evidence": [
+            "import { AnimatePresence, motion } from \"framer-motion\";",
+            "import { WEEKDAY_SHORT } from \"@/lib/dateUtils\";",
+            "import { CalendarDay } from \"./CalendarDay\";"
+          ],
+          "latency_ms": 6.156
+        },
+        "Hybrid alpha=0.5": {
+          "top_unit_id": 48,
+          "top_name": "CalendarGrid",
+          "top_kind": "Component",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 86,
+          "sample_evidence": [
+            "getHoverRange",
+            "motion.div",
+            "className",
+            "h-[52vh]"
+          ],
+          "latency_ms": 6.211
+        },
+        "Hybrid alpha=0.3": {
+          "top_unit_id": 48,
+          "top_name": "CalendarGrid",
+          "top_kind": "Component",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 86,
+          "sample_evidence": [
+            "getHoverRange",
+            "motion.div",
+            "className",
+            "h-[52vh]"
+          ],
+          "latency_ms": 6.207
+        },
+        "Hybrid RRF (k=60)": {
+          "top_unit_id": 48,
+          "top_name": "CalendarGrid",
+          "top_kind": "Component",
+          "top_file": "src/components/calendar/CalendarGrid.tsx",
+          "target_rank": 1,
+          "relevance": "CORRECT",
+          "evidence_count": 86,
+          "sample_evidence": [
+            "getHoverRange",
+            "motion.div",
+            "className",
+            "h-[52vh]"
+          ],
+          "latency_ms": 6.211
+        }
+      }
+    }
+  ],
+  "diagnostics": {
+    "total_ast_elements": 2820,
+    "total_primary_units": 183,
+    "total_supporting_elements": 2640,
+    "compression_ratio": 15.41,
+    "top1_primary_rate_before_p63": 0.3,
+    "top1_primary_rate_after_p63": 1.0,
+    "supporting_distractor_top1_rate_before": 0.7,
+    "supporting_distractor_top1_rate_after": 0.0,
+    "avg_supporting_evidence_count": 14.43,
+    "unit_build_latency_ms": 7.44
+  }
+}

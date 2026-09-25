@@ -252,6 +252,8 @@ add_library(amoeba_engine
     engine/src/hybrid/score_normalizer.cpp
     engine/src/hybrid/fusion_strategy.cpp
     engine/src/hybrid/hybrid_retriever.cpp
+    engine/src/retrieval/retrieval_unit.cpp
+    engine/src/retrieval/supporting_evidence_resolver.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -362,6 +364,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/hybrid/score_normalizer_test.cpp
         engine/tests/hybrid/fusion_strategy_test.cpp
         engine/tests/hybrid/hybrid_retriever_test.cpp
+        engine/tests/retrieval/retrieval_unit_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests

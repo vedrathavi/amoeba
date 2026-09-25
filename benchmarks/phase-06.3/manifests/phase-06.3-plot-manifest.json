@@ -1,0 +1,45 @@
+{
+  "phase": "Phase 6.3",
+  "title": "Hierarchical Retrieval Units & Supporting Evidence",
+  "corpus": "demo_test_projects/calendar (Real-World Holdout)",
+  "total_ast_elements": 2820,
+  "total_retrieval_units": 183,
+  "total_supporting_elements_attached": 2640,
+  "plots": [
+    {
+      "id": "P6.3-G01",
+      "filename": "P6.3-G01-before-vs-after-quality.png",
+      "title": "Before Phase 6.3 vs After Phase 6.3 Retrieval Quality",
+      "metrics": ["P@1", "MRR"],
+      "description": "Comparative bar chart showing precision and reciprocal rank gains from shifting from flat AST elements to hierarchical retrieval units across all 7 retrieval methods."
+    },
+    {
+      "id": "P6.3-G02",
+      "filename": "P6.3-G02-primary-top1-distribution.png",
+      "title": "Top-1 Search Result Composition",
+      "metrics": ["Primary Symbol Top-1 Rate", "Supporting Distractor Top-1 Rate"],
+      "description": "Stacked chart demonstrating the elimination of sub-element distractor competition (from 70% distractors in Phase 6.2 to 0% in Phase 6.3)."
+    },
+    {
+      "id": "P6.3-G03",
+      "filename": "P6.3-G03-per-query-rank-progression.png",
+      "title": "Per-Query Target Rank Progression",
+      "metrics": ["Target Rank"],
+      "description": "Per-query rank comparison across CodeAware, Semantic, and Hybrid 0.5 showing how primary unit encapsulation pulls relevant components to Rank 1."
+    },
+    {
+      "id": "P6.3-G04",
+      "filename": "P6.3-G04-latency-comparison.png",
+      "title": "Query Latency with Hierarchical Retrieval Units",
+      "metrics": ["Latency (ms)"],
+      "description": "Measured query latency across all retrieval pipelines on CPU."
+    },
+    {
+      "id": "P6.3-G05",
+      "filename": "P6.3-G05-diagnostic-metrics.png",
+      "title": "Structural vs Retrieval Representation Footprint",
+      "metrics": ["AST Count", "Primary Count", "Evidence Count", "Avg Evidence/Unit"],
+      "description": "Diagnostic overview of representation compression (2,820 AST elements -> 183 Primary Units with 2,640 attached evidence elements)."
+    }
+  ]
+}
