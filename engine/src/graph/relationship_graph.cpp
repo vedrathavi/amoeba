@@ -69,6 +69,39 @@ bool RelationshipGraph::remove_relationship(ElementId source, ElementId target,
     return remove_relationship(Relationship{source, target, kind});
 }
 
+std::size_t RelationshipGraph::remove_relationships_for_element(ElementId id) {
+    std::vector<Relationship> to_remove;
+
+    if (auto it = outgoing_adj_.find(id); it != outgoing_adj_.end()) {
+        to_remove.insert(to_remove.end(), it->second.begin(), it->second.end());
+    }
+    if (auto it = incoming_adj_.find(id); it != incoming_adj_.end()) {
+        for (const auto& rel : it->second) {
+            if (rel.source != id) {  // avoid duplicate if self-loop
+                to_remove.push_back(rel);
+            }
+        }
+    }
+
+    std::size_t removed_count = 0;
+    for (const auto& rel : to_remove) {
+        if (remove_relationship(rel)) {
+            removed_count++;
+        }
+    }
+
+    return removed_count;
+}
+
+std::size_t
+RelationshipGraph::remove_relationships_for_elements(const std::vector<ElementId>& ids) {
+    std::size_t total_removed = 0;
+    for (ElementId id : ids) {
+        total_removed += remove_relationships_for_element(id);
+    }
+    return total_removed;
+}
+
 bool RelationshipGraph::has_relationship(const Relationship& rel) const noexcept {
     return edges_.contains(rel);
 }
@@ -309,6 +342,27 @@ std::vector<ElementId> RelationshipGraph::reachable_nodes(ElementId start_node,
         }
     }
     return reachable;
+}
+
+std::size_t RelationshipGraph::estimate_memory_bytes() const noexcept {
+    std::size_t bytes = sizeof(RelationshipGraph);
+    bytes += edges_.size() * (sizeof(Relationship) + 2 * sizeof(void*)) +
+             edges_.bucket_count() * sizeof(void*);
+    bytes += outgoing_adj_.size() *
+                 (sizeof(ElementId) + sizeof(std::vector<Relationship>) + 2 * sizeof(void*)) +
+             outgoing_adj_.bucket_count() * sizeof(void*);
+    for (const auto& [_, list] : outgoing_adj_) {
+        bytes += list.capacity() * sizeof(Relationship);
+    }
+    bytes += incoming_adj_.size() *
+                 (sizeof(ElementId) + sizeof(std::vector<Relationship>) + 2 * sizeof(void*)) +
+             incoming_adj_.bucket_count() * sizeof(void*);
+    for (const auto& [_, list] : incoming_adj_) {
+        bytes += list.capacity() * sizeof(Relationship);
+    }
+    bytes += node_degree_.size() * (sizeof(ElementId) + sizeof(std::size_t) + 2 * sizeof(void*)) +
+             node_degree_.bucket_count() * sizeof(void*);
+    return bytes;
 }
 
 void RelationshipGraph::clear() noexcept {

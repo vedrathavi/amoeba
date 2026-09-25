@@ -82,13 +82,53 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string type_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
 
+        string inheritance_detail;
+        const uint32_t named_count = ts_node_named_child_count(node);
+        vector<string> bases;
+        for (uint32_t i = 0; i < named_count; ++i) {
+            TSNode child = ts_node_named_child(node, i);
+            string_view c_type = ts_node_type(child);
+            if (c_type == "base_class_clause") {
+                const uint32_t base_count = ts_node_named_child_count(child);
+                for (uint32_t j = 0; j < base_count; ++j) {
+                    TSNode base_spec = ts_node_named_child(child, j);
+                    string_view b_type = ts_node_type(base_spec);
+                    if (b_type == "access_specifier" || b_type == "virtual") {
+                        continue;
+                    }
+                    if (b_type == "base_class_specifier") {
+                        const uint32_t spec_count = ts_node_named_child_count(base_spec);
+                        for (uint32_t k = 0; k < spec_count; ++k) {
+                            TSNode type_node = ts_node_named_child(base_spec, k);
+                            string_view t_type = ts_node_type(type_node);
+                            if (t_type != "access_specifier" && t_type != "virtual") {
+                                bases.push_back(get_node_text(type_node, source));
+                                break;
+                            }
+                        }
+                    } else if (b_type == "type_identifier" || b_type == "qualified_identifier" ||
+                               b_type == "template_type" || b_type == "type_descriptor") {
+                        bases.push_back(get_node_text(base_spec, source));
+                    }
+                }
+            }
+        }
+        if (!bases.empty()) {
+            inheritance_detail = "extends: ";
+            for (size_t i = 0; i < bases.size(); ++i) {
+                if (i > 0)
+                    inheritance_detail += ", ";
+                inheritance_detail += bases[i];
+            }
+        }
+
         if (!type_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = is_class ? ElementKind::Class : ElementKind::Struct,
                 .name = type_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
-                .detail = "",
+                .detail = inheritance_detail,
             });
         }
 

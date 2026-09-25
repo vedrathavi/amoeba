@@ -235,6 +235,12 @@ add_library(amoeba_engine
     engine/src/rank/code_aware_ranker.cpp
     engine/src/graph/relationship_graph.cpp
     engine/src/graph/import_extractor.cpp
+    engine/src/graph/inheritance_extractor.cpp
+    engine/src/graph/call_extractor.cpp
+    engine/src/graph/repository_graph_builder.cpp
+    engine/src/graph/incremental_graph_updater.cpp
+    engine/src/graph/graph_query_service.cpp
+    engine/src/search/relationship_aware_search.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -328,6 +334,13 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/rank/evaluation_benchmark_test.cpp
         engine/tests/graph/relationship_graph_test.cpp
         engine/tests/graph/import_extractor_test.cpp
+        engine/tests/graph/inheritance_extractor_test.cpp
+        engine/tests/graph/call_extractor_test.cpp
+        engine/tests/graph/repository_graph_builder_test.cpp
+        engine/tests/graph/incremental_graph_updater_test.cpp
+        engine/tests/graph/graph_query_service_test.cpp
+        engine/tests/search/relationship_aware_search_test.cpp
+        engine/tests/audit/phase5_audit_validation_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests

@@ -69,13 +69,68 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
     if (type == "class_declaration" || type == "class") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string class_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        string inheritance_detail;
+        const uint32_t named_count = ts_node_named_child_count(node);
+        vector<string> extends_list;
+        vector<string> implements_list;
+
+        for (uint32_t i = 0; i < named_count; ++i) {
+            TSNode child = ts_node_named_child(node, i);
+            string_view c_type = ts_node_type(child);
+            if (c_type == "class_heritage") {
+                const uint32_t h_count = ts_node_named_child_count(child);
+                for (uint32_t j = 0; j < h_count; ++j) {
+                    TSNode clause = ts_node_named_child(child, j);
+                    string_view cl_type = ts_node_type(clause);
+                    if (cl_type == "extends_clause") {
+                        TSNode val_node = ts_node_child_by_field_name(clause, "value", 5);
+                        if (!ts_node_is_null(val_node)) {
+                            extends_list.push_back(get_node_text(val_node, source));
+                        } else {
+                            const uint32_t ext_count = ts_node_named_child_count(clause);
+                            for (uint32_t k = 0; k < ext_count; ++k) {
+                                extends_list.push_back(
+                                    get_node_text(ts_node_named_child(clause, k), source));
+                            }
+                        }
+                    } else if (cl_type == "implements_clause") {
+                        const uint32_t imp_count = ts_node_named_child_count(clause);
+                        for (uint32_t k = 0; k < imp_count; ++k) {
+                            TSNode imp_child = ts_node_named_child(clause, k);
+                            implements_list.push_back(get_node_text(imp_child, source));
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!extends_list.empty()) {
+            inheritance_detail += "extends: ";
+            for (size_t i = 0; i < extends_list.size(); ++i) {
+                if (i > 0)
+                    inheritance_detail += ", ";
+                inheritance_detail += extends_list[i];
+            }
+        }
+        if (!implements_list.empty()) {
+            if (!inheritance_detail.empty())
+                inheritance_detail += "; ";
+            inheritance_detail += "implements: ";
+            for (size_t i = 0; i < implements_list.size(); ++i) {
+                if (i > 0)
+                    inheritance_detail += ", ";
+                inheritance_detail += implements_list[i];
+            }
+        }
+
         if (!class_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Class,
                 .name = class_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
-                .detail = "",
+                .detail = inheritance_detail,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
@@ -91,13 +146,37 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
     if (type == "interface_declaration") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string iface_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        string inheritance_detail;
+        const uint32_t named_count = ts_node_named_child_count(node);
+        vector<string> extends_list;
+        for (uint32_t i = 0; i < named_count; ++i) {
+            TSNode child = ts_node_named_child(node, i);
+            string_view c_type = ts_node_type(child);
+            if (c_type == "extends_type_clause" || c_type == "extends_clause" ||
+                c_type == "heritage_clause") {
+                const uint32_t ext_count = ts_node_named_child_count(child);
+                for (uint32_t k = 0; k < ext_count; ++k) {
+                    extends_list.push_back(get_node_text(ts_node_named_child(child, k), source));
+                }
+            }
+        }
+        if (!extends_list.empty()) {
+            inheritance_detail = "extends: ";
+            for (size_t i = 0; i < extends_list.size(); ++i) {
+                if (i > 0)
+                    inheritance_detail += ", ";
+                inheritance_detail += extends_list[i];
+            }
+        }
+
         if (!iface_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Interface,
                 .name = iface_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
-                .detail = "",
+                .detail = inheritance_detail,
             });
         }
         return;

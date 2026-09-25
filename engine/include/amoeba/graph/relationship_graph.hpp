@@ -52,6 +52,20 @@ public:
     bool remove_relationship(ElementId source, ElementId target, RelationshipKind kind);
 
     /**
+     * @brief Removes all outgoing and incoming relationships involving the specified element ID.
+     * @param id The element ID whose relationships should be removed.
+     * @return Total number of relationships removed.
+     */
+    std::size_t remove_relationships_for_element(ElementId id);
+
+    /**
+     * @brief Removes all relationships involving any of the specified element IDs.
+     * @param ids The list of element IDs.
+     * @return Total number of relationships removed.
+     */
+    std::size_t remove_relationships_for_elements(const std::vector<ElementId>& ids);
+
+    /**
      * @brief Checks if a specific relationship exists in the graph.
      */
     [[nodiscard]] bool has_relationship(const Relationship& rel) const noexcept;
@@ -157,6 +171,11 @@ public:
      * @brief Checks if the graph contains no relationships.
      */
     [[nodiscard]] bool empty() const noexcept;
+
+    /**
+     * @brief Estimates the total in-memory size in bytes for the graph data structures.
+     */
+    [[nodiscard]] std::size_t estimate_memory_bytes() const noexcept;
 
     /**
      * @brief Clears all relationships and adjacency maps.
