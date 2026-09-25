@@ -1,0 +1,177 @@
+{
+  "experiment_id": "EXP-P6.1A-SEMANTIC-VALIDATION",
+  "phase": "6.1",
+  "experiment_name": "Real Pretrained Embedding & Semantic Retrieval Validation",
+  "dataset": "Amoeba Multi-Language Retrieval Benchmark (Validation Suite)",
+  "dataset_version": "1.0.0",
+  "model": "all-MiniLM-L6-v2",
+  "model_version": "sentence-transformers/all-MiniLM-L6-v2 (revision: fa97f96)",
+  "embedding_dimension": 384,
+  "query_count": 10,
+  "corpus_elements": 7,
+  "categories_count": 10,
+  "queries_per_category": 1,
+  "environment": {
+    "os": "Windows 11 x86_64",
+    "cpu": "x86_64 Multi-Core CPU",
+    "runtime": "PyTorch / ONNX / sentence-transformers C++ Engine Interface",
+    "compiler": "MinGW Clang++ C++20 / Python 3.12"
+  },
+  "timestamp": "2026-09-25T23:26:35.741359",
+  "performance_profile": {
+    "single_code_element_embedding_time_ms": 11.57,
+    "batch_50_embedding_time_ms": 40.2,
+    "query_embedding_time_ms": 9.68,
+    "retrieval_time_ms_7_elements_median": 0.0023,
+    "retrieval_time_ms_500_elements_median": 0.0133,
+    "total_query_time_ms": 9.68,
+    "index_memory_bytes_per_vector": 1584,
+    "microbenchmark_variance_note": "Sub-millisecond retrieval timings on small corpora (<1000 vectors) are subject to CPU scheduling, cache state, and timer resolution variance."
+  },
+  "methods": {
+    "Baseline Lexical": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 0.9333,
+        "NDCG@5": 0.9571,
+        "NDCG@10": 0.9571,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "retrieval_time_ms": 0.02,
+      "embedding_time_ms": 0.0,
+      "total_query_time_ms": 0.02,
+      "index_memory_kb": 12.5
+    },
+    "BM25": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4667,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 0.95,
+        "NDCG@5": 0.9693,
+        "NDCG@10": 0.9693,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "retrieval_time_ms": 0.04,
+      "embedding_time_ms": 0.0,
+      "total_query_time_ms": 0.04,
+      "index_memory_kb": 18.2
+    },
+    "CodeAware": {
+      "metrics": {
+        "P@1": 0.9,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 0.9333,
+        "NDCG@5": 0.9571,
+        "NDCG@10": 0.9571,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 0.0
+        }
+      },
+      "retrieval_time_ms": 0.08,
+      "embedding_time_ms": 0.0,
+      "total_query_time_ms": 0.08,
+      "index_memory_kb": 24.6
+    },
+    "Semantic (all-MiniLM-L6-v2)": {
+      "metrics": {
+        "P@1": 1.0,
+        "P@3": 0.4333,
+        "P@5": 0.28,
+        "Recall@5": 1.0,
+        "Recall@10": 1.0,
+        "MRR": 1.0,
+        "NDCG@5": 0.9967,
+        "NDCG@10": 0.9967,
+        "category_P@1": {
+          "Exact Identifier": 1.0,
+          "Normalized Identifier": 1.0,
+          "Partial/Subword": 1.0,
+          "Multi-Term": 1.0,
+          "Contextual Lexical": 1.0,
+          "Path/Repository": 1.0,
+          "Framework": 1.0,
+          "Ambiguous": 1.0,
+          "Cross-Language": 1.0,
+          "Conceptual/Semantic": 1.0
+        }
+      },
+      "retrieval_time_ms": 0.0023,
+      "embedding_time_ms": 9.68,
+      "total_query_time_ms": 9.68,
+      "index_memory_kb": 10.83
+    }
+  },
+  "scaling_data": {
+    "corpus_sizes": [
+      100,
+      500,
+      1000,
+      2500,
+      5000,
+      10000,
+      25000,
+      50000
+    ],
+    "memory_usage_kb": [
+      154.69,
+      773.44,
+      1546.88,
+      3867.19,
+      7734.38,
+      15468.75,
+      38671.88,
+      77343.75
+    ],
+    "scan_latency_ms": [
+      0.0032,
+      0.0133,
+      0.0348,
+      0.1134,
+      0.1474,
+      0.7003,
+      3.1064,
+      6.102
+    ]
+  }
+}

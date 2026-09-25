@@ -244,6 +244,7 @@ add_library(amoeba_engine
     engine/src/semantic/similarity.cpp
     engine/src/semantic/semantic_document.cpp
     engine/src/semantic/deterministic_embedding_provider.cpp
+    engine/src/semantic/pretrained_embedding_provider.cpp
     engine/src/semantic/semantic_index.cpp
     engine/src/semantic/semantic_retriever.cpp
     engine/src/eval/ranking_metrics.cpp
@@ -350,8 +351,10 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/audit/phase5_audit_validation_test.cpp
         engine/tests/semantic/similarity_test.cpp
         engine/tests/semantic/embedding_provider_test.cpp
+        engine/tests/semantic/pretrained_embedding_provider_test.cpp
         engine/tests/semantic/semantic_index_test.cpp
         engine/tests/semantic/semantic_retriever_test.cpp
+        engine/tests/semantic/semantic_retrieval_benchmark_test.cpp
         engine/tests/eval/ranking_metrics_test.cpp
     )
 
