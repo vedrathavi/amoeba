@@ -2,15 +2,15 @@
 
 ## Long-term Vision
 
-**Amoeba** is a source-code search and indexing engine designed to progressively evolve across distinct capability horizons:
+**Amoeba** is a high-performance source-code search and indexing engine designed to progressively evolve across distinct capability horizons:
 
-$$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \text{Code Understanding} \longrightarrow \text{Semantic Search} \longrightarrow \text{Code Intelligence}$$
+$$\text{Source-Code Indexing} \longrightarrow \text{Lexical Retrieval} \longrightarrow \text{Code-Aware Ranking} \longrightarrow \text{Semantic Search} \longrightarrow \text{Code Intelligence}$$
 
 ---
 
 ## High-Level System Architecture
 
-The target architecture is structured across three primary tiers: Presentation, Application Server / API, and Core Engine.
+The architecture is structured across three primary tiers: Presentation, Application Server / API, and Core Engine.
 
 ```text
                     Amoeba
@@ -34,14 +34,16 @@ The target architecture is structured across three primary tiers: Presentation, 
 
 | Component | Technology | Role | Status |
 | :--- | :--- | :--- | :--- |
-| **CLI** | C++20 | Native developer CLI (`index` scan, `parse` inspect commands) | **Phase 2 Active** |
-| **Engine Core** | C++20 | Core search & indexing library (`amoeba_engine`) | **Phase 2 Active** |
+| **CLI** | C++20 | Native developer CLI (`index`, `search`, `parse` commands) | **Active (Phase 4)** |
+| **Engine Core** | C++20 | Core search, indexing & ranking library (`amoeba_engine`) | **Active (Phase 4)** |
 | **Repository Scanner** | C++20 (`amoeba::scanner`) | Recursive filesystem traversal & file filtering | **Phase 1 Implemented** |
-| **Source Parser** | C++20 / Tree-sitter (`amoeba::parser`) | Concrete syntax tree parsing & structural extraction | **Phase 2 Implemented** |
-| **Index & Storage** | C++20 | Inverted index & symbol tables | *Planned (Phase 3)* |
-| **Retrieval & Ranking** | C++20 | Exact, fuzzy, and semantic search pipelines | *Planned (Future)* |
-| **Server / API** | Node.js / TypeScript | Lightweight HTTP API & integration layer | *Planned (Future)* |
-| **Web UI** | React / TypeScript / Vite | Interactive search and visualization interface | *Planned (Future)* |
+| **Source Parser** | C++20 / Tree-sitter (`amoeba::parser`) | Multi-language syntax parsing & AST symbol extraction | **Phase 2 Implemented** |
+| **Inverted Index & Tokenizer** | C++20 (`amoeba::index`) | In-memory inverted index, subword tokenization | **Phase 3 Implemented** |
+| **Ranking Pipeline** | C++20 (`amoeba::rank`) | Heuristic baseline, Okapi BM25 & Code-Aware Hybrid Ranker | **Phase 4 Implemented** |
+| **Symbol & Dependency Graph** | C++20 (`amoeba::graph`) | Cross-file references, call graphs, type hierarchies | *Planned (Phase 5)* |
+| **Candidate Fusion / Future Hybrid Ranker** | C++20 / ML | Hybrid lexical + semantic ranking fusion | *Planned (Future)* |
+| **Server / API** | Node.js / TypeScript | Lightweight HTTP API & daemon integration layer | *Planned (Future)* |
+| **Web UI** | React / TypeScript / Vite | Interactive search and code navigation interface | *Planned (Future)* |
 
 ---
 
@@ -52,38 +54,38 @@ The target architecture is structured across three primary tiers: Presentation, 
 │                        Engine Core                          │
 ├─────────────────────────────────────────────────────────────┤
 │  • Repository Scanner [Phase 1] • Source Parser [Phase 2]   │
-│  • Code Representation          • Index Management          │
-│  • Symbol / Dependency Graph    • Retrieval Engine          │
-│  • Context Builder              • Ranking Pipeline          │
+│  • Inverted Index     [Phase 3] • Code Tokenizer [Phase 3]  │
+│  • Candidate Search   [Phase 3] • Ranking Core   [Phase 4]  │
+│  • Baseline Ranker    [Phase 4] • BM25 Ranker    [Phase 4]  │
+│  • Code-Aware Ranker  [Phase 4] • Symbol Graph   [Phase 5]  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ### Module Breakdown & Status
 
 1. **Repository Scanner (`engine/scanner`)** — **Implemented (Phase 1)**:
-   * Validates repository paths.
-   * Traverses directories recursively using `std::filesystem`.
+   * Validates repository paths and traverses directories recursively.
    * Filters out non-source files and excluded directories (`.git`, `node_modules`, `build`, etc.).
    * Produces structured `FileInfo` metadata (`path`, `extension`, `size`).
 2. **Source Parser (`engine/parser`)** — **Implemented (Phase 2)**:
-   * Integrates Tree-sitter C/C++ runtimes.
-   * Parses source files into concrete syntax trees (CST).
-   * Extracts structural elements (`Class`, `Struct`, `Function`, `Method`, `Include`, `Call`).
-   * Captures 1-indexed line/column source ranges.
-3. **Index & Storage (`engine/index`)** — *Planned (Phase 3)*: Inverted index, trigram structures, and symbol lookups.
-4. **Retrieval & Ranking** — *Planned*: Exact substring, identifier lookup, semantic vector similarity, and composite relevance scoring.
-5. **Symbol & Dependency Graph** — *Planned*: Cross-file references, call graphs, type hierarchies, and import dependencies.
-6. **Context Builder** — *Planned*: Extracting relevant code snippets, surrounding scopes, and dependencies for intelligent code assistance.
+   * Integrates 11 Tree-sitter grammars (C, C++, Python, Java, Go, Rust, JS, TS, TSX, HTML, CSS).
+   * Extracts structural elements (`Class`, `Struct`, `Function`, `Method`, `Include`, `Call`, `Route`).
+   * Captures 1-indexed line/column source ranges and doc comments.
+3. **Index & Tokenizer (`engine/index`)** — **Implemented (Phase 3)**:
+   * Case-preserving and subword tokenization (CamelCase, snake_case, kebab-case, acronyms).
+   * In-memory inverted index with element/file ID lookups and postings lists.
+4. **Retrieval & Ranking (`engine/rank`)** — **Implemented (Phase 4)**:
+   * Decoupled candidate retrieval and deterministic ranking pipeline.
+   * Heuristic Baseline Ranker, Okapi BM25 Lexical Ranker, and Code-Aware Hybrid Ranker.
+   * Empirical validation demonstrating $\text{P@1} = 0.868, \text{MRR} = 0.924, \text{NDCG@5} = 0.875$.
+5. **Symbol & Dependency Graph (`engine/graph`)** — *Planned (Phase 5)*: Cross-file references, call graphs, type hierarchies, and import dependencies.
+6. **Context Builder & Semantic Retrieval** — *Planned*: Context extraction and vector/embedding hybrid search.
 
 ---
 
-## Integration Strategy & Technology Reuse
+## Integration Strategy & Engineering Principles
 
-Our core engineering philosophy guides how external technologies are integrated:
-
-> **Build the core, reuse mature infrastructure, measure bottlenecks, and replace components only when there is a good engineering reason.**
-
-* **Parsing**: Leverage Tree-sitter for robust, fault-tolerant syntax parsing rather than writing hand-crafted parsers.
-* **Vector Indexing / ANN**: Evaluate established ANN vector indexing libraries (such as FAISS or HNSW) when semantic search is introduced.
-* **Relational Persistence**: Utilize embedded relational engines (such as SQLite) or external databases (PostgreSQL) when persistent relational metadata is needed.
-* **Core Search Logic**: The core tokenization, inverted indexing, ranking algorithms, and symbol representations remain custom-built within the C++ engine to ensure deep understanding, predictability, and uncompromising performance.
+* **Build the core, reuse mature infrastructure, measure bottlenecks, and replace components only when there is a good engineering reason.**
+* **Parsing**: Tree-sitter provides robust, incremental parsing across 11 grammars.
+* **Vector Indexing / ANN**: Evaluate established libraries (e.g. FAISS, HNSW) when dense vector embeddings are introduced.
+* **Extensibility**: Ranking and retrieval remain cleanly modularized to facilitate future neural, embedding, or candidate fusion rankers.

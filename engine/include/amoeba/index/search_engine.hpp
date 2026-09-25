@@ -23,10 +23,20 @@ enum class MatchMode {
 };
 
 /**
+ * @brief Ranking algorithm to use for scoring retrieved candidates.
+ */
+enum class RankerType {
+    Baseline,
+    BM25,
+    CodeAware,
+};
+
+/**
  * @brief Configuration options for search execution.
  */
 struct SearchOptions {
     MatchMode match_mode{MatchMode::AnyTerm};
+    RankerType ranker_type{RankerType::Baseline};
     size_t max_results{100};
     optional<parser::ElementKind> kind_filter{nullopt};
 };

@@ -143,7 +143,9 @@ void handle_parse_command(const path& file_path) {
     }
 }
 
-void handle_search_command(const path& repo_path, string_view query) {
+void handle_search_command(
+    const path& repo_path, string_view query,
+    amoeba::index::RankerType ranker_type = amoeba::index::RankerType::CodeAware) {
     try {
         const auto start_index_time = chrono::high_resolution_clock::now();
 
@@ -168,10 +170,17 @@ void handle_search_command(const path& repo_path, string_view query) {
         const auto index_duration_ms =
             chrono::duration_cast<chrono::milliseconds>(end_index_time - start_index_time).count();
 
+        string_view ranker_name = "CodeAware";
+        if (ranker_type == amoeba::index::RankerType::Baseline) {
+            ranker_name = "Baseline";
+        } else if (ranker_type == amoeba::index::RankerType::BM25) {
+            ranker_name = "BM25";
+        }
+
         cout << "Repository:\n";
         cout << "  " << repo_path.string() << "\n\n";
         cout << "Query:\n";
-        cout << "  \"" << query << "\"\n\n";
+        cout << "  \"" << query << "\" [Ranker: " << ranker_name << "]\n\n";
         cout << "Index statistics:\n";
         cout << "  Files indexed:    " << index.file_count() << "\n";
         cout << "  Symbols indexed:  " << index.element_count() << "\n";
@@ -182,7 +191,8 @@ void handle_search_command(const path& repo_path, string_view query) {
         const auto start_search_time = chrono::high_resolution_clock::now();
 
         amoeba::index::SearchEngine search_engine(index);
-        const auto results = search_engine.search(query);
+        const auto results =
+            search_engine.search(query, amoeba::index::SearchOptions{.ranker_type = ranker_type});
 
         const auto end_search_time = chrono::high_resolution_clock::now();
         const auto search_duration_us =
@@ -207,9 +217,13 @@ void handle_search_command(const path& repo_path, string_view query) {
             if (!res.element.detail.empty()) {
                 cout << " [" << res.element.detail << "]";
             }
-            cout << "\n    File: " << res.file_path.string() << ":"
-                 << res.element.location.start.line << ":" << res.element.location.start.column
-                 << " (" << res.language << ")\n\n";
+            cout << " [score: " << res.score;
+            if (res.exact_name_match) {
+                cout << ", exact";
+            }
+            cout << "]\n";
+            cout << "    File: " << res.file_path.string() << ":" << res.element.location.start.line
+                 << ":" << res.element.location.start.column << " (" << res.language << ")\n\n";
         }
 
     } catch (const invalid_argument& ex) {
@@ -264,13 +278,27 @@ int main(int argc, char* argv[]) {
         if (command == "search") {
             if (argc < 4) {
                 cerr << "Error: Repository path and query string are required.\n";
-                cerr << "Usage: " << argv[0] << " search <repository-path> <query>\n\n";
+                cerr << "Usage: " << argv[0]
+                     << " search <repository-path> <query> [--ranker=code_aware|bm25|baseline]\n\n";
                 return 1;
             }
 
             const path repo_path(argv[2]);
             const string_view query = argv[3];
-            handle_search_command(repo_path, query);
+            amoeba::index::RankerType ranker_type = amoeba::index::RankerType::CodeAware;
+
+            if (argc >= 5) {
+                const string_view rank_arg = argv[4];
+                if (rank_arg == "--ranker=baseline" || rank_arg == "baseline") {
+                    ranker_type = amoeba::index::RankerType::Baseline;
+                } else if (rank_arg == "--ranker=bm25" || rank_arg == "bm25") {
+                    ranker_type = amoeba::index::RankerType::BM25;
+                } else if (rank_arg == "--ranker=code_aware" || rank_arg == "code_aware") {
+                    ranker_type = amoeba::index::RankerType::CodeAware;
+                }
+            }
+
+            handle_search_command(repo_path, query, ranker_type);
             return 0;
         }
 

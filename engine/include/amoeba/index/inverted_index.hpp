@@ -98,15 +98,38 @@ public:
     [[nodiscard]] size_t posting_count() const noexcept { return total_postings_; }
 
     /**
+     * @brief Returns the document frequency (number of code elements containing the term).
+     */
+    [[nodiscard]] size_t document_frequency(string_view term) const noexcept;
+
+    /**
+     * @brief Returns the average document length (average searchable token count per element).
+     */
+    [[nodiscard]] double avg_element_length() const noexcept;
+
+    /**
+     * @brief Returns the searchable token count of a specific element.
+     * @throws out_of_range if ElementId is invalid.
+     */
+    [[nodiscard]] size_t get_element_length(ElementId id) const;
+
+    /**
      * @brief Resets and empties all index data.
      */
     void clear() noexcept;
 
+    /**
+     * @brief Returns all unique indexed terms in the dictionary.
+     */
+    [[nodiscard]] vector<string_view> all_terms() const;
+
 private:
     vector<IndexedFile> files_;
     vector<IndexedElement> elements_;
+    vector<size_t> element_lengths_;
     unordered_map<string, vector<ElementId>> postings_;
     size_t total_postings_{0};
+    size_t total_element_tokens_{0};
 
     void add_term_posting(string_view term, ElementId element_id);
 };

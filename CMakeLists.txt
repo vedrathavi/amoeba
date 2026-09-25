@@ -230,6 +230,9 @@ add_library(amoeba_engine
     engine/src/index/code_tokenizer.cpp
     engine/src/index/inverted_index.cpp
     engine/src/index/search_engine.cpp
+    engine/src/rank/baseline_ranker.cpp
+    engine/src/rank/bm25_ranker.cpp
+    engine/src/rank/code_aware_ranker.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -317,6 +320,10 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/index/search_engine_test.cpp
         engine/tests/index/index_benchmark_test.cpp
         engine/tests/index/retrieval_integration_test.cpp
+        engine/tests/rank/baseline_ranker_test.cpp
+        engine/tests/rank/bm25_ranker_test.cpp
+        engine/tests/rank/code_aware_ranker_test.cpp
+        engine/tests/rank/evaluation_benchmark_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
