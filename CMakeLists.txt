@@ -241,6 +241,13 @@ add_library(amoeba_engine
     engine/src/graph/incremental_graph_updater.cpp
     engine/src/graph/graph_query_service.cpp
     engine/src/search/relationship_aware_search.cpp
+    engine/src/semantic/similarity.cpp
+    engine/src/semantic/semantic_document.cpp
+    engine/src/semantic/deterministic_embedding_provider.cpp
+    engine/src/semantic/semantic_index.cpp
+    engine/src/semantic/semantic_retriever.cpp
+    engine/src/eval/ranking_metrics.cpp
+    engine/src/eval/benchmark_result.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -341,6 +348,11 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/graph/graph_query_service_test.cpp
         engine/tests/search/relationship_aware_search_test.cpp
         engine/tests/audit/phase5_audit_validation_test.cpp
+        engine/tests/semantic/similarity_test.cpp
+        engine/tests/semantic/embedding_provider_test.cpp
+        engine/tests/semantic/semantic_index_test.cpp
+        engine/tests/semantic/semantic_retriever_test.cpp
+        engine/tests/eval/ranking_metrics_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
