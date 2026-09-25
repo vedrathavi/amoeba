@@ -233,6 +233,8 @@ add_library(amoeba_engine
     engine/src/rank/baseline_ranker.cpp
     engine/src/rank/bm25_ranker.cpp
     engine/src/rank/code_aware_ranker.cpp
+    engine/src/graph/relationship_graph.cpp
+    engine/src/graph/import_extractor.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -324,6 +326,8 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/rank/bm25_ranker_test.cpp
         engine/tests/rank/code_aware_ranker_test.cpp
         engine/tests/rank/evaluation_benchmark_test.cpp
+        engine/tests/graph/relationship_graph_test.cpp
+        engine/tests/graph/import_extractor_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
