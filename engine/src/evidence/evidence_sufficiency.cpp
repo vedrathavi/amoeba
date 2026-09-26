@@ -1,5 +1,6 @@
 #include "amoeba/evidence/evidence_sufficiency.hpp"
 
+#include "amoeba/evidence/semantic_evidence_support.hpp"
 #include "amoeba/index/code_tokenizer.hpp"
 
 #include <algorithm>
@@ -16,6 +17,17 @@ namespace {
         return true;
     }
     if (haystack.size() < needle.size()) {
+        return false;
+    }
+    if (needle.size() <= 2) {
+        // For short terms (<= 2 chars like "oa"), require word/identifier token matching
+        // to prevent false positives inside words like "floating" or "toolbar"
+        const auto tokens = index::CodeTokenizer::tokenize_query(haystack);
+        for (const auto& tok : tokens) {
+            if (tok == needle) {
+                return true;
+            }
+        }
         return false;
     }
     auto it = std::search(haystack.begin(), haystack.end(), needle.begin(), needle.end(),
@@ -52,15 +64,15 @@ std::string EvidenceSufficiencyResult::format_grounded_refusal(std::string_view 
 
 EvidenceSufficiencyResult
 EvidenceSufficiencyChecker::check(std::string_view query, const EvidenceBundle& bundle,
-                                  const EvidenceSufficiencyOptions& options) {
+                                  const EvidenceSufficiencyOptions& options,
+                                  const SemanticEvidenceResult* semantic_evidence) {
     const auto query_rep = retrieval::QueryUnderstanding::analyze(query);
-    return check(query_rep, bundle, options);
+    return check(query_rep, bundle, options, semantic_evidence);
 }
 
-EvidenceSufficiencyResult
-EvidenceSufficiencyChecker::check(const retrieval::QueryRepresentation& query_rep,
-                                  const EvidenceBundle& bundle,
-                                  const EvidenceSufficiencyOptions& options) {
+EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
+    const retrieval::QueryRepresentation& query_rep, const EvidenceBundle& bundle,
+    const EvidenceSufficiencyOptions& options, const SemanticEvidenceResult* semantic_evidence) {
     EvidenceSufficiencyResult result;
 
     // 1. Check for empty evidence
@@ -82,24 +94,6 @@ EvidenceSufficiencyChecker::check(const retrieval::QueryRepresentation& query_re
             if (cat.role != retrieval::QueryTermRole::Context) {
                 subject_terms.push_back(cat.normalized_stem);
             }
-        }
-    }
-
-    // Check for exact compound identifier match (e.g. "usecalendar" -> useCalendar)
-    bool has_exact_compound_match = false;
-    for (const auto& compound : query_rep.synthesized_identifiers) {
-        if (compound.size() < 3) {
-            continue;
-        }
-        for (const auto& item : bundle.items) {
-            if (contains_case_insensitive(item.primary_element().name, compound) ||
-                contains_case_insensitive(item.file_path().string(), compound)) {
-                has_exact_compound_match = true;
-                break;
-            }
-        }
-        if (has_exact_compound_match) {
-            break;
         }
     }
 
@@ -139,7 +133,34 @@ EvidenceSufficiencyChecker::check(const retrieval::QueryRepresentation& query_re
             }
         }
 
-        if (subj_matched || has_exact_compound_match) {
+        // Check for exact compound identifier match for this subject (e.g. "usecalendar" -> useCalendar)
+        if (!subj_matched) {
+            for (const auto& compound : query_rep.synthesized_identifiers) {
+                if (compound.size() < 3 || !contains_case_insensitive(compound, subj)) {
+                    continue;
+                }
+                for (const auto& item : bundle.items) {
+                    if (contains_case_insensitive(item.primary_element().name, compound) ||
+                        contains_case_insensitive(item.file_path().string(), compound)) {
+                        subj_matched = true;
+                        break;
+                    }
+                }
+                if (subj_matched) {
+                    break;
+                }
+            }
+        }
+
+        // If lexical match didn't find the subject concept, check semantic evidence support
+        if (!subj_matched && semantic_evidence != nullptr) {
+            const auto* concept_sup = semantic_evidence->find_concept(subj);
+            if (concept_sup != nullptr && concept_sup->is_supported()) {
+                subj_matched = true;
+            }
+        }
+
+        if (subj_matched) {
             result.matched_subjects.push_back(subj);
             result.matched_terms.push_back(subj);
         } else {
@@ -186,10 +207,6 @@ EvidenceSufficiencyChecker::check(const retrieval::QueryRepresentation& query_re
                                   ? 1.0
                                   : static_cast<double>(result.matched_subjects.size()) /
                                         static_cast<double>(subject_terms.size());
-
-    if (has_exact_compound_match) {
-        subject_coverage = 1.0;
-    }
 
     const auto& top_item = bundle.items.front();
     const auto& top_result = top_item.primary_result;

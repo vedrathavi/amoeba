@@ -65,6 +65,8 @@ struct EvidenceSufficiencyResult {
     [[nodiscard]] bool operator==(const EvidenceSufficiencyResult&) const = default;
 };
 
+struct SemanticEvidenceResult;
+
 /**
  * @brief Deterministic gate that evaluates whether an EvidenceBundle contains sufficient
  * relevant evidence to justify LLM reasoning, preventing hallucinated answers on unsupported
@@ -77,14 +79,26 @@ public:
      */
     [[nodiscard]] static EvidenceSufficiencyResult
     check(std::string_view query, const EvidenceBundle& bundle,
-          const EvidenceSufficiencyOptions& options = EvidenceSufficiencyOptions{});
+          const EvidenceSufficiencyOptions& options = EvidenceSufficiencyOptions{},
+          const SemanticEvidenceResult* semantic_evidence = nullptr);
 
     /**
      * @brief Evaluates an EvidenceBundle against a pre-analyzed QueryRepresentation.
      */
     [[nodiscard]] static EvidenceSufficiencyResult
     check(const retrieval::QueryRepresentation& query_rep, const EvidenceBundle& bundle,
-          const EvidenceSufficiencyOptions& options = EvidenceSufficiencyOptions{});
+          const EvidenceSufficiencyOptions& options = EvidenceSufficiencyOptions{},
+          const SemanticEvidenceResult* semantic_evidence = nullptr);
+
+    /**
+     * @brief Overload taking semantic evidence support result explicitly.
+     */
+    [[nodiscard]] static EvidenceSufficiencyResult
+    check(const retrieval::QueryRepresentation& query_rep, const EvidenceBundle& bundle,
+          const SemanticEvidenceResult& semantic_evidence,
+          const EvidenceSufficiencyOptions& options = EvidenceSufficiencyOptions{}) {
+        return check(query_rep, bundle, options, &semantic_evidence);
+    }
 };
 
 }  // namespace amoeba::evidence

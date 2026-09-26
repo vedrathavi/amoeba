@@ -2,6 +2,7 @@
 #include "amoeba/engine.hpp"
 #include "amoeba/evidence/evidence_assembler.hpp"
 #include "amoeba/evidence/evidence_sufficiency.hpp"
+#include "amoeba/evidence/semantic_evidence_support.hpp"
 #include "amoeba/graph/relationship_evidence_resolver.hpp"
 #include "amoeba/graph/repository_graph_builder.hpp"
 #include "amoeba/index/inverted_index.hpp"
@@ -314,9 +315,14 @@ void handle_ask_command(const path& repo_path, string_view question,
         // 6. Assemble evidence
         const auto bundle = assembler.assemble(question, results);
 
-        // 7. Evidence Sufficiency Gate
+        // 7. Evidence Sufficiency Gate with Semantic Evidence Support
+        const auto query_rep = amoeba::retrieval::QueryUnderstanding::analyze(question);
+        amoeba::evidence::SemanticEvidenceSupport sem_support(embedding_provider,
+                                                              &pipeline.semantic_index());
+        const auto sem_result = sem_support.evaluate(query_rep, bundle);
+
         const auto sufficiency =
-            amoeba::evidence::EvidenceSufficiencyChecker::check(question, bundle);
+            amoeba::evidence::EvidenceSufficiencyChecker::check(query_rep, bundle, sem_result);
         if (!sufficiency.is_sufficient) {
             const auto end_check = chrono::high_resolution_clock::now();
             const auto check_duration_ms =

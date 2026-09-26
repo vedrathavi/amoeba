@@ -11,13 +11,15 @@ namespace amoeba::retrieval {
 namespace {
 
 const std::unordered_set<std::string_view> kStopwords = {
-    "a",       "an",      "the",   "in",    "on",    "at",       "to",    "for",   "of",
-    "with",    "by",      "from",  "up",    "down",  "into",     "over",  "after", "is",
-    "are",     "was",     "were",  "be",    "been",  "being",    "have",  "has",   "had",
-    "do",      "does",    "did",   "can",   "could", "should",   "would", "may",   "might",
-    "must",    "where",   "what",  "when",  "why",   "how",      "which", "who",   "whom",
-    "each",    "every",   "all",   "any",   "both",  "and",      "or",    "not",   "inside",
-    "outside", "between", "about", "above", "below", "rendered", "does",  "show"};
+    "a",       "an",      "the",   "in",      "on",    "at",          "to",    "for",    "of",
+    "with",    "by",      "from",  "up",      "down",  "into",        "over",  "after",  "is",
+    "are",     "was",     "were",  "be",      "been",  "being",       "have",  "has",    "had",
+    "do",      "does",    "did",   "can",     "could", "should",      "would", "may",    "might",
+    "must",    "where",   "what",  "when",    "why",   "how",         "which", "who",    "whom",
+    "each",    "every",   "all",   "any",     "both",  "and",         "or",    "not",    "inside",
+    "outside", "between", "about", "above",   "below", "rendered",    "does",  "show",   "this",
+    "that",    "it",      "its",   "another", "other", "application", "app",   "system", "codebase",
+    "project"};
 
 const std::unordered_set<std::string_view> kInterrogatives = {"where", "what",  "when", "why",
                                                               "how",   "which", "who",  "whom"};
@@ -288,29 +290,48 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         return rep;
     }
 
-    // Tokenize terms
-    rep.raw_terms = index::CodeTokenizer::tokenize_query(raw_query);
-
-    // Categorize terms into Subject, Action, Context
+    // Extract and categorize primary query words
     std::unordered_set<std::string> seen_subjects;
     std::unordered_set<std::string> seen_actions;
+    std::unordered_set<std::string> seen_raw_terms;
 
-    for (const auto& raw_t : rep.raw_terms) {
-        std::string clean_t = raw_t;
-        while (!clean_t.empty() &&
-               (clean_t.back() == '?' || clean_t.back() == '!' || clean_t.back() == '.' ||
-                clean_t.back() == ',' || clean_t.back() == ':' || clean_t.back() == ';')) {
-            clean_t.pop_back();
+    // Split raw query into whitespace-separated tokens
+    std::size_t pos = 0;
+    while (pos < raw_query.size()) {
+        while (pos < raw_query.size() && std::isspace(static_cast<unsigned char>(raw_query[pos]))) {
+            pos++;
         }
-        if (clean_t.empty()) {
+        if (pos >= raw_query.size()) {
+            break;
+        }
+        std::size_t end_pos = pos;
+        while (end_pos < raw_query.size() &&
+               !std::isspace(static_cast<unsigned char>(raw_query[end_pos]))) {
+            end_pos++;
+        }
+
+        std::string word(raw_query.substr(pos, end_pos - pos));
+        pos = end_pos;
+
+        while (!word.empty() &&
+               (word.back() == '?' || word.back() == '!' || word.back() == '.' ||
+                word.back() == ',' || word.back() == ':' || word.back() == ';' ||
+                word.back() == ')' || word.back() == ']' || word.back() == '}')) {
+            word.pop_back();
+        }
+        while (!word.empty() && (word.front() == '(' || word.front() == '[' || word.front() == '{' ||
+                                 word.front() == '"' || word.front() == '\'')) {
+            word.erase(word.begin());
+        }
+        if (word.empty()) {
             continue;
         }
 
-        const auto role = classify_term_role(clean_t);
-        const auto stem = conservative_stem(clean_t);
+        const auto role = classify_term_role(word);
+        const auto stem = conservative_stem(word);
 
         rep.categorized_terms.push_back(CategorizedQueryTerm{
-            .raw_term = clean_t,
+            .raw_term = word,
             .normalized_stem = stem,
             .role = role,
         });
@@ -322,6 +343,14 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         } else if (role == QueryTermRole::Action) {
             if (seen_actions.insert(stem).second) {
                 rep.action_terms.push_back(stem);
+            }
+        }
+
+        // Add word and its sub-word components to raw_terms for search expansion
+        const auto sub_tokens = index::CodeTokenizer::tokenize_identifier(word);
+        for (const auto& tok : sub_tokens) {
+            if (seen_raw_terms.insert(tok).second) {
+                rep.raw_terms.push_back(tok);
             }
         }
     }

@@ -260,6 +260,7 @@ add_library(amoeba_engine
     engine/src/source/source_snippet_reader.cpp
     engine/src/evidence/evidence_assembler.cpp
     engine/src/evidence/evidence_sufficiency.cpp
+    engine/src/evidence/semantic_evidence_support.cpp
     engine/src/context/context_builder.cpp
     engine/src/reasoning/prompt_builder.cpp
     engine/src/reasoning/fake_llm_runtime.cpp
@@ -385,6 +386,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/source/source_snippet_reader_test.cpp
         engine/tests/evidence/evidence_assembler_test.cpp
         engine/tests/evidence/evidence_sufficiency_test.cpp
+        engine/tests/evidence/semantic_evidence_support_test.cpp
         engine/tests/context/context_builder_test.cpp
         engine/tests/context/end_to_end_regression_test.cpp
         engine/tests/reasoning/reasoning_service_test.cpp
