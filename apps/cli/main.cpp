@@ -1,8 +1,11 @@
 #include "amoeba/engine.hpp"
 #include "amoeba/index/inverted_index.hpp"
-#include "amoeba/index/search_engine.hpp"
 #include "amoeba/parser/source_parser.hpp"
+#include "amoeba/retrieval/primary_retrieval_pipeline.hpp"
+#include "amoeba/retrieval/primary_search_result.hpp"
+#include "amoeba/retrieval/retrieval_unit.hpp"
 #include "amoeba/scanner/repository_scanner.hpp"
+#include "amoeba/semantic/pretrained_embedding_provider.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -30,8 +33,10 @@ void print_usage(string_view program_name) {
     cout << "  " << program_name
          << " parse <file-path>                 Parse a source file and display structure\n";
     cout << "  " << program_name << " inspect <file-path>               Alias for parse\n";
-    cout << "  " << program_name
-         << " search <repository-path> <query>  Index repository and search for symbols\n";
+    cout << "  " << program_name << " search <repository-path> <query> [mode]\n"
+         << "                                        Search for primary symbols\n"
+         << "                                        Modes: code_aware, bm25, baseline, "
+            "semantic, hybrid\n";
 }
 
 void handle_index_command(const path& repo_path) {
@@ -143,9 +148,8 @@ void handle_parse_command(const path& file_path) {
     }
 }
 
-void handle_search_command(
-    const path& repo_path, string_view query,
-    amoeba::index::RankerType ranker_type = amoeba::index::RankerType::CodeAware) {
+void handle_search_command(const path& repo_path, string_view query, string_view mode_str,
+                           const amoeba::retrieval::PrimarySearchOptions& search_opts) {
     try {
         const auto start_index_time = chrono::high_resolution_clock::now();
 
@@ -154,46 +158,45 @@ void handle_search_command(
 
         amoeba::parser::SourceParser parser;
         amoeba::index::InvertedIndex index;
+        vector<amoeba::parser::ParsedFile> parsed_files;
+        parsed_files.reserve(scan_result.files.size());
 
         for (const auto& file_info : scan_result.files) {
             try {
-                const auto parsed = parser.parse_file(file_info.path);
+                auto parsed = parser.parse_file(file_info.path);
                 if (parsed.success) {
                     index.add_parsed_file(parsed);
+                    parsed_files.push_back(std::move(parsed));
                 }
             } catch (...) {
                 // Safely skip unreadable individual files during batch scan
             }
         }
 
+        amoeba::semantic::PretrainedEmbeddingProvider embedding_provider;
+        amoeba::retrieval::PrimaryRetrievalPipeline pipeline(parsed_files, index,
+                                                             embedding_provider);
+
         const auto end_index_time = chrono::high_resolution_clock::now();
         const auto index_duration_ms =
             chrono::duration_cast<chrono::milliseconds>(end_index_time - start_index_time).count();
 
-        string_view ranker_name = "CodeAware";
-        if (ranker_type == amoeba::index::RankerType::Baseline) {
-            ranker_name = "Baseline";
-        } else if (ranker_type == amoeba::index::RankerType::BM25) {
-            ranker_name = "BM25";
-        }
-
         cout << "Repository:\n";
         cout << "  " << repo_path.string() << "\n\n";
         cout << "Query:\n";
-        cout << "  \"" << query << "\" [Ranker: " << ranker_name << "]\n\n";
+        cout << "  \"" << query << "\" [Mode: " << mode_str << "]\n\n";
         cout << "Index statistics:\n";
         cout << "  Files indexed:    " << index.file_count() << "\n";
         cout << "  Symbols indexed:  " << index.element_count() << "\n";
+        cout << "  Primary units:    " << pipeline.primary_unit_count() << "\n";
+        cout << "  Supporting items: " << pipeline.supporting_element_count() << "\n";
         cout << "  Unique terms:     " << index.term_count() << "\n";
         cout << "  Total postings:   " << index.posting_count() << "\n";
-        cout << "  Index build time: " << index_duration_ms << " ms\n\n";
+        cout << "  Pipeline build:   " << index_duration_ms << " ms\n\n";
 
         const auto start_search_time = chrono::high_resolution_clock::now();
-
-        amoeba::index::SearchEngine search_engine(index);
-        const auto results =
-            search_engine.search(query, amoeba::index::SearchOptions{.ranker_type = ranker_type});
-
+        amoeba::retrieval::PipelineMetrics metrics;
+        const auto results = pipeline.search_with_metrics(query, search_opts, metrics);
         const auto end_search_time = chrono::high_resolution_clock::now();
         const auto search_duration_us =
             chrono::duration_cast<chrono::microseconds>(end_search_time - start_search_time)
@@ -204,26 +207,38 @@ void handle_search_command(
             return;
         }
 
-        cout << "Search results (" << results.size() << " matches found in " << search_duration_us
-             << " us):\n\n";
+        cout << "Search results (" << results.size() << " primary matches found in "
+             << search_duration_us << " us):\n\n";
 
         for (size_t i = 0; i < results.size(); ++i) {
             const auto& res = results[i];
-            cout << "[" << (i + 1) << "] " << to_string(res.element.kind) << ": "
-                 << res.element.name;
-            if (!res.element.parent_context.empty()) {
-                cout << " (in " << res.element.parent_context << ")";
+            cout << "[" << (i + 1) << "] "
+                 << amoeba::parser::to_string(res.unit.primary_element.kind) << ": "
+                 << res.unit.primary_element.name;
+            if (!res.unit.primary_element.parent_context.empty()) {
+                cout << " (in " << res.unit.primary_element.parent_context << ")";
             }
-            if (!res.element.detail.empty()) {
-                cout << " [" << res.element.detail << "]";
+            if (!res.unit.primary_element.detail.empty()) {
+                cout << " [" << res.unit.primary_element.detail << "]";
             }
-            cout << " [score: " << res.score;
-            if (res.exact_name_match) {
-                cout << ", exact";
+            cout << " [score: " << res.hybrid_score
+                 << ", provenance: " << amoeba::retrieval::to_string(res.provenance) << "]\n";
+            cout << "    File: " << res.unit.file_path.string() << ":"
+                 << res.unit.primary_element.location.start.line << ":"
+                 << res.unit.primary_element.location.start.column << " (" << res.unit.language
+                 << ")\n";
+
+            if (!res.unit.supporting_elements.empty()) {
+                cout << "    Supporting evidence:\n";
+                for (const auto& ev : res.unit.supporting_elements) {
+                    cout << "      - " << amoeba::parser::to_string(ev.kind) << ": " << ev.name;
+                    if (!ev.detail.empty()) {
+                        cout << " [" << ev.detail << "]";
+                    }
+                    cout << " (Line " << ev.location.start.line << ")\n";
+                }
             }
-            cout << "]\n";
-            cout << "    File: " << res.file_path.string() << ":" << res.element.location.start.line
-                 << ":" << res.element.location.start.column << " (" << res.language << ")\n\n";
+            cout << "\n";
         }
 
     } catch (const invalid_argument& ex) {
@@ -278,27 +293,48 @@ int main(int argc, char* argv[]) {
         if (command == "search") {
             if (argc < 4) {
                 cerr << "Error: Repository path and query string are required.\n";
-                cerr << "Usage: " << argv[0]
-                     << " search <repository-path> <query> [--ranker=code_aware|bm25|baseline]\n\n";
+                cerr << "Usage: " << argv[0] << " search <repository-path> <query> [mode]\n"
+                     << "       Modes: code_aware, bm25, baseline, semantic, hybrid\n\n";
                 return 1;
             }
 
             const path repo_path(argv[2]);
             const string_view query = argv[3];
-            amoeba::index::RankerType ranker_type = amoeba::index::RankerType::CodeAware;
+
+            amoeba::retrieval::PrimarySearchOptions search_opts{
+                .alpha = 1.0,
+                .lexical_ranker = amoeba::index::RankerType::CodeAware,
+            };
+            string mode_str = "CodeAware";
 
             if (argc >= 5) {
                 const string_view rank_arg = argv[4];
                 if (rank_arg == "--ranker=baseline" || rank_arg == "baseline") {
-                    ranker_type = amoeba::index::RankerType::Baseline;
+                    search_opts.alpha = 1.0;
+                    search_opts.lexical_ranker = amoeba::index::RankerType::Baseline;
+                    mode_str = "Baseline";
                 } else if (rank_arg == "--ranker=bm25" || rank_arg == "bm25") {
-                    ranker_type = amoeba::index::RankerType::BM25;
+                    search_opts.alpha = 1.0;
+                    search_opts.lexical_ranker = amoeba::index::RankerType::BM25;
+                    mode_str = "BM25";
                 } else if (rank_arg == "--ranker=code_aware" || rank_arg == "code_aware") {
-                    ranker_type = amoeba::index::RankerType::CodeAware;
+                    search_opts.alpha = 1.0;
+                    search_opts.lexical_ranker = amoeba::index::RankerType::CodeAware;
+                    mode_str = "CodeAware";
+                } else if (rank_arg == "--ranker=semantic" || rank_arg == "semantic" ||
+                           rank_arg == "--semantic") {
+                    search_opts.alpha = 0.0;
+                    mode_str = "Semantic";
+                } else if (rank_arg == "--ranker=hybrid" || rank_arg == "hybrid" ||
+                           rank_arg == "--hybrid") {
+                    search_opts.alpha = 0.5;
+                    search_opts.lexical_ranker = amoeba::index::RankerType::CodeAware;
+                    search_opts.adaptive_fusion = true;
+                    mode_str = "Hybrid";
                 }
             }
 
-            handle_search_command(repo_path, query, ranker_type);
+            handle_search_command(repo_path, query, mode_str, search_opts);
             return 0;
         }
 

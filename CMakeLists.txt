@@ -370,6 +370,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/retrieval/query_understanding_test.cpp
         engine/tests/retrieval/primary_retrieval_pipeline_test.cpp
         engine/tests/retrieval/retrieval_hardening_test.cpp
+        engine/tests/retrieval/cli_retrieval_integration_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
