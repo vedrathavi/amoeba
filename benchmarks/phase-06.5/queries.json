@@ -1,0 +1,102 @@
+[
+  {
+    "id": "Q1",
+    "query": "CalendarGrid",
+    "category": "Exact Identifier",
+    "expected_name": "CalendarGrid",
+    "expected_file": "src/components/calendar/CalendarGrid.tsx",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Direct exact match for 7-column monthly calendar matrix component."
+  },
+  {
+    "id": "Q2",
+    "query": "use calendar",
+    "category": "Normalized Identifier",
+    "expected_name": "useCalendar",
+    "expected_file": "src/hooks/useCalendar.ts",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Space-separated normalized query targeting camelCase React date hook."
+  },
+  {
+    "id": "Q3",
+    "query": "LocalStorage",
+    "category": "Partial/Subword",
+    "expected_name": "useLocalStorage",
+    "expected_file": "src/hooks/useLocalStorage.ts",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Subword search for client-side persistence handler for notes & highlights."
+  },
+  {
+    "id": "Q4",
+    "query": "FloatingToolbar action",
+    "category": "Multi-Term",
+    "expected_name": "FloatingToolbar",
+    "expected_file": "src/components/floating-toolbar/FloatingToolbar.tsx",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Multi-term query for floating navigation action bar."
+  },
+  {
+    "id": "Q5",
+    "query": "formatDate formatStr",
+    "category": "Contextual Lexical",
+    "expected_name": "formatDate",
+    "expected_file": "src/lib/dateUtils.ts",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Function identifier combined with its signature parameter term."
+  },
+  {
+    "id": "Q6",
+    "query": "RootLayout Next.js metadata",
+    "category": "Framework",
+    "expected_name": "RootLayout",
+    "expected_file": "src/app/layout.tsx",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Next.js App Router root layout managing global metadata."
+  },
+  {
+    "id": "Q7",
+    "query": "Dialog",
+    "category": "Ambiguous",
+    "expected_name": "Dialog",
+    "expected_file": "src/components/ui/dialog.tsx",
+    "alternate_name": "",
+    "alternate_file": "",
+    "rationale": "Ambiguous query spanning modal primitive definitions and page usage sites."
+  },
+  {
+    "id": "Q8",
+    "query": "Where is the location destination photo and travel description rendered for each month?",
+    "category": "Conceptual/Semantic",
+    "expected_name": "ImagePanel",
+    "expected_file": "src/components/calendar/ImagePanel.tsx",
+    "alternate_name": "getImagePanelData",
+    "alternate_file": "src/lib/monthLocationData.ts",
+    "rationale": "Natural language question targeting landscape photography showcase."
+  },
+  {
+    "id": "Q9",
+    "query": "MonthLocation getImagePanelData",
+    "category": "Cross-File",
+    "expected_name": "MonthLocation",
+    "expected_file": "src/lib/monthLocationData.ts",
+    "alternate_name": "getImagePanelData",
+    "alternate_file": "src/lib/monthLocationData.ts",
+    "rationale": "Cross-file data contract connecting destination datasets with UI presentation."
+  },
+  {
+    "id": "Q10",
+    "query": "CalendarDay rendered inside CalendarGrid",
+    "category": "Component Relationship",
+    "expected_name": "CalendarDay",
+    "expected_file": "src/components/calendar/CalendarDay.tsx",
+    "alternate_name": "CalendarGrid",
+    "alternate_file": "src/components/calendar/CalendarGrid.tsx",
+    "rationale": "Structural parent-child React relationship mapping date intervals to cells."
+  }
+]

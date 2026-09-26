@@ -381,3 +381,23 @@ if(AMOEBA_BUILD_TESTS)
     include(GoogleTest)
     gtest_discover_tests(amoeba_engine_tests)
 endif()
+
+# -----------------------------------------------------------------------------
+# 4. amoeba_phase_06_5_benchmark (Phase 6.5 Native Benchmark Target)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_phase_06_5_benchmark
+    benchmarks/phase-06.5/benchmark_main.cpp
+)
+
+target_link_libraries(amoeba_phase_06_5_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_phase_06_5_benchmark PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_phase_06_5_benchmark PRIVATE /W4 /permissive-)
+else()
+    target_compile_options(amoeba_phase_06_5_benchmark PRIVATE -Wall -Wextra -Wpedantic)
+endif()

@@ -1,0 +1,15 @@
+Architecture,Method,P@1,P@3,P@5,Recall@5,Recall@10,MRR,NDCG@5,NDCG@10,LatencyMs
+"BEFORE (Raw CodeElements)","Raw Baseline",0.4,0.366667,0.3,1.4,1.8,0.558333,0.915878,1.0672,42.552
+"BEFORE (Raw CodeElements)","Raw BM25",0.1,0.1,0.1,0.35,0.45,0.240438,0.251905,0.282008,38.5494
+"BEFORE (Raw CodeElements)","Raw CodeAware",0.6,0.4,0.32,1.3,1.95,0.652137,0.950038,1.17003,35.5557
+"BEFORE (Raw CodeElements)","Raw Semantic (MiniLM-384)",0.1,0.1,0.1,0.4,0.4,0.23125,0.268566,0.268566,10.9664
+"BEFORE (Raw CodeElements)","Raw Hybrid (a=0.5)",0.2,0.266667,0.22,0.95,1.45,0.435788,0.594752,0.769462,49.5644
+"BEFORE (Raw CodeElements)","Raw Hybrid (a=0.3)",0.1,0.133333,0.14,0.6,1.15,0.283942,0.357251,0.535219,48.7393
+"BEFORE (Raw CodeElements)","Raw Hybrid RRF",0.4,0.133333,0.1,0.4,0.45,0.448645,0.361315,0.383155,49.2151
+"AFTER (RetrievalUnits)","Unit Baseline",0.4,0.233333,0.2,0.8,0.8,0.553333,0.60697,0.60697,40.3079
+"AFTER (RetrievalUnits)","Unit BM25",0.6,0.233333,0.2,0.9,0.9,0.67625,0.724821,0.724821,39.9527
+"AFTER (RetrievalUnits)","Unit CodeAware",0.6,0.3,0.2,0.8,0.9,0.678526,0.68504,0.716586,40.748
+"AFTER (RetrievalUnits)","Unit Semantic (MiniLM-384)",0.3,0.2,0.12,0.5,0.5,0.380609,0.391972,0.391972,43.4021
+"AFTER (RetrievalUnits)","Unit Hybrid (a=0.5)",0.4,0.266667,0.16,0.7,0.7,0.550117,0.568158,0.568158,42.5019
+"AFTER (RetrievalUnits)","Unit Hybrid (a=0.3)",0.3,0.266667,0.16,0.7,0.7,0.497549,0.531251,0.531251,42.6354
+"AFTER (RetrievalUnits)","Unit Hybrid RRF",0.4,0.266667,0.16,0.7,0.85,0.568382,0.568158,0.621545,42.2703
