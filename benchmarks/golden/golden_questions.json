@@ -1,0 +1,334 @@
+[
+  {
+    "id": "Q01",
+    "query": "CalendarGrid",
+    "category": "Exact Symbol",
+    "expected_primary_symbols": [
+      "CalendarGrid"
+    ],
+    "expected_files": [
+      "src/components/calendar/CalendarGrid.tsx"
+    ],
+    "expected_relationships": [
+      {
+        "kind": "Imports",
+        "target": "CalendarDay"
+      }
+    ],
+    "required_evidence": [
+      "SourceExcerpt",
+      "SupportingElements",
+      "Relationships"
+    ],
+    "notes": "Exact identifier for monthly calendar 7-column grid component."
+  },
+  {
+    "id": "Q02",
+    "query": "use calendar",
+    "category": "Normalized Identifier",
+    "expected_primary_symbols": [
+      "useCalendar"
+    ],
+    "expected_files": [
+      "src/hooks/useCalendar.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Space-separated query for React calendar state management hook."
+  },
+  {
+    "id": "Q03",
+    "query": "LocalStorage",
+    "category": "Compound / Subword Identifier",
+    "expected_primary_symbols": [
+      "useLocalStorage"
+    ],
+    "expected_files": [
+      "src/hooks/useLocalStorage.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Subword search targeting local storage custom hook."
+  },
+  {
+    "id": "Q04",
+    "query": "FloatingToolbar action",
+    "category": "Multi-Term Component",
+    "expected_primary_symbols": [
+      "FloatingToolbar"
+    ],
+    "expected_files": [
+      "src/components/floating-toolbar/FloatingToolbar.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Floating quick-action toolbar navigation component."
+  },
+  {
+    "id": "Q05",
+    "query": "formatDate formatStr",
+    "category": "Contextual Lexical",
+    "expected_primary_symbols": [
+      "formatDate"
+    ],
+    "expected_files": [
+      "src/lib/dateUtils.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Date formatting function with format string signature parameter."
+  },
+  {
+    "id": "Q06",
+    "query": "RootLayout Next.js metadata",
+    "category": "Framework Layout",
+    "expected_primary_symbols": [
+      "RootLayout"
+    ],
+    "expected_files": [
+      "src/app/layout.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Next.js root layout with metadata definition."
+  },
+  {
+    "id": "Q07",
+    "query": "Dialog",
+    "category": "Ambiguous UI Primitive",
+    "expected_primary_symbols": [
+      "Dialog"
+    ],
+    "expected_files": [
+      "src/components/ui/dialog.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Radix UI dialog component wrapper."
+  },
+  {
+    "id": "Q08",
+    "query": "Where is the location destination photo and travel description rendered for each month?",
+    "category": "Natural Language / Semantic",
+    "expected_primary_symbols": [
+      "ImagePanel",
+      "getImagePanelData"
+    ],
+    "expected_files": [
+      "src/components/calendar/ImagePanel.tsx",
+      "src/lib/monthLocationData.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Natural language query targeting destination photography and description panel."
+  },
+  {
+    "id": "Q09",
+    "query": "MonthLocation getImagePanelData",
+    "category": "Cross-File Data Contract",
+    "expected_primary_symbols": [
+      "MonthLocation",
+      "getImagePanelData"
+    ],
+    "expected_files": [
+      "src/lib/monthLocationData.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Data types and accessor for monthly location content."
+  },
+  {
+    "id": "Q10",
+    "query": "CalendarDay rendered inside CalendarGrid",
+    "category": "Component Relationship",
+    "expected_primary_symbols": [
+      "CalendarDay",
+      "CalendarGrid"
+    ],
+    "expected_files": [
+      "src/components/calendar/CalendarDay.tsx",
+      "src/components/calendar/CalendarGrid.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Parent-child React components representing grid and individual day cells."
+  },
+  {
+    "id": "Q11",
+    "query": "What manages client-side persistence for user notes?",
+    "category": "File/Module Responsibility",
+    "expected_primary_symbols": [
+      "useLocalStorage",
+      "NotesSection"
+    ],
+    "expected_files": [
+      "src/hooks/useLocalStorage.ts",
+      "src/components/calendar/NotesSection.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Query about persistent local state mechanism."
+  },
+  {
+    "id": "Q12",
+    "query": "Which function provides random inspirational quotes?",
+    "category": "Call Relationship",
+    "expected_primary_symbols": [
+      "getRandomQuote",
+      "QuoteSection"
+    ],
+    "expected_files": [
+      "src/lib/quotes.ts",
+      "src/components/layout/QuoteSection.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Function and UI component handling quote generation."
+  },
+  {
+    "id": "Q13",
+    "query": "Where are date calculations and days in month computed?",
+    "category": "Caller / Callee",
+    "expected_primary_symbols": [
+      "getDaysInMonth",
+      "formatDate"
+    ],
+    "expected_files": [
+      "src/lib/dateUtils.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Core date arithmetic utility module."
+  },
+  {
+    "id": "Q14",
+    "query": "Which component renders the notes editor and highlights?",
+    "category": "Import / Dependency",
+    "expected_primary_symbols": [
+      "NotesSection"
+    ],
+    "expected_files": [
+      "src/components/calendar/NotesSection.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Notes and highlights editing pane."
+  },
+  {
+    "id": "Q15",
+    "query": "Where is the Tailwind utility class helper cn defined?",
+    "category": "Component / Function Relationship",
+    "expected_primary_symbols": [
+      "cn"
+    ],
+    "expected_files": [
+      "src/lib/utils.ts"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Class variance authority / clsx merge utility function."
+  },
+  {
+    "id": "Q16",
+    "query": "Where is the theme provider component defined?",
+    "category": "Theme / Provider Setup",
+    "expected_primary_symbols": [
+      "ThemeProvider"
+    ],
+    "expected_files": [
+      "src/components/layout/ThemeProvider.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Next-themes dark/light provider wrapper component."
+  },
+  {
+    "id": "Q17",
+    "query": "Where are button variants and styles defined?",
+    "category": "UI Primitive",
+    "expected_primary_symbols": [
+      "Button",
+      "buttonVariants"
+    ],
+    "expected_files": [
+      "src/components/ui/button.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Button UI component with CVA variant definitions."
+  },
+  {
+    "id": "Q18",
+    "query": "CalendarHeader month navigation",
+    "category": "Component Navigation",
+    "expected_primary_symbols": [
+      "CalendarHeader"
+    ],
+    "expected_files": [
+      "src/components/calendar/CalendarHeader.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Top navigation header with previous/next month controls."
+  },
+  {
+    "id": "Q19",
+    "query": "HeroImage header display",
+    "category": "Layout Component",
+    "expected_primary_symbols": [
+      "HeroImage"
+    ],
+    "expected_files": [
+      "src/components/layout/HeroImage.tsx"
+    ],
+    "expected_relationships": [],
+    "required_evidence": [
+      "SourceExcerpt"
+    ],
+    "notes": "Header banner image component."
+  },
+  {
+    "id": "Q20",
+    "query": "Where is the SQL PostgreSQL database connection pool initialized?",
+    "category": "Negative / Insufficient Evidence",
+    "expected_primary_symbols": [],
+    "expected_files": [],
+    "expected_relationships": [],
+    "required_evidence": [],
+    "notes": "Adversarial query for backend database setup absent from frontend calendar demo."
+  }
+]

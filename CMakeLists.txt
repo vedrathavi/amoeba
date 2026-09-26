@@ -240,6 +240,7 @@ add_library(amoeba_engine
     engine/src/graph/repository_graph_builder.cpp
     engine/src/graph/incremental_graph_updater.cpp
     engine/src/graph/graph_query_service.cpp
+    engine/src/graph/relationship_evidence_resolver.cpp
     engine/src/search/relationship_aware_search.cpp
     engine/src/semantic/similarity.cpp
     engine/src/semantic/semantic_document.cpp
@@ -257,6 +258,8 @@ add_library(amoeba_engine
     engine/src/retrieval/query_understanding.cpp
     engine/src/retrieval/primary_retrieval_pipeline.cpp
     engine/src/source/source_snippet_reader.cpp
+    engine/src/evidence/evidence_assembler.cpp
+    engine/src/context/context_builder.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -355,6 +358,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/graph/repository_graph_builder_test.cpp
         engine/tests/graph/incremental_graph_updater_test.cpp
         engine/tests/graph/graph_query_service_test.cpp
+        engine/tests/graph/relationship_evidence_resolver_test.cpp
         engine/tests/search/relationship_aware_search_test.cpp
         engine/tests/audit/phase5_audit_validation_test.cpp
         engine/tests/semantic/similarity_test.cpp
@@ -373,6 +377,9 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/retrieval/retrieval_hardening_test.cpp
         engine/tests/retrieval/cli_retrieval_integration_test.cpp
         engine/tests/source/source_snippet_reader_test.cpp
+        engine/tests/evidence/evidence_assembler_test.cpp
+        engine/tests/context/context_builder_test.cpp
+        engine/tests/context/end_to_end_regression_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
