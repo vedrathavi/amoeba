@@ -58,8 +58,7 @@ std::string QueryUnderstanding::collapse_identifier(std::string_view text) {
     result.reserve(text.size());
 
     for (char c : text) {
-        if (!std::isspace(static_cast<unsigned char>(c)) && c != '_' && c != '-' && c != '.' &&
-            c != ':' && c != '/' && c != '\\' && c != '?' && c != '!' && c != ',' && c != ';') {
+        if (std::isalnum(static_cast<unsigned char>(c))) {
             result.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
         }
     }
@@ -109,6 +108,18 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
     rep.raw_query = std::string(raw_query);
     rep.normalized_query = normalize_text(raw_query);
     rep.collapsed_query = collapse_identifier(raw_query);
+
+    // If query contains no alphanumeric characters, return empty representation immediately
+    bool has_alnum = false;
+    for (char c : raw_query) {
+        if (std::isalnum(static_cast<unsigned char>(c))) {
+            has_alnum = true;
+            break;
+        }
+    }
+    if (!has_alnum) {
+        return rep;
+    }
 
     // Tokenize terms
     rep.raw_terms = index::CodeTokenizer::tokenize_query(raw_query);

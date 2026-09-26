@@ -168,6 +168,11 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
         return {};
     }
 
+    const auto query_rep = QueryUnderstanding::analyze(query);
+    if (query_rep.all_search_terms.empty() && query_rep.collapsed_query.empty()) {
+        return {};
+    }
+
     const auto t_start = Clock::now();
 
     metrics.total_elements = index_.element_count();
@@ -313,7 +318,6 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
     metrics.fused_candidates = candidates.size();
 
     // ─── 4. Fusion ────────────────────────────────────────────────────────────
-    const auto query_rep = QueryUnderstanding::analyze(query);
     double effective_alpha = options.alpha;
     if (options.adaptive_fusion && options.alpha > 0.0 && options.alpha < 1.0) {
         effective_alpha = query_rep.recommended_alpha;
@@ -331,14 +335,21 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
         std::chrono::duration<double, std::milli>(t_fuse_end - t_fuse_start).count();
 
     // ─── 5. Build PrimarySearchResult[] ──────────────────────────────────────
-    const std::size_t limit = std::min(options.max_results, fused.size());
     std::vector<PrimarySearchResult> results;
-    results.reserve(limit);
+    results.reserve(std::min(options.max_results, fused.size()));
 
-    for (std::size_t i = 0; i < limit; ++i) {
+    for (std::size_t i = 0; i < fused.size() && results.size() < options.max_results; ++i) {
         const auto& c = fused[i];
         const bool has_lex = c.lexical_rank > 0;
         const bool has_sem = c.semantic_rank > 0;
+
+        if (effective_alpha >= 1.0 && !has_lex) {
+            continue;
+        }
+        if (effective_alpha <= 0.0 && !has_sem) {
+            continue;
+        }
+
         const auto prov = (has_lex && has_sem) ? RetrievalProvenance::HybridBoth
                           : has_sem            ? RetrievalProvenance::SemanticOnly
                                                : RetrievalProvenance::LexicalOnly;
