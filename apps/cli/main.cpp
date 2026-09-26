@@ -1,6 +1,14 @@
+#include "amoeba/context/context_builder.hpp"
 #include "amoeba/engine.hpp"
+#include "amoeba/evidence/evidence_assembler.hpp"
+#include "amoeba/evidence/evidence_sufficiency.hpp"
+#include "amoeba/graph/relationship_evidence_resolver.hpp"
+#include "amoeba/graph/repository_graph_builder.hpp"
 #include "amoeba/index/inverted_index.hpp"
 #include "amoeba/parser/source_parser.hpp"
+#include "amoeba/reasoning/local_llm_runtime.hpp"
+#include "amoeba/reasoning/reasoning_service.hpp"
+#include "amoeba/reasoning/response_sink.hpp"
 #include "amoeba/retrieval/primary_retrieval_pipeline.hpp"
 #include "amoeba/retrieval/primary_search_result.hpp"
 #include "amoeba/retrieval/retrieval_unit.hpp"
@@ -37,6 +45,9 @@ void print_usage(string_view program_name) {
          << "                                        Search for primary symbols\n"
          << "                                        Modes: code_aware, bm25, baseline, "
             "semantic, hybrid\n";
+    cout << "  " << program_name
+         << " ask <repository-path> <question> [--model=<name>] [--endpoint=<url>]\n"
+         << "                                        Ask a grounded question using local LLM\n";
 }
 
 void handle_index_command(const path& repo_path) {
@@ -248,6 +259,135 @@ void handle_search_command(const path& repo_path, string_view query, string_view
     }
 }
 
+void handle_ask_command(const path& repo_path, string_view question,
+                        const amoeba::reasoning::LocalLLMConfig& llm_config) {
+    try {
+        // 1. Scan repository
+        amoeba::scanner::RepositoryScanner scanner;
+        const auto scan_result = scanner.scan(repo_path);
+
+        // 2. Parse source files & populate index
+        amoeba::parser::SourceParser parser;
+        amoeba::index::InvertedIndex index;
+        vector<amoeba::parser::ParsedFile> parsed_files;
+        parsed_files.reserve(scan_result.files.size());
+
+        for (const auto& file_info : scan_result.files) {
+            try {
+                auto parsed = parser.parse_file(file_info.path);
+                if (parsed.success) {
+                    index.add_parsed_file(parsed);
+                    parsed_files.push_back(std::move(parsed));
+                }
+            } catch (...) {
+            }
+        }
+
+        // 3. Build cross-file relationship graph
+        amoeba::graph::RelationshipGraph graph;
+        amoeba::graph::RepositoryGraphBuilder::build_repository_graph(parsed_files, graph);
+
+        // 4. Initialize pipeline, assembler, and context builder
+        amoeba::semantic::PretrainedEmbeddingProvider embedding_provider;
+        amoeba::retrieval::PrimaryRetrievalPipeline pipeline(parsed_files, index,
+                                                             embedding_provider);
+        amoeba::graph::RelationshipEvidenceResolver rel_resolver(graph, index);
+        amoeba::evidence::EvidenceAssembler assembler(rel_resolver);
+
+        amoeba::context::ContextBuilderOptions ctx_opts;
+        ctx_opts.max_primary_items = 3;
+        ctx_opts.max_source_lines_per_item = 50;
+        ctx_opts.max_relationships_per_item = 5;
+        ctx_opts.max_character_budget = 4000;
+        amoeba::context::ContextBuilder context_builder(ctx_opts);
+
+        // 5. Execute retrieval
+        const auto start_retrieval = chrono::high_resolution_clock::now();
+        amoeba::retrieval::PrimarySearchOptions search_opts{
+            .alpha = 0.5,
+            .lexical_ranker = amoeba::index::RankerType::CodeAware,
+            .max_results = 5,
+            .adaptive_fusion = true,
+        };
+        const auto results = pipeline.search(question, search_opts);
+
+        // 6. Assemble evidence
+        const auto bundle = assembler.assemble(question, results);
+
+        // 7. Evidence Sufficiency Gate
+        const auto sufficiency =
+            amoeba::evidence::EvidenceSufficiencyChecker::check(question, bundle);
+        if (!sufficiency.is_sufficient) {
+            const auto end_check = chrono::high_resolution_clock::now();
+            const auto check_duration_ms =
+                chrono::duration_cast<chrono::milliseconds>(end_check - start_retrieval).count();
+
+            cout << "Repository:\n";
+            cout << "  " << repo_path.string() << "\n\n";
+            cout << "Question:\n";
+            cout << "  \"" << question << "\"\n\n";
+            cout << "Grounding Context:\n";
+            cout << "  Evaluated " << bundle.size() << " candidate code units in "
+                 << check_duration_ms << " ms [Status: Insufficient Evidence]\n\n";
+            cout << "Answer:\n";
+            cout << sufficiency.format_grounded_refusal(question) << "\n";
+            return;
+        }
+
+        // 8. Build context for sufficient evidence
+        const auto context_package = context_builder.build(bundle);
+        const auto end_context = chrono::high_resolution_clock::now();
+
+        const auto retrieval_duration_ms =
+            chrono::duration_cast<chrono::milliseconds>(end_context - start_retrieval).count();
+
+        cout << "Repository:\n";
+        cout << "  " << repo_path.string() << "\n\n";
+        cout << "Question:\n";
+        cout << "  \"" << question << "\"\n\n";
+        cout << "Grounding Context:\n";
+        cout << "  Retrieved " << context_package.selected_item_count << " primary code units ("
+             << context_package.used_characters << " chars) in " << retrieval_duration_ms
+             << " ms\n";
+        cout << "  Local LLM Model: " << llm_config.model_name << " (" << llm_config.endpoint
+             << ")\n\n";
+        cout << "Answer:\n";
+
+        // 9. Stream answer from LocalLLMRuntime
+        amoeba::reasoning::LocalLLMRuntime runtime(llm_config);
+        amoeba::reasoning::ReasoningService reasoning_service(runtime);
+
+        const auto start_llm = chrono::high_resolution_clock::now();
+        bool has_output = false;
+
+        amoeba::reasoning::CallbackResponseSink sink(
+            [&](const amoeba::reasoning::ReasoningEvent& event) {
+                if (event.type == amoeba::reasoning::ReasoningEventType::TextChunk) {
+                    cout << event.text_chunk;
+                    cout.flush();
+                    has_output = true;
+                } else if (event.type == amoeba::reasoning::ReasoningEventType::Error) {
+                    cerr << "\n[Error] " << event.error_message << "\n";
+                }
+            });
+
+        reasoning_service.answer_stream(string(question), context_package, sink);
+        const auto end_llm = chrono::high_resolution_clock::now();
+        const auto llm_duration_ms =
+            chrono::duration_cast<chrono::milliseconds>(end_llm - start_llm).count();
+
+        if (has_output) {
+            cout << "\n\n";
+        }
+        cout << "[Inference time: " << llm_duration_ms << " ms]\n\n";
+
+    } catch (const invalid_argument& ex) {
+        cerr << "Error: " << ex.what() << "\n";
+    } catch (const exception& ex) {
+        cerr << "Unexpected error during reasoning: " << ex.what() << "\n";
+    }
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -335,6 +475,31 @@ int main(int argc, char* argv[]) {
             }
 
             handle_search_command(repo_path, query, mode_str, search_opts);
+            return 0;
+        }
+
+        if (command == "ask") {
+            if (argc < 4) {
+                cerr << "Error: Repository path and question are required.\n";
+                cerr << "Usage: " << argv[0]
+                     << " ask <repository-path> <question> [--model=<name>] [--endpoint=<url>]\n\n";
+                return 1;
+            }
+
+            const path repo_path(argv[2]);
+            const string_view question = argv[3];
+
+            amoeba::reasoning::LocalLLMConfig llm_config;
+            for (int i = 4; i < argc; ++i) {
+                const string_view arg = argv[i];
+                if (arg.rfind("--model=", 0) == 0) {
+                    llm_config.model_name = string(arg.substr(8));
+                } else if (arg.rfind("--endpoint=", 0) == 0) {
+                    llm_config.endpoint = string(arg.substr(11));
+                }
+            }
+
+            handle_ask_command(repo_path, question, llm_config);
             return 0;
         }
 

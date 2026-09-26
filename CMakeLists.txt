@@ -259,7 +259,12 @@ add_library(amoeba_engine
     engine/src/retrieval/primary_retrieval_pipeline.cpp
     engine/src/source/source_snippet_reader.cpp
     engine/src/evidence/evidence_assembler.cpp
+    engine/src/evidence/evidence_sufficiency.cpp
     engine/src/context/context_builder.cpp
+    engine/src/reasoning/prompt_builder.cpp
+    engine/src/reasoning/fake_llm_runtime.cpp
+    engine/src/reasoning/reasoning_service.cpp
+    engine/src/reasoning/local_llm_runtime.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -284,6 +289,7 @@ target_link_libraries(amoeba_engine
         tree_sitter_tsx_lib
         tree_sitter_html_lib
         tree_sitter_css_lib
+        $<$<PLATFORM_ID:Windows>:winhttp>
 )
 
 target_compile_features(amoeba_engine PUBLIC cxx_std_20)
@@ -378,8 +384,11 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/retrieval/cli_retrieval_integration_test.cpp
         engine/tests/source/source_snippet_reader_test.cpp
         engine/tests/evidence/evidence_assembler_test.cpp
+        engine/tests/evidence/evidence_sufficiency_test.cpp
         engine/tests/context/context_builder_test.cpp
         engine/tests/context/end_to_end_regression_test.cpp
+        engine/tests/reasoning/reasoning_service_test.cpp
+        engine/tests/reasoning/local_llm_runtime_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
