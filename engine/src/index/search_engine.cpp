@@ -14,13 +14,29 @@ namespace amoeba::index {
 using namespace std;
 
 vector<SearchResult> SearchEngine::search(string_view query, const SearchOptions& options) const {
-    // 1. Query Tokenization
+    // 1. Query Tokenization & Normalization
     const auto query_terms = CodeTokenizer::tokenize_query(query);
     if (query_terms.empty()) {
         return {};
     }
 
     const string norm_raw_query = CodeTokenizer::normalize_term(query);
+
+    // Build collapsed compound representation (e.g. "use calendar" -> "usecalendar")
+    string collapsed_query;
+    collapsed_query.reserve(norm_raw_query.size());
+    for (char c : norm_raw_query) {
+        if (!isspace(static_cast<unsigned char>(c)) && c != '_' && c != '-' && c != '.') {
+            collapsed_query.push_back(c);
+        }
+    }
+
+    // Extended lookup terms: includes original terms plus collapsed compound if multi-word
+    vector<string> lookup_terms = query_terms;
+    if (query_terms.size() >= 2 && query_terms.size() <= 4 && !collapsed_query.empty() &&
+        collapsed_query != norm_raw_query) {
+        lookup_terms.push_back(collapsed_query);
+    }
 
     struct CandidateAccumulator {
         unordered_set<string> matched_terms;
@@ -29,7 +45,7 @@ vector<SearchResult> SearchEngine::search(string_view query, const SearchOptions
     // 2. Candidate Retrieval (Term Lookup -> Postings -> Candidate Element Accumulation)
     unordered_map<ElementId, CandidateAccumulator> candidate_map;
 
-    for (const auto& term : query_terms) {
+    for (const auto& term : lookup_terms) {
         const auto* postings = index_.lookup(term);
         if (postings == nullptr) {
             continue;
@@ -65,9 +81,12 @@ vector<SearchResult> SearchEngine::search(string_view query, const SearchOptions
         const auto& indexed_file = index_.get_file(indexed_elem.file_id);
         const string norm_elem_name = CodeTokenizer::normalize_term(indexed_elem.element.name);
         const bool is_exact = (indexed_elem.element.name == query);
-        const bool is_norm_exact = (norm_elem_name == norm_raw_query);
+        const bool is_norm_exact =
+            (norm_elem_name == norm_raw_query ||
+             (!collapsed_query.empty() && norm_elem_name == collapsed_query));
         const bool is_prefix =
-            (!norm_raw_query.empty() && norm_elem_name.starts_with(norm_raw_query));
+            (!norm_raw_query.empty() && norm_elem_name.starts_with(norm_raw_query)) ||
+            (!collapsed_query.empty() && norm_elem_name.starts_with(collapsed_query));
 
         // Analyze which field matched for field-specific weighting and term frequencies
         const auto name_tokens = CodeTokenizer::tokenize_identifier(indexed_elem.element.name);
@@ -163,7 +182,7 @@ vector<SearchResult> SearchEngine::search(string_view query, const SearchOptions
 
     // 4. Ranking (Delegated to configured ranker)
     if (options.ranker_type == RankerType::Baseline) {
-        return rank::BaselineRanker::rank(candidates, query, query_terms, options.max_results);
+        return rank::BaselineRanker::rank(candidates, query, lookup_terms, options.max_results);
     }
 
     rank::CorpusStats corpus_stats{
@@ -171,16 +190,16 @@ vector<SearchResult> SearchEngine::search(string_view query, const SearchOptions
         .avg_doc_length = index_.avg_element_length(),
         .doc_frequencies = {},
     };
-    for (const auto& term : query_terms) {
+    for (const auto& term : lookup_terms) {
         corpus_stats.doc_frequencies[term] = index_.document_frequency(term);
     }
 
     if (options.ranker_type == RankerType::BM25) {
-        return rank::BM25Ranker::rank(candidates, corpus_stats, query, query_terms, {},
+        return rank::BM25Ranker::rank(candidates, corpus_stats, query, lookup_terms, {},
                                       options.max_results);
     }
 
-    return rank::CodeAwareRanker::rank(candidates, corpus_stats, query, query_terms, {},
+    return rank::CodeAwareRanker::rank(candidates, corpus_stats, query, lookup_terms, {},
                                        options.max_results);
 }
 

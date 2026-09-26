@@ -313,9 +313,15 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
     metrics.fused_candidates = candidates.size();
 
     // ─── 4. Fusion ────────────────────────────────────────────────────────────
+    const auto query_rep = QueryUnderstanding::analyze(query);
+    double effective_alpha = options.alpha;
+    if (options.adaptive_fusion && options.alpha > 0.0 && options.alpha < 1.0) {
+        effective_alpha = query_rep.recommended_alpha;
+    }
+
     std::vector<hybrid::ScoredCandidate> fused;
     if (options.fusion_method == hybrid::FusionMethod::WeightedScore) {
-        fused = hybrid::FusionStrategy::fuse_weighted(std::move(candidates), options.alpha);
+        fused = hybrid::FusionStrategy::fuse_weighted(std::move(candidates), effective_alpha);
     } else {
         fused = hybrid::FusionStrategy::fuse_rrf(std::move(candidates), options.rrf_k);
     }

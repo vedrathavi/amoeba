@@ -45,6 +45,7 @@
 #include "amoeba/index/search_engine.hpp"
 #include "amoeba/parser/parsed_file.hpp"
 #include "amoeba/retrieval/primary_search_result.hpp"
+#include "amoeba/retrieval/query_understanding.hpp"
 #include "amoeba/retrieval/retrieval_unit.hpp"
 #include "amoeba/retrieval/supporting_evidence_resolver.hpp"
 #include "amoeba/semantic/embedding_provider.hpp"
@@ -73,6 +74,7 @@ struct PrimarySearchOptions {
     std::size_t semantic_top_k{50};  ///< Candidate depth for semantic retrieval
     std::size_t max_results{10};     ///< Maximum number of primary results to return
     std::optional<parser::ElementKind> kind_filter{std::nullopt};  ///< Optional kind filter
+    bool adaptive_fusion{true};  ///< Phase 6.6: adaptively tune fusion weights by query intent
 };
 
 /**
