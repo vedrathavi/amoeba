@@ -256,6 +256,7 @@ add_library(amoeba_engine
     engine/src/retrieval/supporting_evidence_resolver.cpp
     engine/src/retrieval/query_understanding.cpp
     engine/src/retrieval/primary_retrieval_pipeline.cpp
+    engine/src/source/source_snippet_reader.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -371,6 +372,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/retrieval/primary_retrieval_pipeline_test.cpp
         engine/tests/retrieval/retrieval_hardening_test.cpp
         engine/tests/retrieval/cli_retrieval_integration_test.cpp
+        engine/tests/source/source_snippet_reader_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
