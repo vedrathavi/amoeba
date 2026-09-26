@@ -1,0 +1,11 @@
+id,query,expected,raw_p1,raw_mrr,unit_p1,unit_mrr,raw_candidates,unit_candidates
+Q1,CalendarGrid,CalendarGrid,1.0,1.0,1.0,1.0,182,180
+Q2,use calendar,useCalendar,0.0,0.083,0.0,0.037,186,180
+Q3,month navigation,useCalendar,0.0,0.012,0.0,0.1,260,180
+Q4,EventCard,EventCard,0.0,0.0,0.0,0.0,180,180
+Q5,getImagePanelData,getImagePanelData,1.0,1.0,1.0,1.0,182,180
+Q6,location destination photo render month,getImagePanelData,0.0,0.004,0.0,0.006,269,180
+Q7,useCalendarData,useCalendarData,0.0,0.0,0.0,0.0,180,180
+Q8,DayView,DayView,0.0,0.0,0.0,0.0,180,180
+Q9,modal confirm,ConfirmModal,0.0,0.0,0.0,0.0,180,180
+Q10,route calendar view,CalendarPage,0.0,0.0,0.0,0.0,186,180

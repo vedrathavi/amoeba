@@ -1,0 +1,132 @@
+{
+  "phase": "6.4",
+  "corpus": "demo_test_projects/calendar (frozen Phase 6.2 holdout)",
+  "measurement_type_a": "representation-level candidate/document reduction on the measured corpus",
+  "corpus_stats": {
+    "raw_code_elements": 2820,
+    "primary_retrieval_units": 180,
+    "supporting_elements": 2640,
+    "semantic_document_count": 180,
+    "candidate_reduction_pct": 93.6
+  },
+  "measurement_type_b_retrieval_quality": "Full C++ retrieval-quality benchmark requires a dedicated benchmark entry point and is deferred.",
+  "note": "The Python evaluation uses simplified lexical tokenization and does NOT reproduce the real C++ CodeTokenizer/SearchEngine/rankers. P@1/MRR figures below are internal script artifacts and MUST NOT be used as evidence that Phase 6.4 improves retrieval quality.",
+  "per_query": [
+    {
+      "id": "Q1",
+      "query": "CalendarGrid",
+      "expected": "CalendarGrid",
+      "raw_p1": 1.0,
+      "raw_mrr": 1.0,
+      "unit_p1": 1.0,
+      "unit_mrr": 1.0,
+      "raw_candidates": 182,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q2",
+      "query": "use calendar",
+      "expected": "useCalendar",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.083,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.037,
+      "raw_candidates": 186,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q3",
+      "query": "month navigation",
+      "expected": "useCalendar",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.012,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.1,
+      "raw_candidates": 260,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q4",
+      "query": "EventCard",
+      "expected": "EventCard",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.0,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.0,
+      "raw_candidates": 180,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q5",
+      "query": "getImagePanelData",
+      "expected": "getImagePanelData",
+      "raw_p1": 1.0,
+      "raw_mrr": 1.0,
+      "unit_p1": 1.0,
+      "unit_mrr": 1.0,
+      "raw_candidates": 182,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q6",
+      "query": "location destination photo render month",
+      "expected": "getImagePanelData",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.004,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.006,
+      "raw_candidates": 269,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q7",
+      "query": "useCalendarData",
+      "expected": "useCalendarData",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.0,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.0,
+      "raw_candidates": 180,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q8",
+      "query": "DayView",
+      "expected": "DayView",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.0,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.0,
+      "raw_candidates": 180,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q9",
+      "query": "modal confirm",
+      "expected": "ConfirmModal",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.0,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.0,
+      "raw_candidates": 180,
+      "unit_candidates": 180
+    },
+    {
+      "id": "Q10",
+      "query": "route calendar view",
+      "expected": "CalendarPage",
+      "raw_p1": 0.0,
+      "raw_mrr": 0.0,
+      "unit_p1": 0.0,
+      "unit_mrr": 0.0,
+      "raw_candidates": 186,
+      "unit_candidates": 180
+    }
+  ],
+  "limitations": [
+    "Simplified Python tokenization, not full C++ CodeTokenizer.",
+    "Semantic retrieval not evaluated (no MiniLM embeddings in Python benchmark).",
+    "N=10 query validation set \u2014 not statistically generalizable.",
+    "Results reflect candidate population quality, not full ranker behavior."
+  ]
+}
