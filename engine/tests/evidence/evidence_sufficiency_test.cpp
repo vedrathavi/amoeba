@@ -159,11 +159,67 @@ TEST_F(EvidenceSufficiencyTest, DeterministicRepeatedEvaluation) {
 TEST_F(EvidenceSufficiencyTest, GroundedRefusalFormat) {
     EvidenceSufficiencyResult result;
     result.is_sufficient = false;
-    result.missing_terms = {"jwt", "authentication"};
-    result.reason = "None of the query keywords were found in the retrieved code candidates.";
+    result.missing_subjects = {"jwt", "authentication"};
+    result.reason =
+        "None of the query subject concepts were found in the retrieved code candidates.";
 
     const auto text = result.format_grounded_refusal("Where is JWT authentication implemented?");
     EXPECT_NE(text.find("Where is JWT authentication implemented?"), std::string::npos);
     EXPECT_NE(text.find("\"jwt\""), std::string::npos);
     EXPECT_NE(text.find("\"authentication\""), std::string::npos);
+}
+
+// 10. Subject missing + Action present must be INSUFFICIENT (RBAC False-Positive Guard)
+TEST_F(EvidenceSufficiencyTest, SubjectMissingActionPresentIsInsufficient) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is RBAC implemented?";
+    // Candidate contains the action word "implemented", but NOT the subject "rbac"
+    bundle.items.push_back(create_item(
+        "RelationshipAwareSearchEngine::search", "src/search/relationship_aware_search.cpp", 0.75,
+        RetrievalProvenance::SemanticOnly, "// Implemented by RelationshipKind..."));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+    EXPECT_TRUE(res.matched_subjects.empty());
+    EXPECT_FALSE(res.missing_subjects.empty());
+    EXPECT_EQ(res.missing_subjects[0], "rbac");
+
+    const auto refusal = res.format_grounded_refusal(bundle.query);
+    EXPECT_NE(refusal.find("rbac"), std::string::npos);
+}
+
+// 11. Calendar Navigation Query with Plural Normalization is SUFFICIENT (Calendar False-Negative
+// Fix)
+TEST_F(EvidenceSufficiencyTest, CalendarNavigationWithPluralStemmingIsSufficient) {
+    EvidenceBundle bundle;
+    bundle.query = "How does the calendar navigate between months?";
+    bundle.items.push_back(create_item(
+        "CalendarDay", "src/components/CalendarDay.tsx", 0.85, RetrievalProvenance::HybridBoth,
+        "export const CalendarDay = ({ date, currentMonth }) => <div />;"));
+    bundle.items.push_back(create_item("CalendarHeader", "src/components/CalendarHeader.tsx", 0.80,
+                                       RetrievalProvenance::HybridBoth,
+                                       "<button onClick={onPreviousMonth}>Prev</button>"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GE(res.confidence_score, 0.5);
+    // Verified that "calendar" and "month" (stemmed from "months") were matched
+    EXPECT_NE(std::find(res.matched_subjects.begin(), res.matched_subjects.end(), "calendar"),
+              res.matched_subjects.end());
+    EXPECT_NE(std::find(res.matched_subjects.begin(), res.matched_subjects.end(), "month"),
+              res.matched_subjects.end());
+}
+
+// 12. Generic Non-Existent Concept is INSUFFICIENT
+TEST_F(EvidenceSufficiencyTest, GenericNonExistentConceptIsInsufficient) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is payment processing implemented?";
+    bundle.items.push_back(create_item("GeneralUtility", "src/utils/general.cpp", 0.65,
+                                       RetrievalProvenance::SemanticOnly,
+                                       "void format_log() { /* general implementation */ }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_TRUE(res.matched_subjects.empty());
 }

@@ -14,7 +14,7 @@ namespace amoeba::evidence {
  * @brief Configuration thresholds for evidence sufficiency evaluation.
  */
 struct EvidenceSufficiencyOptions {
-    /// Minimum fraction of non-stopword query terms that must match at least one candidate.
+    /// Minimum fraction of Subject terms that must match at least one candidate.
     double min_term_coverage{0.34};
 
     /// Minimum hybrid score of top candidate.
@@ -24,9 +24,8 @@ struct EvidenceSufficiencyOptions {
     /// overlap.
     double min_semantic_only_score{0.50};
 
-    /// If true, requires at least one content term to match symbol name, file path, supporting
-    /// items, or excerpt.
-    bool require_content_term_match{true};
+    /// If true, requires at least one Subject concept to match (action-only matches are rejected).
+    bool require_subject_match{true};
 };
 
 /**
@@ -42,10 +41,22 @@ struct EvidenceSufficiencyResult {
     /// Human-readable explanation of the sufficiency decision.
     std::string reason;
 
-    /// Non-stopword query terms that were found in the retrieved evidence.
+    /// Subject query terms that were found in the retrieved evidence.
+    std::vector<std::string> matched_subjects;
+
+    /// Subject query terms that could not be found anywhere in the retrieved evidence.
+    std::vector<std::string> missing_subjects;
+
+    /// Action query terms that were found in the retrieved evidence.
+    std::vector<std::string> matched_actions;
+
+    /// Action query terms that were not found in the retrieved evidence.
+    std::vector<std::string> missing_actions;
+
+    /// All non-stopword query terms that were found in the retrieved evidence.
     std::vector<std::string> matched_terms;
 
-    /// Non-stopword query terms that could not be found anywhere in the retrieved evidence.
+    /// All non-stopword query terms that could not be found anywhere in the retrieved evidence.
     std::vector<std::string> missing_terms;
 
     /// Produces a clean, grounded refusal message when is_sufficient is false.

@@ -36,6 +36,38 @@ enum class QueryIntent : uint8_t {
     return "Unknown";
 }
 
+enum class QueryTermRole : uint8_t {
+    Subject,  ///< Core entity, identifier, or domain concept being queried (e.g. "RBAC", "JWT",
+              ///< "calendar", "state", "note", "month")
+    Action,   ///< Inquiry action or verb describing the operation asked (e.g. "implemented",
+              ///< "defined", "managed", "saved", "rendered", "navigate")
+    Context  ///< Interrogative, preposition, stopword, or grammatical context (e.g. "where", "how",
+             ///< "between", "in", "is")
+};
+
+[[nodiscard]] constexpr std::string_view to_string(QueryTermRole role) noexcept {
+    switch (role) {
+    case QueryTermRole::Subject:
+        return "Subject";
+    case QueryTermRole::Action:
+        return "Action";
+    case QueryTermRole::Context:
+        return "Context";
+    }
+    return "Unknown";
+}
+
+/**
+ * @brief Categorized query term with normalized stem and semantic role.
+ */
+struct CategorizedQueryTerm {
+    std::string raw_term;
+    std::string normalized_stem;
+    QueryTermRole role{QueryTermRole::Subject};
+
+    [[nodiscard]] bool operator==(const CategorizedQueryTerm&) const = default;
+};
+
 /**
  * @brief Enriched structured representation of a user search query.
  */
@@ -44,6 +76,9 @@ struct QueryRepresentation {
     std::string normalized_query;        ///< Lowercase, trimmed
     std::string collapsed_query;         ///< Lowercase with spaces/underscores/hyphens stripped
     std::vector<std::string> raw_terms;  ///< Extracted word tokens
+    std::vector<CategorizedQueryTerm> categorized_terms;  ///< Role-tagged terms
+    std::vector<std::string> subject_terms;               ///< Normalized stems of Subject concepts
+    std::vector<std::string> action_terms;  ///< Normalized stems of Action/inquiry verbs
     std::vector<std::string>
         synthesized_identifiers;  ///< Reconstructed compound identifier tokens (e.g. "usecalendar")
     std::vector<std::string>
@@ -82,6 +117,28 @@ public:
      * @brief Performs complete query analysis and returns a QueryRepresentation.
      */
     [[nodiscard]] static QueryRepresentation analyze(std::string_view raw_query);
+
+    /**
+     * @brief Conservatively normalizes English plural nouns and verb suffixes to their base stem.
+     * Preserves technical terms (e.g. "auth", "authority", "authentication", "rbac").
+     */
+    [[nodiscard]] static std::string conservative_stem(std::string_view term);
+
+    /**
+     * @brief Checks if a term is a generic inquiry/action verb (e.g. "implemented", "managed",
+     * "saved", "navigate").
+     */
+    [[nodiscard]] static bool is_action_term(std::string_view term) noexcept;
+
+    /**
+     * @brief Checks if a term is an interrogative (e.g. "where", "how", "what", "which").
+     */
+    [[nodiscard]] static bool is_interrogative(std::string_view term) noexcept;
+
+    /**
+     * @brief Classifies a single term into its semantic QueryTermRole.
+     */
+    [[nodiscard]] static QueryTermRole classify_term_role(std::string_view term) noexcept;
 
     /**
      * @brief Checks if a term is a common natural language stopword / interrogative.
