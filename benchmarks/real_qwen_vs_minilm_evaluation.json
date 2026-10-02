@@ -1,0 +1,344 @@
+{
+  "minilm": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "dimension": 384,
+    "load_time_sec": 14.817188900022302,
+    "single_query_latency_ms": 9.667489997809753,
+    "batch_throughput_docs_sec": 525.3138224056325,
+    "metrics": {
+      "P@1": 1.0,
+      "P@5": 0.2285714285714286,
+      "MRR": 1.0,
+      "NDCG@5": 1.0,
+      "Recall@10": 1.0
+    },
+    "vocab_gap_results": [
+      {
+        "query": "How does the calendar navigate between months?",
+        "expected": [
+          "useCalendar",
+          "CalendarMonthView"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.5768917202949524,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "useCalendar": 0.5769,
+          "CalendarMonthView": 0.4885,
+          "AppRouter": 0.0866,
+          "OAuthClient": 0.0752,
+          "PaymentService": 0.0495,
+          "AuthService": 0.0495,
+          "NotesStorage": 0.0406,
+          "RepositoryScanner": 0.028,
+          "InvertedIndex": -0.0006,
+          "CodeTokenizer": -0.0069
+        }
+      },
+      {
+        "query": "Where are notes persisted?",
+        "expected": [
+          "NotesStorage"
+        ],
+        "top_result": "NotesStorage",
+        "top_similarity": 0.6131606698036194,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "NotesStorage": 0.6132,
+          "OAuthClient": 0.1072,
+          "RepositoryScanner": 0.085,
+          "PaymentService": 0.0637,
+          "AuthService": 0.0275,
+          "useCalendar": 0.0193,
+          "InvertedIndex": -0.008,
+          "AppRouter": -0.0148,
+          "CodeTokenizer": -0.0584,
+          "CalendarMonthView": -0.1036
+        }
+      },
+      {
+        "query": "Where does the calendar store state?",
+        "expected": [
+          "useCalendar"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.3329019546508789,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "useCalendar": 0.3329,
+          "CalendarMonthView": 0.3217,
+          "NotesStorage": 0.1668,
+          "AuthService": 0.0972,
+          "PaymentService": 0.0858,
+          "RepositoryScanner": 0.0599,
+          "OAuthClient": 0.0555,
+          "AppRouter": 0.0152,
+          "CodeTokenizer": -0.0327,
+          "InvertedIndex": -0.0391
+        }
+      },
+      {
+        "query": "Where is token extraction performed?",
+        "expected": [
+          "CodeTokenizer"
+        ],
+        "top_result": "CodeTokenizer",
+        "top_similarity": 0.4177812933921814,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "CodeTokenizer": 0.4178,
+          "OAuthClient": 0.2503,
+          "AuthService": 0.1687,
+          "RepositoryScanner": 0.1637,
+          "InvertedIndex": 0.1177,
+          "NotesStorage": 0.0567,
+          "PaymentService": 0.0486,
+          "AppRouter": 0.0485,
+          "useCalendar": -0.0944,
+          "CalendarMonthView": -0.116
+        }
+      },
+      {
+        "query": "Where is the inverted index implemented?",
+        "expected": [
+          "InvertedIndex"
+        ],
+        "top_result": "InvertedIndex",
+        "top_similarity": 0.5203519463539124,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "InvertedIndex": 0.5204,
+          "CodeTokenizer": 0.0742,
+          "RepositoryScanner": 0.0739,
+          "CalendarMonthView": 0.0021,
+          "useCalendar": -0.007,
+          "OAuthClient": -0.0132,
+          "AppRouter": -0.0591,
+          "NotesStorage": -0.0632,
+          "PaymentService": -0.0905,
+          "AuthService": -0.1451
+        }
+      },
+      {
+        "query": "Where is authentication handled?",
+        "expected": [
+          "AuthService"
+        ],
+        "top_result": "AuthService",
+        "top_similarity": 0.5507150292396545,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "AuthService": 0.5507,
+          "OAuthClient": 0.2808,
+          "AppRouter": 0.1002,
+          "PaymentService": 0.0776,
+          "NotesStorage": 0.053,
+          "CodeTokenizer": 0.0052,
+          "RepositoryScanner": -0.0049,
+          "useCalendar": -0.0639,
+          "CalendarMonthView": -0.0831,
+          "InvertedIndex": -0.1086
+        }
+      },
+      {
+        "query": "Where is OAuth configured?",
+        "expected": [
+          "OAuthClient"
+        ],
+        "top_result": "OAuthClient",
+        "top_similarity": 0.5921093821525574,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "OAuthClient": 0.5921,
+          "AuthService": 0.3444,
+          "AppRouter": 0.1304,
+          "NotesStorage": 0.0326,
+          "RepositoryScanner": 0.018,
+          "PaymentService": 0.0143,
+          "CodeTokenizer": -0.0199,
+          "useCalendar": -0.0529,
+          "InvertedIndex": -0.0903,
+          "CalendarMonthView": -0.1245
+        }
+      }
+    ]
+  },
+  "qwen": {
+    "model_name": "Qwen/Qwen3-Embedding-0.6B",
+    "dimension": 1024,
+    "load_time_sec": 19.126611999992747,
+    "single_query_latency_ms": 79.64159500261303,
+    "batch_throughput_docs_sec": 111.71079950476127,
+    "metrics": {
+      "P@1": 0.8571428571428571,
+      "P@5": 0.2285714285714286,
+      "MRR": 0.9285714285714286,
+      "NDCG@5": 0.9472756790816368,
+      "Recall@10": 1.0
+    },
+    "vocab_gap_results": [
+      {
+        "query": "How does the calendar navigate between months?",
+        "expected": [
+          "useCalendar",
+          "CalendarMonthView"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.7652515769004822,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "useCalendar": 0.7653,
+          "CalendarMonthView": 0.6989,
+          "PaymentService": 0.5035,
+          "NotesStorage": 0.4314,
+          "AppRouter": 0.3899,
+          "CodeTokenizer": 0.3866,
+          "InvertedIndex": 0.3601,
+          "AuthService": 0.3463,
+          "OAuthClient": 0.3341,
+          "RepositoryScanner": 0.3246
+        }
+      },
+      {
+        "query": "Where are notes persisted?",
+        "expected": [
+          "NotesStorage"
+        ],
+        "top_result": "NotesStorage",
+        "top_similarity": 0.8146741390228271,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "NotesStorage": 0.8147,
+          "InvertedIndex": 0.4743,
+          "PaymentService": 0.4632,
+          "useCalendar": 0.3676,
+          "CodeTokenizer": 0.3454,
+          "AuthService": 0.3424,
+          "CalendarMonthView": 0.3271,
+          "AppRouter": 0.3086,
+          "OAuthClient": 0.3056,
+          "RepositoryScanner": 0.3052
+        }
+      },
+      {
+        "query": "Where does the calendar store state?",
+        "expected": [
+          "useCalendar"
+        ],
+        "top_result": "CalendarMonthView",
+        "top_similarity": 0.632992148399353,
+        "rank": 2,
+        "is_relevant": false,
+        "all_scores": {
+          "CalendarMonthView": 0.633,
+          "useCalendar": 0.631,
+          "NotesStorage": 0.5591,
+          "PaymentService": 0.5253,
+          "AuthService": 0.4176,
+          "InvertedIndex": 0.4087,
+          "OAuthClient": 0.3972,
+          "CodeTokenizer": 0.3954,
+          "AppRouter": 0.3567,
+          "RepositoryScanner": 0.3437
+        }
+      },
+      {
+        "query": "Where is token extraction performed?",
+        "expected": [
+          "CodeTokenizer"
+        ],
+        "top_result": "CodeTokenizer",
+        "top_similarity": 0.6770675182342529,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "CodeTokenizer": 0.6771,
+          "PaymentService": 0.5213,
+          "InvertedIndex": 0.4902,
+          "RepositoryScanner": 0.458,
+          "OAuthClient": 0.4438,
+          "NotesStorage": 0.3616,
+          "useCalendar": 0.3315,
+          "AuthService": 0.3308,
+          "AppRouter": 0.3149,
+          "CalendarMonthView": 0.2918
+        }
+      },
+      {
+        "query": "Where is the inverted index implemented?",
+        "expected": [
+          "InvertedIndex"
+        ],
+        "top_result": "InvertedIndex",
+        "top_similarity": 0.8284129500389099,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "InvertedIndex": 0.8284,
+          "NotesStorage": 0.4782,
+          "CodeTokenizer": 0.461,
+          "PaymentService": 0.4334,
+          "RepositoryScanner": 0.4327,
+          "AppRouter": 0.3552,
+          "CalendarMonthView": 0.3137,
+          "OAuthClient": 0.2946,
+          "AuthService": 0.2938,
+          "useCalendar": 0.284
+        }
+      },
+      {
+        "query": "Where is authentication handled?",
+        "expected": [
+          "AuthService"
+        ],
+        "top_result": "AuthService",
+        "top_similarity": 0.6010739803314209,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "AuthService": 0.6011,
+          "PaymentService": 0.5589,
+          "OAuthClient": 0.5028,
+          "AppRouter": 0.4591,
+          "NotesStorage": 0.3806,
+          "InvertedIndex": 0.3805,
+          "useCalendar": 0.3717,
+          "CodeTokenizer": 0.3339,
+          "RepositoryScanner": 0.3321,
+          "CalendarMonthView": 0.3064
+        }
+      },
+      {
+        "query": "Where is OAuth configured?",
+        "expected": [
+          "OAuthClient"
+        ],
+        "top_result": "OAuthClient",
+        "top_similarity": 0.7828847765922546,
+        "rank": 1,
+        "is_relevant": true,
+        "all_scores": {
+          "OAuthClient": 0.7829,
+          "PaymentService": 0.5198,
+          "AuthService": 0.4759,
+          "AppRouter": 0.394,
+          "NotesStorage": 0.3876,
+          "useCalendar": 0.3679,
+          "InvertedIndex": 0.3637,
+          "CodeTokenizer": 0.3544,
+          "CalendarMonthView": 0.3329,
+          "RepositoryScanner": 0.3295
+        }
+      }
+    ]
+  }
+}

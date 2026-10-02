@@ -277,7 +277,7 @@ TEST_F(SemanticEvidenceSupportTest, DateFormattingSupported) {
                                        "export function formatDate(date: Date): string { ... }",
                                        "formats calendar dates into localized display strings"));
     bundle.items.push_back(create_item(71, "MONTH_NAMES", "src/constants/calendar.ts",
-                                       parser::ElementKind::Variable, 0.74,
+                                       parser::ElementKind::Property, 0.74,
                                        retrieval::RetrievalProvenance::SemanticOnly,
                                        "export const MONTH_NAMES = ['Jan', 'Feb', ...];",
                                        "month name labels for calendar display"));

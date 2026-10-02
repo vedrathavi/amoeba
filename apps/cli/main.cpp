@@ -21,6 +21,7 @@
 #include <filesystem>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -29,6 +30,11 @@ namespace {
 
 using namespace std;
 using namespace std::filesystem;
+
+[[nodiscard]] unique_ptr<amoeba::semantic::EmbeddingProvider>
+create_embedding_provider([[maybe_unused]] string_view model_name) {
+    return make_unique<amoeba::semantic::PretrainedEmbeddingProvider>();
+}
 
 void print_header() {
     cout << amoeba::get_name() << "\n";
@@ -161,7 +167,8 @@ void handle_parse_command(const path& file_path) {
 }
 
 void handle_search_command(const path& repo_path, string_view query, string_view mode_str,
-                           const amoeba::retrieval::PrimarySearchOptions& search_opts) {
+                           const amoeba::retrieval::PrimarySearchOptions& search_opts,
+                           string_view embedding_model_name = "minilm") {
     try {
         const auto start_index_time = chrono::high_resolution_clock::now();
 
@@ -185,9 +192,9 @@ void handle_search_command(const path& repo_path, string_view query, string_view
             }
         }
 
-        amoeba::semantic::PretrainedEmbeddingProvider embedding_provider;
+        auto embedding_provider = create_embedding_provider(embedding_model_name);
         amoeba::retrieval::PrimaryRetrievalPipeline pipeline(parsed_files, index,
-                                                             embedding_provider);
+                                                             *embedding_provider);
 
         const auto end_index_time = chrono::high_resolution_clock::now();
         const auto index_duration_ms =
@@ -261,7 +268,8 @@ void handle_search_command(const path& repo_path, string_view query, string_view
 }
 
 void handle_ask_command(const path& repo_path, string_view question,
-                        const amoeba::reasoning::LocalLLMConfig& llm_config) {
+                        const amoeba::reasoning::LocalLLMConfig& llm_config,
+                        string_view embedding_model_name = "minilm") {
     try {
         // 1. Scan repository
         amoeba::scanner::RepositoryScanner scanner;
@@ -289,9 +297,9 @@ void handle_ask_command(const path& repo_path, string_view question,
         amoeba::graph::RepositoryGraphBuilder::build_repository_graph(parsed_files, graph);
 
         // 4. Initialize pipeline, assembler, and context builder
-        amoeba::semantic::PretrainedEmbeddingProvider embedding_provider;
+        auto embedding_provider = create_embedding_provider(embedding_model_name);
         amoeba::retrieval::PrimaryRetrievalPipeline pipeline(parsed_files, index,
-                                                             embedding_provider);
+                                                             *embedding_provider);
         amoeba::graph::RelationshipEvidenceResolver rel_resolver(graph, index);
         amoeba::evidence::EvidenceAssembler assembler(rel_resolver);
 
@@ -317,7 +325,7 @@ void handle_ask_command(const path& repo_path, string_view question,
 
         // 7. Evidence Sufficiency Gate with Semantic Evidence Support
         const auto query_rep = amoeba::retrieval::QueryUnderstanding::analyze(question);
-        amoeba::evidence::SemanticEvidenceSupport sem_support(embedding_provider,
+        amoeba::evidence::SemanticEvidenceSupport sem_support(*embedding_provider,
                                                               &pipeline.semantic_index());
         const auto sem_result = sem_support.evaluate(query_rep, bundle);
 
@@ -451,28 +459,31 @@ int main(int argc, char* argv[]) {
                 .alpha = 1.0,
                 .lexical_ranker = amoeba::index::RankerType::CodeAware,
             };
+            string embedding_model = "minilm";
             string mode_str = "CodeAware";
 
-            if (argc >= 5) {
-                const string_view rank_arg = argv[4];
-                if (rank_arg == "--ranker=baseline" || rank_arg == "baseline") {
+            for (int i = 4; i < argc; ++i) {
+                const string_view arg = argv[i];
+                if (arg.rfind("--embedding-model=", 0) == 0) {
+                    embedding_model = string(arg.substr(18));
+                } else if (arg.rfind("--embedding=", 0) == 0) {
+                    embedding_model = string(arg.substr(12));
+                } else if (arg == "--ranker=baseline" || arg == "baseline") {
                     search_opts.alpha = 1.0;
                     search_opts.lexical_ranker = amoeba::index::RankerType::Baseline;
                     mode_str = "Baseline";
-                } else if (rank_arg == "--ranker=bm25" || rank_arg == "bm25") {
+                } else if (arg == "--ranker=bm25" || arg == "bm25") {
                     search_opts.alpha = 1.0;
                     search_opts.lexical_ranker = amoeba::index::RankerType::BM25;
                     mode_str = "BM25";
-                } else if (rank_arg == "--ranker=code_aware" || rank_arg == "code_aware") {
+                } else if (arg == "--ranker=code_aware" || arg == "code_aware") {
                     search_opts.alpha = 1.0;
                     search_opts.lexical_ranker = amoeba::index::RankerType::CodeAware;
                     mode_str = "CodeAware";
-                } else if (rank_arg == "--ranker=semantic" || rank_arg == "semantic" ||
-                           rank_arg == "--semantic") {
+                } else if (arg == "--ranker=semantic" || arg == "semantic" || arg == "--semantic") {
                     search_opts.alpha = 0.0;
                     mode_str = "Semantic";
-                } else if (rank_arg == "--ranker=hybrid" || rank_arg == "hybrid" ||
-                           rank_arg == "--hybrid") {
+                } else if (arg == "--ranker=hybrid" || arg == "hybrid" || arg == "--hybrid") {
                     search_opts.alpha = 0.5;
                     search_opts.lexical_ranker = amoeba::index::RankerType::CodeAware;
                     search_opts.adaptive_fusion = true;
@@ -480,7 +491,7 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-            handle_search_command(repo_path, query, mode_str, search_opts);
+            handle_search_command(repo_path, query, mode_str, search_opts, embedding_model);
             return 0;
         }
 
@@ -488,7 +499,7 @@ int main(int argc, char* argv[]) {
             if (argc < 4) {
                 cerr << "Error: Repository path and question are required.\n";
                 cerr << "Usage: " << argv[0]
-                     << " ask <repository-path> <question> [--model=<name>] [--endpoint=<url>]\n\n";
+                     << " ask <repository-path> <question> [--model=<name>] [--endpoint=<url>] [--embedding-model=<name>]\n\n";
                 return 1;
             }
 
@@ -496,16 +507,21 @@ int main(int argc, char* argv[]) {
             const string_view question = argv[3];
 
             amoeba::reasoning::LocalLLMConfig llm_config;
+            string embedding_model = "minilm";
             for (int i = 4; i < argc; ++i) {
                 const string_view arg = argv[i];
                 if (arg.rfind("--model=", 0) == 0) {
                     llm_config.model_name = string(arg.substr(8));
                 } else if (arg.rfind("--endpoint=", 0) == 0) {
                     llm_config.endpoint = string(arg.substr(11));
+                } else if (arg.rfind("--embedding-model=", 0) == 0) {
+                    embedding_model = string(arg.substr(18));
+                } else if (arg.rfind("--embedding=", 0) == 0) {
+                    embedding_model = string(arg.substr(12));
                 }
             }
 
-            handle_ask_command(repo_path, question, llm_config);
+            handle_ask_command(repo_path, question, llm_config, embedding_model);
             return 0;
         }
 

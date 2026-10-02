@@ -1,0 +1,901 @@
+{
+  "summary": {
+    "Always_MiniLM": {
+      "P@1": 0.9411764705882353,
+      "MRR": 0.9705882352941176,
+      "NDCG@5": 0.9694867446533066,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 7.699999999999999,
+      "p50_latency_ms": 7.7,
+      "p95_latency_ms": 7.7,
+      "mode_distribution_pct": {
+        "MiniLM": 100.0,
+        "CodeRank": 0.0,
+        "Dual_RRF": 0.0
+      }
+    },
+    "Always_CodeRank": {
+      "P@1": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 0.9705882352941176,
+      "mean_latency_ms": 18.63,
+      "p50_latency_ms": 18.63,
+      "p95_latency_ms": 18.63,
+      "mode_distribution_pct": {
+        "MiniLM": 0.0,
+        "CodeRank": 100.0,
+        "Dual_RRF": 0.0
+      }
+    },
+    "Always_Dual_RRF": {
+      "P@1": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 27.04,
+      "p50_latency_ms": 27.04,
+      "p95_latency_ms": 27.04,
+      "mode_distribution_pct": {
+        "MiniLM": 0.0,
+        "CodeRank": 0.0,
+        "Dual_RRF": 100.0
+      }
+    },
+    "Oracle_Router": {
+      "P@1": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9911967591491032,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 8.275263157894734,
+      "p50_latency_ms": 7.7,
+      "p95_latency_ms": 8.792999999999976,
+      "mode_distribution_pct": {
+        "MiniLM": 94.73684210526315,
+        "CodeRank": 5.263157894736842,
+        "Dual_RRF": 0.0
+      }
+    },
+    "Policy_A_IntentOnly": {
+      "P@1": 0.9411764705882353,
+      "MRR": 0.9705882352941176,
+      "NDCG@5": 0.9694867446533066,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 7.699999999999999,
+      "p50_latency_ms": 7.7,
+      "p95_latency_ms": 7.7,
+      "mode_distribution_pct": {
+        "MiniLM": 100.0,
+        "CodeRank": 0.0,
+        "Dual_RRF": 0.0
+      }
+    },
+    "Policy_B_IntentAndKeywords": {
+      "P@1": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9911967591491032,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 10.57631578947368,
+      "p50_latency_ms": 7.7,
+      "p95_latency_ms": 18.63,
+      "mode_distribution_pct": {
+        "MiniLM": 73.68421052631578,
+        "CodeRank": 26.31578947368421,
+        "Dual_RRF": 0.0
+      }
+    },
+    "Policy_C_SelectiveDual": {
+      "P@1": 1.0,
+      "MRR": 1.0,
+      "NDCG@5": 0.9911967591491032,
+      "Recall@10": 1.0,
+      "mean_latency_ms": 12.789473684210526,
+      "p50_latency_ms": 7.7,
+      "p95_latency_ms": 27.04,
+      "mode_distribution_pct": {
+        "MiniLM": 73.68421052631578,
+        "CodeRank": 0.0,
+        "Dual_RRF": 26.31578947368421
+      }
+    }
+  },
+  "queries": [
+    {
+      "query": "Where is the inverted index implemented?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": true,
+        "word_count": 6,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "inverted",
+          "index",
+          "implemented"
+        ]
+      },
+      "relevant": [
+        "InvertedIndex"
+      ],
+      "minilm_top": [
+        "InvertedIndex",
+        0.4560166001319885
+      ],
+      "coderank_top": [
+        "InvertedIndex",
+        0.5756545066833496
+      ],
+      "dual_top": [
+        "InvertedIndex",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "CodeRank",
+        "Policy_C_SelectiveDual": "Dual_RRF"
+      }
+    },
+    {
+      "query": "Where are relationships stored?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 4,
+        "raw_words": [
+          "where",
+          "are",
+          "relationships",
+          "stored"
+        ]
+      },
+      "relevant": [
+        "RelationshipGraph"
+      ],
+      "minilm_top": [
+        "RelationshipGraph",
+        0.35005491971969604
+      ],
+      "coderank_top": [
+        "RelationshipGraph",
+        0.448448121547699
+      ],
+      "dual_top": [
+        "RelationshipGraph",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where are callers resolved?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 4,
+        "raw_words": [
+          "where",
+          "are",
+          "callers",
+          "resolved"
+        ]
+      },
+      "relevant": [
+        "CallExtractor",
+        "RelationshipGraph"
+      ],
+      "minilm_top": [
+        "CallExtractor",
+        0.479098379611969
+      ],
+      "coderank_top": [
+        "CallExtractor",
+        0.3495001792907715
+      ],
+      "dual_top": [
+        "CallExtractor",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Which function parses source code?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": true,
+        "word_count": 5,
+        "raw_words": [
+          "which",
+          "function",
+          "parses",
+          "source",
+          "code"
+        ]
+      },
+      "relevant": [
+        "SourceParser"
+      ],
+      "minilm_top": [
+        "RepositoryScanner",
+        0.4641414284706116
+      ],
+      "coderank_top": [
+        "SourceParser",
+        0.5073575377464294
+      ],
+      "dual_top": [
+        "SourceParser",
+        0.03252247488101534
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "CodeRank",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "CodeRank",
+        "Policy_C_SelectiveDual": "Dual_RRF"
+      }
+    },
+    {
+      "query": "Where are imports resolved?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 4,
+        "raw_words": [
+          "where",
+          "are",
+          "imports",
+          "resolved"
+        ]
+      },
+      "relevant": [
+        "ImportExtractor"
+      ],
+      "minilm_top": [
+        "ImportExtractor",
+        0.5008188486099243
+      ],
+      "coderank_top": [
+        "ImportExtractor",
+        0.43577808141708374
+      ],
+      "dual_top": [
+        "ImportExtractor",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where are function calls resolved?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": true,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "are",
+          "function",
+          "calls",
+          "resolved"
+        ]
+      },
+      "relevant": [
+        "CallExtractor"
+      ],
+      "minilm_top": [
+        "CallExtractor",
+        0.38923728466033936
+      ],
+      "coderank_top": [
+        "CallExtractor",
+        0.3376217782497406
+      ],
+      "dual_top": [
+        "CallExtractor",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "CodeRank",
+        "Policy_C_SelectiveDual": "Dual_RRF"
+      }
+    },
+    {
+      "query": "Where is token extraction performed?",
+      "category": "Technical / Code-Structure",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": true,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "token",
+          "extraction",
+          "performed"
+        ]
+      },
+      "relevant": [
+        "CodeTokenizer"
+      ],
+      "minilm_top": [
+        "CodeTokenizer",
+        0.3708498477935791
+      ],
+      "coderank_top": [
+        "CodeTokenizer",
+        0.41745200753211975
+      ],
+      "dual_top": [
+        "CodeTokenizer",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "CodeRank",
+        "Policy_C_SelectiveDual": "Dual_RRF"
+      }
+    },
+    {
+      "query": "How does the calendar navigate between months?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 7,
+        "raw_words": [
+          "how",
+          "does",
+          "the",
+          "calendar",
+          "navigate",
+          "between",
+          "months"
+        ]
+      },
+      "relevant": [
+        "useCalendar",
+        "CalendarMonthView"
+      ],
+      "minilm_top": [
+        "useCalendar",
+        0.5069276690483093
+      ],
+      "coderank_top": [
+        "useCalendar",
+        0.5376673936843872
+      ],
+      "dual_top": [
+        "useCalendar",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where does the calendar store state?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 6,
+        "raw_words": [
+          "where",
+          "does",
+          "the",
+          "calendar",
+          "store",
+          "state"
+        ]
+      },
+      "relevant": [
+        "useCalendar"
+      ],
+      "minilm_top": [
+        "useCalendar",
+        0.451799601316452
+      ],
+      "coderank_top": [
+        "useCalendar",
+        0.4520098567008972
+      ],
+      "dual_top": [
+        "useCalendar",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is evidence assembled?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 4,
+        "raw_words": [
+          "where",
+          "is",
+          "evidence",
+          "assembled"
+        ]
+      },
+      "relevant": [
+        "EvidenceAssembler"
+      ],
+      "minilm_top": [
+        "EvidenceAssembler",
+        0.5742896795272827
+      ],
+      "coderank_top": [
+        "EvidenceAssembler",
+        0.5789285898208618
+      ],
+      "dual_top": [
+        "EvidenceAssembler",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is the query normalized?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "query",
+          "normalized"
+        ]
+      },
+      "relevant": [
+        "QueryUnderstanding"
+      ],
+      "minilm_top": [
+        "QueryUnderstanding",
+        0.49728041887283325
+      ],
+      "coderank_top": [
+        "QueryUnderstanding",
+        0.43562161922454834
+      ],
+      "dual_top": [
+        "QueryUnderstanding",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where are supporting AST elements resolved?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": true,
+        "word_count": 6,
+        "raw_words": [
+          "where",
+          "are",
+          "supporting",
+          "ast",
+          "elements",
+          "resolved"
+        ]
+      },
+      "relevant": [
+        "SupportingEvidenceResolver"
+      ],
+      "minilm_top": [
+        "SupportingEvidenceResolver",
+        0.7028998136520386
+      ],
+      "coderank_top": [
+        "SupportingEvidenceResolver",
+        0.5023125410079956
+      ],
+      "dual_top": [
+        "SupportingEvidenceResolver",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "CodeRank",
+        "Policy_C_SelectiveDual": "Dual_RRF"
+      }
+    },
+    {
+      "query": "Where is the embedding provider implemented?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 6,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "embedding",
+          "provider",
+          "implemented"
+        ]
+      },
+      "relevant": [
+        "PretrainedEmbeddingProvider"
+      ],
+      "minilm_top": [
+        "PretrainedEmbeddingProvider",
+        0.4528132975101471
+      ],
+      "coderank_top": [
+        "PretrainedEmbeddingProvider",
+        0.6221393942832947
+      ],
+      "dual_top": [
+        "PretrainedEmbeddingProvider",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is relationship-aware search implemented?",
+      "category": "Conceptual / Natural Language",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "relationship-aware",
+          "search",
+          "implemented"
+        ]
+      },
+      "relevant": [
+        "RelationshipAwareSearch"
+      ],
+      "minilm_top": [
+        "RelationshipAwareSearch",
+        0.6564869284629822
+      ],
+      "coderank_top": [
+        "RelationshipAwareSearch",
+        0.6506869792938232
+      ],
+      "dual_top": [
+        "RelationshipAwareSearch",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is the payment checkout?",
+      "category": "Domain Service",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "payment",
+          "checkout"
+        ]
+      },
+      "relevant": [
+        "PaymentService"
+      ],
+      "minilm_top": [
+        "PaymentService",
+        0.4071722626686096
+      ],
+      "coderank_top": [
+        "PaymentService",
+        0.4525313675403595
+      ],
+      "dual_top": [
+        "PaymentService",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is JWT authentication implemented?",
+      "category": "Domain Service",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "jwt",
+          "authentication",
+          "implemented"
+        ]
+      },
+      "relevant": [
+        "AuthService"
+      ],
+      "minilm_top": [
+        "AuthService",
+        0.4485195577144623
+      ],
+      "coderank_top": [
+        "AuthService",
+        0.4442788064479828
+      ],
+      "dual_top": [
+        "AuthService",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is OAuth implemented?",
+      "category": "Domain Service",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 4,
+        "raw_words": [
+          "where",
+          "is",
+          "oauth",
+          "implemented"
+        ]
+      },
+      "relevant": [
+        "OAuthClient"
+      ],
+      "minilm_top": [
+        "OAuthClient",
+        0.5008869171142578
+      ],
+      "coderank_top": [
+        "OAuthClient",
+        0.4989378750324249
+      ],
+      "dual_top": [
+        "OAuthClient",
+        0.03278688524590164
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is the Kubernetes deployment?",
+      "category": "Adversarial Negative",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": false,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "kubernetes",
+          "deployment"
+        ]
+      },
+      "relevant": [],
+      "minilm_top": [
+        "SupportingEvidenceResolver",
+        0.07965552806854248
+      ],
+      "coderank_top": [
+        "PretrainedEmbeddingProvider",
+        0.2633230686187744
+      ],
+      "dual_top": [
+        "AuthService",
+        0.031754032258064516
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    },
+    {
+      "query": "Where is the GraphQL resolver?",
+      "category": "Adversarial Negative",
+      "analysis": {
+        "intent": "NaturalLanguage",
+        "has_code_syntax": true,
+        "has_interrogative": true,
+        "has_technical_concept": false,
+        "word_count": 5,
+        "raw_words": [
+          "where",
+          "is",
+          "the",
+          "graphql",
+          "resolver"
+        ]
+      },
+      "relevant": [],
+      "minilm_top": [
+        "RelationshipGraph",
+        0.40086451172828674
+      ],
+      "coderank_top": [
+        "RelationshipAwareSearch",
+        0.3973407745361328
+      ],
+      "dual_top": [
+        "RelationshipGraph",
+        0.03252247488101534
+      ],
+      "decisions": {
+        "Always_MiniLM": "MiniLM",
+        "Always_CodeRank": "CodeRank",
+        "Always_Dual_RRF": "Dual_RRF",
+        "Oracle_Router": "MiniLM",
+        "Policy_A_IntentOnly": "MiniLM",
+        "Policy_B_IntentAndKeywords": "MiniLM",
+        "Policy_C_SelectiveDual": "MiniLM"
+      }
+    }
+  ]
+}

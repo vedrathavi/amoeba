@@ -1,0 +1,1405 @@
+{
+  "p61_metrics_minilm": {
+    "p_at_1": 1.0,
+    "p_at_5": 0.28,
+    "mrr": 1.0,
+    "ndcg_5": 1.0,
+    "recall_10": 1.0,
+    "details": [
+      {
+        "query": "authenticateUser",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "authenticateUser",
+          "score": 0.45177963376045227,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "authenticateUser",
+            "score": 0.45177963376045227,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "validateCredentials",
+            "score": 0.4155253767967224,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserRepository",
+            "score": 0.29388630390167236,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "refresh_session_token",
+            "score": 0.24399089813232422,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserProfileCard",
+            "score": 0.21112164855003357,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.17818376421928406,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.048711564391851425,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "find user by id",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserRepository",
+          "score": 0.4435916543006897,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserRepository",
+            "score": 0.4435916543006897,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.17597997188568115,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserProfileCard",
+            "score": 0.1759183704853058,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "refresh_session_token",
+            "score": 0.1275986135005951,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "validateCredentials",
+            "score": 0.12197750806808472,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.06836619973182678,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.016553808003664017,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "where do we check user login credentials?",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "validateCredentials",
+          "score": 0.42246413230895996,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "validateCredentials",
+            "score": 0.42246413230895996,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.38427913188934326,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "refresh_session_token",
+            "score": 0.28228235244750977,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.23733016848564148,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "hash_password",
+            "score": 0.2342539131641388,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "UserProfileCard",
+            "score": 0.1722724437713623,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.04412177950143814,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "how to verify user identity and session",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "validateCredentials",
+          "score": 0.48082244396209717,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "validateCredentials",
+            "score": 0.48082244396209717,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.3424275517463684,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "refresh_session_token",
+            "score": 0.33682310581207275,
+            "is_relevant": true
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.2659602463245392,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserProfileCard",
+            "score": 0.19161167740821838,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.09474194049835205,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.08433597534894943,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "process payment transactions and charge invoices",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "ProcessTransaction",
+          "score": 0.5539661645889282,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "ProcessTransaction",
+            "score": 0.5539661645889282,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "validateCredentials",
+            "score": 0.0823957771062851,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserRepository",
+            "score": 0.053283095359802246,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "refresh_session_token",
+            "score": -0.00816257856786251,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "authenticateUser",
+            "score": -0.06617587059736252,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": -0.08017364889383316,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "UserProfileCard",
+            "score": -0.08636816591024399,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "component that renders user profile",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserProfileCard",
+          "score": 0.6303238868713379,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserProfileCard",
+            "score": 0.6303238868713379,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "UserRepository",
+            "score": 0.3055092394351959,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "authenticateUser",
+            "score": 0.2943717837333679,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "validateCredentials",
+            "score": 0.14859367907047272,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "refresh_session_token",
+            "score": 0.14292694628238678,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.020044295117259026,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": -0.04719775915145874,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "http middleware for checking auth requests",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "authenticateUser",
+          "score": 0.4436333179473877,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "authenticateUser",
+            "score": 0.4436333179473877,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "validateCredentials",
+            "score": 0.4188997149467468,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "refresh_session_token",
+            "score": 0.23419755697250366,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "hash_password",
+            "score": 0.10455013811588287,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserRepository",
+            "score": 0.06893888860940933,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "ProcessTransaction",
+            "score": 0.0486106276512146,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "UserProfileCard",
+            "score": 0.038702309131622314,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "save user record to database",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserRepository",
+          "score": 0.5534251928329468,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserRepository",
+            "score": 0.5534251928329468,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "UserProfileCard",
+            "score": 0.17906123399734497,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "validateCredentials",
+            "score": 0.11652630567550659,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "authenticateUser",
+            "score": 0.08299797773361206,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "ProcessTransaction",
+            "score": 0.07515089958906174,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "refresh_session_token",
+            "score": 0.0633314847946167,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "hash_password",
+            "score": 0.05644167587161064,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "hash plain text password using bcrypt",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "hash_password",
+          "score": 0.6610561609268188,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "hash_password",
+            "score": 0.6610561609268188,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.18657439947128296,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "validateCredentials",
+            "score": 0.1628364771604538,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.062416188418865204,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "ProcessTransaction",
+            "score": 0.05160999298095703,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "refresh_session_token",
+            "score": 0.025837793946266174,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "UserProfileCard",
+            "score": -0.019122380763292313,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "refresh expired token for user",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "refresh_session_token",
+          "score": 0.6397430896759033,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "refresh_session_token",
+            "score": 0.6397430896759033,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.31395620107650757,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "validateCredentials",
+            "score": 0.21424853801727295,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.18007421493530273,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserProfileCard",
+            "score": 0.11708086729049683,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.04993312060832977,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": -0.014364387840032578,
+            "is_relevant": false
+          }
+        ]
+      }
+    ]
+  },
+  "p61_metrics_qwen": {
+    "p_at_1": 1.0,
+    "p_at_5": 0.28,
+    "mrr": 1.0,
+    "ndcg_5": 1.0,
+    "recall_10": 1.0,
+    "details": [
+      {
+        "query": "authenticateUser",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "authenticateUser",
+          "score": 0.5404998064041138,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "authenticateUser",
+            "score": 0.5404998064041138,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "validateCredentials",
+            "score": 0.46988868713378906,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserProfileCard",
+            "score": 0.38730388879776,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.3615887761116028,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "refresh_session_token",
+            "score": 0.3607456684112549,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.2607972025871277,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.22600337862968445,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "find user by id",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserRepository",
+          "score": 0.5225080251693726,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserRepository",
+            "score": 0.5225080251693726,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "UserProfileCard",
+            "score": 0.35440492630004883,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "authenticateUser",
+            "score": 0.32732951641082764,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "refresh_session_token",
+            "score": 0.1957494020462036,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "validateCredentials",
+            "score": 0.19229495525360107,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.13654649257659912,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.07871747761964798,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "where do we check user login credentials?",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "validateCredentials",
+          "score": 0.5234607458114624,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "validateCredentials",
+            "score": 0.5234607458114624,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.4740508198738098,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "UserRepository",
+            "score": 0.40467604994773865,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserProfileCard",
+            "score": 0.36845192313194275,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "refresh_session_token",
+            "score": 0.3054848909378052,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.29863572120666504,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.17798946797847748,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "how to verify user identity and session",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "validateCredentials",
+          "score": 0.5577690005302429,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "validateCredentials",
+            "score": 0.5577690005302429,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.48478981852531433,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "refresh_session_token",
+            "score": 0.4688640832901001,
+            "is_relevant": true
+          },
+          {
+            "rank": 4,
+            "name": "UserRepository",
+            "score": 0.394657701253891,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserProfileCard",
+            "score": 0.3588414788246155,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.2535995543003082,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.19302845001220703,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "process payment transactions and charge invoices",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "ProcessTransaction",
+          "score": 0.6857501268386841,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "ProcessTransaction",
+            "score": 0.6857501268386841,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.2332438975572586,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserProfileCard",
+            "score": 0.23287370800971985,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "refresh_session_token",
+            "score": 0.2159658819437027,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "validateCredentials",
+            "score": 0.20260250568389893,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "UserRepository",
+            "score": 0.16864264011383057,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "hash_password",
+            "score": 0.13966494798660278,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "component that renders user profile",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserProfileCard",
+          "score": 0.6985414028167725,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserProfileCard",
+            "score": 0.6985414028167725,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "UserRepository",
+            "score": 0.34627848863601685,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "authenticateUser",
+            "score": 0.3064749538898468,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "validateCredentials",
+            "score": 0.214402973651886,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "refresh_session_token",
+            "score": 0.18390026688575745,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "hash_password",
+            "score": 0.16966462135314941,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.08675355464220047,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "http middleware for checking auth requests",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "authenticateUser",
+          "score": 0.5217916965484619,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "authenticateUser",
+            "score": 0.5217916965484619,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "validateCredentials",
+            "score": 0.4238954186439514,
+            "is_relevant": true
+          },
+          {
+            "rank": 3,
+            "name": "refresh_session_token",
+            "score": 0.26839467883110046,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserProfileCard",
+            "score": 0.22309815883636475,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "ProcessTransaction",
+            "score": 0.18755996227264404,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "UserRepository",
+            "score": 0.1642192155122757,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "hash_password",
+            "score": 0.15592706203460693,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "save user record to database",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "UserRepository",
+          "score": 0.523246169090271,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "UserRepository",
+            "score": 0.523246169090271,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.28776291012763977,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserProfileCard",
+            "score": 0.2513043284416199,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "hash_password",
+            "score": 0.23063071072101593,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "validateCredentials",
+            "score": 0.21327273547649384,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "refresh_session_token",
+            "score": 0.20199823379516602,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.1665286421775818,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "hash plain text password using bcrypt",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "hash_password",
+          "score": 0.772281289100647,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "hash_password",
+            "score": 0.772281289100647,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.38682448863983154,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "validateCredentials",
+            "score": 0.30545884370803833,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "UserProfileCard",
+            "score": 0.28134506940841675,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserRepository",
+            "score": 0.25650620460510254,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "refresh_session_token",
+            "score": 0.22666801512241364,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "ProcessTransaction",
+            "score": 0.1553351730108261,
+            "is_relevant": false
+          }
+        ]
+      },
+      {
+        "query": "refresh expired token for user",
+        "p_at_1": 1.0,
+        "mrr": 1.0,
+        "ndcg_5": 1.0,
+        "top_result": {
+          "rank": 1,
+          "name": "refresh_session_token",
+          "score": 0.6669226884841919,
+          "is_relevant": true
+        },
+        "ranked_items": [
+          {
+            "rank": 1,
+            "name": "refresh_session_token",
+            "score": 0.6669226884841919,
+            "is_relevant": true
+          },
+          {
+            "rank": 2,
+            "name": "authenticateUser",
+            "score": 0.42986878752708435,
+            "is_relevant": false
+          },
+          {
+            "rank": 3,
+            "name": "UserProfileCard",
+            "score": 0.3471719026565552,
+            "is_relevant": false
+          },
+          {
+            "rank": 4,
+            "name": "validateCredentials",
+            "score": 0.3372354507446289,
+            "is_relevant": false
+          },
+          {
+            "rank": 5,
+            "name": "UserRepository",
+            "score": 0.2054463028907776,
+            "is_relevant": false
+          },
+          {
+            "rank": 6,
+            "name": "ProcessTransaction",
+            "score": 0.18895453214645386,
+            "is_relevant": false
+          },
+          {
+            "rank": 7,
+            "name": "hash_password",
+            "score": 0.17185793817043304,
+            "is_relevant": false
+          }
+        ]
+      }
+    ]
+  },
+  "vocab_gap_cases": [
+    {
+      "query": "How does the calendar navigate between months?",
+      "expected": [
+        "onPreviousMonth",
+        "onNextMonth",
+        "useCalendar"
+      ],
+      "minilm_top": {
+        "name": "onPreviousMonth",
+        "score": 0.7318143844604492,
+        "is_expected": true
+      },
+      "qwen_top": {
+        "name": "useCalendar",
+        "score": 0.7716836333274841,
+        "is_expected": true
+      },
+      "minilm_expected_ranks": [
+        [
+          "onPreviousMonth",
+          3,
+          0.7318143844604492
+        ],
+        [
+          "onNextMonth",
+          4,
+          0.714765727519989
+        ],
+        [
+          "useCalendar",
+          5,
+          0.5660315752029419
+        ]
+      ],
+      "qwen_expected_ranks": [
+        [
+          "useCalendar",
+          5,
+          0.7716836333274841
+        ],
+        [
+          "onNextMonth",
+          4,
+          0.7661628723144531
+        ],
+        [
+          "onPreviousMonth",
+          3,
+          0.7353185415267944
+        ]
+      ],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    },
+    {
+      "query": "Where are notes persisted?",
+      "expected": [
+        "useLocalStorage",
+        "NotesSection"
+      ],
+      "minilm_top": {
+        "name": "useLocalStorage",
+        "score": 0.5883171558380127,
+        "is_expected": true
+      },
+      "qwen_top": {
+        "name": "useLocalStorage",
+        "score": 0.6904822587966919,
+        "is_expected": true
+      },
+      "minilm_expected_ranks": [
+        [
+          "useLocalStorage",
+          7,
+          0.5883171558380127
+        ],
+        [
+          "NotesSection",
+          6,
+          0.48237088322639465
+        ]
+      ],
+      "qwen_expected_ranks": [
+        [
+          "useLocalStorage",
+          7,
+          0.6904822587966919
+        ],
+        [
+          "NotesSection",
+          6,
+          0.6109535694122314
+        ]
+      ],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    },
+    {
+      "query": "Where does the calendar store state?",
+      "expected": [
+        "useCalendar",
+        "useLocalStorage",
+        "NotesSection"
+      ],
+      "minilm_top": {
+        "name": "useCalendar",
+        "score": 0.4706006646156311,
+        "is_expected": true
+      },
+      "qwen_top": {
+        "name": "useCalendar",
+        "score": 0.7528306245803833,
+        "is_expected": true
+      },
+      "minilm_expected_ranks": [
+        [
+          "useCalendar",
+          5,
+          0.4706006646156311
+        ],
+        [
+          "NotesSection",
+          6,
+          0.32137563824653625
+        ],
+        [
+          "useLocalStorage",
+          7,
+          0.30765509605407715
+        ]
+      ],
+      "qwen_expected_ranks": [
+        [
+          "useCalendar",
+          5,
+          0.7528306245803833
+        ],
+        [
+          "NotesSection",
+          6,
+          0.5526081323623657
+        ],
+        [
+          "useLocalStorage",
+          7,
+          0.523168683052063
+        ]
+      ],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    },
+    {
+      "query": "Where is token extraction performed?",
+      "expected": [
+        "CodeTokenizer::tokenize"
+      ],
+      "minilm_top": {
+        "name": "CodeTokenizer::tokenize",
+        "score": 0.578640341758728,
+        "is_expected": true
+      },
+      "qwen_top": {
+        "name": "CodeTokenizer::tokenize",
+        "score": 0.7118339538574219,
+        "is_expected": true
+      },
+      "minilm_expected_ranks": [
+        [
+          "CodeTokenizer::tokenize",
+          9,
+          0.578640341758728
+        ]
+      ],
+      "qwen_expected_ranks": [
+        [
+          "CodeTokenizer::tokenize",
+          9,
+          0.7118339538574219
+        ]
+      ],
+      "minilm_spurious_ranks": [
+        [
+          "hash_token_seed",
+          10,
+          0.17784416675567627
+        ]
+      ],
+      "qwen_spurious_ranks": [
+        [
+          "hash_token_seed",
+          10,
+          0.5063442587852478
+        ]
+      ]
+    },
+    {
+      "query": "Where is the inverted index implemented?",
+      "expected": [
+        "InvertedIndex"
+      ],
+      "minilm_top": {
+        "name": "InvertedIndex",
+        "score": 0.6055088043212891,
+        "is_expected": true
+      },
+      "qwen_top": {
+        "name": "InvertedIndex",
+        "score": 0.7733768224716187,
+        "is_expected": true
+      },
+      "minilm_expected_ranks": [
+        [
+          "InvertedIndex",
+          11,
+          0.6055088043212891
+        ]
+      ],
+      "qwen_expected_ranks": [
+        [
+          "InvertedIndex",
+          11,
+          0.7733768224716187
+        ]
+      ],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    },
+    {
+      "query": "Where is authentication handled?",
+      "expected": [],
+      "minilm_top": {
+        "name": "CodeTokenizer::tokenize",
+        "score": 0.06603255122900009,
+        "is_expected": false
+      },
+      "qwen_top": {
+        "name": "hash_token_seed",
+        "score": 0.5121654868125916,
+        "is_expected": false
+      },
+      "minilm_expected_ranks": [],
+      "qwen_expected_ranks": [],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    },
+    {
+      "query": "Where is OAuth configured?",
+      "expected": [],
+      "minilm_top": {
+        "name": "CodeTokenizer::tokenize",
+        "score": 0.09565608948469162,
+        "is_expected": false
+      },
+      "qwen_top": {
+        "name": "FloatingToolbar",
+        "score": 0.4882013499736786,
+        "is_expected": false
+      },
+      "minilm_expected_ranks": [],
+      "qwen_expected_ranks": [],
+      "minilm_spurious_ranks": [],
+      "qwen_spurious_ranks": []
+    }
+  ]
+}

@@ -1,0 +1,1582 @@
+{
+  "aggregate_metrics": {
+    "MiniLM_Only": {
+      "P@1": 0.9411764705882353,
+      "P@5": 0.2235294117647059,
+      "MRR": 0.9705882352941176,
+      "NDCG@5": 0.9694867446533066,
+      "Recall@10": 1.0
+    },
+    "CodeRank_Only": {
+      "P@1": 1.0,
+      "P@5": 0.21176470588235297,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 0.9705882352941176
+    },
+    "Dual_Linear_0.5_0.5": {
+      "P@1": 1.0,
+      "P@5": 0.21176470588235297,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 1.0
+    },
+    "Dual_Linear_0.3MiniLM_0.7CodeRank": {
+      "P@1": 1.0,
+      "P@5": 0.21176470588235297,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 1.0
+    },
+    "Dual_Linear_0.7MiniLM_0.3CodeRank": {
+      "P@1": 0.9411764705882353,
+      "P@5": 0.21176470588235297,
+      "MRR": 0.9705882352941176,
+      "NDCG@5": 0.9555339380198187,
+      "Recall@10": 1.0
+    },
+    "Dual_RRF_k60": {
+      "P@1": 1.0,
+      "P@5": 0.21176470588235297,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 1.0
+    },
+    "Dual_RRF_k20": {
+      "P@1": 1.0,
+      "P@5": 0.21176470588235297,
+      "MRR": 1.0,
+      "NDCG@5": 0.9772439525156154,
+      "Recall@10": 1.0
+    }
+  },
+  "category_metrics": {
+    "Technical / Code-Structure": {
+      "MiniLM_Only": {
+        "P@1": 0.8571428571428571,
+        "MRR": 0.9285714285714286
+      },
+      "CodeRank_Only": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.5_0.5": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.3MiniLM_0.7CodeRank": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.7MiniLM_0.3CodeRank": {
+        "P@1": 0.8571428571428571,
+        "MRR": 0.9285714285714286
+      },
+      "Dual_RRF_k60": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_RRF_k20": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      }
+    },
+    "Conceptual / Natural Language": {
+      "MiniLM_Only": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "CodeRank_Only": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.5_0.5": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.3MiniLM_0.7CodeRank": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.7MiniLM_0.3CodeRank": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_RRF_k60": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_RRF_k20": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      }
+    },
+    "Adversarial / Specific Service": {
+      "MiniLM_Only": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "CodeRank_Only": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.5_0.5": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.3MiniLM_0.7CodeRank": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_Linear_0.7MiniLM_0.3CodeRank": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_RRF_k60": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      },
+      "Dual_RRF_k20": {
+        "P@1": 1.0,
+        "MRR": 1.0
+      }
+    }
+  },
+  "performance": {
+    "MiniLM": {
+      "load_time_sec": 11.041532500006724,
+      "latency_mean_ms": 7.70207333068053,
+      "latency_p50_ms": 7.25454997154884,
+      "latency_p95_ms": 10.76886499067768,
+      "throughput_docs_sec": 1392.5365609569956,
+      "disk_size_mb": 80.0,
+      "ram_mb": 120.0,
+      "dimensions": 384
+    },
+    "CodeRank": {
+      "load_time_sec": 11.483017599966843,
+      "latency_mean_ms": 18.633580004097894,
+      "latency_p50_ms": 17.742449970683083,
+      "latency_p95_ms": 22.699885029578578,
+      "throughput_docs_sec": 310.4251955479143,
+      "disk_size_mb": 548.0,
+      "ram_mb": 380.0,
+      "dimensions": 768
+    },
+    "Dual_Channel": {
+      "latency_mean_ms": 27.042466671749327,
+      "latency_p50_ms": 26.27674999530427,
+      "latency_p95_ms": 34.69675999658648,
+      "throughput_docs_sec": 250.8603255248414,
+      "disk_size_mb": 628.0,
+      "ram_mb": 500.0,
+      "dimensions": 1152
+    }
+  },
+  "queries": [
+    {
+      "query": "Where is the inverted index implemented?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "InvertedIndex"
+      ],
+      "minilm_top": [
+        "InvertedIndex",
+        0.4560166001319885
+      ],
+      "coderank_top": [
+        "InvertedIndex",
+        0.5756545066833496
+      ],
+      "rrf_k60_top": [
+        "InvertedIndex",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "InvertedIndex",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "InvertedIndex",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "CallExtractor"
+        ],
+        "CodeRank_Only": [
+          "InvertedIndex",
+          "PretrainedEmbeddingProvider",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "CodeTokenizer"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "InvertedIndex",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "CodeTokenizer"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "InvertedIndex",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "CodeTokenizer"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "InvertedIndex",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "SupportingEvidenceResolver"
+        ],
+        "Dual_RRF_k60": [
+          "InvertedIndex",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "RelationshipGraph"
+        ],
+        "Dual_RRF_k20": [
+          "InvertedIndex",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "RelationshipGraph"
+        ]
+      }
+    },
+    {
+      "query": "Where are relationships stored?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "RelationshipGraph"
+      ],
+      "minilm_top": [
+        "RelationshipGraph",
+        0.35005491971969604
+      ],
+      "coderank_top": [
+        "RelationshipGraph",
+        0.448448121547699
+      ],
+      "rrf_k60_top": [
+        "RelationshipGraph",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "RelationshipGraph",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ],
+        "CodeRank_Only": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k60": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k20": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "NotesStorage",
+          "CallExtractor",
+          "QueryUnderstanding"
+        ]
+      }
+    },
+    {
+      "query": "Where are callers resolved?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "CallExtractor",
+        "RelationshipGraph"
+      ],
+      "minilm_top": [
+        "CallExtractor",
+        0.479098379611969
+      ],
+      "coderank_top": [
+        "CallExtractor",
+        0.3495001792907715
+      ],
+      "rrf_k60_top": [
+        "CallExtractor",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "CallExtractor",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "AppRouter",
+          "RelationshipGraph"
+        ],
+        "CodeRank_Only": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "InvertedIndex"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "RepositoryScanner"
+        ],
+        "Dual_RRF_k60": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k20": [
+          "CallExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "QueryUnderstanding"
+        ]
+      }
+    },
+    {
+      "query": "Which function parses source code?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "SourceParser"
+      ],
+      "minilm_top": [
+        "RepositoryScanner",
+        0.4641414284706116
+      ],
+      "coderank_top": [
+        "SourceParser",
+        0.5073575377464294
+      ],
+      "rrf_k60_top": [
+        "SourceParser",
+        0.03252247488101534
+      ],
+      "linear_50_50_top": [
+        "SourceParser",
+        0.958315141060679
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "RepositoryScanner",
+          "SourceParser",
+          "CodeTokenizer",
+          "PretrainedEmbeddingProvider",
+          "CallExtractor"
+        ],
+        "CodeRank_Only": [
+          "SourceParser",
+          "RepositoryScanner",
+          "CodeTokenizer",
+          "ImportExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "SourceParser",
+          "RepositoryScanner",
+          "CodeTokenizer",
+          "ImportExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "SourceParser",
+          "RepositoryScanner",
+          "CodeTokenizer",
+          "ImportExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "RepositoryScanner",
+          "SourceParser",
+          "CodeTokenizer",
+          "ImportExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_RRF_k60": [
+          "SourceParser",
+          "RepositoryScanner",
+          "CodeTokenizer",
+          "PretrainedEmbeddingProvider",
+          "ImportExtractor"
+        ],
+        "Dual_RRF_k20": [
+          "SourceParser",
+          "RepositoryScanner",
+          "CodeTokenizer",
+          "PretrainedEmbeddingProvider",
+          "ImportExtractor"
+        ]
+      }
+    },
+    {
+      "query": "Where are imports resolved?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "ImportExtractor"
+      ],
+      "minilm_top": [
+        "ImportExtractor",
+        0.5008188486099243
+      ],
+      "coderank_top": [
+        "ImportExtractor",
+        0.43577808141708374
+      ],
+      "rrf_k60_top": [
+        "ImportExtractor",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "ImportExtractor",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "ImportExtractor",
+          "RepositoryScanner",
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipAwareSearch"
+        ],
+        "CodeRank_Only": [
+          "ImportExtractor",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RepositoryScanner",
+          "RelationshipGraph"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "ImportExtractor",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipAwareSearch",
+          "SourceParser"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "ImportExtractor",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipAwareSearch",
+          "RelationshipGraph"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "ImportExtractor",
+          "RepositoryScanner",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "SourceParser"
+        ],
+        "Dual_RRF_k60": [
+          "ImportExtractor",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipAwareSearch",
+          "SourceParser"
+        ],
+        "Dual_RRF_k20": [
+          "ImportExtractor",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipAwareSearch",
+          "SourceParser"
+        ]
+      }
+    },
+    {
+      "query": "Where are function calls resolved?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "CallExtractor"
+      ],
+      "minilm_top": [
+        "CallExtractor",
+        0.38923728466033936
+      ],
+      "coderank_top": [
+        "CallExtractor",
+        0.3376217782497406
+      ],
+      "rrf_k60_top": [
+        "CallExtractor",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "CallExtractor",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "CallExtractor",
+          "AppRouter",
+          "RelationshipAwareSearch",
+          "useCalendar",
+          "RelationshipGraph"
+        ],
+        "CodeRank_Only": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "InvertedIndex"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RelationshipGraph",
+          "RepositoryScanner"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipGraph"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "SupportingEvidenceResolver",
+          "RelationshipGraph"
+        ],
+        "Dual_RRF_k60": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipGraph"
+        ],
+        "Dual_RRF_k20": [
+          "CallExtractor",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RepositoryScanner",
+          "RelationshipGraph"
+        ]
+      }
+    },
+    {
+      "query": "Where is token extraction performed?",
+      "type": "Technical / Code-Structure",
+      "relevant": [
+        "CodeTokenizer"
+      ],
+      "minilm_top": [
+        "CodeTokenizer",
+        0.3708498477935791
+      ],
+      "coderank_top": [
+        "CodeTokenizer",
+        0.41745200753211975
+      ],
+      "rrf_k60_top": [
+        "CodeTokenizer",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "CodeTokenizer",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "CodeTokenizer",
+          "SourceParser",
+          "AuthService",
+          "InvertedIndex",
+          "OAuthClient"
+        ],
+        "CodeRank_Only": [
+          "CodeTokenizer",
+          "SourceParser",
+          "OAuthClient",
+          "AuthService",
+          "ImportExtractor"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "CodeTokenizer",
+          "SourceParser",
+          "AuthService",
+          "OAuthClient",
+          "ImportExtractor"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "CodeTokenizer",
+          "SourceParser",
+          "OAuthClient",
+          "AuthService",
+          "ImportExtractor"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "CodeTokenizer",
+          "SourceParser",
+          "AuthService",
+          "OAuthClient",
+          "InvertedIndex"
+        ],
+        "Dual_RRF_k60": [
+          "CodeTokenizer",
+          "SourceParser",
+          "AuthService",
+          "OAuthClient",
+          "ImportExtractor"
+        ],
+        "Dual_RRF_k20": [
+          "CodeTokenizer",
+          "SourceParser",
+          "AuthService",
+          "OAuthClient",
+          "ImportExtractor"
+        ]
+      }
+    },
+    {
+      "query": "How does the calendar navigate between months?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "useCalendar",
+        "CalendarMonthView"
+      ],
+      "minilm_top": [
+        "useCalendar",
+        0.5069276690483093
+      ],
+      "coderank_top": [
+        "useCalendar",
+        0.5376673936843872
+      ],
+      "rrf_k60_top": [
+        "useCalendar",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "useCalendar",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "InvertedIndex",
+          "AppRouter"
+        ],
+        "CodeRank_Only": [
+          "useCalendar",
+          "CalendarMonthView",
+          "AppRouter",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "PaymentService"
+        ],
+        "Dual_RRF_k60": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "PaymentService"
+        ],
+        "Dual_RRF_k20": [
+          "useCalendar",
+          "CalendarMonthView",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "PaymentService"
+        ]
+      }
+    },
+    {
+      "query": "Where does the calendar store state?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "useCalendar"
+      ],
+      "minilm_top": [
+        "useCalendar",
+        0.451799601316452
+      ],
+      "coderank_top": [
+        "useCalendar",
+        0.4520098567008972
+      ],
+      "rrf_k60_top": [
+        "useCalendar",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "useCalendar",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "PaymentService",
+          "AuthService"
+        ],
+        "CodeRank_Only": [
+          "useCalendar",
+          "CalendarMonthView",
+          "QueryUnderstanding",
+          "NotesStorage",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "PaymentService",
+          "AuthService"
+        ],
+        "Dual_RRF_k60": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "QueryUnderstanding",
+          "PaymentService"
+        ],
+        "Dual_RRF_k20": [
+          "useCalendar",
+          "CalendarMonthView",
+          "NotesStorage",
+          "QueryUnderstanding",
+          "PaymentService"
+        ]
+      }
+    },
+    {
+      "query": "Where is evidence assembled?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "EvidenceAssembler"
+      ],
+      "minilm_top": [
+        "EvidenceAssembler",
+        0.5742896795272827
+      ],
+      "coderank_top": [
+        "EvidenceAssembler",
+        0.5789285898208618
+      ],
+      "rrf_k60_top": [
+        "EvidenceAssembler",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "EvidenceAssembler",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "EvidenceAssembler",
+          "RepositoryScanner",
+          "SourceParser",
+          "NotesStorage",
+          "CallExtractor"
+        ],
+        "CodeRank_Only": [
+          "EvidenceAssembler",
+          "SupportingEvidenceResolver",
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "EvidenceAssembler",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "EvidenceAssembler",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "EvidenceAssembler",
+          "RepositoryScanner",
+          "QueryUnderstanding",
+          "SupportingEvidenceResolver",
+          "SourceParser"
+        ],
+        "Dual_RRF_k60": [
+          "EvidenceAssembler",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "SourceParser",
+          "ImportExtractor"
+        ],
+        "Dual_RRF_k20": [
+          "EvidenceAssembler",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "SourceParser",
+          "ImportExtractor"
+        ]
+      }
+    },
+    {
+      "query": "Where is the query normalized?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "QueryUnderstanding"
+      ],
+      "minilm_top": [
+        "QueryUnderstanding",
+        0.49728041887283325
+      ],
+      "coderank_top": [
+        "QueryUnderstanding",
+        0.43562161922454834
+      ],
+      "rrf_k60_top": [
+        "QueryUnderstanding",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "QueryUnderstanding",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "CallExtractor"
+        ],
+        "CodeRank_Only": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "CodeTokenizer",
+          "InvertedIndex"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "CodeTokenizer"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "CodeTokenizer"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "NotesStorage"
+        ],
+        "Dual_RRF_k60": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "CodeTokenizer"
+        ],
+        "Dual_RRF_k20": [
+          "QueryUnderstanding",
+          "RelationshipAwareSearch",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex",
+          "CodeTokenizer"
+        ]
+      }
+    },
+    {
+      "query": "Where are supporting AST elements resolved?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "SupportingEvidenceResolver"
+      ],
+      "minilm_top": [
+        "SupportingEvidenceResolver",
+        0.7028998136520386
+      ],
+      "coderank_top": [
+        "SupportingEvidenceResolver",
+        0.5023125410079956
+      ],
+      "rrf_k60_top": [
+        "SupportingEvidenceResolver",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "SupportingEvidenceResolver",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "ImportExtractor",
+          "RelationshipGraph",
+          "CallExtractor"
+        ],
+        "CodeRank_Only": [
+          "SupportingEvidenceResolver",
+          "RelationshipGraph",
+          "SourceParser",
+          "PretrainedEmbeddingProvider",
+          "RepositoryScanner"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipGraph",
+          "ImportExtractor",
+          "RepositoryScanner"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipGraph",
+          "ImportExtractor",
+          "RepositoryScanner"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipGraph",
+          "ImportExtractor",
+          "RepositoryScanner"
+        ],
+        "Dual_RRF_k60": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipGraph",
+          "ImportExtractor",
+          "RepositoryScanner"
+        ],
+        "Dual_RRF_k20": [
+          "SupportingEvidenceResolver",
+          "SourceParser",
+          "RelationshipGraph",
+          "ImportExtractor",
+          "RepositoryScanner"
+        ]
+      }
+    },
+    {
+      "query": "Where is the embedding provider implemented?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "PretrainedEmbeddingProvider"
+      ],
+      "minilm_top": [
+        "PretrainedEmbeddingProvider",
+        0.4528132975101471
+      ],
+      "coderank_top": [
+        "PretrainedEmbeddingProvider",
+        0.6221393942832947
+      ],
+      "rrf_k60_top": [
+        "PretrainedEmbeddingProvider",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "PretrainedEmbeddingProvider",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "PretrainedEmbeddingProvider",
+          "SupportingEvidenceResolver",
+          "NotesStorage",
+          "RelationshipGraph",
+          "RelationshipAwareSearch"
+        ],
+        "CodeRank_Only": [
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "RelationshipGraph",
+          "InvertedIndex"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "PretrainedEmbeddingProvider",
+          "SupportingEvidenceResolver",
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "NotesStorage"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "QueryUnderstanding",
+          "RelationshipGraph"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "PretrainedEmbeddingProvider",
+          "SupportingEvidenceResolver",
+          "RelationshipGraph",
+          "NotesStorage",
+          "RelationshipAwareSearch"
+        ],
+        "Dual_RRF_k60": [
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RelationshipGraph",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k20": [
+          "PretrainedEmbeddingProvider",
+          "RelationshipAwareSearch",
+          "SupportingEvidenceResolver",
+          "RelationshipGraph",
+          "QueryUnderstanding"
+        ]
+      }
+    },
+    {
+      "query": "Where is relationship-aware search implemented?",
+      "type": "Conceptual / Natural Language",
+      "relevant": [
+        "RelationshipAwareSearch"
+      ],
+      "minilm_top": [
+        "RelationshipAwareSearch",
+        0.6564869284629822
+      ],
+      "coderank_top": [
+        "RelationshipAwareSearch",
+        0.6506869792938232
+      ],
+      "rrf_k60_top": [
+        "RelationshipAwareSearch",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "RelationshipAwareSearch",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex"
+        ],
+        "CodeRank_Only": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "CallExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "CallExtractor"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "CallExtractor",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "CallExtractor"
+        ],
+        "Dual_RRF_k60": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "CallExtractor"
+        ],
+        "Dual_RRF_k20": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "CallExtractor"
+        ]
+      }
+    },
+    {
+      "query": "Where is the Kubernetes deployment?",
+      "type": "Adversarial Negative",
+      "relevant": [],
+      "minilm_top": [
+        "SupportingEvidenceResolver",
+        0.07965552806854248
+      ],
+      "coderank_top": [
+        "PretrainedEmbeddingProvider",
+        0.2633230686187744
+      ],
+      "rrf_k60_top": [
+        "AuthService",
+        0.031754032258064516
+      ],
+      "linear_50_50_top": [
+        "AuthService",
+        0.8906492523499971
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "SupportingEvidenceResolver",
+          "AuthService",
+          "OAuthClient",
+          "InvertedIndex",
+          "AppRouter"
+        ],
+        "CodeRank_Only": [
+          "PretrainedEmbeddingProvider",
+          "AppRouter",
+          "RelationshipAwareSearch",
+          "AuthService",
+          "OAuthClient"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "AuthService",
+          "AppRouter",
+          "OAuthClient",
+          "InvertedIndex",
+          "NotesStorage"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "AppRouter",
+          "AuthService",
+          "OAuthClient",
+          "PretrainedEmbeddingProvider",
+          "NotesStorage"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "AuthService",
+          "OAuthClient",
+          "AppRouter",
+          "SupportingEvidenceResolver",
+          "InvertedIndex"
+        ],
+        "Dual_RRF_k60": [
+          "AuthService",
+          "AppRouter",
+          "OAuthClient",
+          "InvertedIndex",
+          "PretrainedEmbeddingProvider"
+        ],
+        "Dual_RRF_k20": [
+          "AuthService",
+          "AppRouter",
+          "OAuthClient",
+          "PretrainedEmbeddingProvider",
+          "InvertedIndex"
+        ]
+      }
+    },
+    {
+      "query": "Where is the payment checkout?",
+      "type": "Adversarial / Specific Service",
+      "relevant": [
+        "PaymentService"
+      ],
+      "minilm_top": [
+        "PaymentService",
+        0.4071722626686096
+      ],
+      "coderank_top": [
+        "PaymentService",
+        0.4525313675403595
+      ],
+      "rrf_k60_top": [
+        "PaymentService",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "PaymentService",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "PaymentService",
+          "AuthService",
+          "RepositoryScanner",
+          "NotesStorage",
+          "useCalendar"
+        ],
+        "CodeRank_Only": [
+          "PaymentService",
+          "PretrainedEmbeddingProvider",
+          "CodeTokenizer",
+          "RepositoryScanner",
+          "CalendarMonthView"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "PaymentService",
+          "AuthService",
+          "RepositoryScanner",
+          "NotesStorage",
+          "useCalendar"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "PaymentService",
+          "RepositoryScanner",
+          "AuthService",
+          "PretrainedEmbeddingProvider",
+          "CalendarMonthView"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "PaymentService",
+          "AuthService",
+          "RepositoryScanner",
+          "NotesStorage",
+          "useCalendar"
+        ],
+        "Dual_RRF_k60": [
+          "PaymentService",
+          "RepositoryScanner",
+          "AuthService",
+          "NotesStorage",
+          "useCalendar"
+        ],
+        "Dual_RRF_k20": [
+          "PaymentService",
+          "RepositoryScanner",
+          "AuthService",
+          "NotesStorage",
+          "PretrainedEmbeddingProvider"
+        ]
+      }
+    },
+    {
+      "query": "Where is JWT authentication implemented?",
+      "type": "Adversarial / Specific Service",
+      "relevant": [
+        "AuthService"
+      ],
+      "minilm_top": [
+        "AuthService",
+        0.4485195577144623
+      ],
+      "coderank_top": [
+        "AuthService",
+        0.4442788064479828
+      ],
+      "rrf_k60_top": [
+        "AuthService",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "AuthService",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "AuthService",
+          "OAuthClient",
+          "AppRouter",
+          "CodeTokenizer",
+          "SupportingEvidenceResolver"
+        ],
+        "CodeRank_Only": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "QueryUnderstanding",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "QueryUnderstanding",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "QueryUnderstanding",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "AppRouter",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k60": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "AppRouter",
+          "QueryUnderstanding"
+        ],
+        "Dual_RRF_k20": [
+          "AuthService",
+          "OAuthClient",
+          "CodeTokenizer",
+          "AppRouter",
+          "QueryUnderstanding"
+        ]
+      }
+    },
+    {
+      "query": "Where is the GraphQL resolver?",
+      "type": "Adversarial Negative",
+      "relevant": [],
+      "minilm_top": [
+        "RelationshipGraph",
+        0.40086451172828674
+      ],
+      "coderank_top": [
+        "RelationshipAwareSearch",
+        0.3973407745361328
+      ],
+      "rrf_k60_top": [
+        "RelationshipGraph",
+        0.03252247488101534
+      ],
+      "linear_50_50_top": [
+        "RelationshipAwareSearch",
+        0.9865201817277809
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "CallExtractor",
+          "SupportingEvidenceResolver"
+        ],
+        "CodeRank_Only": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "PretrainedEmbeddingProvider",
+          "AppRouter",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "PretrainedEmbeddingProvider",
+          "QueryUnderstanding",
+          "AppRouter"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "PretrainedEmbeddingProvider",
+          "QueryUnderstanding",
+          "AppRouter"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "RelationshipAwareSearch",
+          "RelationshipGraph",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "AppRouter"
+        ],
+        "Dual_RRF_k60": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "AppRouter"
+        ],
+        "Dual_RRF_k20": [
+          "RelationshipGraph",
+          "RelationshipAwareSearch",
+          "QueryUnderstanding",
+          "PretrainedEmbeddingProvider",
+          "AppRouter"
+        ]
+      }
+    },
+    {
+      "query": "Where is OAuth implemented?",
+      "type": "Adversarial / Specific Service",
+      "relevant": [
+        "OAuthClient"
+      ],
+      "minilm_top": [
+        "OAuthClient",
+        0.5008869171142578
+      ],
+      "coderank_top": [
+        "OAuthClient",
+        0.4989378750324249
+      ],
+      "rrf_k60_top": [
+        "OAuthClient",
+        0.03278688524590164
+      ],
+      "linear_50_50_top": [
+        "OAuthClient",
+        1.0
+      ],
+      "rankings": {
+        "MiniLM_Only": [
+          "OAuthClient",
+          "AuthService",
+          "PaymentService",
+          "AppRouter",
+          "RepositoryScanner"
+        ],
+        "CodeRank_Only": [
+          "OAuthClient",
+          "RelationshipAwareSearch",
+          "AuthService",
+          "QueryUnderstanding",
+          "AppRouter"
+        ],
+        "Dual_Linear_0.5_0.5": [
+          "OAuthClient",
+          "AuthService",
+          "AppRouter",
+          "RelationshipAwareSearch",
+          "PaymentService"
+        ],
+        "Dual_Linear_0.3MiniLM_0.7CodeRank": [
+          "OAuthClient",
+          "AuthService",
+          "RelationshipAwareSearch",
+          "AppRouter",
+          "QueryUnderstanding"
+        ],
+        "Dual_Linear_0.7MiniLM_0.3CodeRank": [
+          "OAuthClient",
+          "AuthService",
+          "AppRouter",
+          "PaymentService",
+          "NotesStorage"
+        ],
+        "Dual_RRF_k60": [
+          "OAuthClient",
+          "AuthService",
+          "AppRouter",
+          "PaymentService",
+          "RelationshipGraph"
+        ],
+        "Dual_RRF_k20": [
+          "OAuthClient",
+          "AuthService",
+          "AppRouter",
+          "PaymentService",
+          "RelationshipAwareSearch"
+        ]
+      }
+    }
+  ]
+}

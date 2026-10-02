@@ -31,7 +31,7 @@ const std::unordered_set<std::string_view> kGenericActionBases = {
     "build",     "format",  "parse",   "process", "dispatch", "trigger",    "execute",
     "run",       "send",    "receive", "fetch",   "get",      "set",        "read",
     "write",     "show",    "view",    "find",    "obtain",   "check",      "contain",
-    "hold"};
+    "hold",      "perform"};
 
 }  // namespace
 

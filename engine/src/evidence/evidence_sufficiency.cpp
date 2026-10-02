@@ -114,6 +114,12 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
                 break;
             }
 
+            // Check element detail
+            if (contains_case_insensitive(item.primary_element().detail, subj)) {
+                subj_matched = true;
+                break;
+            }
+
             // Check supporting elements
             for (const auto& supp : item.supporting_elements()) {
                 if (contains_case_insensitive(supp.name, subj)) {
@@ -234,7 +240,7 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
             return result;
         }
         if (top_result.normalized_semantic_score < options.min_semantic_only_score &&
-            subject_coverage < 0.50) {
+            subject_coverage <= 0.50) {
             result.is_sufficient = false;
             result.confidence_score = top_result.normalized_semantic_score;
             result.reason = "Top candidate is semantic-only with low confidence and insufficient "

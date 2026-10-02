@@ -1,0 +1,1070 @@
+{
+  "minilm": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "parameters": 33000000,
+    "dimension": 384,
+    "load_time_sec": 8.114793699991424,
+    "warm_query_latency_ms": {
+      "mean": 8.339910001571601,
+      "p50": 7.134099985705689,
+      "p95": 9.515590002411043
+    },
+    "batch_throughput_docs_sec": 517.5801264950757,
+    "metrics": {
+      "P@1": 0.9285714285714286,
+      "P@5": 0.22857142857142865,
+      "MRR": 0.9642857142857143,
+      "NDCG@5": 0.962948189936158,
+      "Recall@10": 1.0
+    },
+    "query_results": [
+      {
+        "query": "Where is the inverted index implemented?",
+        "expected": [
+          "InvertedIndex"
+        ],
+        "top_result": "InvertedIndex",
+        "top_similarity": 0.4560166001319885,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.1842096596956253,
+        "separation_margin": 0.2718069404363632,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "InvertedIndex",
+            0.456
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.1842
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.1787
+          ]
+        ]
+      },
+      {
+        "query": "Where are relationships stored?",
+        "expected": [
+          "RelationshipGraph"
+        ],
+        "top_result": "RelationshipGraph",
+        "top_similarity": 0.35005491971969604,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.3291302025318146,
+        "separation_margin": 0.02092471718788147,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "RelationshipGraph",
+            0.3501
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.3291
+          ],
+          [
+            "NotesStorage",
+            0.2995
+          ]
+        ]
+      },
+      {
+        "query": "Where are callers resolved?",
+        "expected": [
+          "CallExtractor",
+          "RelationshipGraph"
+        ],
+        "top_result": "CallExtractor",
+        "top_similarity": 0.479098379611969,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.28433680534362793,
+        "separation_margin": 0.19476157426834106,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CallExtractor",
+            0.4791
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.2843
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.2487
+          ]
+        ]
+      },
+      {
+        "query": "Where is evidence assembled?",
+        "expected": [
+          "EvidenceAssembler"
+        ],
+        "top_result": "EvidenceAssembler",
+        "top_similarity": 0.5742896795272827,
+        "second_result": "RepositoryScanner",
+        "second_similarity": 0.15814080834388733,
+        "separation_margin": 0.4161488711833954,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "EvidenceAssembler",
+            0.5743
+          ],
+          [
+            "RepositoryScanner",
+            0.1581
+          ],
+          [
+            "SourceParser",
+            0.1132
+          ]
+        ]
+      },
+      {
+        "query": "Where is the query normalized?",
+        "expected": [
+          "QueryUnderstanding"
+        ],
+        "top_result": "QueryUnderstanding",
+        "top_similarity": 0.49728041887283325,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.31987297534942627,
+        "separation_margin": 0.17740744352340698,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "QueryUnderstanding",
+            0.4973
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.3199
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.2604
+          ]
+        ]
+      },
+      {
+        "query": "Where are supporting AST elements resolved?",
+        "expected": [
+          "SupportingEvidenceResolver"
+        ],
+        "top_result": "SupportingEvidenceResolver",
+        "top_similarity": 0.7028998136520386,
+        "second_result": "SourceParser",
+        "second_similarity": 0.41580846905708313,
+        "separation_margin": 0.28709134459495544,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "SupportingEvidenceResolver",
+            0.7029
+          ],
+          [
+            "SourceParser",
+            0.4158
+          ],
+          [
+            "ImportExtractor",
+            0.3037
+          ]
+        ]
+      },
+      {
+        "query": "Where is the embedding provider implemented?",
+        "expected": [
+          "PretrainedEmbeddingProvider"
+        ],
+        "top_result": "PretrainedEmbeddingProvider",
+        "top_similarity": 0.4528132975101471,
+        "second_result": "SupportingEvidenceResolver",
+        "second_similarity": 0.27453798055648804,
+        "separation_margin": 0.17827531695365906,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "PretrainedEmbeddingProvider",
+            0.4528
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.2745
+          ],
+          [
+            "NotesStorage",
+            0.2107
+          ]
+        ]
+      },
+      {
+        "query": "How does the calendar navigate between months?",
+        "expected": [
+          "useCalendar",
+          "CalendarMonthView"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.5069276690483093,
+        "second_result": "CalendarMonthView",
+        "second_similarity": 0.47206705808639526,
+        "separation_margin": 0.03486061096191406,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "useCalendar",
+            0.5069
+          ],
+          [
+            "CalendarMonthView",
+            0.4721
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.1265
+          ]
+        ]
+      },
+      {
+        "query": "Where does the calendar store state?",
+        "expected": [
+          "useCalendar"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.451799601316452,
+        "second_result": "CalendarMonthView",
+        "second_similarity": 0.32862019538879395,
+        "separation_margin": 0.12317940592765808,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "useCalendar",
+            0.4518
+          ],
+          [
+            "CalendarMonthView",
+            0.3286
+          ],
+          [
+            "NotesStorage",
+            0.2044
+          ]
+        ]
+      },
+      {
+        "query": "Where is token extraction performed?",
+        "expected": [
+          "CodeTokenizer"
+        ],
+        "top_result": "CodeTokenizer",
+        "top_similarity": 0.3708498477935791,
+        "second_result": "SourceParser",
+        "second_similarity": 0.27735811471939087,
+        "separation_margin": 0.09349173307418823,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CodeTokenizer",
+            0.3708
+          ],
+          [
+            "SourceParser",
+            0.2774
+          ],
+          [
+            "AuthService",
+            0.2148
+          ]
+        ]
+      },
+      {
+        "query": "Which function parses source code?",
+        "expected": [
+          "SourceParser"
+        ],
+        "top_result": "RepositoryScanner",
+        "top_similarity": 0.4641414284706116,
+        "second_result": "SourceParser",
+        "second_similarity": 0.41762053966522217,
+        "separation_margin": 0.046520888805389404,
+        "rank": 2,
+        "is_relevant": false,
+        "top_3_scores": [
+          [
+            "RepositoryScanner",
+            0.4641
+          ],
+          [
+            "SourceParser",
+            0.4176
+          ],
+          [
+            "CodeTokenizer",
+            0.3097
+          ]
+        ]
+      },
+      {
+        "query": "Where are imports resolved?",
+        "expected": [
+          "ImportExtractor"
+        ],
+        "top_result": "ImportExtractor",
+        "top_similarity": 0.5008188486099243,
+        "second_result": "RepositoryScanner",
+        "second_similarity": 0.22757355868816376,
+        "separation_margin": 0.27324528992176056,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "ImportExtractor",
+            0.5008
+          ],
+          [
+            "RepositoryScanner",
+            0.2276
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.2064
+          ]
+        ]
+      },
+      {
+        "query": "Where are function calls resolved?",
+        "expected": [
+          "CallExtractor"
+        ],
+        "top_result": "CallExtractor",
+        "top_similarity": 0.38923728466033936,
+        "second_result": "AppRouter",
+        "second_similarity": 0.2390635460615158,
+        "separation_margin": 0.15017373859882355,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CallExtractor",
+            0.3892
+          ],
+          [
+            "AppRouter",
+            0.2391
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.1849
+          ]
+        ]
+      },
+      {
+        "query": "Where is relationship-aware search implemented?",
+        "expected": [
+          "RelationshipAwareSearch"
+        ],
+        "top_result": "RelationshipAwareSearch",
+        "top_similarity": 0.6564869284629822,
+        "second_result": "RelationshipGraph",
+        "second_similarity": 0.3878970146179199,
+        "separation_margin": 0.26858991384506226,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "RelationshipAwareSearch",
+            0.6565
+          ],
+          [
+            "RelationshipGraph",
+            0.3879
+          ],
+          [
+            "QueryUnderstanding",
+            0.3516
+          ]
+        ]
+      }
+    ],
+    "negative_results": [
+      {
+        "query": "Where is the Kubernetes deployment?",
+        "expected": [],
+        "top_result": "SupportingEvidenceResolver",
+        "top_similarity": 0.07965552806854248,
+        "second_result": "AuthService",
+        "second_similarity": 0.07549542188644409,
+        "separation_margin": 0.004160106182098389,
+        "rank": -1,
+        "is_relevant": false,
+        "top_3_scores": [
+          [
+            "SupportingEvidenceResolver",
+            0.0797
+          ],
+          [
+            "AuthService",
+            0.0755
+          ],
+          [
+            "OAuthClient",
+            0.0688
+          ]
+        ]
+      },
+      {
+        "query": "Where is the payment checkout?",
+        "expected": [
+          "PaymentService"
+        ],
+        "top_result": "PaymentService",
+        "top_similarity": 0.4071722626686096,
+        "second_result": "AuthService",
+        "second_similarity": 0.12498731911182404,
+        "separation_margin": 0.2821849435567856,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "PaymentService",
+            0.4072
+          ],
+          [
+            "AuthService",
+            0.125
+          ],
+          [
+            "RepositoryScanner",
+            0.1167
+          ]
+        ]
+      },
+      {
+        "query": "Where is JWT authentication?",
+        "expected": [
+          "AuthService"
+        ],
+        "top_result": "AuthService",
+        "top_similarity": 0.44580942392349243,
+        "second_result": "OAuthClient",
+        "second_similarity": 0.3247588574886322,
+        "separation_margin": 0.12105056643486023,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "AuthService",
+            0.4458
+          ],
+          [
+            "OAuthClient",
+            0.3248
+          ],
+          [
+            "AppRouter",
+            0.0785
+          ]
+        ]
+      },
+      {
+        "query": "Where is the GraphQL resolver?",
+        "expected": [],
+        "top_result": "RelationshipGraph",
+        "top_similarity": 0.40086451172828674,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.39009368419647217,
+        "separation_margin": 0.010770827531814575,
+        "rank": -1,
+        "is_relevant": false,
+        "top_3_scores": [
+          [
+            "RelationshipGraph",
+            0.4009
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.3901
+          ],
+          [
+            "QueryUnderstanding",
+            0.2172
+          ]
+        ]
+      },
+      {
+        "query": "Where is the OAuth implementation?",
+        "expected": [
+          "OAuthClient"
+        ],
+        "top_result": "OAuthClient",
+        "top_similarity": 0.5256811380386353,
+        "second_result": "AuthService",
+        "second_similarity": 0.40844419598579407,
+        "separation_margin": 0.11723694205284119,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "OAuthClient",
+            0.5257
+          ],
+          [
+            "AuthService",
+            0.4084
+          ],
+          [
+            "PaymentService",
+            0.1477
+          ]
+        ]
+      }
+    ]
+  },
+  "coderank": {
+    "model_name": "nomic-ai/CodeRankEmbed",
+    "parameters": 137000000,
+    "dimension": 768,
+    "load_time_sec": 12.835169200028758,
+    "warm_query_latency_ms": {
+      "mean": 17.854590005784605,
+      "p50": 17.50810001976788,
+      "p95": 21.726760006276887
+    },
+    "batch_throughput_docs_sec": 249.82000475560284,
+    "metrics": {
+      "P@1": 1.0,
+      "P@5": 0.21428571428571436,
+      "MRR": 1.0,
+      "NDCG@5": 0.9723676566261041,
+      "Recall@10": 0.9642857142857143
+    },
+    "query_results": [
+      {
+        "query": "Where is the inverted index implemented?",
+        "expected": [
+          "InvertedIndex"
+        ],
+        "top_result": "InvertedIndex",
+        "top_similarity": 0.5756545066833496,
+        "second_result": "PretrainedEmbeddingProvider",
+        "second_similarity": 0.4147806167602539,
+        "separation_margin": 0.1608738899230957,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "InvertedIndex",
+            0.5757
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.4148
+          ],
+          [
+            "QueryUnderstanding",
+            0.4024
+          ]
+        ]
+      },
+      {
+        "query": "Where are relationships stored?",
+        "expected": [
+          "RelationshipGraph"
+        ],
+        "top_result": "RelationshipGraph",
+        "top_similarity": 0.448448121547699,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.4266704320907593,
+        "separation_margin": 0.021777689456939697,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "RelationshipGraph",
+            0.4484
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.4267
+          ],
+          [
+            "NotesStorage",
+            0.3262
+          ]
+        ]
+      },
+      {
+        "query": "Where are callers resolved?",
+        "expected": [
+          "CallExtractor",
+          "RelationshipGraph"
+        ],
+        "top_result": "CallExtractor",
+        "top_similarity": 0.3495001792907715,
+        "second_result": "SupportingEvidenceResolver",
+        "second_similarity": 0.3041219115257263,
+        "separation_margin": 0.045378267765045166,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CallExtractor",
+            0.3495
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.3041
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.2673
+          ]
+        ]
+      },
+      {
+        "query": "Where is evidence assembled?",
+        "expected": [
+          "EvidenceAssembler"
+        ],
+        "top_result": "EvidenceAssembler",
+        "top_similarity": 0.5789285898208618,
+        "second_result": "SupportingEvidenceResolver",
+        "second_similarity": 0.38986048102378845,
+        "separation_margin": 0.18906810879707336,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "EvidenceAssembler",
+            0.5789
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.3899
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.3521
+          ]
+        ]
+      },
+      {
+        "query": "Where is the query normalized?",
+        "expected": [
+          "QueryUnderstanding"
+        ],
+        "top_result": "QueryUnderstanding",
+        "top_similarity": 0.43562161922454834,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.3420582711696625,
+        "separation_margin": 0.09356334805488586,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "QueryUnderstanding",
+            0.4356
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.3421
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.3296
+          ]
+        ]
+      },
+      {
+        "query": "Where are supporting AST elements resolved?",
+        "expected": [
+          "SupportingEvidenceResolver"
+        ],
+        "top_result": "SupportingEvidenceResolver",
+        "top_similarity": 0.5023125410079956,
+        "second_result": "RelationshipGraph",
+        "second_similarity": 0.40032628178596497,
+        "separation_margin": 0.10198625922203064,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "SupportingEvidenceResolver",
+            0.5023
+          ],
+          [
+            "RelationshipGraph",
+            0.4003
+          ],
+          [
+            "SourceParser",
+            0.3778
+          ]
+        ]
+      },
+      {
+        "query": "Where is the embedding provider implemented?",
+        "expected": [
+          "PretrainedEmbeddingProvider"
+        ],
+        "top_result": "PretrainedEmbeddingProvider",
+        "top_similarity": 0.6221393942832947,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.36301225423812866,
+        "separation_margin": 0.259127140045166,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "PretrainedEmbeddingProvider",
+            0.6221
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.363
+          ],
+          [
+            "QueryUnderstanding",
+            0.3493
+          ]
+        ]
+      },
+      {
+        "query": "How does the calendar navigate between months?",
+        "expected": [
+          "useCalendar",
+          "CalendarMonthView"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.5376673936843872,
+        "second_result": "CalendarMonthView",
+        "second_similarity": 0.4939819872379303,
+        "separation_margin": 0.04368540644645691,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "useCalendar",
+            0.5377
+          ],
+          [
+            "CalendarMonthView",
+            0.494
+          ],
+          [
+            "AppRouter",
+            0.2748
+          ]
+        ]
+      },
+      {
+        "query": "Where does the calendar store state?",
+        "expected": [
+          "useCalendar"
+        ],
+        "top_result": "useCalendar",
+        "top_similarity": 0.4520098567008972,
+        "second_result": "CalendarMonthView",
+        "second_similarity": 0.36867913603782654,
+        "separation_margin": 0.08333072066307068,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "useCalendar",
+            0.452
+          ],
+          [
+            "CalendarMonthView",
+            0.3687
+          ],
+          [
+            "QueryUnderstanding",
+            0.2691
+          ]
+        ]
+      },
+      {
+        "query": "Where is token extraction performed?",
+        "expected": [
+          "CodeTokenizer"
+        ],
+        "top_result": "CodeTokenizer",
+        "top_similarity": 0.41745200753211975,
+        "second_result": "SourceParser",
+        "second_similarity": 0.37251371145248413,
+        "separation_margin": 0.04493829607963562,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CodeTokenizer",
+            0.4175
+          ],
+          [
+            "SourceParser",
+            0.3725
+          ],
+          [
+            "OAuthClient",
+            0.3517
+          ]
+        ]
+      },
+      {
+        "query": "Which function parses source code?",
+        "expected": [
+          "SourceParser"
+        ],
+        "top_result": "SourceParser",
+        "top_similarity": 0.5073575377464294,
+        "second_result": "RepositoryScanner",
+        "second_similarity": 0.4604451060295105,
+        "separation_margin": 0.046912431716918945,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "SourceParser",
+            0.5074
+          ],
+          [
+            "RepositoryScanner",
+            0.4604
+          ],
+          [
+            "CodeTokenizer",
+            0.4561
+          ]
+        ]
+      },
+      {
+        "query": "Where are imports resolved?",
+        "expected": [
+          "ImportExtractor"
+        ],
+        "top_result": "ImportExtractor",
+        "top_similarity": 0.43577808141708374,
+        "second_result": "SupportingEvidenceResolver",
+        "second_similarity": 0.27791550755500793,
+        "separation_margin": 0.1578625738620758,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "ImportExtractor",
+            0.4358
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.2779
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.2705
+          ]
+        ]
+      },
+      {
+        "query": "Where are function calls resolved?",
+        "expected": [
+          "CallExtractor"
+        ],
+        "top_result": "CallExtractor",
+        "top_similarity": 0.3376217782497406,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.2773878276348114,
+        "separation_margin": 0.0602339506149292,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "CallExtractor",
+            0.3376
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.2774
+          ],
+          [
+            "SupportingEvidenceResolver",
+            0.2635
+          ]
+        ]
+      },
+      {
+        "query": "Where is relationship-aware search implemented?",
+        "expected": [
+          "RelationshipAwareSearch"
+        ],
+        "top_result": "RelationshipAwareSearch",
+        "top_similarity": 0.6506869792938232,
+        "second_result": "RelationshipGraph",
+        "second_similarity": 0.5325655341148376,
+        "separation_margin": 0.1181214451789856,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "RelationshipAwareSearch",
+            0.6507
+          ],
+          [
+            "RelationshipGraph",
+            0.5326
+          ],
+          [
+            "QueryUnderstanding",
+            0.3806
+          ]
+        ]
+      }
+    ],
+    "negative_results": [
+      {
+        "query": "Where is the Kubernetes deployment?",
+        "expected": [],
+        "top_result": "PretrainedEmbeddingProvider",
+        "top_similarity": 0.2633230686187744,
+        "second_result": "AppRouter",
+        "second_similarity": 0.2533595561981201,
+        "separation_margin": 0.009963512420654297,
+        "rank": -1,
+        "is_relevant": false,
+        "top_3_scores": [
+          [
+            "PretrainedEmbeddingProvider",
+            0.2633
+          ],
+          [
+            "AppRouter",
+            0.2534
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.2398
+          ]
+        ]
+      },
+      {
+        "query": "Where is the payment checkout?",
+        "expected": [
+          "PaymentService"
+        ],
+        "top_result": "PaymentService",
+        "top_similarity": 0.4525313675403595,
+        "second_result": "PretrainedEmbeddingProvider",
+        "second_similarity": 0.23874473571777344,
+        "separation_margin": 0.21378663182258606,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "PaymentService",
+            0.4525
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.2387
+          ],
+          [
+            "CodeTokenizer",
+            0.2277
+          ]
+        ]
+      },
+      {
+        "query": "Where is JWT authentication?",
+        "expected": [
+          "AuthService"
+        ],
+        "top_result": "AuthService",
+        "top_similarity": 0.4394266605377197,
+        "second_result": "OAuthClient",
+        "second_similarity": 0.3815235197544098,
+        "separation_margin": 0.057903140783309937,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "AuthService",
+            0.4394
+          ],
+          [
+            "OAuthClient",
+            0.3815
+          ],
+          [
+            "PaymentService",
+            0.3171
+          ]
+        ]
+      },
+      {
+        "query": "Where is the GraphQL resolver?",
+        "expected": [],
+        "top_result": "RelationshipAwareSearch",
+        "top_similarity": 0.3973407745361328,
+        "second_result": "RelationshipGraph",
+        "second_similarity": 0.3684470057487488,
+        "separation_margin": 0.028893768787384033,
+        "rank": -1,
+        "is_relevant": false,
+        "top_3_scores": [
+          [
+            "RelationshipAwareSearch",
+            0.3973
+          ],
+          [
+            "RelationshipGraph",
+            0.3684
+          ],
+          [
+            "PretrainedEmbeddingProvider",
+            0.3398
+          ]
+        ]
+      },
+      {
+        "query": "Where is the OAuth implementation?",
+        "expected": [
+          "OAuthClient"
+        ],
+        "top_result": "OAuthClient",
+        "top_similarity": 0.4888622760772705,
+        "second_result": "RelationshipAwareSearch",
+        "second_similarity": 0.39509764313697815,
+        "separation_margin": 0.09376463294029236,
+        "rank": 1,
+        "is_relevant": true,
+        "top_3_scores": [
+          [
+            "OAuthClient",
+            0.4889
+          ],
+          [
+            "RelationshipAwareSearch",
+            0.3951
+          ],
+          [
+            "AuthService",
+            0.3866
+          ]
+        ]
+      }
+    ]
+  }
+}
