@@ -39,6 +39,9 @@ struct SearchOptions {
     RankerType ranker_type{RankerType::Baseline};
     size_t max_results{100};
     optional<parser::ElementKind> kind_filter{nullopt};
+    string clean_query{};
+    vector<string> extra_lookup_terms{};
+    vector<string> technical_entities{};
 };
 
 /**

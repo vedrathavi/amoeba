@@ -84,18 +84,26 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
     }
 
     // 2. Extract categorized terms
-    std::vector<std::string> subject_terms = query_rep.subject_terms;
-    std::vector<std::string> action_terms = query_rep.action_terms;
-
-    // If query has no subject terms (pure inquiry/stopwords like "How is this implemented?")
-    if (subject_terms.empty()) {
-        // Fall back to all non-stopword content terms
+    std::vector<std::string> subject_terms;
+    if (!query_rep.distinguishing_subject_terms.empty()) {
+        subject_terms = query_rep.distinguishing_subject_terms;
+        for (const auto& gen : query_rep.generic_component_terms) {
+            if (std::find(subject_terms.begin(), subject_terms.end(), gen) == subject_terms.end()) {
+                subject_terms.push_back(gen);
+            }
+        }
+    } else if (!query_rep.subject_terms.empty()) {
+        subject_terms = query_rep.subject_terms;
+    } else {
         for (const auto& cat : query_rep.categorized_terms) {
-            if (cat.role != retrieval::QueryTermRole::Context) {
+            if (cat.role != retrieval::QueryTermRole::Context &&
+                cat.role != retrieval::QueryTermRole::ConversationalFraming) {
                 subject_terms.push_back(cat.normalized_stem);
             }
         }
     }
+
+    std::vector<std::string> action_terms = query_rep.action_terms;
 
     // 3. Evaluate Subject concept matches across retrieved evidence
     for (const auto& subj : subject_terms) {
@@ -234,7 +242,7 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
     if (top_result.provenance == retrieval::RetrievalProvenance::SemanticOnly) {
         if (result.matched_subjects.empty()) {
             result.is_sufficient = false;
-            result.confidence_score = top_result.normalized_semantic_score;
+            result.confidence_score = 0.0;
             result.reason = "Top candidate was retrieved purely through semantic similarity with "
                             "no subject keyword evidence.";
             return result;
@@ -242,7 +250,7 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         if (top_result.normalized_semantic_score < options.min_semantic_only_score &&
             subject_coverage <= 0.50) {
             result.is_sufficient = false;
-            result.confidence_score = top_result.normalized_semantic_score;
+            result.confidence_score = 0.0;
             result.reason = "Top candidate is semantic-only with low confidence and insufficient "
                             "subject concept coverage.";
             return result;
@@ -250,9 +258,27 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
     }
 
     // Rule C: Subject concept coverage ratio threshold
-    if (!subject_terms.empty() && subject_coverage < options.min_term_coverage) {
+    bool has_strong_primary_match = false;
+    for (const auto& item : bundle.items) {
+        for (const auto& te : query_rep.technical_entities) {
+            if (contains_case_insensitive(item.primary_element().name, te) ||
+                contains_case_insensitive(item.file_path().string(), te)) {
+                has_strong_primary_match = true;
+                break;
+            }
+        }
+        if (has_strong_primary_match) {
+            break;
+        }
+    }
+
+    const double effective_min_coverage = (has_strong_primary_match && !result.matched_subjects.empty())
+                                              ? std::min(0.50, options.min_term_coverage)
+                                              : options.min_term_coverage;
+
+    if (!subject_terms.empty() && subject_coverage < effective_min_coverage) {
         result.is_sufficient = false;
-        result.confidence_score = subject_coverage;
+        result.confidence_score = 0.0;
         result.reason = "Query subject concept coverage is below the required threshold.";
         return result;
     }
@@ -260,10 +286,11 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
     // Rule D: Top candidate retrieval score below minimum floor
     if (top_result.hybrid_score < options.min_top_score && result.matched_subjects.empty()) {
         result.is_sufficient = false;
-        result.confidence_score = top_result.hybrid_score;
+        result.confidence_score = 0.0;
         result.reason = "Top candidate retrieval score is below minimum threshold.";
         return result;
     }
+
 
     // Rule E: Evidence Identity Rule (Phase 7.6.1)
     // If the query contains at least one distinguishing domain subject term

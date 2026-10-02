@@ -170,12 +170,42 @@ public:
     /** @brief All primary RetrievalUnits (for inspection and testing). */
     [[nodiscard]] const std::vector<RetrievalUnit>& units() const noexcept { return units_; }
 
-    /** @brief The primary-only SemanticIndex (for inspection). */
+    /** @brief Semantic index accessor (for inspection and testing). */
     [[nodiscard]] const semantic::SemanticIndex& semantic_index() const noexcept {
         return semantic_index_;
     }
 
+    /** @brief Total cached element match keys in the lookup map. */
+    [[nodiscard]] std::size_t cached_element_match_count() const noexcept {
+        return elem_key_to_id_.size();
+    }
+
+
 private:
+    struct ElementMatchKey {
+        std::string file_path;
+        std::string name;
+        uint32_t start_line{0};
+        uint32_t start_col{0};
+
+        bool operator==(const ElementMatchKey& o) const noexcept {
+            return start_line == o.start_line && start_col == o.start_col && name == o.name &&
+                   file_path == o.file_path;
+        }
+    };
+
+    struct ElementMatchKeyHash {
+        std::size_t operator()(const ElementMatchKey& k) const noexcept {
+            const std::size_t h1 = std::hash<std::string>{}(k.file_path);
+            const std::size_t h2 = std::hash<std::string>{}(k.name);
+            const std::size_t h3 = std::hash<uint32_t>{}(k.start_line);
+            const std::size_t h4 = std::hash<uint32_t>{}(k.start_col);
+            return h1 ^ (h2 << 1) ^ (h3 << 2) ^ (h4 << 3);
+        }
+    };
+
+    using ElementToIdMap = std::unordered_map<ElementMatchKey, index::ElementId, ElementMatchKeyHash>;
+
     const index::InvertedIndex& index_;
     const semantic::EmbeddingProvider& provider_;
 
@@ -183,6 +213,10 @@ private:
     semantic::SemanticIndex semantic_index_;
     index::SearchEngine search_engine_;
     semantic::SemanticRetriever semantic_retriever_;
+
+    /// Cached lookup from (file_path, name, start_line, start_col) → InvertedIndex ElementId.
+    /// Built once at pipeline construction, eliminating per-query O(N) allocation overhead.
+    ElementToIdMap elem_key_to_id_;
 
     /// Maps InvertedIndex ElementId → index into units_ vector.
     /// Populated at construction for O(1) post-retrieval mapping.

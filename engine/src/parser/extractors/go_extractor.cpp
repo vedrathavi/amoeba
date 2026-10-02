@@ -30,12 +30,17 @@ void extract_go(TSNode node, string_view source, const string& current_class,
 
                 if (!type_name.empty()) {
                     const bool is_interface = (inner_type == "interface_type");
+                    string doc = extract_preceding_doc(node, source);
+                    string sig = is_interface ? "type " + type_name + " interface" : "type " + type_name + " struct";
                     out_elements.push_back(CodeElement{
                         .kind = is_interface ? ElementKind::Interface : ElementKind::Struct,
                         .name = type_name,
                         .location = get_node_range(spec),
                         .parent_context = current_class,
                         .detail = "",
+                        .signature = sig,
+                        .return_type = "",
+                        .documentation = doc,
                     });
                 }
             }
@@ -45,13 +50,29 @@ void extract_go(TSNode node, string_view source, const string& current_class,
     if (type == "function_declaration") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string func_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "result", 6);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
         if (!func_name.empty()) {
+            string sig = func_name + (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                sig += " " + ret_text;
+            }
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Function,
                 .name = func_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
-                .detail = "",
+                .detail = params_text,
+                .signature = sig,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
@@ -67,13 +88,29 @@ void extract_go(TSNode node, string_view source, const string& current_class,
         string method_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
         string recv_type = !ts_node_is_null(recv_node) ? get_node_text(recv_node, source) : "";
 
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "result", 6);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
         if (!method_name.empty()) {
+            string sig = (!recv_type.empty() ? recv_type + " " : "") + method_name +
+                         (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                sig += " " + ret_text;
+            }
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Method,
                 .name = method_name,
                 .location = get_node_range(node),
                 .parent_context = recv_type,
-                .detail = "",
+                .detail = params_text,
+                .signature = sig,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);

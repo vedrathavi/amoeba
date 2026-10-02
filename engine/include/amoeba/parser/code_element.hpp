@@ -100,6 +100,9 @@ struct CodeElement {
     SourceRange location;
     string parent_context;
     string detail;
+    string signature;
+    string return_type;
+    string documentation;
 
     [[nodiscard]] bool operator==(const CodeElement&) const = default;
 };

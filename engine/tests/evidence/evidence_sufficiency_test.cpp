@@ -271,3 +271,73 @@ TEST_F(EvidenceSufficiencyTest, SingleTermGenericQueryIsAcceptedWhenPresent) {
     EXPECT_TRUE(res.is_sufficient);
 }
 
+// ─── Phase 8.2.6 Regression Tests ────────────────────────────────────────────
+
+// 16. Correct code + conversational framing → ACCEPT
+TEST_F(EvidenceSufficiencyTest, CorrectCodeWithConversationalFramingIsAccepted) {
+    EvidenceBundle bundle;
+    bundle.query = "What are the trade-offs and how do I handle PostgreSQL pool connection timeout?";
+    bundle.items.push_back(create_item(
+        "PostgreSQLPool", "src/db/postgres_pool.cpp", 0.92, RetrievalProvenance::HybridBoth,
+        "class PostgreSQLPool { int connection_timeout_ms; void connect(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GE(res.confidence_score, 0.5);
+    EXPECT_FALSE(res.matched_subjects.empty());
+}
+
+// 17. Correct code + irrelevant generic terms → ACCEPT only when subject is grounded
+TEST_F(EvidenceSufficiencyTest, CorrectCodeWithIrrelevantGenericTermsAcceptedWhenSubjectGrounded) {
+    EvidenceBundle bundle;
+    bundle.query = "What is the best way to handle file work problem in WalkerConfig parser?";
+    bundle.items.push_back(create_item(
+        "WalkerConfig", "src/config/walker_config.cpp", 0.88, RetrievalProvenance::HybridBoth,
+        "struct WalkerConfig { std::string parse_config(const std::string& path); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GE(res.confidence_score, 0.5);
+}
+
+// 18. Unrelated code + generic overlap → REJECT
+TEST_F(EvidenceSufficiencyTest, UnrelatedCodeWithGenericOverlapIsRejected) {
+    EvidenceBundle bundle;
+    bundle.query = "How does the engine handle worker thread pool configuration?";
+    // Candidate only contains generic words: "handle", "configuration", but missing "worker", "thread", "pool"
+    bundle.items.push_back(create_item(
+        "GenericHandler", "src/ui/generic_handler.cpp", 0.65, RetrievalProvenance::SemanticOnly,
+        "void handle_configuration_change() { /* UI generic handler */ }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// 19. Unsupported domain subject → REJECT
+TEST_F(EvidenceSufficiencyTest, UnsupportedDomainSubjectIsRejected) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is the Kubernetes ingress controller configured?";
+    bundle.items.push_back(create_item(
+        "HttpRouter", "src/network/http_router.cpp", 0.55, RetrievalProvenance::SemanticOnly,
+        "class HttpRouter { void route_request(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// 20. Negative benchmark cases → still REFUSE
+TEST_F(EvidenceSufficiencyTest, NegativeBenchmarkCasesRefuseUnsupportedFeatures) {
+    EvidenceBundle bundle;
+    bundle.query = "How do I configure SAML 2.0 single sign-on authentication in Beszel?";
+    bundle.items.push_back(create_item(
+        "SimpleAuth", "src/auth/simple_auth.go", 0.60, RetrievalProvenance::SemanticOnly,
+        "func CheckPassword(user, pass string) bool { return true }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+

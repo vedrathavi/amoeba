@@ -41,8 +41,10 @@ enum class QueryTermRole : uint8_t {
               ///< "calendar", "state", "note", "month")
     Action,   ///< Inquiry action or verb describing the operation asked (e.g. "implemented",
               ///< "defined", "managed", "saved", "rendered", "navigate")
-    Context  ///< Interrogative, preposition, stopword, or grammatical context (e.g. "where", "how",
-             ///< "between", "in", "is")
+    Context,  ///< Interrogative, preposition, stopword, or grammatical context (e.g. "where", "how",
+              ///< "between", "in", "is")
+    ConversationalFraming,  ///< Conversational prose, framing, filler terms
+    TechnicalEntity         ///< Code identifier, camelCase/PascalCase, snake_case, dotted path
 };
 
 [[nodiscard]] constexpr std::string_view to_string(QueryTermRole role) noexcept {
@@ -53,9 +55,14 @@ enum class QueryTermRole : uint8_t {
         return "Action";
     case QueryTermRole::Context:
         return "Context";
+    case QueryTermRole::ConversationalFraming:
+        return "ConversationalFraming";
+    case QueryTermRole::TechnicalEntity:
+        return "TechnicalEntity";
     }
     return "Unknown";
 }
+
 
 /**
  * @brief Categorized query term with normalized stem and semantic role.
@@ -75,9 +82,13 @@ struct QueryRepresentation {
     std::string raw_query;
     std::string normalized_query;        ///< Lowercase, trimmed
     std::string collapsed_query;         ///< Lowercase with spaces/underscores/hyphens stripped
+    std::string clean_technical_query;   ///< Focused query containing technical terms & core subjects
     std::vector<std::string> raw_terms;  ///< Extracted word tokens
     std::vector<CategorizedQueryTerm> categorized_terms;  ///< Role-tagged terms
     std::vector<std::string> subject_terms;               ///< Normalized stems of Subject concepts
+    std::vector<std::string> technical_entities;          ///< Code identifiers, dotted paths, camelCase/snake_case symbols
+    std::vector<std::string> meaningful_domain_terms;     ///< Non-generic domain keywords
+    std::vector<std::string> conversational_noise_terms;  ///< Conversational prose, framing, filler terms
     std::vector<std::string> action_terms;  ///< Normalized stems of Action/inquiry verbs
     std::vector<std::string>
         distinguishing_subject_terms;  ///< Domain-qualifying subject terms (non-generic)
@@ -154,6 +165,16 @@ public:
      * @brief Checks if a term is an interrogative (e.g. "where", "how", "what", "which").
      */
     [[nodiscard]] static bool is_interrogative(std::string_view term) noexcept;
+
+    /**
+     * @brief Checks if a term is conversational noise / discussion framing.
+     */
+    [[nodiscard]] static bool is_conversational_noise(std::string_view term) noexcept;
+
+    /**
+     * @brief Checks if a term represents an exact technical code entity or symbol.
+     */
+    [[nodiscard]] static bool is_technical_entity(std::string_view term) noexcept;
 
     /**
      * @brief Classifies a single term into its semantic QueryTermRole.

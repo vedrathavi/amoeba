@@ -37,8 +37,34 @@ std::string SemanticTextFormatter::format(std::string_view language,
         oss << "Name: " << element.name << "\n";
     }
 
+    if (!element.signature.empty()) {
+        oss << "Signature: " << element.signature << "\n";
+        const auto lparen = element.signature.find('(');
+        const auto rparen = element.signature.rfind(')');
+        if (lparen != std::string::npos && rparen != std::string::npos && rparen > lparen) {
+            std::string_view params_view = std::string_view(element.signature).substr(lparen, rparen - lparen + 1);
+            if (params_view.size() > 2) {
+                oss << "Parameters: " << params_view << "\n";
+            }
+        }
+    }
+
     if (!element.detail.empty()) {
-        oss << "Detail: " << element.detail << "\n";
+        if (element.detail.starts_with("extends:") || element.detail.starts_with("implements:")) {
+            oss << "Inheritance: " << element.detail << "\n";
+        } else if (element.detail.front() == '(') {
+            oss << "Parameters: " << element.detail << "\n";
+        } else {
+            oss << "Detail: " << element.detail << "\n";
+        }
+    }
+
+    if (!element.return_type.empty()) {
+        oss << "ReturnType: " << element.return_type << "\n";
+    }
+
+    if (!element.documentation.empty()) {
+        oss << "Documentation: " << element.documentation << "\n";
     }
 
     if (mode == SemanticRepresentationMode::MetadataWithSnippet && !source_snippet.empty()) {
@@ -108,8 +134,31 @@ std::string SemanticTextFormatter::format_unit(const retrieval::RetrievalUnit& u
     if (!el.name.empty()) {
         oss << "Name: " << el.name << "\n";
     }
+    if (!el.signature.empty()) {
+        oss << "Signature: " << el.signature << "\n";
+        const auto lparen = el.signature.find('(');
+        const auto rparen = el.signature.rfind(')');
+        if (lparen != std::string::npos && rparen != std::string::npos && rparen > lparen) {
+            std::string_view params_view = std::string_view(el.signature).substr(lparen, rparen - lparen + 1);
+            if (params_view.size() > 2) {
+                oss << "Parameters: " << params_view << "\n";
+            }
+        }
+    }
     if (!el.detail.empty()) {
-        oss << "Detail: " << el.detail << "\n";
+        if (el.detail.starts_with("extends:") || el.detail.starts_with("implements:")) {
+            oss << "Inheritance: " << el.detail << "\n";
+        } else if (el.detail.front() == '(') {
+            oss << "Parameters: " << el.detail << "\n";
+        } else {
+            oss << "Detail: " << el.detail << "\n";
+        }
+    }
+    if (!el.return_type.empty()) {
+        oss << "ReturnType: " << el.return_type << "\n";
+    }
+    if (!el.documentation.empty()) {
+        oss << "Documentation: " << el.documentation << "\n";
     }
 
     // Selective supporting evidence summary.

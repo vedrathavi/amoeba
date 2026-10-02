@@ -124,6 +124,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
             }
         }
 
+        string doc = extract_preceding_doc(node, source);
+        string sig = "class " + class_name;
+
         if (!class_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Class,
@@ -131,6 +134,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = inheritance_detail,
+                .signature = sig,
+                .return_type = "",
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
@@ -170,6 +176,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
             }
         }
 
+        string doc = extract_preceding_doc(node, source);
+        string sig = "interface " + iface_name;
+
         if (!iface_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Interface,
@@ -177,6 +186,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = inheritance_detail,
+                .signature = sig,
+                .return_type = "",
+                .documentation = doc,
             });
         }
         return;
@@ -185,6 +197,7 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
     if (type == "type_alias_declaration") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string type_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+        string doc = extract_preceding_doc(node, source);
         if (!type_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Interface,
@@ -192,6 +205,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = "type " + type_name,
+                .return_type = "",
+                .documentation = doc,
             });
         }
         return;
@@ -200,8 +216,22 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
     if (type == "function_declaration" || type == "function") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string func_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "return_type", 11);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
         if (!func_name.empty()) {
             const bool is_comp = is_capitalized(func_name);
+            string sig = func_name + (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                sig += ": " + ret_text;
+            }
+
             out_elements.push_back(CodeElement{
                 .kind = is_comp ? ElementKind::Component
                                 : (!current_class.empty() ? ElementKind::Method
@@ -210,6 +240,9 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = is_comp ? "React Component" : "",
+                .signature = sig,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
@@ -223,13 +256,30 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
     if (type == "method_definition") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string method_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "return_type", 11);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
         if (!method_name.empty()) {
+            string sig = method_name + (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                sig += ": " + ret_text;
+            }
+
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Method,
                 .name = method_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = sig,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
@@ -249,12 +299,28 @@ void extract_js_ts(TSNode node, string_view source, const string& current_class,
             if (val_type == "arrow_function" || val_type == "function_expression" ||
                 val_type == "function") {
                 const bool is_comp = is_capitalized(var_name);
+
+                TSNode params_node = ts_node_child_by_field_name(value_node, "parameters", 10);
+                string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+                TSNode ret_node = ts_node_child_by_field_name(value_node, "return_type", 11);
+                string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+                string doc = extract_preceding_doc(node, source);
+                string sig = var_name + (params_text.empty() ? "()" : params_text);
+                if (!ret_text.empty()) {
+                    sig += ": " + ret_text;
+                }
+
                 out_elements.push_back(CodeElement{
                     .kind = is_comp ? ElementKind::Component : ElementKind::Function,
                     .name = var_name,
                     .location = get_node_range(node),
                     .parent_context = current_class,
                     .detail = is_comp ? "Arrow Component" : "",
+                    .signature = sig,
+                    .return_type = ret_text,
+                    .documentation = doc,
                 });
             }
         }

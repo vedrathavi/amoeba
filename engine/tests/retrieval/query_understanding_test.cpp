@@ -217,4 +217,36 @@ TEST(QueryUnderstandingTest, DistinguishingSubjectSeparation) {
               rep2.generic_component_terms.end());
 }
 
+TEST(QueryUnderstandingTest, TechnicalEntityExtraction) {
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("useCalendar"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("createAuthClient"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("HTMLDocumentBackend"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("after_agent_callback"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("JWT"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("MCP"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("OAuth2"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("traefik.yml"));
+    EXPECT_TRUE(QueryUnderstanding::is_technical_entity("Zoned::strftime"));
+
+    EXPECT_FALSE(QueryUnderstanding::is_technical_entity("how"));
+    EXPECT_FALSE(QueryUnderstanding::is_technical_entity("tradeoff"));
+    EXPECT_FALSE(QueryUnderstanding::is_technical_entity("problem"));
+}
+
+TEST(QueryUnderstandingTest, ConversationalNoiseSeparationAndCleanQuery) {
+    const std::string prompt = "Sequential Agent vs. LLM Agent in after_agent_callback - Architecture Trade-offs?";
+    const auto rep = QueryUnderstanding::analyze(prompt);
+
+    EXPECT_FALSE(rep.technical_entities.empty());
+    EXPECT_FALSE(rep.conversational_noise_terms.empty());
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "after_agent_callback"),
+              rep.technical_entities.end());
+    EXPECT_NE(std::find(rep.conversational_noise_terms.begin(), rep.conversational_noise_terms.end(), "trade-offs"),
+              rep.conversational_noise_terms.end());
+
+    // Clean technical query focuses on technical entities and core subjects
+    EXPECT_NE(rep.clean_technical_query.find("after_agent_callback"), std::string::npos);
+    EXPECT_EQ(rep.clean_technical_query.find("trade-offs"), std::string::npos);
+}
+
 }  // namespace

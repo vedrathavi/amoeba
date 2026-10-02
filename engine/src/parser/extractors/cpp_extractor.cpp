@@ -51,6 +51,33 @@ string extract_function_name(TSNode declarator_node, string_view source) {
     return get_node_text(declarator_node, source);
 }
 
+string extract_cpp_parameters(TSNode declarator_node, string_view source) {
+    TSNode current = declarator_node;
+    while (!ts_node_is_null(current)) {
+        TSNode params_node = ts_node_child_by_field_name(current, "parameters", 10);
+        if (!ts_node_is_null(params_node)) {
+            return get_node_text(params_node, source);
+        }
+        const uint32_t count = ts_node_named_child_count(current);
+        bool found = false;
+        for (uint32_t i = 0; i < count; ++i) {
+            TSNode child = ts_node_named_child(current, i);
+            const string_view c_type = ts_node_type(child);
+            if (c_type == "parameter_list") {
+                return get_node_text(child, source);
+            }
+            if (c_type == "function_declarator" || c_type == "parenthesized_declarator" ||
+                c_type == "pointer_declarator" || c_type == "reference_declarator") {
+                current = child;
+                found = true;
+                break;
+            }
+        }
+        if (!found) break;
+    }
+    return "";
+}
+
 }  // namespace
 
 void extract_cpp(TSNode node, string_view source, const string& current_class,
@@ -122,6 +149,9 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
             }
         }
 
+        string doc = extract_preceding_doc(node, source);
+        string sig = (is_class ? "class " : "struct ") + type_name;
+
         if (!type_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = is_class ? ElementKind::Class : ElementKind::Struct,
@@ -129,6 +159,9 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = inheritance_detail,
+                .signature = sig,
+                .return_type = "",
+                .documentation = doc,
             });
         }
 
@@ -147,7 +180,19 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
         string func_name =
             !ts_node_is_null(declarator) ? extract_function_name(declarator, source) : "";
 
+        TSNode type_node = ts_node_child_by_field_name(node, "type", 4);
+        string ret_type = !ts_node_is_null(type_node) ? get_node_text(type_node, source) : "";
+
+        string params_text = !ts_node_is_null(declarator) ? extract_cpp_parameters(declarator, source) : "";
+        string doc = extract_preceding_doc(node, source);
+
+        string sig;
         if (!func_name.empty()) {
+            if (!ret_type.empty()) {
+                sig = ret_type + " ";
+            }
+            sig += func_name + (params_text.empty() ? "()" : params_text);
+
             const bool is_method = !current_class.empty() || func_name.find("::") != string::npos;
             out_elements.push_back(CodeElement{
                 .kind = is_method ? ElementKind::Method : ElementKind::Function,
@@ -155,6 +200,9 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = sig,
+                .return_type = ret_type,
+                .documentation = doc,
             });
         }
 
@@ -172,6 +220,17 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
             if (decl_type == "function_declarator" ||
                 !ts_node_is_null(ts_node_child_by_field_name(declarator, "parameters", 10))) {
                 string method_name = extract_function_name(declarator, source);
+                TSNode type_node = ts_node_child_by_field_name(node, "type", 4);
+                string ret_type = !ts_node_is_null(type_node) ? get_node_text(type_node, source) : "";
+                string params_text = extract_cpp_parameters(declarator, source);
+                string doc = extract_preceding_doc(node, source);
+
+                string sig;
+                if (!ret_type.empty()) {
+                    sig = ret_type + " ";
+                }
+                sig += method_name + (params_text.empty() ? "()" : params_text);
+
                 if (!method_name.empty()) {
                     out_elements.push_back(CodeElement{
                         .kind =
@@ -180,6 +239,9 @@ void extract_cpp(TSNode node, string_view source, const string& current_class,
                         .location = get_node_range(node),
                         .parent_context = current_class,
                         .detail = "",
+                        .signature = sig,
+                        .return_type = ret_type,
+                        .documentation = doc,
                     });
                 }
             }

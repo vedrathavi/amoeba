@@ -762,4 +762,124 @@ TEST_F(PrimaryRetrievalPipelineTest, MetricsAreInternallyConsistent) {
     EXPECT_GE(metrics.semantic_ms, 0.0);
 }
 
+// Test 17: Phase 8.2.6 — ElementKeyMap is built once at construction and reused across queries
+TEST_F(PrimaryRetrievalPipelineTest, ElementKeyMapIsBuiltOnceAndReusedAcrossQueries) {
+    auto f1 = parser_.parse_source("function alpha() { return 1; }\n"
+                                   "function beta() { return 2; }\n",
+                                   "TypeScript", "src/math.ts");
+    auto f2 = parser_.parse_source("class WorkerThread {\n"
+                                   "    run() { return true; }\n"
+                                   "}\n",
+                                   "TypeScript", "src/worker.ts");
+    ASSERT_TRUE(f1.success);
+    ASSERT_TRUE(f2.success);
+
+    auto idx = build_index({f1, f2});
+    const parser::ParsedFile files[] = {f1, f2};
+    PrimaryRetrievalPipeline pipeline(files, idx, provider_);
+
+    // 1. Initial cached count matches index elements
+    const size_t initial_cached_count = pipeline.cached_element_match_count();
+    EXPECT_GT(initial_cached_count, 0u);
+    EXPECT_EQ(initial_cached_count, idx.element_count());
+
+    // 2. Perform multiple successive queries
+    for (int i = 0; i < 5; ++i) {
+        PipelineMetrics metrics;
+        auto res = pipeline.search_with_metrics("worker run", {}, metrics);
+        EXPECT_FALSE(res.empty());
+        // Map size should remain strictly identical and not reallocated/mutated
+        EXPECT_EQ(pipeline.cached_element_match_count(), initial_cached_count);
+    }
+}
+
+// ─── Phase 8.2.7 Unified Lexical Retrieval Tests ─────────────────────────────
+
+// Test 18: Phase 8.2.7 — Unknown vocabulary remains 100% reachable
+TEST_F(PrimaryRetrievalPipelineTest, Phase827_UnknownVocabularyReachability) {
+    auto f = parser_.parse_source("class FlibbertigibbetLifecycle {\n"
+                                  "    initializeState() { return true; }\n"
+                                  "}\n",
+                                  "TypeScript", "src/flibbertigibbet.ts");
+    ASSERT_TRUE(f.success);
+
+    auto idx = build_index({f});
+    const parser::ParsedFile files[] = {f};
+    PrimaryRetrievalPipeline pipeline(files, idx, provider_);
+
+    // "flibbertigibbet" is an unknown word not in any hardcoded dictionary
+    auto results = pipeline.search("flibbertigibbet lifecycle");
+    ASSERT_FALSE(results.empty());
+    EXPECT_EQ(results[0].unit.primary_element.name, "FlibbertigibbetLifecycle");
+    EXPECT_EQ(results[0].unit.role, RetrievalUnitRole::Primary);
+    EXPECT_GT(results[0].lexical_score, 0.0);
+}
+
+// Test 19: Phase 8.2.7 — Conversational query preserves clean technical query precision
+TEST_F(PrimaryRetrievalPipelineTest, Phase827_ConversationalWithCleanQuerySignalPreservation) {
+    auto f1 = parser_.parse_source("class EvaluatorSettings {\n"
+                                   "    parseSettings() { return true; }\n"
+                                   "}\n",
+                                   "Java", "src/EvaluatorSettings.java");
+    auto f2 = parser_.parse_source("class RandomCommentHelper {\n"
+                                   "    helper() {}\n"
+                                   "}\n",
+                                   "Java", "src/RandomCommentHelper.java");
+    ASSERT_TRUE(f1.success);
+    ASSERT_TRUE(f2.success);
+
+    auto idx = build_index({f1, f2});
+    const parser::ParsedFile files[] = {f1, f2};
+    PrimaryRetrievalPipeline pipeline(files, idx, provider_);
+
+    // Conversational query with lots of noise words
+    auto results = pipeline.search("In Apple Pkl, how are evaluator settings parsed and passed to the evaluator?");
+    ASSERT_FALSE(results.empty());
+    EXPECT_EQ(results[0].unit.file_path, "src/EvaluatorSettings.java");
+    EXPECT_TRUE(results[0].unit.primary_element.name == "EvaluatorSettings" ||
+                results[0].unit.primary_element.name == "parseSettings");
+}
+
+// Test 20: Phase 8.2.7 — No first-hit-wins suppression (best score and rank retained)
+TEST_F(PrimaryRetrievalPipelineTest, Phase827_NoFirstHitWinsSuppression) {
+    auto f = parser_.parse_source("function processCache() {\n"
+                                  "    const v = store.lookupKey();\n"
+                                  "    return cache.evictExpiredEntries();\n"
+                                  "}\n",
+                                  "TypeScript", "src/cache.ts");
+    ASSERT_TRUE(f.success);
+
+    auto idx = build_index({f});
+    const parser::ParsedFile files[] = {f};
+    PrimaryRetrievalPipeline pipeline(files, idx, provider_);
+
+    // Search query matching both specific supporting call and primary function
+    auto results = pipeline.search("process cache evict expired entries lookup key");
+    ASSERT_FALSE(results.empty());
+    EXPECT_EQ(results[0].unit.primary_element.name, "processCache");
+    EXPECT_GT(results[0].lexical_score, 0.0);
+    EXPECT_EQ(results[0].lexical_rank, 1u);
+}
+
+// Test 21: Phase 8.2.7 — Single lexical traversal execution metrics
+TEST_F(PrimaryRetrievalPipelineTest, Phase827_SingleLexicalTraversalExecutionMetrics) {
+    auto f = parser_.parse_source("class MetadataStore {\n"
+                                  "    fetchMetadata() { return {}; }\n"
+                                  "}\n",
+                                  "TypeScript", "src/store.ts");
+    ASSERT_TRUE(f.success);
+
+    auto idx = build_index({f});
+    const parser::ParsedFile files[] = {f};
+    PrimaryRetrievalPipeline pipeline(files, idx, provider_);
+
+    PipelineMetrics metrics;
+    auto results = pipeline.search_with_metrics("Where is the metadata store defined?", {}, metrics);
+    ASSERT_FALSE(results.empty());
+    EXPECT_GT(metrics.lexical_candidates, 0u);
+    EXPECT_LE(metrics.final_results, metrics.fused_candidates);
+    EXPECT_GE(metrics.lexical_ms, 0.0);
+}
+
 }  // namespace amoeba::retrieval
+

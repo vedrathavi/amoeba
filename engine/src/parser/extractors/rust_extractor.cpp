@@ -21,6 +21,8 @@ void extract_rust(TSNode node, string_view source, const string& current_class,
         const bool is_trait = (type == "trait_item");
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+        string doc = extract_preceding_doc(node, source);
+        string sig = (is_trait ? "trait " : (type == "enum_item" ? "enum " : "struct ")) + name;
         if (!name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = is_trait ? ElementKind::Interface : ElementKind::Struct,
@@ -28,6 +30,9 @@ void extract_rust(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = sig,
+                .return_type = "",
+                .documentation = doc,
             });
         }
 
@@ -57,13 +62,29 @@ void extract_rust(TSNode node, string_view source, const string& current_class,
     if (type == "function_item" || type == "function_signature_item") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string func_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "return_type", 11);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
         if (!func_name.empty()) {
+            string sig = func_name + (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                sig += " -> " + ret_text;
+            }
             out_elements.push_back(CodeElement{
                 .kind = !current_class.empty() ? ElementKind::Method : ElementKind::Function,
                 .name = func_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
-                .detail = "",
+                .detail = params_text,
+                .signature = sig,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);

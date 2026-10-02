@@ -1,0 +1,122 @@
+[
+  {
+    "repo_name": "duckdb/ducklake",
+    "owner": "duckdb",
+    "repository_url": "https://github.com/duckdb/ducklake.git",
+    "language": "C++",
+    "stars": 2374,
+    "size_category": "Medium",
+    "snapshot_commit": "c16de934130a7aa6c2d88a97acba935450276633",
+    "repoprobe_source_csv": "ducklake.csv",
+    "local_path": "benchmarks/repositories/ducklake",
+    "selection_rationale": "High-performance C++20 database extension implementing Lakehouse table format with DuckDB integration, transaction logs, and storage engine."
+  },
+  {
+    "repo_name": "google/adk-python",
+    "owner": "google",
+    "repository_url": "https://github.com/google/adk-python.git",
+    "language": "Python",
+    "stars": 16906,
+    "size_category": "Medium",
+    "snapshot_commit": "56775afc48ee54e9cbea441a6e0fa6c8a12891b9",
+    "repoprobe_source_csv": "adk-python.csv",
+    "local_path": "benchmarks/repositories/adk-python",
+    "selection_rationale": "Modern Python agent framework featuring asynchronous workflows, tool abstraction, MCP protocol, and agent orchestration."
+  },
+  {
+    "repo_name": "better-auth/better-auth",
+    "owner": "better-auth",
+    "repository_url": "https://github.com/better-auth/better-auth.git",
+    "language": "TypeScript",
+    "stars": 24695,
+    "size_category": "Large",
+    "snapshot_commit": "d343b34cf6c0383d0a5833976632462b192dbc1e",
+    "repoprobe_source_csv": "better-auth.csv",
+    "local_path": "benchmarks/repositories/better-auth",
+    "selection_rationale": "Comprehensive TypeScript authentication and session engine supporting multi-provider OAuth, plugin architectures, and token management."
+  },
+  {
+    "repo_name": "Dokploy/dokploy",
+    "owner": "Dokploy",
+    "repository_url": "https://github.com/Dokploy/dokploy.git",
+    "language": "TypeScript",
+    "stars": 28697,
+    "size_category": "Medium",
+    "snapshot_commit": "6e67864204035054822c2e6b69b5185cb1e670ff",
+    "repoprobe_source_csv": "dokploy.csv",
+    "local_path": "benchmarks/repositories/dokploy",
+    "selection_rationale": "Full-stack application deployment and container orchestration platform with Traefik ingress, Next.js UI, and server management."
+  },
+  {
+    "repo_name": "apple/pkl",
+    "owner": "apple",
+    "repository_url": "https://github.com/apple/pkl.git",
+    "language": "Java",
+    "stars": 10991,
+    "size_category": "Large",
+    "snapshot_commit": "35861240a061504374411f87df13d7bf88466f36",
+    "repoprobe_source_csv": "pkl.csv",
+    "local_path": "benchmarks/repositories/pkl",
+    "selection_rationale": "Apple configuration-as-code compiler, runtime, and type evaluation system in Java with parser, AST, and module loaders."
+  },
+  {
+    "repo_name": "henrygd/beszel",
+    "owner": "henrygd",
+    "repository_url": "https://github.com/henrygd/beszel.git",
+    "language": "Go",
+    "stars": 18289,
+    "size_category": "Medium",
+    "snapshot_commit": "2bd85e04fca688a6a1922e1bf4098fcd808c0273",
+    "repoprobe_source_csv": "beszel.csv",
+    "local_path": "benchmarks/repositories/beszel",
+    "selection_rationale": "Lightweight systems monitoring hub and agent in Go, demonstrating metrics collection, REST APIs, daemon persistence, and alerting."
+  },
+  {
+    "repo_name": "opencloud-eu/opencloud",
+    "owner": "opencloud-eu",
+    "repository_url": "https://github.com/opencloud-eu/opencloud.git",
+    "language": "Go",
+    "stars": 4509,
+    "size_category": "Large",
+    "snapshot_commit": "941aa689d2c2ebb53832b3b2f02beebeda1b26d9",
+    "repoprobe_source_csv": "opencloud.csv",
+    "local_path": "benchmarks/repositories/opencloud",
+    "selection_rationale": "Microservice cloud file storage, synchronization, and sharing system in Go featuring multi-service gRPC, search, and storage engines."
+  },
+  {
+    "repo_name": "BurntSushi/jiff",
+    "owner": "BurntSushi",
+    "repository_url": "https://github.com/BurntSushi/jiff.git",
+    "language": "Rust",
+    "stars": 2512,
+    "size_category": "Medium",
+    "snapshot_commit": "53708b9b6e7e329e3d46e91fd8b5266adc3b4f40",
+    "repoprobe_source_csv": "jiff.csv",
+    "local_path": "benchmarks/repositories/jiff",
+    "selection_rationale": "High-performance, high-precision datetime and timezone library in Rust by BurntSushi, emphasizing calendar arithmetic, formatting, and ISO parsing."
+  },
+  {
+    "repo_name": "abenz1267/walker",
+    "owner": "abenz1267",
+    "repository_url": "https://github.com/abenz1267/walker.git",
+    "language": "Rust",
+    "stars": 2318,
+    "size_category": "Small/Medium",
+    "snapshot_commit": "1395d9205253c7038698e1dcca9c4d1d7dfd567b",
+    "repoprobe_source_csv": "walker.csv",
+    "local_path": "benchmarks/repositories/walker",
+    "selection_rationale": "Fast Wayland application launcher and menu runner in Rust, showing plugin modules, clipboard management, and Dmenu interaction."
+  },
+  {
+    "repo_name": "docling-project/docling",
+    "owner": "docling-project",
+    "repository_url": "https://github.com/docling-project/docling.git",
+    "language": "Python",
+    "stars": 48782,
+    "size_category": "Large",
+    "snapshot_commit": "be085c0e39dd5c51572b883d0f795c5a7abefd5d",
+    "repoprobe_source_csv": "docling.csv",
+    "local_path": "benchmarks/repositories/docling",
+    "selection_rationale": "Comprehensive document parsing, OCR layout extraction, chunking, and conversion library for PDF, DOCX, and HTML."
+  }
+]

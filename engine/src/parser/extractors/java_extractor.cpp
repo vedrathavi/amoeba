@@ -88,6 +88,9 @@ void extract_java(TSNode node, string_view source, const string& current_class,
             }
         }
 
+        string doc = extract_preceding_doc(node, source);
+        string sig = (is_interface ? "interface " : "class ") + class_name;
+
         if (!class_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = is_interface ? ElementKind::Interface : ElementKind::Class,
@@ -95,6 +98,9 @@ void extract_java(TSNode node, string_view source, const string& current_class,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = inheritance_detail,
+                .signature = sig,
+                .return_type = "",
+                .documentation = doc,
             });
         }
 
@@ -111,13 +117,31 @@ void extract_java(TSNode node, string_view source, const string& current_class,
     if (type == "method_declaration" || type == "constructor_declaration") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string method_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode type_node = ts_node_child_by_field_name(node, "type", 4);
+        string ret_type = !ts_node_is_null(type_node) ? get_node_text(type_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        string doc = extract_preceding_doc(node, source);
+
+        string sig;
         if (!method_name.empty()) {
+            if (!ret_type.empty()) {
+                sig = ret_type + " ";
+            }
+            sig += method_name + (params_text.empty() ? "()" : params_text);
+
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Method,
                 .name = method_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = sig,
+                .return_type = ret_type,
+                .documentation = doc,
             });
         }
         TSNode body_node = ts_node_child_by_field_name(node, "body", 4);

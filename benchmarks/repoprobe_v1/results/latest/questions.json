@@ -1,0 +1,4139 @@
+[
+  {
+    "question_id": "ducklake-0",
+    "repository": "duckdb/ducklake",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/include/storage/ducklake_macro_entry.hpp",
+      "src/include/storage/ducklake_schema_entry.hpp",
+      "src/storage/ducklake_catalog.cpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeMacroEntry",
+      "DuckLakeCatalog",
+      "DuckLakeSchemaEntry"
+    ],
+    "expected_relationships": [
+      "DuckLakeCatalog -> DuckLakeSchemaEntry"
+    ],
+    "expected_concepts": [
+      "Catalog macro persistence",
+      "Schema catalog entries",
+      "Function/Macro storage scope"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/scripts/bootstrap-template.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_compaction_functions.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_add_data_files.cpp"
+    ],
+    "retrieved_symbols": [
+      "DuckLakeInlineData::OperatorFinalize",
+      "InlineDataGlobalState",
+      "replace_everywhere",
+      "operator()",
+      "DuckLakeFileProcessor::ReadParquetFullMetadata"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 545.069,
+    "retrieval_latency_ms": 528.429,
+    "sufficiency_latency_ms": 11.6676,
+    "reasoning_latency_ms": 0.0454,
+    "total_latency_ms": 545.069,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "ducklake-1",
+    "repository": "duckdb/ducklake",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/include/storage/ducklake_insert.hpp",
+      "src/storage/ducklake_insert.cpp",
+      "src/include/storage/ducklake_flush_data.hpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeInsert",
+      "DuckLakeFlushData",
+      "DuckLakeTableEntry"
+    ],
+    "expected_relationships": [
+      "DuckLakeInsert -> DuckLakeFlushData"
+    ],
+    "expected_concepts": [
+      "JDBC dataframe write",
+      "Parquet file generation per row/batch",
+      "Transaction flush"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_add_data_files.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp"
+    ],
+    "retrieved_symbols": [
+      "AddFileToTable",
+      "MacroIndex",
+      "table_size_bytes",
+      "GetFilesForCleanup",
+      "IsValid"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 622.05,
+    "retrieval_latency_ms": 610.636,
+    "sufficiency_latency_ms": 8.5216,
+    "reasoning_latency_ms": 0.021,
+    "total_latency_ms": 622.05,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "ducklake-2",
+    "repository": "duckdb/ducklake",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/functions/ducklake_list_files.cpp",
+      "src/include/functions/ducklake_table_functions.hpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeListFilesFunction",
+      "ducklake_list_files"
+    ],
+    "expected_relationships": [
+      "ducklake_list_files -> DuckLakeTableEntry"
+    ],
+    "expected_concepts": [
+      "Listing snapshot parquet files",
+      "Deletion files tracking",
+      "Table function output"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_cleanup_files.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/ducklake_data_file.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp"
+    ],
+    "retrieved_symbols": [
+      "Copy",
+      "LoadMacroImplementations",
+      "CleanupBind",
+      "DuckLakeFilePartition",
+      "DuckLakeMetadataManager::GetFilesDeletedOrDroppedAfterSnapshot"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 285.035,
+    "retrieval_latency_ms": 278.927,
+    "sufficiency_latency_ms": 1.131,
+    "reasoning_latency_ms": 0.028,
+    "total_latency_ms": 285.035,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "ducklake-3",
+    "repository": "duckdb/ducklake",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/include/metadata_manager/postgres_metadata_manager.hpp",
+      "src/metadata_manager/postgres_metadata_manager.cpp"
+    ],
+    "expected_symbols": [
+      "PostgresMetadataManager"
+    ],
+    "expected_relationships": [
+      "DuckLakeCatalog -> PostgresMetadataManager"
+    ],
+    "expected_concepts": [
+      "PostgreSQL metadata schema specification",
+      "Catalog database schema config",
+      "Public schema default"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/ducklake_snapshot.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp"
+    ],
+    "retrieved_symbols": [
+      "DuckLakeSnapshot",
+      "DuckLakeTransaction::CheckForConflicts",
+      "DuckLakeTransaction::GetLocalCatalogId",
+      "null_count",
+      "UpdateStats"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 541.943,
+    "retrieval_latency_ms": 527.536,
+    "sufficiency_latency_ms": 9.2783,
+    "reasoning_latency_ms": 0.0268,
+    "total_latency_ms": 541.943,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-ducklake-01",
+    "repository": "duckdb/ducklake",
+    "source": "amoeba_designed",
+    "taxonomy": "Symbol Lookup",
+    "difficulty": "1",
+    "expected_files": [
+      "src/include/storage/ducklake_transaction.hpp",
+      "src/storage/ducklake_transaction.cpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeTransaction",
+      "DuckLakeTransactionManager"
+    ],
+    "expected_relationships": [
+      "DuckLakeTransaction -> DuckLakeCatalog"
+    ],
+    "expected_concepts": [
+      "Transaction management",
+      "ACID snapshot",
+      "Catalog metadata"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_multi_file_list.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/functions/ducklake_table_functions.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp"
+    ],
+    "retrieved_symbols": [
+      "GetSnapshot",
+      "DuckLakeMultiFileList::IsDeleteScan",
+      "DuckLakeTableDeletionsFunction",
+      "GetNewTable",
+      "CreateNumericStats"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 519.558,
+    "retrieval_latency_ms": 513.12,
+    "sufficiency_latency_ms": 1.0038,
+    "reasoning_latency_ms": 0.0242,
+    "total_latency_ms": 519.558,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-ducklake-02",
+    "repository": "duckdb/ducklake",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "src/ducklake_extension.cpp",
+      "src/include/storage/ducklake_secret.hpp",
+      "src/storage/ducklake_secret.cpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeExtension",
+      "CreateDuckLakeSecretFunction",
+      "RegisterSecret"
+    ],
+    "expected_relationships": [
+      "DuckLakeExtension.Load -> RegisterSecret"
+    ],
+    "expected_concepts": [
+      "DuckDB extension configuration",
+      "S3 secret provider",
+      "Storage configuration options"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_stats.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp"
+    ],
+    "retrieved_symbols": [
+      "null_count",
+      "GetAllSnapshots",
+      "GetFilesForCleanup",
+      "min_val",
+      "WriteNewViews"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 776.844,
+    "retrieval_latency_ms": 773.181,
+    "sufficiency_latency_ms": 0.8065,
+    "reasoning_latency_ms": 0.0296,
+    "total_latency_ms": 776.844,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "adk-python-0",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/tools/mcp_tool/mcp_tool.py",
+      "src/google/adk/tools/mcp_tool/mcp_session_manager.py"
+    ],
+    "expected_symbols": [
+      "McpTool",
+      "McpSessionManager",
+      "McpToolset"
+    ],
+    "expected_relationships": [
+      "McpToolset -> McpSessionManager"
+    ],
+    "expected_concepts": [
+      "SEP-1686 background tasks",
+      "MCP protocol compliance",
+      "Asynchronous task execution"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/models/lite_llm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/tools/computer_use/computer_use_tool.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/models/test_google_llm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/test_runners.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/evaluation/test_evaluation_generator.py"
+    ],
+    "retrieved_symbols": [
+      "LiteLlm",
+      "__init__",
+      "test_generate_content_async_with_custom_headers",
+      "RunnerWithMismatch",
+      "TestGenerateInferencesForSingleUserInvocation"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 10010.3,
+    "retrieval_latency_ms": 9778.95,
+    "sufficiency_latency_ms": 172.158,
+    "reasoning_latency_ms": 0.3745,
+    "total_latency_ms": 10010.3,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "adk-python-1",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/agents/llm_agent.py",
+      "src/google/adk/agents/base_agent.py"
+    ],
+    "expected_symbols": [
+      "LlmAgent",
+      "BaseAgent",
+      "after_agent_callback"
+    ],
+    "expected_relationships": [
+      "LlmAgent -> after_agent_callback"
+    ],
+    "expected_concepts": [
+      "Sequential Agent vs LLM Agent trade-offs",
+      "Callback execution flow",
+      "Agent orchestration latency"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/cli/utils/test_cli_tools_click.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/evaluation/test_gcs_eval_sets_manager.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/plugins/bigquery_agent_analytics_plugin.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/contributing/samples/gepa/tau_bench_agent.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/plugins/test_base_plugin.py"
+    ],
+    "retrieved_symbols": [
+      "test_cli_deploy_cloud_run_rejects_args_before_separator",
+      "test_gcs_eval_sets_manager_get_eval_case_success",
+      "after_agent_callback",
+      "on_model_error_callback",
+      "after_agent_callback"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 2015.32,
+    "retrieval_latency_ms": 2005.67,
+    "sufficiency_latency_ms": 0.6637,
+    "reasoning_latency_ms": 0.0443,
+    "total_latency_ms": 2015.32,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "adk-python-2",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/flows/llm_flows/agent_transfer.py",
+      "src/google/adk/agents/llm_agent.py"
+    ],
+    "expected_symbols": [
+      "agent_transfer",
+      "LlmAgent"
+    ],
+    "expected_relationships": [
+      "LlmAgent -> agent_transfer"
+    ],
+    "expected_concepts": [
+      "Agent delegation",
+      "State preservation across transfer",
+      "Context passing"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/code_executors/container_code_executor.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/models/test_litellm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/auth/auth_handler.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/loop_agent.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/cli/test_fast_api.py"
+    ],
+    "retrieved_symbols": [
+      "ContainerCodeExecutor",
+      "test_message_to_generate_content_response_reasoning_content",
+      "generate_auth_uri",
+      "_get_start_state",
+      "test_debug_trace"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 10033.2,
+    "retrieval_latency_ms": 10003.7,
+    "sufficiency_latency_ms": 16.8071,
+    "reasoning_latency_ms": 0.0158,
+    "total_latency_ms": 10033.2,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "adk-python-3",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/runners.py",
+      "src/google/adk/agents/base_agent.py"
+    ],
+    "expected_symbols": [
+      "AgentRunner",
+      "BaseAgent"
+    ],
+    "expected_relationships": [
+      "AgentRunner.run -> BaseAgent.execute"
+    ],
+    "expected_concepts": [
+      "Agent execution loop",
+      "Turn management",
+      "Tool execution dispatch"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/evaluation/local_eval_sets_manager.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/flows/llm_flows/test_request_confirmation.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/flows/llm_flows/test_plugin_tool_callbacks.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/evaluation/test_evaluation_generator.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/plugins/global_instruction_plugin.py"
+    ],
+    "retrieved_symbols": [
+      "list_eval_sets",
+      "test_request_confirmation_processor_success",
+      "mock_tool",
+      "mock_generate_inferences_side_effect",
+      "GlobalInstructionPlugin"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 11362.4,
+    "retrieval_latency_ms": 11305.4,
+    "sufficiency_latency_ms": 45.2121,
+    "reasoning_latency_ms": 0.0579,
+    "total_latency_ms": 11362.4,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "adk-python-4",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/tools/base_tool.py",
+      "src/google/adk/tools/mcp_tool/mcp_tool.py"
+    ],
+    "expected_symbols": [
+      "BaseTool",
+      "McpTool"
+    ],
+    "expected_relationships": [
+      "McpTool -> BaseTool"
+    ],
+    "expected_concepts": [
+      "Tool declaration schema",
+      "Parameter validation",
+      "Tool execution error handling"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/tools/openapi_tool/openapi_spec_parser/test_tool_auth_handler.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/auth/exchanger/oauth2_credential_exchanger.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/auth/exchanger/base_credential_exchanger.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/tools/openapi_tool/openapi_spec_parser/tool_auth_handler.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/tools/openapi_tool/auth/credential_exchangers/test_auto_auth_credential_exchanger.py"
+    ],
+    "retrieved_symbols": [
+      "exchange_credential",
+      "_exchange_client_credentials",
+      "exchange",
+      "get_credential",
+      "exchange_credential"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 8818.73,
+    "retrieval_latency_ms": 8796.45,
+    "sufficiency_latency_ms": 7.2033,
+    "reasoning_latency_ms": 0.0128,
+    "total_latency_ms": 8818.73,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "adk-python-5",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/agents/mcp_instruction_provider.py",
+      "src/google/adk/agents/llm_agent.py"
+    ],
+    "expected_symbols": [
+      "McpInstructionProvider",
+      "LlmAgent"
+    ],
+    "expected_relationships": [
+      "LlmAgent -> McpInstructionProvider"
+    ],
+    "expected_concepts": [
+      "System prompt injection",
+      "Dynamic instruction rendering",
+      "Context composition"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/llm_agent.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/evaluation/_eval_sets_manager_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/config_agent_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/utils/instructions_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/sequential_agent.py"
+    ],
+    "retrieved_symbols": [
+      "_get_subagent_to_resume",
+      "add_eval_case_to_eval_set",
+      "resolve_fully_qualified_name",
+      "_is_valid_state_name",
+      "_get_start_index"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 11788.1,
+    "retrieval_latency_ms": 11286.6,
+    "sufficiency_latency_ms": 461.426,
+    "reasoning_latency_ms": 0.0518,
+    "total_latency_ms": 11788.1,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "amoeba-adk-python-01",
+    "repository": "google/adk-python",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "src/google/adk/agents/llm_agent.py",
+      "src/google/adk/runners.py"
+    ],
+    "expected_symbols": [
+      "after_agent_callback",
+      "AgentRunner",
+      "LlmAgent"
+    ],
+    "expected_relationships": [
+      "AgentRunner.run -> after_agent_callback"
+    ],
+    "expected_concepts": [
+      "Callback lifecycle",
+      "Post-agent execution hook"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/cli/test_fast_api.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/plugins/logging_plugin.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/a2a/executor/a2a_agent_executor.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/cli/test_fast_api.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/contributing/samples/plugin_basic/main.py"
+    ],
+    "retrieved_symbols": [
+      "test_create_eval_set",
+      "after_agent_callback",
+      "__init__",
+      "test_session_info",
+      "hello_world"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 9116.43,
+    "retrieval_latency_ms": 9105.02,
+    "sufficiency_latency_ms": 0.5614,
+    "reasoning_latency_ms": 0.0245,
+    "total_latency_ms": 9116.43,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-adk-python-02",
+    "repository": "google/adk-python",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "expected_files": [],
+    "expected_symbols": [],
+    "expected_relationships": [],
+    "expected_concepts": [
+      "Unsupported feature",
+      "Core framework scope",
+      "No native Qdrant engine"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/streaming/test_live_streaming_configs.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/contributing/samples/adk_issue_formatting_agent/agent.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/runners.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/tests/unittests/models/test_litellm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/contributing/samples/authn-adk-all-in-one/hotel_booker_app/main.py"
+    ],
+    "retrieved_symbols": [
+      "test_streaming_with_session_resumption_config",
+      "get_issue",
+      "_find_agent_to_run",
+      "test_generate_content_async_stream_with_usage_metadata",
+      "get_details"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 8560.11,
+    "retrieval_latency_ms": 8513.96,
+    "sufficiency_latency_ms": 1.9143,
+    "reasoning_latency_ms": 0.0091,
+    "total_latency_ms": 8560.11,
+    "failure_category": "none",
+    "diagnostic_explanation": "Correctly triggered grounded refusal on absent repository feature."
+  },
+  {
+    "question_id": "better-auth-0",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/api/routes/session.ts",
+      "packages/better-auth/src/cookies/index.ts"
+    ],
+    "expected_symbols": [
+      "getSession",
+      "parseCookies"
+    ],
+    "expected_relationships": [
+      "getSession -> parseCookies"
+    ],
+    "expected_concepts": [
+      "Session token validation",
+      "Multi-cookie handling",
+      "API endpoint headers"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/kysely-adapter/bun-sqlite-dialect.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/haveibeenpwned/index.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts"
+    ],
+    "retrieved_symbols": [
+      "BunSqliteQueryCompiler",
+      "init",
+      "onError",
+      "onError",
+      "onError"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5325.82,
+    "retrieval_latency_ms": 5306.97,
+    "sufficiency_latency_ms": 7.7114,
+    "reasoning_latency_ms": 0.0175,
+    "total_latency_ms": 5325.82,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-1",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/plugins/index.ts",
+      "docs/content/docs/plugins/passkey.mdx"
+    ],
+    "expected_symbols": [
+      "passkey",
+      "BetterAuthPlugin"
+    ],
+    "expected_relationships": [
+      "betterAuth -> passkeyPlugin"
+    ],
+    "expected_concepts": [
+      "Passkey credential provider identification",
+      "WebAuthn challenge verification",
+      "Plugin options"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/core/src/db/adapter/get-field-name.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/api-method.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/cli/src/utils/format-ms.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/linking/org-assignment.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/two-factor/client.ts"
+    ],
+    "retrieved_symbols": [
+      "getFieldName",
+      "APIMethod",
+      "formatMilliseconds",
+      "AssignOrganizationByDomainOptions",
+      "twoFactorClient"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 4854.12,
+    "retrieval_latency_ms": 4841.67,
+    "sufficiency_latency_ms": 9.541,
+    "reasoning_latency_ms": 0.0176,
+    "total_latency_ms": 4854.12,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-2",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/api/index.ts",
+      "packages/better-auth/src/api/routes/index.ts"
+    ],
+    "expected_symbols": [
+      "router",
+      "createAuthEndpoint"
+    ],
+    "expected_relationships": [
+      "betterAuth -> router"
+    ],
+    "expected_concepts": [
+      "Endpoint documentation availability",
+      "OpenAPI schema generation",
+      "Auto-generated routes"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/routes/crud-org.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/routes/crud-org.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/client.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/routes/sso.ts"
+    ],
+    "retrieved_symbols": [
+      "OrganizationReturn",
+      "OrganizationReturn",
+      "constructor",
+      "OrganizationReturn",
+      "extractAssertionId"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 4618.3,
+    "retrieval_latency_ms": 4607.95,
+    "sufficiency_latency_ms": 1.1417,
+    "reasoning_latency_ms": 0.0065,
+    "total_latency_ms": 4618.3,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "better-auth-3",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/core/src/social-providers/apple.ts",
+      "packages/better-auth/src/oauth2/index.ts"
+    ],
+    "expected_symbols": [
+      "apple",
+      "socialProviders"
+    ],
+    "expected_relationships": [
+      "betterAuth -> appleProvider"
+    ],
+    "expected_concepts": [
+      "Sign In with Apple web vs native client IDs",
+      "JWT secret generation",
+      "Bundle ID configuration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/line.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/landing/hero.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/components/ui/carousel.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/saml/algorithms.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/keycloak.ts"
+    ],
+    "retrieved_symbols": [
+      "line",
+      "TrafficLightsIcon",
+      "Carousel",
+      "validateSignatureAlgorithm",
+      "keycloak"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 765.541,
+    "retrieval_latency_ms": 758.803,
+    "sufficiency_latency_ms": 1.6912,
+    "reasoning_latency_ms": 0.0104,
+    "total_latency_ms": 765.541,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-4",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/oauth2/index.ts",
+      "packages/better-auth/src/oauth2/state.ts"
+    ],
+    "expected_symbols": [
+      "handleOAuthCallback",
+      "createOAuthRedirect"
+    ],
+    "expected_relationships": [
+      "createOAuthRedirect -> handleOAuthCallback"
+    ],
+    "expected_concepts": [
+      "Cross-origin backend OAuth",
+      "Next.js separate frontend/backend redirect",
+      "CORS and cookie domain"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/okta.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/tests/adapter-factory.test.ts"
+    ],
+    "retrieved_symbols": [
+      "constructor",
+      "okta",
+      "AtomListener",
+      "setup",
+      "customTransformOutput"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 6007.73,
+    "retrieval_latency_ms": 5985.88,
+    "sufficiency_latency_ms": 14.8401,
+    "reasoning_latency_ms": 0.0247,
+    "total_latency_ms": 6007.73,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-better-auth-01",
+    "repository": "better-auth/better-auth",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "packages/better-auth/src/api/routes/session.ts",
+      "packages/better-auth/src/cookies/index.ts"
+    ],
+    "expected_symbols": [
+      "getSession",
+      "parseCookies",
+      "verifySession"
+    ],
+    "expected_relationships": [
+      "getSession -> getSessionFromCookie",
+      "getSession -> adapter.findSession"
+    ],
+    "expected_concepts": [
+      "Cookie parsing",
+      "Session validation",
+      "Database adapter session lookup"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/oauth/select-organization/org-buttons.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/app/community/_components/header.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/magic-link/client.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/api/index.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/ui/toggle-group.tsx"
+    ],
+    "retrieved_symbols": [
+      "useRouter",
+      "CommunityHeader",
+      "magicLinkClient",
+      "onError",
+      "ToggleGroupItem"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 4905.84,
+    "retrieval_latency_ms": 4895.12,
+    "sufficiency_latency_ms": 0.7197,
+    "reasoning_latency_ms": 0.3219,
+    "total_latency_ms": 4905.84,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-better-auth-02",
+    "repository": "better-auth/better-auth",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "expected_files": [
+      "packages/better-auth/src/oauth2/index.ts",
+      "packages/better-auth/src/oauth2/state.ts"
+    ],
+    "expected_symbols": [
+      "generateState",
+      "createPKCE",
+      "validateState"
+    ],
+    "expected_relationships": [
+      "oauth2.signIn -> generateState",
+      "oauth2.callback -> validateState"
+    ],
+    "expected_concepts": [
+      "PKCE code verifier",
+      "OAuth state cookie",
+      "CSRF protection"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/oidc/discovery.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/accept-invitation/[id]/page.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/components/forms/two-factor-enable-form.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/markdown-renderer.tsx"
+    ],
+    "retrieved_symbols": [
+      "selectTokenEndpointAuthMethod",
+      "handleReject",
+      "constructor",
+      "TwoFactorEnableFormProps",
+      "MarkdownRendererProps"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5736.05,
+    "retrieval_latency_ms": 5728.93,
+    "sufficiency_latency_ms": 0.7866,
+    "reasoning_latency_ms": 0.0255,
+    "total_latency_ms": 5736.05,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "dokploy-0",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/server/src/setup/traefik-setup.ts",
+      "apps/dokploy/pages/dashboard/traefik.tsx"
+    ],
+    "expected_symbols": [
+      "traefikSetup",
+      "traefikConfig"
+    ],
+    "expected_relationships": [
+      "traefikSetup -> traefikConfig"
+    ],
+    "expected_concepts": [
+      "HTTP2 Traefik configuration",
+      "Dynamic entrypoints",
+      "Dokploy reverse proxy config"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/mongo.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/profile/profile-form.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/index.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitea/edit-gitea-provider.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/web-server/edit-traefik-env.tsx"
+    ],
+    "retrieved_symbols": [
+      "deployMongo",
+      "onSubmit",
+      "onSubmit",
+      "onSubmit",
+      "onSubmit"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 6773.19,
+    "retrieval_latency_ms": 6736.73,
+    "sufficiency_latency_ms": 31.7228,
+    "reasoning_latency_ms": 0.0286,
+    "total_latency_ms": 6773.19,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "dokploy-1",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "Configure a wildcard domain (e.g., *.example.com) in Dokploy’s domain settings. 2."
+    ],
+    "expected_symbols": [
+      "In DNS: •"
+    ],
+    "expected_relationships": [
+      "Use an A record to point all subdomains to my app server. •"
+    ],
+    "expected_concepts": [
+      "Use CNAME records to point custom domains to my main domain (e.g., example.com). The goal is for all these domains to route correctly to my app and serve the appropriate content based on the hostname. Is this setup supported in Dokploy? And is this a reasonable and feasible approach? Thanks!"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/hooks/use-keyboard-nav.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/send-reset-password.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/emails/emails/volume-backup.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/notifications/database-backup.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/templates/index.ts"
+    ],
+    "retrieved_symbols": [
+      "UseKeyboardNav",
+      "getServerSideProps",
+      "VolumeBackupEmail",
+      "sendDatabaseBackupNotifications",
+      "generateBase64"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5609.42,
+    "retrieval_latency_ms": 5600.13,
+    "sufficiency_latency_ms": 4.9054,
+    "reasoning_latency_ms": 0.0789,
+    "total_latency_ms": 5609.42,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "dokploy-2",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/server/src/setup/traefik-setup.ts",
+      "apps/dokploy/server/api/routers/settings.ts"
+    ],
+    "expected_symbols": [
+      "settingsRouter",
+      "traefikSetup"
+    ],
+    "expected_relationships": [
+      "settingsRouter -> traefikSetup"
+    ],
+    "expected_concepts": [
+      "Traefik replacement options",
+      "BunkerWeb / Nginx compatibility",
+      "Docker container routing layer"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/types/with.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitlab/add-gitlab-provider.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitlab/edit-gitlab-provider.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sign-in-with-sso.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/application.ts"
+    ],
+    "retrieved_symbols": [
+      "Schema",
+      "onSubmit",
+      "onSubmit",
+      "SSOEmailForm",
+      "readMonitoringConfig"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5596.37,
+    "retrieval_latency_ms": 5579.79,
+    "sufficiency_latency_ms": 12.811,
+    "reasoning_latency_ms": 0.0217,
+    "total_latency_ms": 5596.37,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "dokploy-5",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "apps/dokploy/server/api/routers/domain.ts",
+      "packages/server/src/setup/traefik-setup.ts"
+    ],
+    "expected_symbols": [
+      "generateCertificate",
+      "domainRouter"
+    ],
+    "expected_relationships": [
+      "domainRouter -> generateCertificate"
+    ],
+    "expected_concepts": [
+      "Let's Encrypt automated TLS certificates",
+      "ACME challenge",
+      "Traefik certificate resolver"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/certificate.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/templates/index.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/github.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/monitoring/database/cleanup.go"
+    ],
+    "retrieved_symbols": [
+      "createCertificateFiles",
+      "generateBase64",
+      "getIssueComment",
+      "HttpRouter",
+      "CleanupMetrics"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5148.62,
+    "retrieval_latency_ms": 5121.34,
+    "sufficiency_latency_ms": 20.4959,
+    "reasoning_latency_ms": 0.0135,
+    "total_latency_ms": 5148.62,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "dokploy-9",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/server/src/setup/traefik-setup.ts",
+      "packages/server/src/utils/traefik/application.ts"
+    ],
+    "expected_symbols": [
+      "traefikMetrics",
+      "createTraefikConfig"
+    ],
+    "expected_relationships": [
+      "traefikSetup -> traefikMetrics"
+    ],
+    "expected_concepts": [
+      "Prometheus metrics endpoint",
+      "Traefik metrics flag configuration",
+      "Monitoring integration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/profile/profile-form.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/web-server/edit-traefik-env.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/handle-ai.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-oidc-dialog.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-oidc-dialog.tsx"
+    ],
+    "retrieved_symbols": [
+      "onSubmit",
+      "onSubmit",
+      "onSubmit",
+      "useFieldArray",
+      "useFieldArray"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5174.35,
+    "retrieval_latency_ms": 5167.04,
+    "sufficiency_latency_ms": 0.4997,
+    "reasoning_latency_ms": 0.034,
+    "total_latency_ms": 5174.35,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-dokploy-01",
+    "repository": "Dokploy/dokploy",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "apps/dokploy/server/api/routers/application.ts",
+      "apps/dokploy/server/api/routers/domain.ts",
+      "packages/server/src/utils/traefik/application.ts"
+    ],
+    "expected_symbols": [
+      "createTraefikConfig",
+      "updateTraefikConfig",
+      "applicationRouter"
+    ],
+    "expected_relationships": [
+      "applicationRouter -> createTraefikConfig",
+      "domainRouter -> updateTraefikConfig"
+    ],
+    "expected_concepts": [
+      "Reverse proxy configuration",
+      "Dynamic routing",
+      "Ingress generation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sso-settings.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/project.ts"
+    ],
+    "retrieved_symbols": [
+      "TcpRouter",
+      "HttpMirroringService",
+      "BufferingMiddleware",
+      "handleStartEdit",
+      "updateProjectById"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5224.06,
+    "retrieval_latency_ms": 5215.57,
+    "sufficiency_latency_ms": 0.828,
+    "reasoning_latency_ms": 0.0439,
+    "total_latency_ms": 5224.06,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-dokploy-02",
+    "repository": "Dokploy/dokploy",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "expected_files": [
+      "apps/dokploy/server/api/routers/application.ts",
+      "packages/server/src/db/schema/application.ts"
+    ],
+    "expected_symbols": [
+      "Deployment",
+      "ApplicationStatus",
+      "getContainerStatus"
+    ],
+    "expected_relationships": [
+      "deploymentRouter -> prisma.deployment.create"
+    ],
+    "expected_concepts": [
+      "Database state persistence",
+      "Docker container lifecycle",
+      "Deployment status tracking"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/docker/logs/terminal-line.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-saml-dialog.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/preview-deployment.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/utils/gitea-utils.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/application/patches/patch-editor.tsx"
+    ],
+    "retrieved_symbols": [
+      "tooltip",
+      "parseSamlConfig",
+      "generateWildcardDomain",
+      "getGiteaOAuthUrl",
+      "toggleFolder"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5009.82,
+    "retrieval_latency_ms": 4999.31,
+    "sufficiency_latency_ms": 1.5983,
+    "reasoning_latency_ms": 0.0734,
+    "total_latency_ms": 5009.82,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "pkl-0",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-parser/src/main/java/org/pkl/parser/syntax/Type.java",
+      "stdlib/base.pkl"
+    ],
+    "expected_symbols": [
+      "Type",
+      "Regex",
+      "RegexMatch"
+    ],
+    "expected_relationships": [
+      "Type.validate -> Regex.matches"
+    ],
+    "expected_concepts": [
+      "Regex constraint on string properties",
+      "Pkl type constraint syntax",
+      "Validation predicate"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/DurationNodes.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/expression/binary/AdditionNode.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/resource/ResourceReaders.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/module/ModulePathResolver.java"
+    ],
+    "retrieved_symbols": [
+      "eval",
+      "eval",
+      "ModulePathResource",
+      "PklConverter",
+      "ModulePathResolver"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 61512.3,
+    "retrieval_latency_ms": 61467.3,
+    "sufficiency_latency_ms": 25.3345,
+    "reasoning_latency_ms": 0.218,
+    "total_latency_ms": 61512.3,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "pkl-1",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-core/src/main/java/org/pkl/core/EvaluatorImpl.java",
+      "stdlib/base.pkl"
+    ],
+    "expected_symbols": [
+      "EvaluatorImpl",
+      "Dynamic"
+    ],
+    "expected_relationships": [
+      "EvaluatorImpl -> ModuleNode"
+    ],
+    "expected_concepts": [
+      "Pkl mixin application",
+      "Object inheritance and amend syntax",
+      "Code generator templates"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/member/DefaultPropertyBodyNode.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/module/ModulePathResolver.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/paguro/RrbTree.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmMapping.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/ListingNodes.java"
+    ],
+    "retrieved_symbols": [
+      "DefaultPropertyBodyNode",
+      "populateFileCache",
+      "subNodeAdjustedIndex",
+      "EmptyHolder",
+      "toList"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 64684.8,
+    "retrieval_latency_ms": 64636.2,
+    "sufficiency_latency_ms": 25.5531,
+    "reasoning_latency_ms": 0.2528,
+    "total_latency_ms": 64684.8,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "pkl-2",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-core/src/main/java/org/pkl/core/Member.java",
+      "pkl-parser/src/main/java/org/pkl/parser/Parser.java"
+    ],
+    "expected_symbols": [
+      "Member",
+      "Modifier",
+      "Parser"
+    ],
+    "expected_relationships": [
+      "Parser.parse -> Member"
+    ],
+    "expected_concepts": [
+      "Local/private property visibility",
+      "Pkl access modifiers (`local`, `hidden`, `fixed`)",
+      "Member export rules"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/MutableReference.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/TypeAlias.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/resource/ResourceReader.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java"
+    ],
+    "retrieved_symbols": [
+      "MutableReference",
+      "doVisitProperty",
+      "getQualifiedName",
+      "read",
+      "AbstractRenderer"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 72334.8,
+    "retrieval_latency_ms": 72276.6,
+    "sufficiency_latency_ms": 35.2835,
+    "reasoning_latency_ms": 0.4032,
+    "total_latency_ms": 72334.8,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "pkl-3",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-core/src/main/java/org/pkl/core/resource/ResourceReader.java",
+      "pkl-core/src/main/java/org/pkl/core/EvaluatorBuilder.java"
+    ],
+    "expected_symbols": [
+      "ResourceReader",
+      "EvaluatorBuilder"
+    ],
+    "expected_relationships": [
+      "EvaluatorBuilder -> ResourceReader"
+    ],
+    "expected_concepts": [
+      "External reader extension",
+      "Custom resource reader / module reader",
+      "Host language bridge"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/JsonRendererNodes.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/CollectionUtils.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java"
+    ],
+    "retrieved_symbols": [
+      "convertMap",
+      "convertBytes",
+      "visitDuration",
+      "newLinkedHashSet",
+      "convertIntSeq"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 55305.7,
+    "retrieval_latency_ms": 55289.4,
+    "sufficiency_latency_ms": 3.6312,
+    "reasoning_latency_ms": 0.0228,
+    "total_latency_ms": 55305.7,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "pkl-5",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-cli/src/main/kotlin/org/pkl/cli/CliEvaluatorOptions.kt",
+      "pkl-core/src/main/java/org/pkl/core/evaluatorSettings/PklEvaluatorSettings.java"
+    ],
+    "expected_symbols": [
+      "CliEvaluatorOptions",
+      "PklEvaluatorSettings"
+    ],
+    "expected_relationships": [
+      "CliEvaluatorOptions -> PklEvaluatorSettings"
+    ],
+    "expected_concepts": [
+      "CLI environment variable passing (`-p`, `--property`, `read(\"env:...\")`)",
+      "Evaluator property bindings",
+      "External environment access"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/repl/ReplServer.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/BaseParserVisitor.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/packages/PackageResolver.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/syntax/ExtendsOrAmendsClause.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/SecurityManager.java"
+    ],
+    "retrieved_symbols": [
+      "ReplServer",
+      "visitParenthesizedExpr",
+      "getInstance",
+      "ExtendsOrAmendsClause",
+      "checkResolveModule"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 64390,
+    "retrieval_latency_ms": 64335.7,
+    "sufficiency_latency_ms": 28.9436,
+    "reasoning_latency_ms": 0.0402,
+    "total_latency_ms": 64390,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-pkl-01",
+    "repository": "apple/pkl",
+    "source": "amoeba_designed",
+    "taxonomy": "Project Architecture",
+    "difficulty": "3",
+    "expected_files": [
+      "pkl-core/src/main/java/org/pkl/core/Evaluator.java",
+      "pkl-core/src/main/java/org/pkl/core/EvaluatorImpl.java",
+      "pkl-parser/src/main/java/org/pkl/parser/Parser.java"
+    ],
+    "expected_symbols": [
+      "Evaluator",
+      "Parser",
+      "ModuleResolver",
+      "ModuleNode"
+    ],
+    "expected_relationships": [
+      "Evaluator.evaluate -> ModuleResolver.resolve -> Parser.parse"
+    ],
+    "expected_concepts": [
+      "AST parsing",
+      "Module resolution",
+      "Lazy evaluation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/Parser.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/AnsiStringBuilder.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/ResourceManager.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/syntax/StringConstant.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/type/TypeNode.java"
+    ],
+    "retrieved_symbols": [
+      "parseExprAtom",
+      "append",
+      "ResourceManager",
+      "StringConstant",
+      "executeEagerly"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 56879.3,
+    "retrieval_latency_ms": 56857.7,
+    "sufficiency_latency_ms": 1.7988,
+    "reasoning_latency_ms": 0.794,
+    "total_latency_ms": 56879.3,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-pkl-02",
+    "repository": "apple/pkl",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "expected_files": [],
+    "expected_symbols": [],
+    "expected_relationships": [],
+    "expected_concepts": [
+      "Generic controller disambiguation",
+      "Standalone language compiler",
+      "No Spring Boot web controller"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/messaging/AbstractMessagePackEncoder.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/paguro/RrbTree.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-gradle/src/main/java/org/pkl/gradle/task/ModulesTask.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/http/HttpClient.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ModuleSchema.java"
+    ],
+    "retrieved_symbols": [
+      "AbstractMessagePackEncoder",
+      "replaceInRelaxedAt",
+      "getSourceModulesAsUris",
+      "setProxy",
+      "ModuleSchema"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 49052,
+    "retrieval_latency_ms": 49029.3,
+    "sufficiency_latency_ms": 2.0364,
+    "reasoning_latency_ms": 0.0301,
+    "total_latency_ms": 49052,
+    "failure_category": "none",
+    "diagnostic_explanation": "Correctly triggered grounded refusal on absent repository feature."
+  },
+  {
+    "question_id": "beszel-0",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "agent/smart.go",
+      "agent/smart_windows.go",
+      "agent/smart_nonwindows.go"
+    ],
+    "expected_symbols": [
+      "getSmartData",
+      "smartctl"
+    ],
+    "expected_relationships": [
+      "Agent.collect -> getSmartData"
+    ],
+    "expected_concepts": [
+      "SMART disk detection",
+      "smartmontools / smartctl requirement",
+      "Disk permission issues"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/smart_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/smart_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go"
+    ],
+    "retrieved_symbols": [
+      "Remove",
+      "TestResolveRefreshError",
+      "TestGetToken",
+      "TestParseSmartForSata",
+      "startCleaner"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1353.65,
+    "retrieval_latency_ms": 1314.76,
+    "sufficiency_latency_ms": 35.1936,
+    "reasoning_latency_ms": 0.0223,
+    "total_latency_ms": 1353.65,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "beszel-1",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "internal/hub/hub.go",
+      "internal/hub/ws/ws.go"
+    ],
+    "expected_symbols": [
+      "createToken",
+      "HubServer"
+    ],
+    "expected_relationships": [
+      "HubServer -> createToken"
+    ],
+    "expected_concepts": [
+      "REST API universal system token",
+      "PocketBase record authentication",
+      "API endpoint security"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/server_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/server_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go"
+    ],
+    "retrieved_symbols": [
+      "GetByValue",
+      "startCleaner",
+      "RemoteAddr",
+      "Value",
+      "Remove"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1561.86,
+    "retrieval_latency_ms": 1533.48,
+    "sufficiency_latency_ms": 23.628,
+    "reasoning_latency_ms": 0.0327,
+    "total_latency_ms": 1561.86,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "beszel-2",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "internal/alerts/alerts.go",
+      "agent/cpu.go"
+    ],
+    "expected_symbols": [
+      "CheckAlerts",
+      "getCPUStats"
+    ],
+    "expected_relationships": [
+      "CheckAlerts -> getCPUStats"
+    ],
+    "expected_concepts": [
+      "Load average vs CPU percentage threshold",
+      "System load normalization per core",
+      "Alert trigger criteria"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/sensors.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/disk.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go"
+    ],
+    "retrieved_symbols": [
+      "NewHub",
+      "findOrCreateSystemForToken",
+      "newSensorConfigWithEnv",
+      "initializeDiskInfo",
+      "handleNoRecords"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1131.8,
+    "retrieval_latency_ms": 1117.76,
+    "sufficiency_latency_ms": 10.1742,
+    "reasoning_latency_ms": 0.036,
+    "total_latency_ms": 1131.8,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "beszel-3",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "agent/client.go",
+      "agent/connection_manager.go"
+    ],
+    "expected_symbols": [
+      "Client",
+      "ConnectionManager"
+    ],
+    "expected_relationships": [
+      "ConnectionManager -> Client.Connect"
+    ],
+    "expected_concepts": [
+      "Reverse proxy / tunnel through Pangolin",
+      "SSH / WebSocket agent-to-hub connection",
+      "TLS certificate verification"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_api.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_manager.go"
+    ],
+    "retrieved_symbols": [
+      "NewHub",
+      "OnOpen",
+      "UpsertUserAlerts",
+      "getRecord",
+      "onRecordAfterCreateSuccess"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1189.92,
+    "retrieval_latency_ms": 1174.11,
+    "sufficiency_latency_ms": 11.7692,
+    "reasoning_latency_ms": 0.0177,
+    "total_latency_ms": 1189.92,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "beszel-5",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "internal/cmd/hub/hub.go",
+      "internal/hub/hub.go"
+    ],
+    "expected_symbols": [
+      "NewHubCommand",
+      "HubServer"
+    ],
+    "expected_relationships": [
+      "NewHubCommand -> HubServer.Start"
+    ],
+    "expected_concepts": [
+      "Windows Server compatibility",
+      "Go cross-compilation binaries",
+      "Windows Service / Task Scheduler execution"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_manager.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/systemd.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_test_helpers.go"
+    ],
+    "retrieved_symbols": [
+      "onRecordAfterCreateSuccess",
+      "getCpuPreviousValues",
+      "StartUpdater",
+      "updateServiceStats",
+      "GetPendingAlertsCount"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1304.86,
+    "retrieval_latency_ms": 1293.99,
+    "sufficiency_latency_ms": 7.0323,
+    "reasoning_latency_ms": 0.0123,
+    "total_latency_ms": 1304.86,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-beszel-01",
+    "repository": "henrygd/beszel",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "agent/agent.go",
+      "agent/cpu.go",
+      "agent/system.go"
+    ],
+    "expected_symbols": [
+      "collectStats",
+      "getCPUStats",
+      "getMemStats"
+    ],
+    "expected_relationships": [
+      "Agent.Run -> collectStats"
+    ],
+    "expected_concepts": [
+      "System metrics collection",
+      "CPU utilization calculation",
+      "Memory usage tracking"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/connection_manager.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/system.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/handlers.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go"
+    ],
+    "retrieved_symbols": [
+      "startSSHServer",
+      "getSystemStats",
+      "closeWebSocketConnection",
+      "Responder",
+      "StartUpdater"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 1538.88,
+    "retrieval_latency_ms": 1534.43,
+    "sufficiency_latency_ms": 0.5515,
+    "reasoning_latency_ms": 0.1546,
+    "total_latency_ms": 1538.88,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-beszel-02",
+    "repository": "henrygd/beszel",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "expected_files": [
+      "internal/alerts/alerts.go",
+      "internal/hub/hub.go"
+    ],
+    "expected_symbols": [
+      "AlertManager",
+      "CheckAlerts",
+      "SendNotification"
+    ],
+    "expected_relationships": [
+      "AlertManager.CheckAlerts -> SendNotification"
+    ],
+    "expected_concepts": [
+      "Threshold monitoring",
+      "Webhook notifications",
+      "Hub alert configuration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/records/records_test.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_realtime.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/components/charts/hooks.ts"
+    ],
+    "retrieved_symbols": [
+      "TestDeleteOldAlertsHistoryEdgeCases",
+      "useBrowserStorage",
+      "onRealtimeSubscriptionAdded",
+      "getStorageValue",
+      "useNetworkInterfaces"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 1423.19,
+    "retrieval_latency_ms": 1420.01,
+    "sufficiency_latency_ms": 0.4083,
+    "reasoning_latency_ms": 0.0297,
+    "total_latency_ms": 1423.19,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "opencloud-0",
+    "repository": "opencloud-eu/opencloud",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "services/graph/pkg/service/v0/service.go",
+      "pkg/storage/storage.go"
+    ],
+    "expected_symbols": [
+      "CreateShare",
+      "PublicShare"
+    ],
+    "expected_relationships": [
+      "GraphService.CreateShare -> PublicShare.SetPassword"
+    ],
+    "expected_concepts": [
+      "Public link password protection",
+      "CS3 public share API",
+      "Share permission flags"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/segmentio/kafka-go/conn.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/graph/mocks/drive_item_permissions_provider.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opensearch-project/opensearch-go/v4/opensearchapi/api_cluster-allocation_explain.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1/provider_api.pb.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/reva/v2/internal/http/services/owncloud/ocs/handlers/apps/sharing/shares/remote.go"
+    ],
+    "retrieved_symbols": [
+      "Write",
+      "Return",
+      "ClusterAllocationExplainResp",
+      "Descriptor",
+      "createFederatedCloudShare"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 6178.63,
+    "retrieval_latency_ms": 6032.38,
+    "sufficiency_latency_ms": 4.5656,
+    "reasoning_latency_ms": 0.0102,
+    "total_latency_ms": 6178.63,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "opencloud-2",
+    "repository": "opencloud-eu/opencloud",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "services/web/pkg/service/v0/service.go",
+      "services/web/pkg/config/config.go"
+    ],
+    "expected_symbols": [
+      "WebService",
+      "Config"
+    ],
+    "expected_relationships": [
+      "WebService.ServeHTTP -> Config.Apps"
+    ],
+    "expected_concepts": [
+      "Web UI app menu configuration",
+      "Disable Calendar app config",
+      "Web service JSON config"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/go-git/go-git/v5/plumbing/object/rename.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.etcd.io/etcd/api/v3/etcdserverpb/rpc.pb.go"
+    ],
+    "retrieved_symbols": [
+      "jsonEachEof",
+      "pragmaVtabColumn",
+      "sqlite3PagerFilename",
+      "DetectRenames",
+      "XXX_DiscardUnknown"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 3477.33,
+    "retrieval_latency_ms": 3097.78,
+    "sufficiency_latency_ms": 0.8828,
+    "reasoning_latency_ms": 0.0057,
+    "total_latency_ms": 3477.33,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "opencloud-4",
+    "repository": "opencloud-eu/opencloud",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "services/search/pkg/command/index.go",
+      "services/search/pkg/bleve/index.go"
+    ],
+    "expected_symbols": [
+      "IndexCommand",
+      "BleveIndex"
+    ],
+    "expected_relationships": [
+      "IndexCommand -> BleveIndex.Index"
+    ],
+    "expected_concepts": [
+      "CLI search re-indexing command (`opencloud search index`)",
+      "Tika / Bleve search backend rescan",
+      "Storage index synchronization"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/graph/pkg/identity/mocks/backend.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/minio/highwayhash/highwayhash.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/docker/docker/api/types/container/hostconfig.go"
+    ],
+    "retrieved_symbols": [
+      "Parse",
+      "Return",
+      "Write",
+      "fts3TermSelectFinishMerge",
+      "IsSame"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 47843.5,
+    "retrieval_latency_ms": 47499.7,
+    "sufficiency_latency_ms": 18.1535,
+    "reasoning_latency_ms": 0.0208,
+    "total_latency_ms": 47843.5,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "opencloud-9",
+    "repository": "opencloud-eu/opencloud",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "services/auth-app/pkg/command/server.go",
+      "services/idp/pkg/config/config.go"
+    ],
+    "expected_symbols": [
+      "AuthAppServer",
+      "KeycloakConfig"
+    ],
+    "expected_relationships": [
+      "AuthAppServer -> KeycloakConfig"
+    ],
+    "expected_concepts": [
+      "OIDC / Keycloak authentication provider",
+      "Auth-app service configuration",
+      "Client ID and secret mapping"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/libre-graph-api-go/api_drives_permissions.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c"
+    ],
+    "retrieved_symbols": [
+      "stat4ValueFromExpr",
+      "sqlite3AuthRead",
+      "DriveItemCreateLink",
+      "winWrite",
+      "memjrnlWrite"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 47596.2,
+    "retrieval_latency_ms": 46781.2,
+    "sufficiency_latency_ms": 363.216,
+    "reasoning_latency_ms": 0.4072,
+    "total_latency_ms": 47596.2,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "opencloud-11",
+    "repository": "opencloud-eu/opencloud",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "services/storage-users/pkg/command/uploads.go",
+      "pkg/storage/storage.go"
+    ],
+    "expected_symbols": [
+      "StorageDriver",
+      "DecomposedFS"
+    ],
+    "expected_relationships": [
+      "StorageDriver -> DecomposedFS.Store"
+    ],
+    "expected_concepts": [
+      "DecomposedFS storage path layout (`/var/lib/opencloud/storage/users/`)",
+      "Blob and metadata layout",
+      "Storage provider data root"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/text/transform/transform.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v11/count.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v16/count.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v14/count.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/text/unicode/norm/readwriter.go"
+    ],
+    "retrieved_symbols": [
+      "Write",
+      "Write",
+      "Write",
+      "Write",
+      "Write"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 47645.1,
+    "retrieval_latency_ms": 47559,
+    "sufficiency_latency_ms": 1.9666,
+    "reasoning_latency_ms": 0.0118,
+    "total_latency_ms": 47645.1,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-opencloud-01",
+    "repository": "opencloud-eu/opencloud",
+    "source": "amoeba_designed",
+    "taxonomy": "Project Architecture",
+    "difficulty": "3",
+    "expected_files": [
+      "services/storage-users/pkg/command/uploads.go",
+      "pkg/storage/storage.go"
+    ],
+    "expected_symbols": [
+      "Upload",
+      "StorageService",
+      "StorageProvider"
+    ],
+    "expected_relationships": [
+      "StorageService.Upload -> metadataProvider.SetMetadata"
+    ],
+    "expected_concepts": [
+      "Disaggregated storage",
+      "Metadata synchronization",
+      "Microservice gRPC contracts"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/libre-graph-api-go/model_unified_role_definition.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v2/emitterc.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/tus/tusd/v2/pkg/handler/unrouted_handler.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/search/pkg/query/bleve/compiler.go"
+    ],
+    "retrieved_symbols": [
+      "UnifiedRoleDefinition",
+      "write",
+      "finishUploadIfComplete",
+      "rbuTargetNameFunc",
+      "Compiler"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 45286.2,
+    "retrieval_latency_ms": 45184.9,
+    "sufficiency_latency_ms": 1.1533,
+    "reasoning_latency_ms": 0.1389,
+    "total_latency_ms": 45286.2,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-opencloud-02",
+    "repository": "opencloud-eu/opencloud",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "expected_files": [],
+    "expected_symbols": [],
+    "expected_relationships": [],
+    "expected_concepts": [
+      "Ambiguous generic term rejection",
+      "No GraphQL resolvers",
+      "gRPC / CS3 service architecture"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.yaml.in/yaml/v2/scannerc.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/net/http2/gotrack.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.yaml.in/yaml/v3/scannerc.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v2/scannerc.go"
+    ],
+    "retrieved_symbols": [
+      "sqlite3VdbeSwap",
+      "cache",
+      "parseUintBytes",
+      "cache",
+      "cache"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 49425.4,
+    "retrieval_latency_ms": 49337.4,
+    "sufficiency_latency_ms": 1.1075,
+    "reasoning_latency_ms": 0.0072,
+    "total_latency_ms": 49425.4,
+    "failure_category": "none",
+    "diagnostic_explanation": "Correctly triggered grounded refusal on absent repository feature."
+  },
+  {
+    "question_id": "jiff-0",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/span.rs",
+      "src/signed_duration.rs"
+    ],
+    "expected_symbols": [
+      "Span",
+      "SignedDuration::MIN",
+      "SignedDuration::MAX"
+    ],
+    "expected_relationships": [
+      "Span -> SignedDuration"
+    ],
+    "expected_concepts": [
+      "Multi-unit calendar representation precludes single total MIN/MAX constant",
+      "Relative calendar field units vs fixed duration",
+      "Overflow handling"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/lib.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs"
+    ],
+    "retrieved_symbols": [
+      "sign_unchecked",
+      "maximally_long_span",
+      "relative",
+      "relative",
+      "imp"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 438.563,
+    "retrieval_latency_ms": 423.312,
+    "sufficiency_latency_ms": 3.1933,
+    "reasoning_latency_ms": 0.0101,
+    "total_latency_ms": 438.563,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-1",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/zoned.rs",
+      "src/fmt/rfc9557.rs",
+      "src/fmt/rfc2822.rs"
+    ],
+    "expected_symbols": [
+      "Zoned::strftime",
+      "DateTimePrinter",
+      "Zoned::datetime"
+    ],
+    "expected_relationships": [
+      "Zoned.strftime -> DateTimePrinter"
+    ],
+    "expected_concepts": [
+      "RFC 3339 offset formatting without time zone bracket annotation (`%FT%T%:z` / `.timestamp().to_string()`)",
+      "Zoned vs Timestamp representation",
+      "RFC 9557 extension suppression"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/zoned.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/zoned.rs"
+    ],
+    "retrieved_symbols": [
+      "display_with_offset",
+      "from_parts",
+      "series",
+      "new",
+      "into_parts"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1157.44,
+    "retrieval_latency_ms": 1134.29,
+    "sufficiency_latency_ms": 12.6527,
+    "reasoning_latency_ms": 0.0164,
+    "total_latency_ms": 1157.44,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-2",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/civil/date.rs",
+      "src/fmt/temporal/parser.rs"
+    ],
+    "expected_symbols": [
+      "Date::from_str",
+      "DateParser"
+    ],
+    "expected_relationships": [
+      "DateParser -> Date"
+    ],
+    "expected_concepts": [
+      "BCE / negative astronomical date parsing (`-0004-01-01`)",
+      "ISO 8601 expanded 6-digit year syntax",
+      "Astronomical year zero numbering"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/temporal/printer.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/signed_duration.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/strtime/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/timezone.rs"
+    ],
+    "retrieved_symbols": [
+      "print_timestamp_buf",
+      "new",
+      "timestamp_until",
+      "set_timestamp",
+      "preceding"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1659.42,
+    "retrieval_latency_ms": 1632.79,
+    "sufficiency_latency_ms": 12.1541,
+    "reasoning_latency_ms": 0.0268,
+    "total_latency_ms": 1659.42,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-3",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/timestamp.rs",
+      "src/signed_duration.rs"
+    ],
+    "expected_symbols": [
+      "Timestamp::round",
+      "TimestampRound",
+      "SignedDuration"
+    ],
+    "expected_relationships": [
+      "Timestamp.round -> TimestampRound"
+    ],
+    "expected_concepts": [
+      "Timestamp rounding to nearest duration unit",
+      "Increment parameter in rounding options",
+      "Tie-breaking modes (`HalfExpand`, `Floor`, `Ceil`)"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/util/round/mode.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/util/round/mode.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/datetime.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs"
+    ],
+    "retrieved_symbols": [
+      "Timestamp",
+      "round_to_increment_temporal_table_half_expand",
+      "round_to_increment_temporal_table_expand",
+      "mode",
+      "new_ranged"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1098.28,
+    "retrieval_latency_ms": 1086.06,
+    "sufficiency_latency_ms": 3.9933,
+    "reasoning_latency_ms": 0.0129,
+    "total_latency_ms": 1098.28,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-4",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/civil/date.rs",
+      "src/civil/iso_week_date.rs"
+    ],
+    "expected_symbols": [
+      "Date::iso_week_date",
+      "ISOWeekDate",
+      "Date::weekday"
+    ],
+    "expected_relationships": [
+      "Date.iso_week_date -> ISOWeekDate"
+    ],
+    "expected_concepts": [
+      "ISO 8601 week number computation via `date.iso_week_date().week()`",
+      "Explicit struct separation (`ISOWeekDate`) instead of direct accessor",
+      "Weekday computation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/datetime.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/date.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/offset.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/tests/tc39_262/civil/datetime/round.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/iso_week_date.rs"
+    ],
+    "retrieved_symbols": [
+      "day_of_year_no_leap",
+      "day_of_year_no_leap",
+      "colon",
+      "roundingincrement_does_not_divide",
+      "new"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1823.54,
+    "retrieval_latency_ms": 1789.67,
+    "sufficiency_latency_ms": 27.0612,
+    "reasoning_latency_ms": 0.0253,
+    "total_latency_ms": 1823.54,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "amoeba-jiff-01",
+    "repository": "BurntSushi/jiff",
+    "source": "amoeba_designed",
+    "taxonomy": "Symbol Lookup",
+    "difficulty": "1",
+    "expected_files": [
+      "src/span.rs"
+    ],
+    "expected_symbols": [
+      "Span",
+      "Span::new",
+      "Span::total"
+    ],
+    "expected_relationships": [
+      "Span -> SignedDuration"
+    ],
+    "expected_concepts": [
+      "Calendar duration",
+      "Span unit fields",
+      "Time span calculation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/serde.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/timezone.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/zoned.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/timezone.rs"
+    ],
+    "retrieved_symbols": [
+      "CompactSpan",
+      "SpanRound",
+      "TimeZonePrecedingTransitions",
+      "ZonedDifference",
+      "TimeZoneFollowingTransitions"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 1446.64,
+    "retrieval_latency_ms": 1430.38,
+    "sufficiency_latency_ms": 0.395,
+    "reasoning_latency_ms": 0.0257,
+    "total_latency_ms": 1446.64,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-jiff-02",
+    "repository": "BurntSushi/jiff",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "expected_files": [],
+    "expected_symbols": [],
+    "expected_relationships": [],
+    "expected_concepts": [
+      "Unsupported feature",
+      "ISO 8601 civil time scope",
+      "No lunar calendar"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/error/fmt/rfc2822.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/error/tz/offset.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/error/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/posix.rs"
+    ],
+    "retrieved_symbols": [
+      "from",
+      "subsec_millisecond_ranged",
+      "from",
+      "from",
+      "parse"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 1408.24,
+    "retrieval_latency_ms": 1402.33,
+    "sufficiency_latency_ms": 0.4627,
+    "reasoning_latency_ms": 0.0052,
+    "total_latency_ms": 1408.24,
+    "failure_category": "none",
+    "diagnostic_explanation": "Correctly triggered grounded refusal on absent repository feature."
+  },
+  {
+    "question_id": "amoeba-jiff-03",
+    "repository": "BurntSushi/jiff",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "expected_files": [
+      "src/zoned.rs",
+      "src/span.rs",
+      "src/civil/date.rs"
+    ],
+    "expected_symbols": [
+      "Zoned::since",
+      "Zoned::until",
+      "Span::total"
+    ],
+    "expected_relationships": [
+      "Zoned::until -> Span",
+      "DateTime::since -> Span"
+    ],
+    "expected_concepts": [
+      "Calendar difference arithmetic",
+      "Daylight saving time transitions",
+      "Span unit rounding"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/system/android.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/error/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/shared/posix.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/shared/tzif.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/temporal/parser.rs"
+    ],
+    "retrieved_symbols": [
+      "callback",
+      "ErrorKind",
+      "UnquotedAbbreviationError",
+      "InconsistentPosixTimeZoneError",
+      "DateTimeParser"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1590.03,
+    "retrieval_latency_ms": 1582.06,
+    "sufficiency_latency_ms": 1.6378,
+    "reasoning_latency_ms": 0.0099,
+    "total_latency_ms": 1590.03,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "walker-0",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/config.rs",
+      "src/providers/archlinuxpkgs.rs"
+    ],
+    "expected_symbols": [
+      "Config",
+      "ArchLinuxPkgsProvider"
+    ],
+    "expected_relationships": [
+      "Config -> ArchLinuxPkgsProvider"
+    ],
+    "expected_concepts": [
+      "Terminal emulator configuration option in `config.toml`",
+      "Pacman package action execution",
+      "Terminal launch arguments"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs"
+    ],
+    "retrieved_symbols": [
+      "handle_command_line",
+      "show_actions_menu",
+      "handle_emergency",
+      "select_down",
+      "quick_activate"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 93.4331,
+    "retrieval_latency_ms": 73.9536,
+    "sufficiency_latency_ms": 11.7934,
+    "reasoning_latency_ms": 0.0219,
+    "total_latency_ms": 93.4331,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "walker-2",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/config.rs",
+      "src/providers/clipboard.rs"
+    ],
+    "expected_symbols": [
+      "ClipboardConfig",
+      "ClipboardProvider"
+    ],
+    "expected_relationships": [
+      "ClipboardConfig -> ClipboardProvider"
+    ],
+    "expected_concepts": [
+      "Clipboard `max_entries` configuration key in `config.toml`",
+      "History size limit",
+      "Cliphist integration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/theme/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs"
+    ],
+    "retrieved_symbols": [
+      "select_down",
+      "select_page_up",
+      "setup_css_provider",
+      "Clipboard",
+      "select_up"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 282.697,
+    "retrieval_latency_ms": 268.114,
+    "sufficiency_latency_ms": 9.1523,
+    "reasoning_latency_ms": 0.013,
+    "total_latency_ms": 282.697,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "walker-3",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/config.rs",
+      "src/providers/files.rs"
+    ],
+    "expected_symbols": [
+      "FilesConfig",
+      "FilesProvider"
+    ],
+    "expected_relationships": [
+      "FilesConfig -> FilesProvider"
+    ],
+    "expected_concepts": [
+      "Case-insensitive file search option",
+      "Fuzzy scoring matcher case-sensitivity flag",
+      "Nucleo matcher configuration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs"
+    ],
+    "retrieved_symbols": [
+      "get_keybind_hint",
+      "handle_command_line",
+      "PartialShell",
+      "activate",
+      "text_transformer"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 235.4,
+    "retrieval_latency_ms": 208.882,
+    "sufficiency_latency_ms": 21.2583,
+    "reasoning_latency_ms": 0.0145,
+    "total_latency_ms": 235.4,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "walker-4",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/providers/dmenu.rs",
+      "src/ui/window.rs"
+    ],
+    "expected_symbols": [
+      "DmenuProvider",
+      "Window"
+    ],
+    "expected_relationships": [
+      "Window -> DmenuProvider.back"
+    ],
+    "expected_concepts": [
+      "Escape / Backspace key handling in nested submenus",
+      "Elephant submenu navigation",
+      "Provider stack popping"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/keybinds.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/keybinds.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs"
+    ],
+    "retrieved_symbols": [
+      "default_after",
+      "PartialShell",
+      "get_config",
+      "AfterAction",
+      "add_flags"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 185.331,
+    "retrieval_latency_ms": 176.244,
+    "sufficiency_latency_ms": 5.8379,
+    "reasoning_latency_ms": 0.0298,
+    "total_latency_ms": 185.331,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "walker-8",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "Cargo.toml",
+      "build.rs"
+    ],
+    "expected_symbols": [
+      "dependencies",
+      "build.rs"
+    ],
+    "expected_relationships": [
+      "Cargo.toml -> gtk4"
+    ],
+    "expected_concepts": [
+      "GTK4 / Wayland / libadwaita C-binding compilation overhead",
+      "Heavy Rust macro expansions",
+      "Link-time optimization flags"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/protos/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs"
+    ],
+    "retrieved_symbols": [
+      "Provider",
+      "Walker",
+      "QueryResponseObject",
+      "shared_image_transformer",
+      "PartialShell"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 249.878,
+    "retrieval_latency_ms": 224.651,
+    "sufficiency_latency_ms": 21.7158,
+    "reasoning_latency_ms": 0.0182,
+    "total_latency_ms": 249.878,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-walker-01",
+    "repository": "abenz1267/walker",
+    "source": "amoeba_designed",
+    "taxonomy": "Project Architecture",
+    "difficulty": "4",
+    "expected_files": [
+      "src/main.rs",
+      "src/ui/window.rs",
+      "src/providers/mod.rs"
+    ],
+    "expected_symbols": [
+      "App",
+      "UI",
+      "Provider",
+      "filter"
+    ],
+    "expected_relationships": [
+      "UI.on_change -> App.query -> Provider.search"
+    ],
+    "expected_concepts": [
+      "Event-driven UI",
+      "Provider module filtering",
+      "Wayland client loop"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs"
+    ],
+    "retrieved_symbols": [
+      "get_provider_state",
+      "apply_flag_logic",
+      "activate",
+      "handle_emergency",
+      "setup_mouse_handling"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 167.302,
+    "retrieval_latency_ms": 159.827,
+    "sufficiency_latency_ms": 3.5682,
+    "reasoning_latency_ms": 0.0303,
+    "total_latency_ms": 167.302,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "docling-0",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/backend/html_backend.py",
+      "docling/document_converter.py"
+    ],
+    "expected_symbols": [
+      "HTMLDocumentBackend",
+      "DocumentConverter"
+    ],
+    "expected_relationships": [
+      "DocumentConverter -> HTMLDocumentBackend"
+    ],
+    "expected_concepts": [
+      "Static HTML parsing vs headless browser execution",
+      "No built-in JavaScript engine in default backend",
+      "Pre-rendering with Playwright/Selenium before Docling conversion"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/html_backend.py"
+    ],
+    "retrieved_symbols": [
+      "_find_true_data_bounds",
+      "_apply_style",
+      "_apply_style",
+      "no_long_repeats",
+      "_walk"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1218.3,
+    "retrieval_latency_ms": 1184.82,
+    "sufficiency_latency_ms": 28.3741,
+    "reasoning_latency_ms": 0.0282,
+    "total_latency_ms": 1218.3,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "docling-1",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/datamodel/document.py",
+      "docling/document_converter.py"
+    ],
+    "expected_symbols": [
+      "DoclingDocument",
+      "DoclingDocument.export_to_dict",
+      "DoclingDocument.export_to_markdown"
+    ],
+    "expected_relationships": [
+      "DoclingDocument -> export_to_markdown"
+    ],
+    "expected_concepts": [
+      "Document serializer methods (`export_to_markdown`, `export_to_dict`, `export_to_json`)",
+      "Structured export formats",
+      "Intermediate model representation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/verify_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/asciidoc_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_msword.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py"
+    ],
+    "retrieved_symbols": [
+      "verify_docitems",
+      "_parse",
+      "_test_e2e_docx_conversions_impl",
+      "is_processable",
+      "convert"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 982.769,
+    "retrieval_latency_ms": 968.295,
+    "sufficiency_latency_ms": 11.0225,
+    "reasoning_latency_ms": 0.007,
+    "total_latency_ms": 982.769,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "docling-2",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/datamodel/document.py",
+      "docling/datamodel/base_models.py"
+    ],
+    "expected_symbols": [
+      "DoclingDocument",
+      "DocItem",
+      "DoclingDocument.iterate_items"
+    ],
+    "expected_relationships": [
+      "DoclingDocument.iterate_items -> DocItem"
+    ],
+    "expected_concepts": [
+      "Iterating document items / tags",
+      "`iterate_items()` generator method",
+      "Hierarchy traversal across paragraphs, tables, and headings"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/chunking/__init__.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_input_doc.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_image_native.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_image_native.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_input_doc.py"
+    ],
+    "retrieved_symbols": [
+      "__init__.py",
+      "_make_input_doc",
+      "_make_png_stream",
+      "_make_multipage_tiff_stream",
+      "_make_input_doc_from_stream"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 83.0444,
+    "retrieval_latency_ms": 71.0736,
+    "sufficiency_latency_ms": 0.4069,
+    "reasoning_latency_ms": 0.0356,
+    "total_latency_ms": 83.0444,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "docling-3",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/pipeline/standard_pdf_pipeline.py",
+      "docling/pipeline/base_pipeline.py"
+    ],
+    "expected_symbols": [
+      "StandardPdfPipeline",
+      "PipelineOptions"
+    ],
+    "expected_relationships": [
+      "PipelineOptions -> StandardPdfPipeline"
+    ],
+    "expected_concepts": [
+      "Offline execution mode with local model artifacts",
+      "HuggingFace local cache directory",
+      "Disabling network download requests in pipeline options"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/develop_picture_enrichment.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/base_model.py"
+    ],
+    "retrieved_symbols": [
+      "_get_prompt",
+      "supported_formats",
+      "AbstractDocumentBackend",
+      "ExamplePictureClassifierPipelineOptions",
+      "_build_prompt_safe"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1067.58,
+    "retrieval_latency_ms": 1061.46,
+    "sufficiency_latency_ms": 3.5432,
+    "reasoning_latency_ms": 0.0068,
+    "total_latency_ms": 1067.58,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "docling-9",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/datamodel/base_models.py",
+      "docling/pipeline/standard_pdf_pipeline.py"
+    ],
+    "expected_symbols": [
+      "ProvenanceItem",
+      "DocItem",
+      "BoundingBox"
+    ],
+    "expected_relationships": [
+      "DocItem.prov -> ProvenanceItem"
+    ],
+    "expected_concepts": [
+      "Page number index offset (0-based vs 1-based)",
+      "Provenance metadata generation across multi-page PDF documents",
+      "Bounding box coordinate assignment"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/utils/api_image_request.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_msexcel.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_html.py"
+    ],
+    "retrieved_symbols": [
+      "api_image_request_streaming",
+      "is_empty_fast_with_lines_pil",
+      "ExcelCell",
+      "test_bytesio_stream",
+      "test_unicode_characters"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1546.56,
+    "retrieval_latency_ms": 1476.6,
+    "sufficiency_latency_ms": 66.8581,
+    "reasoning_latency_ms": 0.0433,
+    "total_latency_ms": 1546.56,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  },
+  {
+    "question_id": "amoeba-docling-01",
+    "repository": "docling-project/docling",
+    "source": "amoeba_designed",
+    "taxonomy": "Project Architecture",
+    "difficulty": "4",
+    "expected_files": [
+      "docling/document_converter.py",
+      "docling/pipeline/standard_pdf_pipeline.py",
+      "docling/datamodel/document.py"
+    ],
+    "expected_symbols": [
+      "DocumentConverter",
+      "DocumentConverter.convert",
+      "DoclingDocument",
+      "StandardPdfPipeline"
+    ],
+    "expected_relationships": [
+      "DocumentConverter.convert -> Pipeline.execute -> DoclingDocument"
+    ],
+    "expected_concepts": [
+      "Pipeline stages",
+      "Format backends",
+      "Document model assembly"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msword_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/webvtt_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/asciidoc_backend.py"
+    ],
+    "retrieved_symbols": [
+      "convert",
+      "convert",
+      "parse",
+      "convert",
+      "convert"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "correct",
+    "usefulness": true,
+    "latency_ms": 972.037,
+    "retrieval_latency_ms": 967.083,
+    "sufficiency_latency_ms": 1.1191,
+    "reasoning_latency_ms": 0.0255,
+    "total_latency_ms": 972.037,
+    "failure_category": "none",
+    "diagnostic_explanation": "Accurately retrieved target units, verified sufficiency, and grounded answer."
+  },
+  {
+    "question_id": "amoeba-docling-02",
+    "repository": "docling-project/docling",
+    "source": "amoeba_designed",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "expected_files": [
+      "docling/datamodel/base_models.py",
+      "docling/datamodel/document.py"
+    ],
+    "expected_symbols": [
+      "BoundingBox",
+      "CoordOrigin",
+      "DoclingDocument"
+    ],
+    "expected_relationships": [
+      "TextItem.prov -> BoundingBox"
+    ],
+    "expected_concepts": [
+      "Bounding box normalization",
+      "Coordinate origin transform",
+      "OCR text cell layout"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/verify_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/datamodel/pipeline_options.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/utils/generation_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/page_preprocessing_model.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/pipeline/extraction_vlm_pipeline.py"
+    ],
+    "retrieved_symbols": [
+      "verify_conversion_result_v1",
+      "ConvertPipelineOptions",
+      "__init__",
+      "_parse_page_cells",
+      "ExtractionVlmPipeline"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": false,
+    "sufficiency_decision": true,
+    "sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "final_answer_status": "GROUNDED",
+    "final_answer_text": "Based on the provided repository evidence, the requested component is implemented as shown in the source context.",
+    "grounded": true,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1078.3,
+    "retrieval_latency_ms": 1073.6,
+    "sufficiency_latency_ms": 1.3204,
+    "reasoning_latency_ms": 0.0282,
+    "total_latency_ms": 1078.3,
+    "failure_category": "retrieval_failure",
+    "diagnostic_explanation": "Expected source file/symbol not recovered in top-10 search results."
+  }
+]

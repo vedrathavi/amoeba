@@ -266,6 +266,13 @@ add_library(amoeba_engine
     engine/src/reasoning/fake_llm_runtime.cpp
     engine/src/reasoning/reasoning_service.cpp
     engine/src/reasoning/local_llm_runtime.cpp
+    engine/src/tools/repository_access_policy.cpp
+    engine/src/tools/tool_registry.cpp
+    engine/src/tools/search_code_tool.cpp
+    engine/src/tools/find_symbol_tool.cpp
+    engine/src/tools/read_file_tool.cpp
+    engine/src/tools/get_relationships_tool.cpp
+    engine/src/tools/tool_evidence_adapter.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -392,6 +399,13 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/reasoning/reasoning_service_test.cpp
         engine/tests/reasoning/local_llm_runtime_test.cpp
         engine/tests/reasoning/grounded_answer_test.cpp
+        engine/tests/tools/repository_access_policy_test.cpp
+        engine/tests/tools/tool_registry_test.cpp
+        engine/tests/tools/built_in_tools_test.cpp
+        engine/tests/tools/tool_evidence_adapter_test.cpp
+        engine/tests/tools/tools_benchmark_test.cpp
+        engine/tests/tools/phase_8_2_checkpoint_test.cpp
+        engine/tests/tools/benchmark_compatibility_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
@@ -426,3 +440,49 @@ if(MSVC)
 else()
     target_compile_options(amoeba_phase_06_5_benchmark PRIVATE -Wall -Wextra -Wpedantic)
 endif()
+
+# -----------------------------------------------------------------------------
+# 5. amoeba_repoprobe_benchmark (RepoProbe v1 Benchmark Target)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_repoprobe_benchmark
+    benchmarks/repoprobe_v1/benchmark_runner_main.cpp
+)
+
+target_link_libraries(amoeba_repoprobe_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_repoprobe_benchmark PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_repoprobe_benchmark PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_repoprobe_benchmark PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_repoprobe_benchmark PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_repoprobe_benchmark PRIVATE -Wl,--stack,67108864)
+endif()
+
+# -----------------------------------------------------------------------------
+# 6. amoeba_semantic_audit (Semantic Retrieval Forensic Audit Target)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_semantic_audit
+    benchmarks/repoprobe_v1/semantic_audit_main.cpp
+)
+
+target_link_libraries(amoeba_semantic_audit
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_semantic_audit PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_semantic_audit PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_semantic_audit PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_semantic_audit PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_semantic_audit PRIVATE -Wl,--stack,67108864)
+endif()
+
+

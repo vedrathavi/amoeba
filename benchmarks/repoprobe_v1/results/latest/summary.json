@@ -1,0 +1,155 @@
+{
+  "benchmark_name": "Amoeba RepoProbe v1 Benchmark",
+  "timestamp": "2026-10-02T15:12:58.992378+00:00",
+  "git_commit": "631cf844d16ad84d69c560275e02d17b9e8a3b1d",
+  "total_questions": 70,
+  "positive_questions": 66,
+  "negative_questions": 4,
+  "metrics": {
+    "hit_at_1_pct": 10.606060606060606,
+    "hit_at_5_pct": 31.818181818181817,
+    "hit_at_10_pct": 45.45454545454545,
+    "groundedness_rate_pct": 37.142857142857146,
+    "correctness_rate_pct": 24.285714285714285,
+    "negative_refusal_accuracy_pct": 100.0,
+    "avg_retrieval_latency_ms": 12024.877245714286,
+    "avg_sufficiency_latency_ms": 24.250732857142857,
+    "avg_reasoning_latency_ms": 0.06552285714285715,
+    "avg_total_latency_ms": 12080.636064285714
+  },
+  "failure_distribution": {
+    "retrieval_failure": 36,
+    "sufficiency_failure": 17,
+    "none": 17
+  },
+  "breakdown_by_source": {
+    "repoprobe": {
+      "total": 50,
+      "correct": 3,
+      "accuracy_pct": 6.0,
+      "hit10_pct": 40.0
+    },
+    "amoeba_designed": {
+      "total": 20,
+      "correct": 14,
+      "accuracy_pct": 70.0,
+      "hit10_pct": 62.5
+    }
+  },
+  "breakdown_by_taxonomy": {
+    "Implementation Details": {
+      "total": 45,
+      "correct": 10,
+      "accuracy_pct": 22.22222222222222
+    },
+    "Business Logic": {
+      "total": 6,
+      "correct": 0,
+      "accuracy_pct": 0.0
+    },
+    "Symbol Lookup": {
+      "total": 2,
+      "correct": 2,
+      "accuracy_pct": 100.0
+    },
+    "Project Architecture": {
+      "total": 17,
+      "correct": 5,
+      "accuracy_pct": 29.41176470588235
+    }
+  },
+  "breakdown_by_difficulty": {
+    "Medium": {
+      "total": 50,
+      "correct": 3,
+      "accuracy_pct": 6.0
+    },
+    "1": {
+      "total": 2,
+      "correct": 2,
+      "accuracy_pct": 100.0
+    },
+    "2": {
+      "total": 6,
+      "correct": 4,
+      "accuracy_pct": 66.66666666666667
+    },
+    "5": {
+      "total": 4,
+      "correct": 4,
+      "accuracy_pct": 100.0
+    },
+    "3": {
+      "total": 6,
+      "correct": 2,
+      "accuracy_pct": 33.333333333333336
+    },
+    "4": {
+      "total": 2,
+      "correct": 2,
+      "accuracy_pct": 100.0
+    }
+  },
+  "breakdown_by_repository": {
+    "duckdb/ducklake": {
+      "total": 6,
+      "correct": 1,
+      "accuracy_pct": 16.666666666666668,
+      "hit10_pct": 33.333333333333336
+    },
+    "google/adk-python": {
+      "total": 8,
+      "correct": 4,
+      "accuracy_pct": 50.0,
+      "hit10_pct": 57.142857142857146
+    },
+    "better-auth/better-auth": {
+      "total": 7,
+      "correct": 1,
+      "accuracy_pct": 14.285714285714286,
+      "hit10_pct": 57.142857142857146
+    },
+    "Dokploy/dokploy": {
+      "total": 7,
+      "correct": 0,
+      "accuracy_pct": 0.0,
+      "hit10_pct": 14.285714285714286
+    },
+    "apple/pkl": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.571428571428573,
+      "hit10_pct": 33.333333333333336
+    },
+    "henrygd/beszel": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.571428571428573,
+      "hit10_pct": 42.857142857142854
+    },
+    "opencloud-eu/opencloud": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.571428571428573,
+      "hit10_pct": 16.666666666666668
+    },
+    "BurntSushi/jiff": {
+      "total": 8,
+      "correct": 2,
+      "accuracy_pct": 25.0,
+      "hit10_pct": 85.71428571428571
+    },
+    "abenz1267/walker": {
+      "total": 6,
+      "correct": 2,
+      "accuracy_pct": 33.333333333333336,
+      "hit10_pct": 66.66666666666667
+    },
+    "docling-project/docling": {
+      "total": 7,
+      "correct": 1,
+      "accuracy_pct": 14.285714285714286,
+      "hit10_pct": 42.857142857142854
+    }
+  }
+}

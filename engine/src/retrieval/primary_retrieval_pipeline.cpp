@@ -5,47 +5,16 @@
 #include <algorithm>
 #include <chrono>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace amoeba::retrieval {
 
 using Clock = std::chrono::steady_clock;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ElementMatchKey — same approach as HybridRetriever for deterministic matching
-// of SearchResult (which does not carry ElementId) back to InvertedIndex entries.
-// ─────────────────────────────────────────────────────────────────────────────
-
-namespace {
-
-struct ElementMatchKey {
-    std::string file_path;
-    std::string name;
-    uint32_t start_line{0};
-    uint32_t start_col{0};
-
-    bool operator==(const ElementMatchKey& o) const noexcept {
-        return start_line == o.start_line && start_col == o.start_col && name == o.name &&
-               file_path == o.file_path;
-    }
-};
-
-struct ElementMatchKeyHash {
-    std::size_t operator()(const ElementMatchKey& k) const noexcept {
-        const std::size_t h1 = std::hash<std::string>{}(k.file_path);
-        const std::size_t h2 = std::hash<std::string>{}(k.name);
-        const std::size_t h3 = std::hash<uint32_t>{}(k.start_line);
-        const std::size_t h4 = std::hash<uint32_t>{}(k.start_col);
-        return h1 ^ (h2 << 1) ^ (h3 << 2) ^ (h4 << 3);
-    }
-};
-
-using ElementToIdMap = std::unordered_map<ElementMatchKey, index::ElementId, ElementMatchKeyHash>;
-
-}  // namespace
-
-// ─────────────────────────────────────────────────────────────────────────────
 // Construction
 // ─────────────────────────────────────────────────────────────────────────────
+
 
 PrimaryRetrievalPipeline::PrimaryRetrievalPipeline(std::span<const parser::ParsedFile> parsed_files,
                                                    const index::InvertedIndex& index,
@@ -80,25 +49,14 @@ void PrimaryRetrievalPipeline::build_semantic_index() {
 }
 
 void PrimaryRetrievalPipeline::reconcile_element_ids() {
-    // The SupportingEvidenceResolver assigns primary_element_id as the index of
-    // the element within its ParsedFile (i.e., position in ParsedFile::elements).
-    // This is NOT the same as the InvertedIndex ElementId, which is global and
-    // monotonically increases across all files.
-    //
-    // This method patches each RetrievalUnit's primary_element_id to the correct
-    // InvertedIndex ElementId by matching via (file_path, name, start_line, start_col).
-    // Without this step, two units from different files that share position 0 in their
-    // respective ParsedFile::elements would both have primary_element_id = 0, causing
-    // collisions in the SemanticIndex.
-    //
     // Build a ElementMatchKey -> InvertedIndex ElementId map once, then update units.
-    ElementToIdMap index_key_to_id;
-    index_key_to_id.reserve(index_.element_count());
+    elem_key_to_id_.clear();
+    elem_key_to_id_.reserve(index_.element_count());
     for (index::ElementId id = 0; id < static_cast<index::ElementId>(index_.element_count());
          ++id) {
         const auto& ie = index_.get_element(id);
         const auto& file = index_.get_file(ie.file_id);
-        index_key_to_id.emplace(
+        elem_key_to_id_.emplace(
             ElementMatchKey{
                 .file_path = file.file_path.generic_string(),
                 .name = ie.element.name,
@@ -115,8 +73,8 @@ void PrimaryRetrievalPipeline::reconcile_element_ids() {
             .start_line = unit.primary_element.location.start.line,
             .start_col = unit.primary_element.location.start.column,
         };
-        const auto it = index_key_to_id.find(key);
-        if (it != index_key_to_id.end()) {
+        const auto it = elem_key_to_id_.find(key);
+        if (it != elem_key_to_id_.end()) {
             unit.primary_element_id = it->second;
         }
         // Synthetic module units (no matching InvertedIndex entry) keep their
@@ -179,27 +137,6 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
     metrics.primary_unit_count = units_.size();
     metrics.supporting_count = supporting_element_count();
 
-    // ─── 0. Build ElementMatchKey → ElementId map for this query ─────────────
-    // This is the same approach used by HybridRetriever. It resolves SearchResult
-    // (which doesn't carry element_id) back to an InvertedIndex ElementId in O(1)
-    // per result, at the cost of one O(N_elements) construction.
-    // We build it once per search call and reuse for all lex_results.
-    ElementToIdMap elem_key_to_id;
-    elem_key_to_id.reserve(index_.element_count());
-    for (index::ElementId id = 0; id < static_cast<index::ElementId>(index_.element_count());
-         ++id) {
-        const auto& ie = index_.get_element(id);
-        const auto& file = index_.get_file(ie.file_id);
-        elem_key_to_id.emplace(
-            ElementMatchKey{
-                .file_path = file.file_path.generic_string(),
-                .name = ie.element.name,
-                .start_line = ie.element.location.start.line,
-                .start_col = ie.element.location.start.column,
-            },
-            id);
-    }
-
     // ─── 1. Lexical Retrieval ─────────────────────────────────────────────────
     const auto t_lex_start = Clock::now();
 
@@ -208,6 +145,9 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
         .ranker_type = options.lexical_ranker,
         .max_results = options.lexical_top_k,
         .kind_filter = options.kind_filter,
+        .clean_query = query_rep.clean_technical_query,
+        .extra_lookup_terms = query_rep.all_search_terms,
+        .technical_entities = query_rep.technical_entities,
     };
     const auto lex_results = search_engine_.search(query, lex_opts);
     metrics.lexical_candidates = lex_results.size();
@@ -257,10 +197,11 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
             .start_line = lr.element.location.start.line,
             .start_col = lr.element.location.start.column,
         };
-        const auto eid_it = elem_key_to_id.find(key);
-        if (eid_it == elem_key_to_id.end()) {
+        const auto eid_it = elem_key_to_id_.find(key);
+        if (eid_it == elem_key_to_id_.end()) {
             continue;  // Element not found in index (should not happen)
         }
+
         const index::ElementId eid = eid_it->second;
 
         const auto unit_it = element_id_to_unit_.find(eid);
@@ -269,11 +210,9 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
         }
         const std::size_t ui = unit_it->second;
 
-        auto& cand = candidate_map[ui];
-        // Keep the lexical score of the PRIMARY match if the primary element
-        // itself was hit, otherwise keep the best raw score (first hit wins
-        // since lex_results is already ranked highest-first).
-        if (cand.lexical_rank == 0) {
+        auto it = candidate_map.find(ui);
+        if (it == candidate_map.end()) {
+            auto& cand = candidate_map[ui];
             cand.element_id = units_[ui].primary_element_id;
             cand.element = units_[ui].primary_element;
             cand.file_path = units_[ui].file_path;
@@ -281,6 +220,15 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
             cand.raw_lexical_score = lr.score;
             cand.normalized_lexical_score = norm_lex[i];
             cand.lexical_rank = static_cast<uint32_t>(i + 1);
+        } else {
+            auto& cand = it->second;
+            // If another element in the same unit achieves a higher lexical score,
+            // update candidate lexical score and rank to reflect the best match.
+            if (lr.score > cand.raw_lexical_score) {
+                cand.raw_lexical_score = lr.score;
+                cand.normalized_lexical_score = norm_lex[i];
+                cand.lexical_rank = static_cast<uint32_t>(i + 1);
+            }
         }
     }
 

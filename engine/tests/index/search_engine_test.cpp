@@ -122,4 +122,35 @@ TEST_F(SearchEngineTest, EmptyQuery) {
     EXPECT_TRUE(whitespace_results.empty());
 }
 
+TEST_F(SearchEngineTest, UnifiedSearchWithCleanQueryAndTechnicalEntities) {
+    SearchEngine engine(index);
+
+    // Conversational query with clean_query and technical entity
+    const auto results = engine.search("How is the user authenticated in the system?",
+                                       SearchOptions{
+                                           .ranker_type = RankerType::CodeAware,
+                                           .clean_query = "user authenticated system",
+                                           .technical_entities = {"UserAuthenticationService", "authenticateUser"},
+                                       });
+
+    ASSERT_FALSE(results.empty());
+    EXPECT_TRUE(results[0].element.name == "UserAuthenticationService" ||
+                results[0].element.name == "authenticateUser");
+    EXPECT_TRUE(results[0].exact_name_match || results[0].score > 0.0);
+}
+
+TEST_F(SearchEngineTest, UnifiedSearchPreservesExtraLookupTerms) {
+    SearchEngine engine(index);
+
+    // Extra lookup terms include synthesized compound identifier
+    const auto results = engine.search("user card",
+                                       SearchOptions{
+                                           .ranker_type = RankerType::CodeAware,
+                                           .extra_lookup_terms = {"userprofilecard", "usercard"},
+                                       });
+
+    ASSERT_FALSE(results.empty());
+    EXPECT_EQ(results[0].element.name, "UserProfileCard");
+}
+
 }  // namespace

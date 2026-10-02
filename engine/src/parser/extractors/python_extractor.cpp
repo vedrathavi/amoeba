@@ -22,10 +22,10 @@ void extract_python(TSNode node, string_view source, const string& current_class
         string class_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
 
         string inheritance_detail;
+        vector<string> bases;
         TSNode super_node = ts_node_child_by_field_name(node, "superclasses", 12);
         if (!ts_node_is_null(super_node)) {
             const uint32_t super_count = ts_node_named_child_count(super_node);
-            vector<string> bases;
             for (uint32_t i = 0; i < super_count; ++i) {
                 TSNode base_node = ts_node_named_child(super_node, i);
                 string base_text = get_node_text(base_node, source);
@@ -43,6 +43,25 @@ void extract_python(TSNode node, string_view source, const string& current_class
             }
         }
 
+        string doc;
+        TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
+        if (!ts_node_is_null(body_node)) {
+            doc = extract_python_docstring(body_node, source);
+        }
+        if (doc.empty()) {
+            doc = extract_preceding_doc(node, source);
+        }
+
+        string signature = "class " + class_name;
+        if (!bases.empty()) {
+            signature += "(";
+            for (size_t i = 0; i < bases.size(); ++i) {
+                if (i > 0) signature += ", ";
+                signature += bases[i];
+            }
+            signature += ")";
+        }
+
         if (!class_name.empty()) {
             out_elements.push_back(CodeElement{
                 .kind = ElementKind::Class,
@@ -50,10 +69,12 @@ void extract_python(TSNode node, string_view source, const string& current_class
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = inheritance_detail,
+                .signature = signature,
+                .return_type = "",
+                .documentation = doc,
             });
         }
 
-        TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
         if (!ts_node_is_null(body_node)) {
             const uint32_t child_count = ts_node_named_child_count(body_node);
             for (uint32_t i = 0; i < child_count; ++i) {
@@ -66,17 +87,40 @@ void extract_python(TSNode node, string_view source, const string& current_class
     if (type == "function_definition") {
         TSNode name_node = ts_node_child_by_field_name(node, "name", 4);
         string func_name = !ts_node_is_null(name_node) ? get_node_text(name_node, source) : "";
+
+        TSNode params_node = ts_node_child_by_field_name(node, "parameters", 10);
+        string params_text = !ts_node_is_null(params_node) ? get_node_text(params_node, source) : "";
+
+        TSNode ret_node = ts_node_child_by_field_name(node, "return_type", 11);
+        string ret_text = !ts_node_is_null(ret_node) ? get_node_text(ret_node, source) : "";
+
+        string doc;
+        TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
+        if (!ts_node_is_null(body_node)) {
+            doc = extract_python_docstring(body_node, source);
+        }
+        if (doc.empty()) {
+            doc = extract_preceding_doc(node, source);
+        }
+
+        string signature;
         if (!func_name.empty()) {
+            signature = func_name + (params_text.empty() ? "()" : params_text);
+            if (!ret_text.empty()) {
+                signature += " -> " + ret_text;
+            }
             out_elements.push_back(CodeElement{
                 .kind = !current_class.empty() ? ElementKind::Method : ElementKind::Function,
                 .name = func_name,
                 .location = get_node_range(node),
                 .parent_context = current_class,
                 .detail = "",
+                .signature = signature,
+                .return_type = ret_text,
+                .documentation = doc,
             });
         }
 
-        TSNode body_node = ts_node_child_by_field_name(node, "body", 4);
         if (!ts_node_is_null(body_node)) {
             extract_python(body_node, source, func_name.empty() ? current_class : func_name,
                            out_elements);
