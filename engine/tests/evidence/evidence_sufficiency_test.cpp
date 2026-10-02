@@ -223,3 +223,51 @@ TEST_F(EvidenceSufficiencyTest, GenericNonExistentConceptIsInsufficient) {
     EXPECT_FALSE(res.is_sufficient);
     EXPECT_TRUE(res.matched_subjects.empty());
 }
+
+// 13. Phase 7.6.1: Generic Component Term Collision Rejection (GraphQL Resolver)
+TEST_F(EvidenceSufficiencyTest, GenericComponentCollisionWithoutDistinguishingSubjectIsRejected) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is the GraphQL resolver?";
+    // SupportingEvidenceResolver matches "resolver" but does NOT contain "graphql"
+    bundle.items.push_back(create_item("SupportingEvidenceResolver",
+                                       "engine/src/retrieval/supporting_evidence_resolver.cpp", 0.70,
+                                       RetrievalProvenance::HybridBoth,
+                                       "class SupportingEvidenceResolver { resolve_supporting_elements(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);  // Must reject!
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+    EXPECT_NE(std::find(res.missing_subjects.begin(), res.missing_subjects.end(), "graphql"),
+              res.missing_subjects.end());
+    EXPECT_NE(res.reason.find("Only generic component terms were matched"), std::string::npos);
+}
+
+// 14. Phase 7.6.1: Legitimate Query Matching Distinguishing Subjects is ACCEPTED
+TEST_F(EvidenceSufficiencyTest, LegitimateQueryMatchingDistinguishingSubjectsIsAccepted) {
+    EvidenceBundle bundle;
+    bundle.query = "Where are supporting AST elements resolved?";
+    bundle.items.push_back(create_item("SupportingEvidenceResolver",
+                                       "engine/src/retrieval/supporting_evidence_resolver.cpp", 0.85,
+                                       RetrievalProvenance::HybridBoth,
+                                       "class SupportingEvidenceResolver { resolve_supporting_elements(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);  // Must accept!
+    EXPECT_GE(res.confidence_score, 0.5);
+    EXPECT_NE(std::find(res.matched_subjects.begin(), res.matched_subjects.end(), "support"),
+              res.matched_subjects.end());
+}
+
+// 15. Phase 7.6.1: Single-Term Generic Component Query is ACCEPTED When Present
+TEST_F(EvidenceSufficiencyTest, SingleTermGenericQueryIsAcceptedWhenPresent) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is the parser?";
+    bundle.items.push_back(create_item("SourceParser",
+                                       "engine/src/parser/source_parser.cpp", 0.90,
+                                       RetrievalProvenance::HybridBoth,
+                                       "class SourceParser { ParsedFile parse_file(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+}
+

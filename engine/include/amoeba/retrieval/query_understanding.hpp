@@ -80,6 +80,10 @@ struct QueryRepresentation {
     std::vector<std::string> subject_terms;               ///< Normalized stems of Subject concepts
     std::vector<std::string> action_terms;  ///< Normalized stems of Action/inquiry verbs
     std::vector<std::string>
+        distinguishing_subject_terms;  ///< Domain-qualifying subject terms (non-generic)
+    std::vector<std::string>
+        generic_component_terms;  ///< Generic architectural/component nouns (resolver, service, etc.)
+    std::vector<std::string>
         synthesized_identifiers;  ///< Reconstructed compound identifier tokens (e.g. "usecalendar")
     std::vector<std::string>
         all_search_terms;  ///< Combined deduplicated search tokens for index lookup
@@ -129,6 +133,22 @@ public:
      * "saved", "navigate").
      */
     [[nodiscard]] static bool is_action_term(std::string_view term) noexcept;
+
+    /**
+     * @brief Checks if a term is a generic architectural/component noun (e.g. "resolver",
+     * "handler", "manager", "service", "client", "provider", "controller", "parser",
+     * "processor", "factory", "adapter", "builder", "helper", "utility", "validator",
+     * "middleware", "component", "hook", "store", "storage", "router", "route", "worker",
+     * "runner", "listener", "emitter", "consumer", "producer", "engine", "pipeline",
+     * "deployment", "endpoint", "driver", "connector", "serializer", "deserializer",
+     * "indexer", "index", "searcher", "extractor", "checker", "inspector", "evaluator",
+     * "auth", "authentication", "login", "checkout", "wrapper", "registry", "module", "element").
+     *
+     * In multi-term queries, matching a generic component term alone without any distinguishing
+     * domain term is insufficient to establish grounded evidence for a compound concept (e.g.
+     * "GraphQL resolver" cannot be established by a generic "resolver" alone).
+     */
+    [[nodiscard]] static bool is_generic_component_term(std::string_view term) noexcept;
 
     /**
      * @brief Checks if a term is an interrogative (e.g. "where", "how", "what", "which").

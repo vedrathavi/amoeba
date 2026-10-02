@@ -391,6 +391,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/context/end_to_end_regression_test.cpp
         engine/tests/reasoning/reasoning_service_test.cpp
         engine/tests/reasoning/local_llm_runtime_test.cpp
+        engine/tests/reasoning/grounded_answer_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests

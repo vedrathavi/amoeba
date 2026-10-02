@@ -65,10 +65,10 @@ TEST_F(ReasoningServiceTest, PromptBuilderGroundingAndInstructions) {
 
     // Verify critical grounding rules
     EXPECT_NE(system_prompt.find("GROUNDING RULES"), std::string::npos);
-    EXPECT_NE(system_prompt.find("ONLY on the supplied"), std::string::npos);
+    EXPECT_NE(system_prompt.find("Answer ONLY using facts"), std::string::npos);
     EXPECT_NE(system_prompt.find("Do NOT invent"), std::string::npos);
     EXPECT_NE(system_prompt.find(
-                  "I couldn't find sufficient evidence in the repository to determine this"),
+                  "I couldn't establish this from the repository evidence available to Amoeba"),
               std::string::npos);
 
     // Verify user prompt contains markdown context and query

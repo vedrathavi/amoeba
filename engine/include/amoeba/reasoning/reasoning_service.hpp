@@ -1,9 +1,13 @@
 #pragma once
 
 #include "amoeba/context/context_package.hpp"
+#include "amoeba/evidence/evidence_sufficiency.hpp"
+#include "amoeba/reasoning/grounded_answer.hpp"
 #include "amoeba/reasoning/llm_runtime.hpp"
 #include "amoeba/reasoning/llm_types.hpp"
 #include "amoeba/reasoning/response_sink.hpp"
+
+#include <optional>
 
 namespace amoeba::reasoning {
 
@@ -12,8 +16,10 @@ namespace amoeba::reasoning {
  *
  * Responsibilities:
  * - Accepts user question and ContextPackage.
+ * - Enforces the Grounded Answer Contract (rejection fast-path if evidence is insufficient).
  * - Constructs the appropriate grounded prompt payload.
  * - Dispatches execution to the configured LLMRuntime (synchronously or streamingly).
+ * - Extracts human-readable citations from verified repository context.
  * - Remains strictly decoupled from retrieval, graph, and AST parser internals.
  */
 class ReasoningService {
@@ -41,6 +47,22 @@ public:
      * @return Complete LLM response.
      */
     [[nodiscard]] LLMResponse answer(const LLMRequest& request);
+
+    /**
+     * @brief Evaluates an answer under the Grounded Answer Contract.
+     *
+     * If sufficiency is provided and indicates insufficient evidence, execution halts
+     * immediately without invoking LLM inference, returning GroundedAnswerStatus::InsufficientEvidence.
+     * Otherwise, invokes the LLM and formats citations from the ContextPackage.
+     *
+     * @param question The user's query.
+     * @param context_package The bounded repository context.
+     * @param sufficiency Optional pre-evaluated evidence sufficiency result.
+     * @return Structured GroundedAnswer.
+     */
+    [[nodiscard]] GroundedAnswer
+    answer_grounded(const std::string& question, const context::ContextPackage& context_package,
+                    const std::optional<evidence::EvidenceSufficiencyResult>& sufficiency = std::nullopt);
 
     /**
      * @brief Stream response events for a question given a ContextPackage.

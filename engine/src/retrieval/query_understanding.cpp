@@ -33,6 +33,19 @@ const std::unordered_set<std::string_view> kGenericActionBases = {
     "write",     "show",    "view",    "find",    "obtain",   "check",      "contain",
     "hold",      "perform"};
 
+const std::unordered_set<std::string_view> kGenericComponentTerms = {
+    "resolver",      "handler",       "manager",        "service",      "client",
+    "provider",      "controller",    "parser",         "processor",    "factory",
+    "adapter",       "builder",       "helper",         "utility",      "validator",
+    "middleware",    "component",     "hook",           "store",        "storage",
+    "model",         "view",          "router",         "route",        "worker",
+    "runner",        "listener",      "emitter",        "consumer",     "producer",
+    "engine",        "pipeline",      "deployment",     "endpoint",     "driver",
+    "connector",     "serializer",    "deserializer",   "indexer",      "index",
+    "searcher",      "extractor",     "checker",        "inspector",    "evaluator",
+    "authenticator", "authorizer",    "auth",           "authentication","login",
+    "checkout",      "wrapper",       "registry",       "module",       "element"};
+
 }  // namespace
 
 std::string QueryUnderstanding::conservative_stem(std::string_view term) {
@@ -164,6 +177,11 @@ std::string QueryUnderstanding::conservative_stem(std::string_view term) {
 bool QueryUnderstanding::is_action_term(std::string_view term) noexcept {
     const std::string stem = conservative_stem(term);
     return kGenericActionBases.contains(term) || kGenericActionBases.contains(stem);
+}
+
+bool QueryUnderstanding::is_generic_component_term(std::string_view term) noexcept {
+    const std::string stem = conservative_stem(term);
+    return kGenericComponentTerms.contains(term) || kGenericComponentTerms.contains(stem);
 }
 
 bool QueryUnderstanding::is_interrogative(std::string_view term) noexcept {
@@ -339,6 +357,11 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         if (role == QueryTermRole::Subject) {
             if (seen_subjects.insert(stem).second) {
                 rep.subject_terms.push_back(stem);
+                if (is_generic_component_term(stem)) {
+                    rep.generic_component_terms.push_back(stem);
+                } else {
+                    rep.distinguishing_subject_terms.push_back(stem);
+                }
             }
         } else if (role == QueryTermRole::Action) {
             if (seen_actions.insert(stem).second) {

@@ -173,4 +173,48 @@ TEST(QueryUnderstandingTest, QueryTermRoleCategorization) {
               rep3.action_terms.end());
 }
 
+TEST(QueryUnderstandingTest, GenericComponentTermDetection) {
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("resolver"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("handler"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("manager"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("service"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("provider"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("controller"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("parser"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("deployment"));
+    EXPECT_TRUE(QueryUnderstanding::is_generic_component_term("authentication"));
+
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("graphql"));
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("jwt"));
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("oauth"));
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("calendar"));
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("note"));
+    EXPECT_FALSE(QueryUnderstanding::is_generic_component_term("inverted"));
+}
+
+TEST(QueryUnderstandingTest, DistinguishingSubjectSeparation) {
+    // Compound concept: "GraphQL resolver"
+    const auto rep = QueryUnderstanding::analyze("Where is the GraphQL resolver?");
+    EXPECT_NE(std::find(rep.subject_terms.begin(), rep.subject_terms.end(), "graphql"),
+              rep.subject_terms.end());
+    EXPECT_NE(std::find(rep.subject_terms.begin(), rep.subject_terms.end(), "resolver"),
+              rep.subject_terms.end());
+
+    EXPECT_NE(std::find(rep.distinguishing_subject_terms.begin(),
+                        rep.distinguishing_subject_terms.end(), "graphql"),
+              rep.distinguishing_subject_terms.end());
+    EXPECT_NE(std::find(rep.generic_component_terms.begin(), rep.generic_component_terms.end(),
+                        "resolver"),
+              rep.generic_component_terms.end());
+
+    // Compound concept: "JWT authentication"
+    const auto rep2 = QueryUnderstanding::analyze("Where is JWT authentication implemented?");
+    EXPECT_NE(std::find(rep2.distinguishing_subject_terms.begin(),
+                        rep2.distinguishing_subject_terms.end(), "jwt"),
+              rep2.distinguishing_subject_terms.end());
+    EXPECT_NE(std::find(rep2.generic_component_terms.begin(), rep2.generic_component_terms.end(),
+                        "authentication"),
+              rep2.generic_component_terms.end());
+}
+
 }  // namespace

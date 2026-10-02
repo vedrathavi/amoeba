@@ -265,6 +265,32 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         return result;
     }
 
+    // Rule E: Evidence Identity Rule (Phase 7.6.1)
+    // If the query contains at least one distinguishing domain subject term
+    // (e.g. "GraphQL" in "GraphQL resolver", "JWT" in "JWT authentication", "payment" in "payment checkout"),
+    // but NONE of the distinguishing domain subject terms were matched across the retrieved evidence,
+    // matching only generic architectural component terms (e.g. "resolver", "authentication", "checkout")
+    // is AMBIGUOUS and CANNOT establish sufficiency for the compound concept.
+    if (!query_rep.distinguishing_subject_terms.empty()) {
+        bool has_distinguishing_match = false;
+        for (const auto& dist_subj : query_rep.distinguishing_subject_terms) {
+            if (std::find(result.matched_subjects.begin(), result.matched_subjects.end(), dist_subj) !=
+                result.matched_subjects.end()) {
+                has_distinguishing_match = true;
+                break;
+            }
+        }
+
+        if (!has_distinguishing_match) {
+            result.is_sufficient = false;
+            result.confidence_score = 0.0;
+            result.reason =
+                "Only generic component terms were matched; required distinguishing domain concept(s) "
+                "were not found in repository evidence.";
+            return result;
+        }
+    }
+
     // 6. Sufficient grounded evidence confirmed
     result.is_sufficient = true;
     result.confidence_score =
