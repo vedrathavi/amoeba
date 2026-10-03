@@ -1,22 +1,33 @@
 # Amoeba
 
-> **Source Code Search & Indexing Engine**
+> **High-Performance Source Code Search, Indexing & Grounded Reasoning Engine**
 
 ---
 
 ## Current Status
 
-> [!IMPORTANT]
-> **Amoeba is currently in Phase 2 (Parsing & Code Structure).**
-> It provides repository scanning, file discovery, and Tree-sitter powered syntax parsing and structural code extraction across C, C++, Python, Java, Go, Rust, JavaScript, TypeScript, JSX, TSX, HTML, and CSS, along with lightweight React, Next.js, and Tailwind CSS structural awareness. Indexing and search functionality remain planned for subsequent phases.
+> [!NOTE]
+> **Amoeba is in Phase 8 (Query Normalization, Hybrid Fusion & Grounded Reasoning).**
+> Amoeba provides end-to-end repository indexing, Tree-sitter powered syntax parsing across 12+ languages, inverted index lexical search (BM25), HNSW dense vector semantic search, hybrid rank fusion ($\alpha=0.8$), evidence sufficiency verification gates, and offline local LLM code reasoning (via Ollama & Qwen2.5-Coder).
 
 ---
 
 ## Project Vision
 
-Amoeba is an open, high-performance source-code search and indexing engine designed to scale across large codebases. The long-term vision is to progressively evolve through systematic milestones:
+Amoeba is an open, high-performance source-code search and indexing engine engineered in modern C++20 to scale across large codebases. The project evolves through systematic milestones:
 
-$$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \text{Code Understanding} \longrightarrow \text{Semantic Search} \longrightarrow \text{Code Intelligence}$$
+$$\text{Source Scanning} \longrightarrow \text{AST Parsing} \longrightarrow \text{Hybrid Retrieval} \longrightarrow \text{Evidence Verification} \longrightarrow \text{Grounded Code Intelligence}$$
+
+---
+
+## Core Capabilities
+
+- **Multi-Language AST Parsing**: Full Tree-sitter CST/AST extraction for C, C++, Python, Java, Go, Rust, JavaScript, TypeScript, JSX, TSX, HTML, and CSS.
+- **Inverted Index & Lexical Search**: Term frequency, inverse document frequency (TF-IDF/BM25), field-aware symbol weighting, and deterministic ranking.
+- **Dense Vector Semantic Index**: Approximate Nearest Neighbor (ANN) vector indexing powered by HNSW graphs (`hnswlib`) with deterministic local embeddings.
+- **Calibrated Hybrid Fusion**: Score fusion combining lexical and semantic rankings with tie-breaking determinism.
+- **Evidence Sufficiency Gate**: Algorithmic sufficiency validation enforcing domain term coverage and negative refusal to prevent LLM hallucinations.
+- **Offline Grounded Code Reasoning**: Direct natural language question-answering with local LLM integration (Ollama / Qwen2.5-Coder) bounded by verified source context slices.
 
 ---
 
@@ -25,21 +36,21 @@ $$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \
 > **Build the core, reuse mature infrastructure, measure bottlenecks, and replace components only when there is a good engineering reason.**
 
 * **Build the core**: Implement indexing, retrieval, ranking, and code representation internally to deeply understand and optimize core algorithms.
-* **Reuse mature tools**: Leverage established ecosystems (such as Tree-sitter for AST/CST parsing, FAISS/HNSW for ANN vector search, and SQLite/PostgreSQL for relational persistence) when appropriate.
-* **Measure and iterate**: Ground all optimizations and replacements in empirical profiling data.
+* **Reuse mature tools**: Leverage established ecosystems (Tree-sitter for AST/CST parsing, hnswlib for ANN vector search, and Ollama for local LLM inference).
+* **Measure and iterate**: Ground all optimizations in empirical benchmarks (RepoProbe v1 suite across 10 repositories and 70 real-world benchmark tasks).
+* **Zero Hallucination Safety**: Maintain strict invariants guaranteeing grounded refusal when evidence is insufficient or concepts are absent.
 
 ---
 
 ## Technology Stack
 
 * **Language**: C++20 (ISO/IEC 14882:2020)
-* **Build System**: CMake 3.20+ with CMake Presets
+* **Build System**: CMake 3.20+ with Ninja
 * **Parsing Runtime**: Tree-sitter (C, C++, Python, Java, Go, Rust, JS, TS, HTML, CSS grammars)
-* **Dependency Manager**: vcpkg / CMake FetchContent
-* **Testing Framework**: GoogleTest
-* **Code Formatting**: clang-format
-* **Static Analysis**: clang-tidy
-* **Continuous Integration**: GitHub Actions
+* **Vector Index**: HNSW (Hierarchical Navigable Small World graphs via hnswlib)
+* **Local LLM Runtime**: Ollama REST Client (`qwen2.5-coder:1.5b` / `qwen2.5-coder:7b`)
+* **Testing Framework**: GoogleTest (511+ automated unit & integration tests)
+* **Code Quality**: clang-format & clang-tidy
 
 ---
 
@@ -49,33 +60,33 @@ $$\text{Source-Code Indexing} \longrightarrow \text{Retrieval} \longrightarrow \
 amoeba/
 │
 ├── engine/             # Core C++ engine library
-│   ├── include/        # Public C++ API headers (amoeba/*.hpp, scanner/*.hpp, parser/*.hpp)
-│   ├── src/            # Engine implementation files (scanner/, parser/)
-│   └── tests/          # Unit tests (GoogleTest)
+│   ├── include/        # Public C++ API headers
+│   │   └── amoeba/
+│   │       ├── scanner/     # Repository scanner and file discovery
+│   │       ├── parser/      # Tree-sitter multi-language AST parser
+│   │       ├── index/       # Inverted index and lexical BM25
+│   │       ├── semantic/    # HNSW vector index and embeddings
+│   │       ├── retrieval/   # Hybrid fusion and query understanding
+│   │       ├── evidence/    # Evidence assembly and sufficiency checking
+│   │       └── reasoning/   # Local LLM client and reasoning service
+│   ├── src/            # Core engine implementation
+│   └── tests/          # Unit & integration test suites (GoogleTest)
 │
 ├── apps/               # Application entry points
-│   └── cli/            # Native command-line interface executable
+│   └── cli/            # Amoeba CLI executable (`amoeba_cli`)
 │
-├── docs/               # Project documentation
-│   ├── architecture/   # System architecture and module boundaries
-│   ├── decisions/      # Architecture Decision Records (ADRs)
-│   ├── phases/         # Phase roadmaps and scope specifications
-│   └── research/       # Research notes, benchmarks, and explorations
+├── benchmarks/         # Benchmark fixtures and evaluation harnesses
+│   └── repoprobe_v1/   # Canonical 70-question benchmark across 10 repos
 │
-├── scripts/            # Utility and automation scripts
-├── benchmarks/         # Performance benchmarks (future)
-├── tests/              # Integration and end-to-end test suites
+├── docs/               # System documentation, forensic reports, and ADRs
+│   ├── phase-08.4-hybrid-fusion-recalibration.md
+│   ├── phase-08.5-evidence-sufficiency-forensic-investigation.md
+│   ├── phase-08.6-query-subject-normalization.md
+│   └── phase-08.7-post-8.6-failure-forensic-checkpoint.md
 │
-├── .github/            # GitHub Actions workflows and CI automation
-│   └── workflows/
-│
-├── .clang-format       # Code formatting rules
-├── .clang-tidy         # Static analysis rules
-├── .gitignore          # Git exclusion rules
 ├── CMakeLists.txt      # Root CMake build specification
 ├── CMakePresets.json   # Standardized build and test presets
-├── vcpkg.json          # vcpkg dependency manifest
-└── README.md           # Project overview and quickstart
+└── README.md           # Project overview and documentation
 ```
 
 ---
@@ -86,92 +97,116 @@ amoeba/
 
 * A C++20 compliant compiler (GCC 11+, Clang 13+, or MSVC 2019/2022)
 * CMake 3.20 or newer
-* Ninja or your platform's default build generator
-* (Optional) [vcpkg](https://github.com/microsoft/vcpkg) for dependency management
+* Ninja build system
+* (Optional for LLM reasoning) [Ollama](https://ollama.ai/) running locally with `qwen2.5-coder:1.5b` (`ollama run qwen2.5-coder:1.5b`)
 
 ### Build Instructions
 
-#### Using CMake Presets (Recommended)
-
 ```bash
-# Configure debug build
-cmake --preset debug
+# Configure build
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 
-# Build all targets (amoeba_engine, amoeba_cli, amoeba_engine_tests)
-cmake --build --preset debug
-```
-
-#### Manual Build (Standard CMake)
-
-```bash
-# Generate build files
-cmake -B build -DCMAKE_BUILD_TYPE=Debug
-
-# Compile
+# Compile all targets (amoeba_engine, amoeba_cli, amoeba_engine_tests)
 cmake --build build
 ```
 
 ---
 
-## Running the CLI
+## CLI Usage
 
-### 1. Scan a Repository (`index` command)
+### 1. Grounded Question Answering (`ask` command)
 
-```bash
-./build/debug/apps/cli/amoeba_cli index <repository-path>
-```
-
-### 2. Parse a Source File (`parse` command)
+Ask natural language architectural or implementation questions about any repository:
 
 ```bash
-./build/debug/apps/cli/amoeba_cli parse <file-path>
+./build/amoeba_cli ask <repository-path> "<your-question>"
 ```
 
-**Example Output:**
+**Example:**
+```bash
+./build/amoeba_cli ask ./ "Where is HNSW implemented?"
+```
+
+**Output:**
 ```text
 Amoeba
 Source Code Search & Indexing Engine
 
-File:
-  ./engine/include/amoeba/scanner/repository_scanner.hpp
+Repository:
+  d:/amoeba
 
-Language:
-  C++
+Question:
+  "Where is HNSW implemented?"
 
-Parsing:
-  success
+Grounding Context:
+  Retrieved 2 primary code units (2784 chars) in 14 ms
+  Local LLM Model: qwen2.5-coder:1.5b (http://127.0.0.1:11434)
 
-Structural elements:
-  Class:
-    RepositoryScanner (Line 29)
-
-  Struct:
-    ScanResult (Line 17)
-
-  Method:
-    total_files_included (in ScanResult) (Line 23)
-    RepositoryScanner (in RepositoryScanner) (Line 31)
-    scan (in RepositoryScanner) (Line 39)
-
-  Include:
-    "amoeba/scanner/file_info.hpp" (Line 3)
-    <filesystem> (Line 5)
+Answer:
+HNSW is implemented in the `HnswSemanticIndex` class, which is defined in the `engine/include/amoeba/semantic/hnsw_semantic_index.hpp` file.
 ```
 
 ---
 
-## Running Tests
+### 2. Multi-Modal Code Search (`search` command)
 
-Run the GoogleTest test suite using CTest:
+Perform lexical, semantic, or hybrid search across an indexed repository:
 
-#### Using Presets
 ```bash
-ctest --preset debug
+# Hybrid Search (Default, alpha=0.8)
+./build/amoeba_cli search <repository-path> "<query>" --mode hybrid
+
+# Lexical Search (BM25)
+./build/amoeba_cli search <repository-path> "<query>" --mode lexical
+
+# Semantic Search (HNSW Vector Index)
+./build/amoeba_cli search <repository-path> "<query>" --mode semantic
 ```
 
-#### Manual CTest
+---
+
+### 3. Repository Discovery & Indexing (`index` command)
+
+Scan and build structural indexes for a repository:
+
+```bash
+./build/amoeba_cli index <repository-path>
+```
+
+---
+
+### 4. AST Syntax Parsing (`parse` command)
+
+Extract structural code symbols (classes, functions, interfaces, methods) from an individual source file:
+
+```bash
+./build/amoeba_cli parse <file-path>
+```
+
+---
+
+## Running Test Suites
+
+Run the complete 511-assertion GoogleTest suite:
+
+```bash
+./build/amoeba_engine_tests
+```
+
+Or via CTest:
 ```bash
 ctest --test-dir build --output-on-failure
+```
+
+---
+
+## Evaluation & Benchmarks
+
+Amoeba includes the **RepoProbe v1** benchmark evaluation suite testing retrieval recall (Hit@1, Hit@5, Hit@10, MRR), sufficiency verification, and grounded answer correctness across 10 real-world repositories (including `duckdb/ducklake`, `apple/pkl`, `google/adk-python`, `BurntSushi/jiff`, `Dokploy/dokploy`, and `docling-project/docling`).
+
+To run the full evaluation suite:
+```bash
+python benchmarks/repoprobe_v1/scripts/run_benchmark.py
 ```
 
 ---
