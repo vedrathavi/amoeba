@@ -44,7 +44,9 @@ const std::unordered_set<std::string_view> kGenericComponentTerms = {
     "connector",     "serializer",    "deserializer",   "indexer",      "index",
     "searcher",      "extractor",     "checker",        "inspector",    "evaluator",
     "authenticator", "authorizer",    "auth",           "authentication","login",
-    "checkout",      "wrapper",       "registry",       "module",       "element"};
+    "checkout",      "wrapper",       "registry",       "module",       "element",
+    "config",        "configuration", "core",           "database",     "db",
+    "executor",      "planner",       "conversion",     "converter",    "vector"};
 
 const std::unordered_set<std::string_view> kConversationalNoise = {
     "hello", "hi", "hey", "thanks", "thank", "please", "help", "anyone",
@@ -64,7 +66,8 @@ const std::unordered_set<std::string_view> kConversationalNoise = {
     "first", "second", "simple", "complex", "e.g", "eg", "ie", "i.e",
     "someone", "anybody", "everybody", "everyone", "community", "folks",
     "team", "guys", "description", "summary", "file", "files", "code", "codes",
-    "line", "lines"};
+    "line", "lines", "builtin", "built-in", "built", "native", "natively",
+    "support", "supports", "supported"};
 
 }  // namespace
 
@@ -396,6 +399,41 @@ bool QueryUnderstanding::is_stopword(std::string_view term) noexcept {
     return kStopwords.contains(term);
 }
 
+std::string_view QueryUnderstanding::extract_headline(std::string_view text) noexcept {
+    if (text.empty()) {
+        return text;
+    }
+    // 1. Skip leading whitespace/newlines
+    std::size_t start = 0;
+    while (start < text.size() && std::isspace(static_cast<unsigned char>(text[start]))) {
+        start++;
+    }
+    if (start >= text.size()) {
+        return text;
+    }
+
+    // 2. Look for newline terminating first line / title
+    std::size_t end = start;
+    while (end < text.size() && text[end] != '\r' && text[end] != '\n') {
+        end++;
+    }
+
+    // If there is a newline and non-empty first line, return it
+    if (end > start && end < text.size()) {
+        return text.substr(start, end - start);
+    }
+
+    // 3. For single-line text, look for first sentence terminator (. ? !) followed by space
+    for (std::size_t i = start; i < text.size(); ++i) {
+        if ((text[i] == '?' || text[i] == '!' || text[i] == '.') &&
+            (i + 1 == text.size() || std::isspace(static_cast<unsigned char>(text[i + 1])))) {
+            return text.substr(start, i - start + 1);
+        }
+    }
+
+    return text.substr(start);
+}
+
 QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
     QueryRepresentation rep;
     rep.raw_query = std::string(raw_query);
@@ -414,8 +452,14 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         return rep;
     }
 
+    const auto headline = extract_headline(raw_query);
+    const std::size_t headline_len = headline.size();
+    const bool is_multi_clause_query =
+        (raw_query.size() > 120 || raw_query.find('\n') != std::string_view::npos);
+
     // Extract and categorize primary query words
     std::unordered_set<std::string> seen_subjects;
+    std::unordered_set<std::string> seen_core_subjects;
     std::unordered_set<std::string> seen_actions;
     std::unordered_set<std::string> seen_raw_terms;
     std::unordered_set<std::string> seen_technical;
@@ -429,6 +473,7 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         if (pos >= raw_query.size()) {
             break;
         }
+        const std::size_t token_start_pos = pos;
         std::size_t end_pos = pos;
         while (end_pos < raw_query.size() &&
                !std::isspace(static_cast<unsigned char>(raw_query[end_pos]))) {
@@ -441,17 +486,19 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         while (!word.empty() &&
                (word.back() == '?' || word.back() == '!' || word.back() == '.' ||
                 word.back() == ',' || word.back() == ':' || word.back() == ';' ||
-                word.back() == ')' || word.back() == ']' || word.back() == '}')) {
+                word.back() == ')' || word.back() == ']' || word.back() == '}' ||
+                word.back() == '"' || word.back() == '\'' || word.back() == '`')) {
             word.pop_back();
         }
         while (!word.empty() && (word.front() == '(' || word.front() == '[' || word.front() == '{' ||
-                                 word.front() == '"' || word.front() == '\'')) {
+                                 word.front() == '"' || word.front() == '\'' || word.front() == '`')) {
             word.erase(word.begin());
         }
         if (word.empty()) {
             continue;
         }
 
+        const bool in_headline = (!is_multi_clause_query || token_start_pos < headline_len + 4);
         const auto role = classify_term_role(word);
         const auto stem = conservative_stem(word);
 
@@ -465,6 +512,9 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
             if (seen_technical.insert(word).second) {
                 rep.technical_entities.push_back(word);
             }
+            if (seen_core_subjects.insert(stem).second) {
+                rep.core_subject_terms.push_back(stem);
+            }
             if (seen_subjects.insert(stem).second) {
                 rep.subject_terms.push_back(stem);
                 rep.distinguishing_subject_terms.push_back(stem);
@@ -473,11 +523,21 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
             rep.meaningful_domain_terms.push_back(word);
             if (seen_subjects.insert(stem).second) {
                 rep.subject_terms.push_back(stem);
+            }
+            if (in_headline) {
+                if (seen_core_subjects.insert(stem).second) {
+                    rep.core_subject_terms.push_back(stem);
+                }
                 if (is_generic_component_term(stem)) {
                     rep.generic_component_terms.push_back(stem);
                 } else {
                     rep.distinguishing_subject_terms.push_back(stem);
                 }
+            } else {
+                if (is_generic_component_term(stem)) {
+                    rep.generic_component_terms.push_back(stem);
+                }
+                rep.conversational_noise_terms.push_back(stem);
             }
         } else if (role == QueryTermRole::ConversationalFraming) {
             std::string lower_word;
@@ -502,8 +562,17 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         }
     }
 
-    // Synthesize compounds
+    // Synthesize compounds for lexical index expansion (do not inflate subject denominator)
     rep.synthesized_identifiers = synthesize_compounds(rep.raw_terms);
+
+    // Fallback if core_subject_terms is empty
+    if (rep.core_subject_terms.empty()) {
+        if (!rep.distinguishing_subject_terms.empty()) {
+            rep.core_subject_terms = rep.distinguishing_subject_terms;
+        } else if (!rep.subject_terms.empty()) {
+            rep.core_subject_terms = rep.subject_terms;
+        }
+    }
 
     // Build clean_technical_query
     std::string clean_q;

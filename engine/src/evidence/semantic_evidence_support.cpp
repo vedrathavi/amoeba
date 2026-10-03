@@ -242,8 +242,12 @@ SemanticEvidenceSupport::evaluate(const retrieval::QueryRepresentation& query_re
                                   const SemanticEvidenceOptions& options) const {
     SemanticEvidenceResult result;
 
-    std::vector<std::string> concepts_to_check = query_rep.subject_terms;
-    if (concepts_to_check.empty()) {
+    std::vector<std::string> concepts_to_check;
+    if (!query_rep.core_subject_terms.empty()) {
+        concepts_to_check = query_rep.core_subject_terms;
+    } else if (!query_rep.subject_terms.empty()) {
+        concepts_to_check = query_rep.subject_terms;
+    } else {
         for (const auto& cat : query_rep.categorized_terms) {
             if (cat.role != retrieval::QueryTermRole::Context) {
                 concepts_to_check.push_back(cat.normalized_stem);

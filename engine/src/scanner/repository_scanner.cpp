@@ -14,8 +14,8 @@ using namespace std::filesystem;
 
 namespace {
 
-constexpr array<string_view, 7> EXCLUDED_DIRECTORIES = {
-    ".git", "node_modules", "build", "dist", "out", "target", "coverage",
+constexpr array<string_view, 8> EXCLUDED_DIRECTORIES = {
+    ".git", "node_modules", "build", "dist", "out", "target", "coverage", "benchmarks",
 };
 
 struct ExtensionMapping {

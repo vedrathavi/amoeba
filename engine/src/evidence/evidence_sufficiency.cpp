@@ -85,7 +85,9 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
 
     // 2. Extract categorized terms
     std::vector<std::string> subject_terms;
-    if (!query_rep.distinguishing_subject_terms.empty()) {
+    if (!query_rep.core_subject_terms.empty()) {
+        subject_terms = query_rep.core_subject_terms;
+    } else if (!query_rep.distinguishing_subject_terms.empty()) {
         subject_terms = query_rep.distinguishing_subject_terms;
         for (const auto& gen : query_rep.generic_component_terms) {
             if (std::find(subject_terms.begin(), subject_terms.end(), gen) == subject_terms.end()) {
@@ -121,9 +123,14 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
                 item_has_subj = true;
             }
 
-            // Check file path
-            if (!item_has_subj && contains_case_insensitive(item.file_path().string(), subj)) {
-                item_has_subj = true;
+            // Check file path (filename and immediate parent directory, avoid repo folder collisions)
+            if (!item_has_subj) {
+                const auto fname = item.file_path().filename().string();
+                const auto parent_dir = item.file_path().parent_path().filename().string();
+                if (contains_case_insensitive(fname, subj) ||
+                    contains_case_insensitive(parent_dir, subj)) {
+                    item_has_subj = true;
+                }
             }
 
             // Check element detail
@@ -164,8 +171,9 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
                     continue;
                 }
                 for (const auto& item : bundle.items) {
+                    const auto fname = item.file_path().filename().string();
                     if (contains_case_insensitive(item.primary_element().name, compound) ||
-                        contains_case_insensitive(item.file_path().string(), compound)) {
+                        contains_case_insensitive(fname, compound)) {
                         if (!item.is_expanded_relationship) {
                             matched_in_primary = true;
                         } else {
@@ -207,8 +215,9 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         bool act_matched = false;
 
         for (const auto& item : bundle.items) {
+            const auto fname = item.file_path().filename().string();
             if (contains_case_insensitive(item.primary_element().name, act) ||
-                contains_case_insensitive(item.file_path().string(), act)) {
+                contains_case_insensitive(fname, act)) {
                 act_matched = true;
                 break;
             }
@@ -289,6 +298,30 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         }
     }
 
+    // Rule E: Evidence Identity Rule (Phase 7.6.1 + Phase 8.2.9.1 Safety Hardening)
+    // If the query contains at least one distinguishing domain subject term
+    // (e.g. "GraphQL" in "GraphQL resolver", "JWT" in "JWT authentication", "Qdrant" in "Qdrant indexing"),
+    // at least one distinguishing domain subject term MUST be grounded in PRIMARY retrieval candidates.
+    if (!query_rep.distinguishing_subject_terms.empty()) {
+        bool has_primary_distinguishing_match = false;
+        for (const auto& dist_subj : query_rep.distinguishing_subject_terms) {
+            if (std::find(primary_matched_subjects.begin(), primary_matched_subjects.end(), dist_subj) !=
+                primary_matched_subjects.end()) {
+                has_primary_distinguishing_match = true;
+                break;
+            }
+        }
+
+        if (!has_primary_distinguishing_match) {
+            result.is_sufficient = false;
+            result.confidence_score = 0.0;
+            result.reason =
+                "Only generic component terms were matched in primary evidence; required distinguishing domain concept(s) "
+                "were not found in primary repository candidates.";
+            return result;
+        }
+    }
+
     // Rule C: Primary Subject concept coverage ratio threshold
     bool has_strong_primary_match = false;
     for (const auto& item : bundle.items) {
@@ -328,30 +361,6 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         result.confidence_score = 0.0;
         result.reason = "Top candidate retrieval score is below minimum threshold.";
         return result;
-    }
-
-    // Rule E: Evidence Identity Rule (Phase 7.6.1 + Phase 8.2.9.1 Safety Hardening)
-    // If the query contains at least one distinguishing domain subject term
-    // (e.g. "GraphQL" in "GraphQL resolver", "JWT" in "JWT authentication", "Qdrant" in "Qdrant indexing"),
-    // at least one distinguishing domain subject term MUST be grounded in PRIMARY retrieval candidates.
-    if (!query_rep.distinguishing_subject_terms.empty()) {
-        bool has_primary_distinguishing_match = false;
-        for (const auto& dist_subj : query_rep.distinguishing_subject_terms) {
-            if (std::find(primary_matched_subjects.begin(), primary_matched_subjects.end(), dist_subj) !=
-                primary_matched_subjects.end()) {
-                has_primary_distinguishing_match = true;
-                break;
-            }
-        }
-
-        if (!has_primary_distinguishing_match) {
-            result.is_sufficient = false;
-            result.confidence_score = 0.0;
-            result.reason =
-                "Only generic component terms were matched in primary evidence; required distinguishing domain concept(s) "
-                "were not found in primary repository candidates.";
-            return result;
-        }
     }
 
     // 6. Sufficient grounded evidence confirmed

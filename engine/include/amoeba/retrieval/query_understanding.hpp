@@ -86,6 +86,8 @@ struct QueryRepresentation {
     std::vector<std::string> raw_terms;  ///< Extracted word tokens
     std::vector<CategorizedQueryTerm> categorized_terms;  ///< Role-tagged terms
     std::vector<std::string> subject_terms;               ///< Normalized stems of Subject concepts
+    std::vector<std::string>
+        core_subject_terms;  ///< Normalized core technical subject concepts (normalized denominator)
     std::vector<std::string> technical_entities;          ///< Code identifiers, dotted paths, camelCase/snake_case symbols
     std::vector<std::string> meaningful_domain_terms;     ///< Non-generic domain keywords
     std::vector<std::string> conversational_noise_terms;  ///< Conversational prose, framing, filler terms
@@ -110,6 +112,12 @@ struct QueryRepresentation {
  */
 class QueryUnderstanding {
 public:
+    /**
+     * @brief Extracts the opening headline or primary question clause from a raw query.
+     * For multi-line/issue queries, extracts the first non-empty line or first sentence.
+     */
+    [[nodiscard]] static std::string_view extract_headline(std::string_view text) noexcept;
+
     /**
      * @brief Normalizes raw query text (collapses consecutive whitespace, trims punctuation).
      */

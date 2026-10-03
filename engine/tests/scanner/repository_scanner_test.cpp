@@ -87,6 +87,7 @@ TEST_F(RepositoryScannerTest, SkipsExcludedDirectories) {
     create_file("out/bin.exe", "binary");
     create_file("target/debug/app.rs", "compiled");
     create_file("coverage/report.html", "<html></html>");
+    create_file("benchmarks/repoprobe/repo/fixture.cpp", "fixture");
 
     const auto result = scanner.scan(test_dir);
 
@@ -128,6 +129,7 @@ TEST(RepositoryScannerStaticTest, HelperFilters) {
     EXPECT_TRUE(amoeba::scanner::RepositoryScanner::is_excluded_directory(".git"));
     EXPECT_TRUE(amoeba::scanner::RepositoryScanner::is_excluded_directory("node_modules"));
     EXPECT_TRUE(amoeba::scanner::RepositoryScanner::is_excluded_directory("build"));
+    EXPECT_TRUE(amoeba::scanner::RepositoryScanner::is_excluded_directory("benchmarks"));
     EXPECT_FALSE(amoeba::scanner::RepositoryScanner::is_excluded_directory("src"));
     EXPECT_FALSE(amoeba::scanner::RepositoryScanner::is_excluded_directory("include"));
 

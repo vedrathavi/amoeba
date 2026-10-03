@@ -419,4 +419,122 @@ TEST_F(EvidenceSufficiencyTest, NegativeSpringControllerQueryRefusedDespiteGener
     EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
 }
 
+// Phase 8.6: Test 6 — Negative GraphQL Domain Term is rejected
+TEST_F(EvidenceSufficiencyTest, Phase86NegativeGraphQLRejectedWhenAbsent) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is the GraphQL resolver configured?";
+    bundle.items.push_back(create_item("SchemaResolver", "src/resolvers/schema.ts", 0.35,
+                                       RetrievalProvenance::HybridBoth,
+                                       "export class SchemaResolver { resolve() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+    EXPECT_NE(res.reason.find("distinguishing domain concept"), std::string::npos);
+}
+
+// Phase 8.6: Test 7 — Negative RBAC is rejected
+TEST_F(EvidenceSufficiencyTest, Phase86NegativeRBACRejectedWhenAbsent) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is RBAC implemented?";
+    bundle.items.push_back(create_item("AccessControl", "src/auth/access.ts", 0.30,
+                                       RetrievalProvenance::SemanticOnly,
+                                       "export class AccessControl { check() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// Phase 8.6: Test 8 — Negative Kubernetes is rejected
+TEST_F(EvidenceSufficiencyTest, Phase86NegativeKubernetesRejectedWhenAbsent) {
+    EvidenceBundle bundle;
+    bundle.query = "How is Kubernetes deployment configured?";
+    bundle.items.push_back(create_item("DockerDeployment", "src/deploy/docker.ts", 0.32,
+                                       RetrievalProvenance::HybridBoth,
+                                       "export class DockerDeployment { deploy() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// Phase 8.6: Test 9 — Negative WebAuthn is rejected
+TEST_F(EvidenceSufficiencyTest, Phase86NegativeWebAuthnRejectedWhenAbsent) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is WebAuthn authentication handled?";
+    bundle.items.push_back(create_item("PasswordAuth", "src/auth/password.ts", 0.35,
+                                       RetrievalProvenance::HybridBoth,
+                                       "export class PasswordAuth { authenticate() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// Phase 8.6: Test 10 — Long query with valid primary technical subject passes (dilution fixed)
+TEST_F(EvidenceSufficiencyTest, Phase86LongQueryWithValidTechnicalSubjectPasses) {
+    EvidenceBundle bundle;
+    bundle.query =
+        "ArchLinuxPkgs provider fails during pacman sync\n\n"
+        "I was trying to use the archlinux package provider today in my development setup. "
+        "After installing several dependencies and waiting for the background sync process to finish, "
+        "I observed an unexpected timeout in the worker thread. The issue can be reproduced by calling "
+        "sync with an invalid mirror list. Is there any configuration option to increase the timeout limit?";
+
+    bundle.items.push_back(create_item(
+        "ArchLinuxPkgs", "src/providers/archlinuxpkgs.rs", 0.88,
+        RetrievalProvenance::HybridBoth,
+        "pub struct ArchLinuxPkgs { pub fn sync(&self) -> Result<()> {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+    EXPECT_FALSE(res.matched_subjects.empty());
+}
+
+// Phase 8.6: Test 11 — Long query with absent technical subject remains strictly insufficient
+TEST_F(EvidenceSufficiencyTest, Phase86LongQueryWithAbsentTechnicalSubjectFails) {
+    EvidenceBundle bundle;
+    bundle.query =
+        "How is WebAuthn hardware token authentication implemented?\n\n"
+        "We are exploring enterprise security options and need FIDO2 hardware token verification "
+        "with YubiKey support. In the current architecture documentation we noticed several auth "
+        "providers but were unable to locate WebAuthn registration flows.";
+
+    bundle.items.push_back(create_item(
+        "GenericAuthProvider", "src/auth/provider.rs", 0.25,
+        RetrievalProvenance::SemanticOnly,
+        "pub struct GenericAuthProvider { pub fn authenticate() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
+// Phase 8.6: Test 12 — Unknown vocabulary grounds when present and rejects when absent
+TEST_F(EvidenceSufficiencyTest, Phase86UnknownVocabularyGroundedAndRefused) {
+    EvidenceBundle bundle_present;
+    bundle_present.query = "How does FlibbertigibbetLifecycle work?";
+    bundle_present.items.push_back(create_item(
+        "FlibbertigibbetLifecycle", "src/core/lifecycle.rs", 0.92,
+        RetrievalProvenance::HybridBoth,
+        "pub struct FlibbertigibbetLifecycle { pub fn start(&self) {} }"));
+
+    const auto res_present = EvidenceSufficiencyChecker::check(bundle_present.query, bundle_present);
+    EXPECT_TRUE(res_present.is_sufficient);
+    EXPECT_GT(res_present.confidence_score, 0.5);
+
+    EvidenceBundle bundle_absent;
+    bundle_absent.query = "How does FlibbertigibbetLifecycle work?";
+    bundle_absent.items.push_back(create_item(
+        "StandardLifecycle", "src/core/lifecycle.rs", 0.20,
+        RetrievalProvenance::SemanticOnly,
+        "pub struct StandardLifecycle { pub fn start(&self) {} }"));
+
+    const auto res_absent = EvidenceSufficiencyChecker::check(bundle_absent.query, bundle_absent);
+    EXPECT_FALSE(res_absent.is_sufficient);
+    EXPECT_DOUBLE_EQ(res_absent.confidence_score, 0.0);
+}
+
 

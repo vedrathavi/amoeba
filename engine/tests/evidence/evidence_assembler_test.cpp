@@ -99,7 +99,8 @@ TEST_F(EvidenceAssemblerTest, SinglePrimaryResultWithSource) {
     result.hybrid_score = 0.95;
     result.provenance = RetrievalProvenance::HybridBoth;
 
-    auto bundle = assembler.assemble("authenticate user", {result});
+    EvidenceAssemblerOptions opts{.source_context_lines = 0};
+    auto bundle = assembler.assemble("authenticate user", {result}, opts);
 
     EXPECT_EQ(bundle.query, "authenticate user");
     ASSERT_EQ(bundle.size(), 1u);

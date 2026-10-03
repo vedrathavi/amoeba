@@ -1,52 +1,52 @@
 {
   "benchmark_name": "Amoeba RepoProbe v1 Benchmark",
-  "timestamp": "2026-10-03T12:22:25.004626+00:00",
-  "git_commit": "2e8625e97688391b96f9651305930829ec451d4e",
+  "timestamp": "2026-10-03T14:35:47.458589+00:00",
+  "git_commit": "5148e58cd16697530169b6358be100d98ed9009c",
   "total_questions": 70,
   "positive_questions": 66,
   "negative_questions": 4,
   "metrics": {
-    "hit_at_1_pct": 28.78787878787879,
-    "hit_at_5_pct": 50.0,
-    "hit_at_10_pct": 54.54545454545455,
-    "groundedness_rate_pct": 60.0,
-    "correctness_rate_pct": 31.428571428571427,
-    "negative_refusal_accuracy_pct": 25.0,
-    "avg_retrieval_latency_ms": 3760.609335714286,
-    "avg_sufficiency_latency_ms": 14.434892857142858,
-    "avg_reasoning_latency_ms": 0.29088857142857144,
-    "avg_total_latency_ms": 3800.863092857143
+    "hit_at_1_pct": 30.303030303030305,
+    "hit_at_5_pct": 53.03030303030303,
+    "hit_at_10_pct": 56.06060606060606,
+    "groundedness_rate_pct": 64.28571428571429,
+    "correctness_rate_pct": 41.42857142857143,
+    "negative_refusal_accuracy_pct": 50.0,
+    "avg_retrieval_latency_ms": 2925.263088571429,
+    "avg_sufficiency_latency_ms": 15.410211428571428,
+    "avg_reasoning_latency_ms": 0.11327142857142858,
+    "avg_total_latency_ms": 2963.277247142857
   },
   "failure_distribution": {
-    "retrieval_failure": 30,
-    "none": 22,
-    "groundedness_failure": 3,
-    "sufficiency_failure": 15
+    "retrieval_failure": 29,
+    "none": 29,
+    "sufficiency_failure": 10,
+    "groundedness_failure": 2
   },
   "breakdown_by_source": {
     "repoprobe": {
       "total": 50,
-      "correct": 9,
-      "accuracy_pct": 18.0,
+      "correct": 14,
+      "accuracy_pct": 28.0,
       "hit10_pct": 48.0
     },
     "amoeba_designed": {
       "total": 20,
-      "correct": 13,
-      "accuracy_pct": 65.0,
-      "hit10_pct": 75.0
+      "correct": 15,
+      "accuracy_pct": 75.0,
+      "hit10_pct": 81.25
     }
   },
   "breakdown_by_taxonomy": {
     "Implementation Details": {
       "total": 45,
-      "correct": 11,
-      "accuracy_pct": 24.444444444444443
+      "correct": 16,
+      "accuracy_pct": 35.55555555555556
     },
     "Business Logic": {
       "total": 6,
-      "correct": 3,
-      "accuracy_pct": 50.0
+      "correct": 4,
+      "accuracy_pct": 66.66666666666667
     },
     "Symbol Lookup": {
       "total": 2,
@@ -55,15 +55,15 @@
     },
     "Project Architecture": {
       "total": 17,
-      "correct": 6,
-      "accuracy_pct": 35.294117647058826
+      "correct": 7,
+      "accuracy_pct": 41.1764705882353
     }
   },
   "breakdown_by_difficulty": {
     "Medium": {
       "total": 50,
-      "correct": 9,
-      "accuracy_pct": 18.0
+      "correct": 14,
+      "accuracy_pct": 28.0
     },
     "1": {
       "total": 2,
@@ -72,13 +72,13 @@
     },
     "2": {
       "total": 6,
-      "correct": 4,
-      "accuracy_pct": 66.66666666666667
+      "correct": 5,
+      "accuracy_pct": 83.33333333333333
     },
     "5": {
       "total": 4,
-      "correct": 1,
-      "accuracy_pct": 25.0
+      "correct": 2,
+      "accuracy_pct": 50.0
     },
     "3": {
       "total": 6,
@@ -102,7 +102,7 @@
       "total": 8,
       "correct": 5,
       "accuracy_pct": 62.5,
-      "hit10_pct": 71.42857142857143
+      "hit10_pct": 85.71428571428571
     },
     "better-auth/better-auth": {
       "total": 7,
@@ -112,8 +112,8 @@
     },
     "Dokploy/dokploy": {
       "total": 7,
-      "correct": 4,
-      "accuracy_pct": 57.142857142857146,
+      "correct": 5,
+      "accuracy_pct": 71.42857142857143,
       "hit10_pct": 71.42857142857143
     },
     "apple/pkl": {
@@ -124,20 +124,20 @@
     },
     "henrygd/beszel": {
       "total": 7,
-      "correct": 2,
-      "accuracy_pct": 28.571428571428573,
+      "correct": 3,
+      "accuracy_pct": 42.857142857142854,
       "hit10_pct": 57.142857142857146
     },
     "opencloud-eu/opencloud": {
       "total": 7,
-      "correct": 1,
-      "accuracy_pct": 14.285714285714286,
+      "correct": 2,
+      "accuracy_pct": 28.571428571428573,
       "hit10_pct": 16.666666666666668
     },
     "BurntSushi/jiff": {
       "total": 8,
-      "correct": 3,
-      "accuracy_pct": 37.5,
+      "correct": 7,
+      "accuracy_pct": 87.5,
       "hit10_pct": 100.0
     },
     "abenz1267/walker": {

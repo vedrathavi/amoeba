@@ -18,7 +18,7 @@ namespace amoeba::evidence {
  */
 struct EvidenceAssemblerOptions {
     /// Number of context lines before and after the primary source range.
-    uint32_t source_context_lines{0};
+    uint32_t source_context_lines{15};
 
     /// Configuration for direct graph relationship resolution (e.g. fanout limits).
     graph::RelationshipEvidenceOptions relationship_options{};

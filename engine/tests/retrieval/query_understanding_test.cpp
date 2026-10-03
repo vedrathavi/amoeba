@@ -249,4 +249,80 @@ TEST(QueryUnderstandingTest, ConversationalNoiseSeparationAndCleanQuery) {
     EXPECT_EQ(rep.clean_technical_query.find("trade-offs"), std::string::npos);
 }
 
+// Phase 8.6: Test 1 — Short technical query
+TEST(QueryUnderstandingTest, Phase86ShortTechnicalQuery) {
+    const auto rep = QueryUnderstanding::analyze("Where is HNSW implemented?");
+    EXPECT_TRUE(rep.has_interrogative);
+    EXPECT_FALSE(rep.core_subject_terms.empty());
+    EXPECT_EQ(rep.core_subject_terms.size(), 1u);
+    EXPECT_EQ(rep.core_subject_terms[0], "hnsw");
+    EXPECT_NE(std::find(rep.distinguishing_subject_terms.begin(), rep.distinguishing_subject_terms.end(), "hnsw"),
+              rep.distinguishing_subject_terms.end());
+}
+
+// Phase 8.6: Test 2 — Long conversational query denominator normalization
+TEST(QueryUnderstandingTest, Phase86LongConversationalQueryDenominatorNormalization) {
+    const std::string long_query =
+        "ArchLinuxPkgs provider fails during pacman sync\n\n"
+        "I was trying to use the archlinux package provider today in my development setup. "
+        "After installing several dependencies and waiting for the background sync process to finish, "
+        "I observed an unexpected timeout in the worker thread. The issue can be reproduced by calling "
+        "sync with an invalid mirror list. Is there any configuration option to increase the timeout limit?";
+
+    const auto rep = QueryUnderstanding::analyze(long_query);
+    // The headline contains the core technical subject
+    EXPECT_FALSE(rep.core_subject_terms.empty());
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "archlinuxpkg"),
+              rep.core_subject_terms.end());
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "ArchLinuxPkgs"),
+              rep.technical_entities.end());
+
+    // Conversational nouns in the body should NOT inflate the core subject denominator
+    EXPECT_LE(rep.core_subject_terms.size(), 6u);
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "dependency"),
+              rep.core_subject_terms.end());
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "development"),
+              rep.core_subject_terms.end());
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "thread"),
+              rep.core_subject_terms.end());
+}
+
+// Phase 8.6: Test 3 — Multiple technical concepts
+TEST(QueryUnderstandingTest, Phase86MultipleTechnicalConcepts) {
+    const auto rep = QueryUnderstanding::analyze("How does Timestamp round to SignedDuration?");
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "timestamp"),
+              rep.core_subject_terms.end());
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "round"),
+              rep.core_subject_terms.end());
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "signedduration"),
+              rep.core_subject_terms.end());
+    EXPECT_LE(rep.core_subject_terms.size(), 4u);
+}
+
+// Phase 8.6: Test 4 — Unknown vocabulary survives
+TEST(QueryUnderstandingTest, Phase86UnknownVocabularySurvives) {
+    const auto rep = QueryUnderstanding::analyze("How does FlibbertigibbetLifecycle work?");
+    EXPECT_FALSE(rep.technical_entities.empty());
+    EXPECT_EQ(rep.technical_entities[0], "FlibbertigibbetLifecycle");
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "flibbertigibbetlifecycle"),
+              rep.core_subject_terms.end());
+    EXPECT_NE(std::find(rep.distinguishing_subject_terms.begin(), rep.distinguishing_subject_terms.end(), "flibbertigibbetlifecycle"),
+              rep.distinguishing_subject_terms.end());
+}
+
+// Phase 8.6: Test 5 — Code-heavy query with backticks and file paths
+TEST(QueryUnderstandingTest, Phase86CodeHeavyQueryWithBackticksAndPaths) {
+    const std::string query =
+        "Why is `getDefaultMiddlewares` in `src/traefik-setup.ts` throwing undefined?\n\n"
+        "When calling `getDefaultMiddlewares()` from another service, the middleware array is empty.";
+    const auto rep = QueryUnderstanding::analyze(query);
+
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "getDefaultMiddlewares"),
+              rep.technical_entities.end());
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "src/traefik-setup.ts"),
+              rep.technical_entities.end());
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "getdefaultmiddleware"),
+              rep.core_subject_terms.end());
+}
+
 }  // namespace

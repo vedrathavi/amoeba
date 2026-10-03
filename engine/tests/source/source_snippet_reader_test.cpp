@@ -408,5 +408,60 @@ TEST_F(SourceSnippetReaderTest, ExtractionBenchmarkObservation) {
               << " us, 5 snippets: " << lat_5_us << " us, 10 snippets: " << lat_10_us << " us\n";
 }
 
+// Phase 8.6: 15-line bounded context extraction
+TEST_F(SourceSnippetReaderTest, Phase86FifteenLineBoundedContextExtraction) {
+    std::string source;
+    for (int i = 1; i <= 50; ++i) {
+        if (i == 25) {
+            source += "void targetFunction() { int x = 42; }\n";
+        } else if (i == 35) {
+            source += "// Useful evidence 10 lines below target\n";
+        } else {
+            source += "// Line " + std::to_string(i) + "\n";
+        }
+    }
+
+    const auto parsed = parser_.parse_source(source, "C++", "test_context.cpp");
+    ASSERT_TRUE(parsed.success);
+
+    const auto funcs = parsed.get_elements_by_kind(parser::ElementKind::Function);
+    ASSERT_EQ(funcs.size(), 1u);
+
+    // Read with 15 context lines
+    const auto excerpt = reader_.read_range_from_text(source, funcs[0].location, 15);
+    EXPECT_TRUE(excerpt.has_context_lines);
+    EXPECT_EQ(excerpt.start_line, 10u);  // 25 - 15 = 10
+    EXPECT_EQ(excerpt.end_line, 40u);    // 25 + 15 = 40
+    EXPECT_EQ(excerpt.context_lines_before, 15u);
+    EXPECT_EQ(excerpt.context_lines_after, 15u);
+    EXPECT_NE(excerpt.text.find("targetFunction"), std::string::npos);
+    EXPECT_NE(excerpt.text.find("Useful evidence 10 lines below target"), std::string::npos);
+}
+
+// Phase 8.6: Boundary clamping (line 1 and EOF) with 15-line context
+TEST_F(SourceSnippetReaderTest, Phase86BoundaryClampingAtStartAndEndOfFile) {
+    const std::string source = "int topFunc() { return 1; }\n"
+                               "// Line 2\n"
+                               "// Line 3\n"
+                               "int botFunc() { return 2; }\n";
+
+    const auto parsed = parser_.parse_source(source, "C++", "clamp.cpp");
+    ASSERT_TRUE(parsed.success);
+
+    const auto funcs = parsed.get_elements_by_kind(parser::ElementKind::Function);
+    ASSERT_EQ(funcs.size(), 2u);
+
+    // Top function at line 1 with 15 context lines before: clamps to line 1
+    const auto excerpt_top = reader_.read_range_from_text(source, funcs[0].location, 15);
+    EXPECT_EQ(excerpt_top.start_line, 1u);
+    EXPECT_EQ(excerpt_top.context_lines_before, 0u);
+    EXPECT_EQ(excerpt_top.end_line, 4u);  // total 4 lines in file
+
+    // Bottom function at line 4 with 15 context lines after: clamps to line 4
+    const auto excerpt_bot = reader_.read_range_from_text(source, funcs[1].location, 15);
+    EXPECT_EQ(excerpt_bot.start_line, 1u);
+    EXPECT_EQ(excerpt_bot.end_line, 4u);
+}
+
 }  // namespace
 }  // namespace amoeba::source
