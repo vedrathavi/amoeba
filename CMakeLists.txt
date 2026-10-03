@@ -113,6 +113,14 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
+# 12. HNSW library for approximate nearest neighbor vector indexing
+FetchContent_Declare(
+    hnswlib
+    GIT_REPOSITORY https://github.com/nmslib/hnswlib.git
+    GIT_TAG v0.8.0
+    GIT_SHALLOW TRUE
+)
+
 FetchContent_MakeAvailable(
     tree_sitter
     tree_sitter_cpp
@@ -125,6 +133,7 @@ FetchContent_MakeAvailable(
     tree_sitter_typescript
     tree_sitter_html
     tree_sitter_css
+    hnswlib
 )
 
 function(amoeba_add_c_grammar target_name source_files include_dirs)
@@ -247,6 +256,7 @@ add_library(amoeba_engine
     engine/src/semantic/deterministic_embedding_provider.cpp
     engine/src/semantic/pretrained_embedding_provider.cpp
     engine/src/semantic/semantic_index.cpp
+    engine/src/semantic/hnsw_semantic_index.cpp
     engine/src/semantic/semantic_retriever.cpp
     engine/src/eval/ranking_metrics.cpp
     engine/src/eval/benchmark_result.cpp
@@ -281,6 +291,7 @@ target_include_directories(amoeba_engine
         $<INSTALL_INTERFACE:include>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/engine/src
+        ${hnswlib_SOURCE_DIR}
 )
 
 target_link_libraries(amoeba_engine
@@ -379,6 +390,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/semantic/embedding_provider_test.cpp
         engine/tests/semantic/pretrained_embedding_provider_test.cpp
         engine/tests/semantic/semantic_index_test.cpp
+        engine/tests/semantic/hnsw_semantic_index_test.cpp
         engine/tests/semantic/semantic_retriever_test.cpp
         engine/tests/semantic/semantic_retrieval_benchmark_test.cpp
         engine/tests/eval/ranking_metrics_test.cpp
@@ -483,6 +495,50 @@ if(MSVC)
 else()
     target_compile_options(amoeba_semantic_audit PRIVATE -Wall -Wextra -Wpedantic)
     target_link_options(amoeba_semantic_audit PRIVATE -Wl,--stack,67108864)
+endif()
+
+# -----------------------------------------------------------------------------
+# 7. amoeba_ann_benchmark (Fast ANN Benchmark: Exact vs HNSW)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_ann_benchmark
+    benchmarks/repoprobe_v1/ann_benchmark_main.cpp
+)
+
+target_link_libraries(amoeba_ann_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_ann_benchmark PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_ann_benchmark PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_ann_benchmark PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_ann_benchmark PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_ann_benchmark PRIVATE -Wl,--stack,67108864)
+endif()
+
+# -----------------------------------------------------------------------------
+# 8. amoeba_lifecycle_benchmark (Cold vs Warm Lifecycle & Persistence Benchmark)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_lifecycle_benchmark
+    benchmarks/repoprobe_v1/lifecycle_benchmark_main.cpp
+)
+
+target_link_libraries(amoeba_lifecycle_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_lifecycle_benchmark PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_lifecycle_benchmark PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_lifecycle_benchmark PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_lifecycle_benchmark PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_lifecycle_benchmark PRIVATE -Wl,--stack,67108864)
 endif()
 
 

@@ -11,32 +11,14 @@
 namespace amoeba::semantic {
 
 /**
- * @brief Search result record from semantic retrieval.
- */
-struct SemanticSearchResult {
-    ElementId element_id{0};
-    float similarity_score{0.0f};
-
-    [[nodiscard]] bool operator==(const SemanticSearchResult&) const = default;
-};
-
-/**
- * @brief Configuration parameters for semantic retrieval.
- */
-struct SemanticRetrievalOptions {
-    std::size_t top_k{10};
-    float min_similarity{-1.0f};  ///< Minimum similarity score threshold
-};
-
-/**
- * @brief Brute-force exhaustive semantic retriever.
+ * @brief Semantic retriever coordinating vector search against an ISemanticVectorIndex backend.
  *
- * Scans all stored embeddings in the SemanticIndex, computes cosine similarity against
- * the query vector, and returns the top-K matches with deterministic tie-breaking.
+ * Supports both exact exhaustive search (ExactSemanticIndex) and approximate nearest
+ * neighbor search (HnswSemanticIndex) polymorphically through ISemanticVectorIndex.
  */
 class SemanticRetriever {
 public:
-    explicit SemanticRetriever(const SemanticIndex& index);
+    explicit SemanticRetriever(const ISemanticVectorIndex& index);
 
     /**
      * @brief Performs semantic retrieval given a query embedding vector span.
@@ -59,7 +41,7 @@ public:
                   const SemanticRetrievalOptions& options = {}) const;
 
 private:
-    const SemanticIndex& index_;
+    const ISemanticVectorIndex& index_;
 };
 
 }  // namespace amoeba::semantic

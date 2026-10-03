@@ -40,7 +40,7 @@ namespace {
 }  // namespace
 
 SemanticEvidenceSupport::SemanticEvidenceSupport(const semantic::EmbeddingProvider& provider,
-                                                 const semantic::SemanticIndex* semantic_index)
+                                                 const semantic::ISemanticVectorIndex* semantic_index)
     : provider_(provider), semantic_index_(semantic_index) {}
 
 ConceptEvidenceSupport

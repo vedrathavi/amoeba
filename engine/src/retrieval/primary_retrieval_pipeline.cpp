@@ -16,11 +16,15 @@ using Clock = std::chrono::steady_clock;
 // ─────────────────────────────────────────────────────────────────────────────
 
 
-PrimaryRetrievalPipeline::PrimaryRetrievalPipeline(std::span<const parser::ParsedFile> parsed_files,
-                                                   const index::InvertedIndex& index,
-                                                   const semantic::EmbeddingProvider& provider)
-    : index_(index), provider_(provider), search_engine_(index),
-      semantic_retriever_(semantic_index_) {
+PrimaryRetrievalPipeline::PrimaryRetrievalPipeline(
+    std::span<const parser::ParsedFile> parsed_files, const index::InvertedIndex& index,
+    const semantic::EmbeddingProvider& provider,
+    semantic::SemanticIndexType semantic_index_type,
+    const semantic::HnswConfig& hnsw_config)
+    : index_(index), provider_(provider),
+      semantic_index_(semantic::create_semantic_index(semantic_index_type, hnsw_config)),
+      search_engine_(index),
+      semantic_retriever_(std::make_unique<semantic::SemanticRetriever>(*semantic_index_)) {
     build_units(parsed_files);
     reconcile_element_ids();  // Phase 6.4: patch primary_element_id from InvertedIndex
     build_semantic_index();
@@ -41,7 +45,7 @@ void PrimaryRetrievalPipeline::build_semantic_index() {
         if (values.empty()) {
             continue;
         }
-        semantic_index_.add(semantic::Embedding{
+        semantic_index_->add(semantic::Embedding{
             .element_id = unit.primary_element_id,
             .values = values,
         });
@@ -159,7 +163,7 @@ std::vector<PrimarySearchResult> PrimaryRetrievalPipeline::search_with_metrics(
     const auto t_sem_start = Clock::now();
 
     const semantic::SemanticRetrievalOptions sem_opts{.top_k = options.semantic_top_k};
-    const auto sem_results = semantic_retriever_.retrieve_text(query, provider_, sem_opts);
+    const auto sem_results = semantic_retriever_->retrieve_text(query, provider_, sem_opts);
     metrics.semantic_candidates = sem_results.size();
 
     const auto t_sem_end = Clock::now();

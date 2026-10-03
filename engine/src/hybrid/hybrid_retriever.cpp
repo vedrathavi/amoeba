@@ -34,7 +34,7 @@ struct ElementMatchKeyHash {
 }  // namespace
 
 HybridRetriever::HybridRetriever(const index::InvertedIndex& index,
-                                 const semantic::SemanticIndex& semantic_index,
+                                 const semantic::ISemanticVectorIndex& semantic_index,
                                  const semantic::EmbeddingProvider& provider)
     : index_(index), search_engine_(index), semantic_retriever_(semantic_index),
       provider_(provider) {}

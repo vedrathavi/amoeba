@@ -126,9 +126,11 @@ public:
      * @param index         The pre-built InvertedIndex (const reference, not owned).
      * @param provider      Embedding provider for semantic index construction and query embedding.
      */
-    PrimaryRetrievalPipeline(std::span<const parser::ParsedFile> parsed_files,
-                             const index::InvertedIndex& index,
-                             const semantic::EmbeddingProvider& provider);
+    PrimaryRetrievalPipeline(
+        std::span<const parser::ParsedFile> parsed_files, const index::InvertedIndex& index,
+        const semantic::EmbeddingProvider& provider,
+        semantic::SemanticIndexType semantic_index_type = semantic::SemanticIndexType::Exact,
+        const semantic::HnswConfig& hnsw_config = {});
 
     /**
      * @brief Executes a primary retrieval search.
@@ -171,8 +173,8 @@ public:
     [[nodiscard]] const std::vector<RetrievalUnit>& units() const noexcept { return units_; }
 
     /** @brief Semantic index accessor (for inspection and testing). */
-    [[nodiscard]] const semantic::SemanticIndex& semantic_index() const noexcept {
-        return semantic_index_;
+    [[nodiscard]] const semantic::ISemanticVectorIndex& semantic_index() const noexcept {
+        return *semantic_index_;
     }
 
     /** @brief Total cached element match keys in the lookup map. */
@@ -210,9 +212,9 @@ private:
     const semantic::EmbeddingProvider& provider_;
 
     std::vector<RetrievalUnit> units_;
-    semantic::SemanticIndex semantic_index_;
+    std::unique_ptr<semantic::ISemanticVectorIndex> semantic_index_;
     index::SearchEngine search_engine_;
-    semantic::SemanticRetriever semantic_retriever_;
+    std::unique_ptr<semantic::SemanticRetriever> semantic_retriever_;
 
     /// Cached lookup from (file_path, name, start_line, start_col) → InvertedIndex ElementId.
     /// Built once at pipeline construction, eliminating per-query O(N) allocation overhead.

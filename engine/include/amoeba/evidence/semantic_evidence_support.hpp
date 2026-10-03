@@ -99,7 +99,7 @@ struct SemanticEvidenceResult {
 class SemanticEvidenceSupport {
 public:
     explicit SemanticEvidenceSupport(const semantic::EmbeddingProvider& provider,
-                                     const semantic::SemanticIndex* semantic_index = nullptr);
+                                     const semantic::ISemanticVectorIndex* semantic_index = nullptr);
 
     /**
      * @brief Evaluates semantic support for all Subject concepts in a query against an
@@ -119,7 +119,7 @@ public:
 
 private:
     const semantic::EmbeddingProvider& provider_;
-    const semantic::SemanticIndex* semantic_index_{nullptr};
+    const semantic::ISemanticVectorIndex* semantic_index_{nullptr};
 };
 
 }  // namespace amoeba::evidence

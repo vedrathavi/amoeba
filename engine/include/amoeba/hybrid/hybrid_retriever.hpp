@@ -57,7 +57,7 @@ struct HybridSearchResult {
 class HybridRetriever {
 public:
     HybridRetriever(const index::InvertedIndex& index,
-                    const semantic::SemanticIndex& semantic_index,
+                    const semantic::ISemanticVectorIndex& semantic_index,
                     const semantic::EmbeddingProvider& provider);
 
     /**
