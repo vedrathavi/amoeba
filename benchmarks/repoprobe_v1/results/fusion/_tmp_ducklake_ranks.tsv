@@ -1,0 +1,7 @@
+question_id	repo_name	is_negative	alpha_0.0	alpha_0.1	alpha_0.2	alpha_0.3	alpha_0.4	alpha_0.5	alpha_0.6	alpha_0.7	alpha_0.8	alpha_0.9	alpha_1.0	rrf_k10	rrf_k20	rrf_k60	adaptive	lexical_only	semantic_only
+ducklake-0	duckdb/ducklake	0	12	12	12	14	15	15	18	24	29	22	18	24	24	25	12	18	12
+ducklake-1	duckdb/ducklake	0	7	7	7	7	12	23	26	32	36	42	0	13	15	15	7	0	7
+ducklake-2	duckdb/ducklake	0	15	15	15	16	17	17	20	23	25	25	11	20	20	20	15	11	15
+ducklake-3	duckdb/ducklake	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+amoeba-ducklake-01	duckdb/ducklake	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+amoeba-ducklake-02	duckdb/ducklake	0	0	0	0	0	0	0	47	35	22	17	16	38	38	38	0	16	0

@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "pkl-0",
+    "repository": "apple/pkl",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "StatusEnum STATUS_BLEED\" STATUS_COLD\" STATUS_RAGE\" StatusRegex Regex(#\"^STATUS_([A-Z0-9_]+)$\"# STRRATUS_Frozen\" IDE StatusEnum's validate Enum Regex there I'm aspiring game developer that's using Pkl couple days now really enjoying so far feels lot more versatile compared cue seems very capable Thus hope asking unusual but want know if it's Enum's values some give talking let's say typealias constrain accidentally add status immediately throw kind either evaluation saying malformed isn't correct syntax bit context as sort Identification figuring out statuses apply onto skills also formed since doing my mind you your consideration",
+    "technical_entities": ["StatusEnum", "STATUS_BLEED\"", "STATUS_COLD\"", "STATUS_RAGE\"", "StatusRegex", "Regex(#\"^STATUS_([A-Z0-9_]+)$\"#", "STRRATUS_Frozen\"", "IDE", "StatusEnum's"],
+    "query_understanding_ms": 1.07,
+    "lexical_ms": 20284.9,
+    "semantic_ms": 7.3417,
+    "fusion_ms": 23.7378,
+    "total_retrieval_ms": 20318.9,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 19,
+      "mrr": 0.0526316
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/DurationNodes.java",
+        "symbol_name": "eval",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.623601,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/expression/binary/AdditionNode.java",
+        "symbol_name": "eval",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.613451,
+        "hybrid_score": 0.691777,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/resource/ResourceReaders.java",
+        "symbol_name": "ModulePathResource",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.603626,
+        "hybrid_score": 0.635418,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+        "symbol_name": "PklConverter",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.600509,
+        "hybrid_score": 0.617539,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/module/ModulePathResolver.java",
+        "symbol_name": "ModulePathResolver",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.593041,
+        "hybrid_score": 0.574704,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/expression/binary/SubtractionNode.java",
+        "symbol_name": "eval",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.585474,
+        "hybrid_score": 0.531296,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/expression/binary/TruncatingDivisionNode.java",
+        "symbol_name": "eval",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.562713,
+        "hybrid_score": 0.400736,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/builder/AbstractAstBuilder.java",
+        "symbol_name": "AbstractAstBuilder",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.550906,
+        "hybrid_score": 0.33301,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmExceptionBuilder.java",
+        "symbol_name": "undefinedPropertyValue",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.548541,
+        "hybrid_score": 0.319446,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/builder/AbstractAstBuilder.java",
+        "symbol_name": "AbstractAstBuilder",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.548468,
+        "hybrid_score": 0.319027,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "pkl-1",
+    "repository": "apple/pkl",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "//groups/1.pkl Mixin<main.Service> 1024Mi\" // configs/test.pkl main.pkl import*(\"groups/*.pkl\" import*(\"configs/*.pkl\").toMap().map((name -> service.groups service.service groupConfigs[\"groups/\" .pkl\"].service Applying mixins ln generator We're experimenting pkl our want apply loop service configs resources requests cpu\" memory\" groups Listing 1\" 2\" services Pair(name Listing{ group |> we order somehow main doesn't correctly",
+    "technical_entities": ["//groups/1.pkl", "Mixin<main.Service>", "1024Mi\"", "//", "configs/test.pkl", "main.pkl", "import*(\"groups/*.pkl\"", "import*(\"configs/*.pkl\").toMap().map((name", "->", "service.groups", "service.service", "groupConfigs[\"groups/\"", ".pkl\"].service"],
+    "query_understanding_ms": 0.4603,
+    "lexical_ms": 20771.5,
+    "semantic_ms": 7.3355,
+    "fusion_ms": 14.9749,
+    "total_retrieval_ms": 20795.8,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 8,
+      "mrr": 0.125
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/member/DefaultPropertyBodyNode.java",
+        "symbol_name": "DefaultPropertyBodyNode",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.647983,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/module/ModulePathResolver.java",
+        "symbol_name": "populateFileCache",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.614145,
+        "hybrid_score": 0.562498,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/paguro/RrbTree.java",
+        "symbol_name": "subNodeAdjustedIndex",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.61028,
+        "hybrid_score": 0.54108,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmMapping.java",
+        "symbol_name": "EmptyHolder",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.586388,
+        "hybrid_score": 0.408691,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/ListingNodes.java",
+        "symbol_name": "toList",
+        "kind": "Class",
+        "lexical_score": 28.8109,
+        "semantic_score": 0.556258,
+        "hybrid_score": 0.395222,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/yaml/ParserNodes.java",
+        "symbol_name": "createConverter",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.574517,
+        "hybrid_score": 0.342908,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/PType.java",
+        "symbol_name": "PType",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.570665,
+        "hybrid_score": 0.321567,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/EvaluatorImpl.java",
+        "symbol_name": "handleTimeout",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.566095,
+        "hybrid_score": 0.29624,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/benchmark/OutputBenchmarkNodes.java",
+        "symbol_name": "run",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.563261,
+        "hybrid_score": 0.28054,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/BooleanNodes.java",
+        "symbol_name": "BooleanNodes",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.563018,
+        "hybrid_score": 0.279193,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "pkl-2",
+    "repository": "apple/pkl",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "private/public .pkl host.hostname host.port module.port module.host.port there attribute members am exploting Pkl distributed simulation environment multiple machines machine own settings centralize configuration output properly-formatted share Sometimes feel machine-level no access written corresponding change some property name type map them actual exploiting hidden attributes class Host hostname String port Int protocol tcp' udp' host allows me only edit properties instance external module automatically fill-in as required However users theoretically still manually breaking link these object throw if != but bit cumbersome I'd need re-assert make private\" sense they cannot amended looked Language reference couldn't feature supporting",
+    "technical_entities": ["private/public", ".pkl", "host.hostname", "host.port", "module.port", "module.host.port"],
+    "query_understanding_ms": 0.757,
+    "lexical_ms": 19223.5,
+    "semantic_ms": 6.9122,
+    "fusion_ms": 14.0988,
+    "total_retrieval_ms": 19252,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/MutableReference.java",
+        "symbol_name": "MutableReference",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.586408,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java",
+        "symbol_name": "doVisitProperty",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.583562,
+        "hybrid_score": 0.734318,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/TypeAlias.java",
+        "symbol_name": "getQualifiedName",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.569043,
+        "hybrid_score": 0.65432,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/resource/ResourceReader.java",
+        "symbol_name": "read",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.56164,
+        "hybrid_score": 0.613533,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java",
+        "symbol_name": "AbstractRenderer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.553368,
+        "hybrid_score": 0.567956,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/ConstantValueNode.java",
+        "symbol_name": "ConstantValueNode",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.538715,
+        "hybrid_score": 0.48722,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmValueRenderer.java",
+        "symbol_name": "VmValueRenderer",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.537907,
+        "hybrid_score": 0.482764,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/Composite.java",
+        "symbol_name": "getProperty",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.535608,
+        "hybrid_score": 0.470102,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/project/Project.java",
+        "symbol_name": "getProperty",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.532767,
+        "hybrid_score": 0.454446,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/ConstantValueNode.java",
+        "symbol_name": "ConstantValueNode",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.51266,
+        "hybrid_score": 0.343662,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "pkl-3",
+    "repository": "apple/pkl",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "PKL PKl Add external function pkl We strings our configs want able graphql those things don't really think make sense parser given one already exists kotlin add own custom existing kind extensibility",
+    "technical_entities": ["PKL", "PKl"],
+    "query_understanding_ms": 1.2382,
+    "lexical_ms": 20189.7,
+    "semantic_ms": 6.1236,
+    "fusion_ms": 7.9758,
+    "total_retrieval_ms": 20208.9,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 11,
+      "mrr": 0.0909091
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 11,
+      "mrr": 0.0909091
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+        "symbol_name": "convertMap",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.639328,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+        "symbol_name": "convertBytes",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.618148,
+        "hybrid_score": 0.564786,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/JsonRendererNodes.java",
+        "symbol_name": "visitDuration",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.612321,
+        "hybrid_score": 0.513834,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/CollectionUtils.java",
+        "symbol_name": "newLinkedHashSet",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.609463,
+        "hybrid_score": 0.488842,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+        "symbol_name": "convertIntSeq",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.598992,
+        "hybrid_score": 0.397279,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java",
+        "symbol_name": "endSet",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.598915,
+        "hybrid_score": 0.396601,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmPklBinaryEncoder.java",
+        "symbol_name": "visitDuration",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.596756,
+        "hybrid_score": 0.377719,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/DurationUnit.java",
+        "symbol_name": "parse",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.595895,
+        "hybrid_score": 0.370189,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/AbstractRenderer.java",
+        "symbol_name": "startSet",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.59512,
+        "hybrid_score": 0.363414,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PklConverter.java",
+        "symbol_name": "convertSet",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.592373,
+        "hybrid_score": 0.339395,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "pkl-5",
+    "repository": "apple/pkl",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "0.28.2 macOS 14.7.2 #!/bin/bash <service_name> SERVICE_NAME=$1 SERVICE_NAME ./pkl-templates/my-template.pkl read(\"env:COMPONENT\" read(\"env:SERVICE_NAME\" passing environment variables cli Pkl native installed homebrew I've bash script if correct number arguments provided $#\" -ne then echo Usage $0 <component>\" exit fi export COMPONENT=$2 pkl command eval -f json -e COMPONENT Tags Dynamic component List( ${COMPONENT}\" but correctly here's Tags\" component\" docs very clear fit together",
+    "technical_entities": ["0.28.2", "macOS", "14.7.2", "#!/bin/bash", "<service_name>", "SERVICE_NAME=$1", "SERVICE_NAME", "./pkl-templates/my-template.pkl", "read(\"env:COMPONENT\"", "read(\"env:SERVICE_NAME\""],
+    "query_understanding_ms": 0.8778,
+    "lexical_ms": 23081.7,
+    "semantic_ms": 9.9386,
+    "fusion_ms": 22.3729,
+    "total_retrieval_ms": 23120.2,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/repl/ReplServer.java",
+        "symbol_name": "ReplServer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.470695,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/BaseParserVisitor.java",
+        "symbol_name": "visitParenthesizedExpr",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.454856,
+        "hybrid_score": 0.677626,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/packages/PackageResolver.java",
+        "symbol_name": "getInstance",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.452369,
+        "hybrid_score": 0.666261,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/syntax/ExtendsOrAmendsClause.java",
+        "symbol_name": "ExtendsOrAmendsClause",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.432388,
+        "hybrid_score": 0.574964,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/SecurityManager.java",
+        "symbol_name": "checkResolveModule",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.415176,
+        "hybrid_score": 0.496318,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmContext.java",
+        "symbol_name": "Holder",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.404447,
+        "hybrid_score": 0.447295,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/Parser.java",
+        "symbol_name": "Parser",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.402205,
+        "hybrid_score": 0.437051,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/StringNodes.java",
+        "symbol_name": "StringNodes",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.381197,
+        "hybrid_score": 0.341062,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/PathConverterSupport.java",
+        "symbol_name": "pathMatches",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.379884,
+        "hybrid_score": 0.335063,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-config-java/src/main/java/org/pkl/config/java/ConfigEvaluator.java",
+        "symbol_name": "setValueMapper",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.371781,
+        "hybrid_score": 0.298039,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-pkl-01",
+    "repository": "apple/pkl",
+    "taxonomy": "Project Architecture",
+    "difficulty": "3",
+    "is_negative": false,
+    "clean_query": "AST Pkl evaluator interact parser evaluating external modules",
+    "technical_entities": ["AST"],
+    "query_understanding_ms": 0.6202,
+    "lexical_ms": 18079.7,
+    "semantic_ms": 7.6566,
+    "fusion_ms": 3.7481,
+    "total_retrieval_ms": 18095.4,
+    "hybrid": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/Parser.java",
+        "symbol_name": "parseExprAtom",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.535986,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/AnsiStringBuilder.java",
+        "symbol_name": "append",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.530209,
+        "hybrid_score": 0.70375,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/ResourceManager.java",
+        "symbol_name": "ResourceManager",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.525926,
+        "hybrid_score": 0.669464,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/syntax/StringConstant.java",
+        "symbol_name": "StringConstant",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.522434,
+        "hybrid_score": 0.641501,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/type/TypeNode.java",
+        "symbol_name": "executeEagerly",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.517162,
+        "hybrid_score": 0.599299,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-config-java/src/main/java/org/pkl/config/java/LeafConfig.java",
+        "symbol_name": "LeafConfig",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.516691,
+        "hybrid_score": 0.595527,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-parser/src/main/java/org/pkl/parser/syntax/TypeArgumentList.java",
+        "symbol_name": "TypeArgumentList",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.515558,
+        "hybrid_score": 0.586456,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/AnsiStringBuilder.java",
+        "symbol_name": "append",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.513951,
+        "hybrid_score": 0.573592,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/externalreader/ExternalModuleResolverImpl.java",
+        "symbol_name": "resolveModule",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.510368,
+        "hybrid_score": 0.544905,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmPklBinaryEncoder.java",
+        "symbol_name": "visitEntryKeyValue",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.509013,
+        "hybrid_score": 0.534056,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-pkl-02",
+    "repository": "apple/pkl",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "is_negative": true,
+    "clean_query": "Spring Boot auto-configuration controller pkl",
+    "technical_entities": [],
+    "query_understanding_ms": 0.8086,
+    "lexical_ms": 22385.3,
+    "semantic_ms": 515.48,
+    "fusion_ms": 197.795,
+    "total_retrieval_ms": 24032.1,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/messaging/AbstractMessagePackEncoder.java",
+        "symbol_name": "AbstractMessagePackEncoder",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.492296,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/paguro/RrbTree.java",
+        "symbol_name": "replaceInRelaxedAt",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.456017,
+        "hybrid_score": 0.617318,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-gradle/src/main/java/org/pkl/gradle/task/ModulesTask.java",
+        "symbol_name": "getSourceModulesAsUris",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.454169,
+        "hybrid_score": 0.610558,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/http/HttpClient.java",
+        "symbol_name": "setProxy",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.444522,
+        "hybrid_score": 0.575275,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ModuleSchema.java",
+        "symbol_name": "ModuleSchema",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.443232,
+        "hybrid_score": 0.570555,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/http/ProxySelector.java",
+        "symbol_name": "ProxySelector",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.420901,
+        "hybrid_score": 0.488883,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/type/VmTypeMismatchException.java",
+        "symbol_name": "VmTypeMismatchException",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.417771,
+        "hybrid_score": 0.477437,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmUndefinedValueException.java",
+        "symbol_name": "VmUndefinedValueException",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.399826,
+        "hybrid_score": 0.411803,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/StringSimilarity.java",
+        "symbol_name": "StringSimilarity",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.39285,
+        "hybrid_score": 0.386292,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/messaging/AbstractMessagePackEncoder.java",
+        "symbol_name": "AbstractMessagePackEncoder",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.384034,
+        "hybrid_score": 0.354046,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

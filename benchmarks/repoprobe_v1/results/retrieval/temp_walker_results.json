@@ -1,0 +1,920 @@
+[
+  {
+    "question_id": "walker-0",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "config.toml elephant.toml KDE default terminal archlinuxpkgs couldn't neither nor tested hyprland wezterm alacritty kitty konsole installed seems if wouldn't don't think there Linux settings's affect walker's",
+    "technical_entities": ["config.toml", "elephant.toml", "KDE"],
+    "query_understanding_ms": 0.1361,
+    "lexical_ms": 12.9417,
+    "semantic_ms": 0.0611,
+    "fusion_ms": 0.1252,
+    "total_retrieval_ms": 13.2219,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 20,
+      "mrr": 0.05
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 22,
+      "mrr": 0.0454545
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "handle_command_line",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.531983,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "show_actions_menu",
+        "kind": "Function",
+        "lexical_score": 9.33112,
+        "semantic_score": 0.463841,
+        "hybrid_score": 0.630927,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+        "symbol_name": "handle_emergency",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.402043,
+        "hybrid_score": 0.517761,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "select_down",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.391507,
+        "hybrid_score": 0.49893,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "quick_activate",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.36425,
+        "hybrid_score": 0.450214,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "setup_mouse_handling",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.351858,
+        "hybrid_score": 0.428067,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "reset_actions_menu",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.343916,
+        "hybrid_score": 0.413872,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/theme/mod.rs",
+        "symbol_name": "setup_css_provider",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.334674,
+        "hybrid_score": 0.397354,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/protos/mod.rs",
+        "symbol_name": "new",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.297489,
+        "hybrid_score": 0.330894,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "listen_activation_socket",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.295815,
+        "hybrid_score": 0.327902,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "walker-2",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "`max_entries` max_entries Clipboard seems clipboard got removed didn't Walker nor Elephant correct something else than 50",
+    "technical_entities": ["`max_entries`", "max_entries"],
+    "query_understanding_ms": 0.0721,
+    "lexical_ms": 44.2975,
+    "semantic_ms": 0.059,
+    "fusion_ms": 0.1296,
+    "total_retrieval_ms": 44.5819,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "select_down",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.441173,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "select_page_up",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.390203,
+        "hybrid_score": 0.62127,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/theme/mod.rs",
+        "symbol_name": "setup_css_provider",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.372013,
+        "hybrid_score": 0.575329,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs",
+        "symbol_name": "Clipboard",
+        "kind": "Struct",
+        "lexical_score": 13.5518,
+        "semantic_score": 0.327837,
+        "hybrid_score": 0.56574,
+        "provenance": "Both",
+        "is_match": true
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "select_up",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.356361,
+        "hybrid_score": 0.535798,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "generate_hints",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.353396,
+        "hybrid_score": 0.528309,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/preview/mod.rs",
+        "symbol_name": "render_pdf_page",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.352604,
+        "hybrid_score": 0.52631,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "Clipboard",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.337134,
+        "hybrid_score": 0.487238,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs",
+        "symbol_name": "get_item_layout",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.336582,
+        "hybrid_score": 0.485845,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "handle_preview",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.323529,
+        "hybrid_score": 0.452879,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "walker-3",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "2.0 providers.prefixes .\" folders/files search insensitive config Walker what's case-insensitive prefix provider If asbest won't my folder Only if capitalize But can't remember they capitalized",
+    "technical_entities": ["2.0", "providers.prefixes", ".\"", "folders/files"],
+    "query_understanding_ms": 0.1737,
+    "lexical_ms": 45.7221,
+    "semantic_ms": 0.0675,
+    "fusion_ms": 0.1612,
+    "total_retrieval_ms": 46.0856,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+        "symbol_name": "get_keybind_hint",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.635979,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "handle_command_line",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.536067,
+        "hybrid_score": 0.558081,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialShell",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.449229,
+        "hybrid_score": 0.391277,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "activate",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.435016,
+        "hybrid_score": 0.363976,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs",
+        "symbol_name": "text_transformer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.423303,
+        "hybrid_score": 0.341477,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "activate_default",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.421197,
+        "hybrid_score": 0.337431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialKeybinds",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.391689,
+        "hybrid_score": 0.28075,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "quick_activate",
+        "kind": "Function",
+        "lexical_score": 15.5951,
+        "semantic_score": 0.379962,
+        "hybrid_score": 0.275348,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "merge",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.387334,
+        "hybrid_score": 0.272384,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+        "symbol_name": "text_transformer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.374789,
+        "hybrid_score": 0.248286,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "walker-4",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "Walker Elephant go back\" function custom menus add bind goes back previous menu main entries open submenus know it's bash scripts dmenu mode omarchy but I'd prefer stick elephant mostly",
+    "technical_entities": [],
+    "query_understanding_ms": 0.125,
+    "lexical_ms": 43.4691,
+    "semantic_ms": 0.0525,
+    "fusion_ms": 0.1372,
+    "total_retrieval_ms": 43.7611,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 8,
+      "mrr": 0.125
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/keybinds.rs",
+        "symbol_name": "default_after",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.602829,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialShell",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.584615,
+        "hybrid_score": 0.709223,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "get_config",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.491999,
+        "hybrid_score": 0.501884,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/keybinds.rs",
+        "symbol_name": "AfterAction",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.482521,
+        "hybrid_score": 0.480663,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "add_flags",
+        "kind": "Function",
+        "lexical_score": 12.4781,
+        "semantic_score": 0.469385,
+        "hybrid_score": 0.461648,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialKeybinds",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.468216,
+        "hybrid_score": 0.448639,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "handle_after",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.466289,
+        "hybrid_score": 0.444326,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "setup_window_behavior",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.440201,
+        "hybrid_score": 0.385923,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "Placeholder",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.433473,
+        "hybrid_score": 0.370859,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "activate",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.425225,
+        "hybrid_score": 0.352395,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "walker-8",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "JPEG PNG WebP HEIC AVIF GIF SVG makes time so slow maintainers off walker just built tried out really love flexibility I'm too familiar Go ecosystem few noob — hope you don't mind my curiosity causes libvips used Based understanding high-performance image library ~300 operations arithmetic histograms convolution colour manipulation resampling etc supports numerous more It's written primarily designed speed low memory consumption But if understand correctly most image-related functionality features parts actually make advance",
+    "technical_entities": ["JPEG", "PNG", "WebP", "HEIC", "AVIF", "GIF", "SVG"],
+    "query_understanding_ms": 0.3497,
+    "lexical_ms": 44.9216,
+    "semantic_ms": 0.0849,
+    "fusion_ms": 0.1131,
+    "total_retrieval_ms": 45.2176,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 44,
+      "mrr": 0.0227273
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+        "symbol_name": "Provider",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.509644,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "Walker",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.412082,
+        "hybrid_score": 0.509022,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/protos/mod.rs",
+        "symbol_name": "QueryResponseObject",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.393858,
+        "hybrid_score": 0.464008,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+        "symbol_name": "shared_image_transformer",
+        "kind": "Function",
+        "lexical_score": 9.52635,
+        "semantic_score": 0.380349,
+        "hybrid_score": 0.449784,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialShell",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.380742,
+        "hybrid_score": 0.431612,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+        "symbol_name": "handle_emergency",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.379765,
+        "hybrid_score": 0.4292,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "PartialClipboard",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.371254,
+        "hybrid_score": 0.408177,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/state/mod.rs",
+        "symbol_name": "init_app_state",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.366044,
+        "hybrid_score": 0.395308,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+        "symbol_name": "image_transformer",
+        "kind": "Method",
+        "lexical_score": 10.4509,
+        "semantic_score": 0.342058,
+        "hybrid_score": 0.371444,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+        "symbol_name": "Keybinds",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.353921,
+        "hybrid_score": 0.365364,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-walker-01",
+    "repository": "abenz1267/walker",
+    "taxonomy": "Project Architecture",
+    "difficulty": "4",
+    "is_negative": false,
+    "clean_query": "input query flow UI entry box provider module filtering result walker",
+    "technical_entities": [],
+    "query_understanding_ms": 0.0516,
+    "lexical_ms": 42.9812,
+    "semantic_ms": 0.1074,
+    "fusion_ms": 0.1599,
+    "total_retrieval_ms": 43.3782,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+        "symbol_name": "get_provider_state",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.460855,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+        "symbol_name": "apply_flag_logic",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.416695,
+        "hybrid_score": 0.638648,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+        "symbol_name": "activate",
+        "kind": "Function",
+        "lexical_score": 11.6658,
+        "semantic_score": 0.391843,
+        "hybrid_score": 0.596994,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/data.rs",
+        "symbol_name": "handle_emergency",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.391287,
+        "hybrid_score": 0.574579,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "setup_mouse_handling",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.341892,
+        "hybrid_score": 0.450028,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "generate_hints",
+        "kind": "Function",
+        "lexical_score": 11.5434,
+        "semantic_score": 0.312118,
+        "hybrid_score": 0.392347,
+        "provenance": "Both",
+        "is_match": true
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "reset_actions_menu",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.312406,
+        "hybrid_score": 0.375677,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/theme/mod.rs",
+        "symbol_name": "setup_themes",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.28905,
+        "hybrid_score": 0.316782,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+        "symbol_name": "setup_list_behavior",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.28631,
+        "hybrid_score": 0.309874,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/state/mod.rs",
+        "symbol_name": "set_is_emergency",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.26786,
+        "hybrid_score": 0.263352,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      }
+    ]
+  }
+]

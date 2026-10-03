@@ -1,0 +1,9 @@
+question_id	repo_name	is_negative	alpha_0.0	alpha_0.1	alpha_0.2	alpha_0.3	alpha_0.4	alpha_0.5	alpha_0.6	alpha_0.7	alpha_0.8	alpha_0.9	alpha_1.0	rrf_k10	rrf_k20	rrf_k60	adaptive	lexical_only	semantic_only
+adk-python-0	google/adk-python	0	9	9	9	9	9	4	2	1	1	1	1	1	1	1	9	1	9
+adk-python-1	google/adk-python	0	4	4	3	2	1	1	1	1	1	1	1	1	1	1	3	1	4
+adk-python-2	google/adk-python	0	50	49	45	41	35	27	17	11	3	2	2	2	1	1	43	2	50
+adk-python-3	google/adk-python	0	0	43	39	30	24	15	8	2	1	1	1	2	2	2	36	1	0
+adk-python-4	google/adk-python	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+adk-python-5	google/adk-python	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+amoeba-adk-python-01	google/adk-python	0	2	2	2	2	2	4	6	11	15	17	19	3	3	3	2	19	2
+amoeba-adk-python-02	google/adk-python	1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1

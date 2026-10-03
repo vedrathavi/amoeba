@@ -91,10 +91,11 @@ ToolResult SearchCodeTool::execute(const ToolRequest& request,
         opts.alpha = 0.0;
         opts.adaptive_fusion = false;
     } else {
-        // hybrid default
-        opts.alpha = 0.5;
+        // hybrid default (Phase 8.4: WeightedScore alpha=0.8)
+        opts.alpha = 0.8;
+        opts.fusion_method = hybrid::FusionMethod::WeightedScore;
         opts.lexical_ranker = index::RankerType::CodeAware;
-        opts.adaptive_fusion = true;
+        opts.adaptive_fusion = false;
     }
 
     const auto results = context.retrieval_pipeline->search(query, opts);

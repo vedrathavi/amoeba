@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "opencloud-0",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "DSGVO Shared link password protection just fired believe really Whiile around UI seems shared links enforced default related compliance disabled",
+    "technical_entities": ["DSGVO"],
+    "query_understanding_ms": 0.6038,
+    "lexical_ms": 2555.3,
+    "semantic_ms": 59.9759,
+    "fusion_ms": 1.5063,
+    "total_retrieval_ms": 2619.13,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 32,
+      "mrr": 0.03125
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 32,
+      "mrr": 0.03125
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/segmentio/kafka-go/conn.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.669104,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/graph/mocks/drive_item_permissions_provider.go",
+        "symbol_name": "Return",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66162,
+        "hybrid_score": 0.699645,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opensearch-project/opensearch-go/v4/opensearchapi/api_cluster-allocation_explain.go",
+        "symbol_name": "ClusterAllocationExplainResp",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.637208,
+        "hybrid_score": 0.5354,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1/provider_api.pb.go",
+        "symbol_name": "Descriptor",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.620034,
+        "hybrid_score": 0.419847,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/reva/v2/internal/http/services/owncloud/ocs/handlers/apps/sharing/shares/remote.go",
+        "symbol_name": "createFederatedCloudShare",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.618807,
+        "hybrid_score": 0.411592,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3PagerDirectReadOk",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.616248,
+        "hybrid_score": 0.394372,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/reva/v2/pkg/errtypes/errtypes.go",
+        "symbol_name": "PreconditionFailed",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.608212,
+        "hybrid_score": 0.340309,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqliteDefaultBusyCallback",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.605208,
+        "hybrid_score": 0.320096,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.etcd.io/etcd/api/v3/membershippb/membership.pb.go",
+        "symbol_name": "XXX_Marshal",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.605159,
+        "hybrid_score": 0.319762,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/ProtonMail/go-crypto/openpgp/internal/ecc/curve25519.go",
+        "symbol_name": "Encaps",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.60414,
+        "hybrid_score": 0.312907,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "opencloud-2",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "Remove Calendar\" menu item remove main admin panel explain advance your",
+    "technical_entities": [],
+    "query_understanding_ms": 0.1588,
+    "lexical_ms": 1838.98,
+    "semantic_ms": 41.6249,
+    "fusion_ms": 0.8041,
+    "total_retrieval_ms": 1889.63,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 24,
+      "mrr": 0.0416667
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "jsonEachEof",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.683445,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "pragmaVtabColumn",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.65282,
+        "hybrid_score": 0.581411,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3PagerFilename",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.636271,
+        "hybrid_score": 0.490305,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/go-git/go-git/v5/plumbing/object/rename.go",
+        "symbol_name": "DetectRenames",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.614658,
+        "hybrid_score": 0.371325,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.etcd.io/etcd/api/v3/etcdserverpb/rpc.pb.go",
+        "symbol_name": "XXX_DiscardUnknown",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.602983,
+        "hybrid_score": 0.307058,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.h",
+        "symbol_name": "sqlite3_drop_modules",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.602635,
+        "hybrid_score": 0.305143,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3_value_frombind",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.598172,
+        "hybrid_score": 0.280572,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "bytecodevtabEof",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.597517,
+        "hybrid_score": 0.276964,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "fts3CloseMethod",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.595489,
+        "hybrid_score": 0.265802,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.etcd.io/etcd/api/v3/etcdserverpb/rpc.pb.go",
+        "symbol_name": "XXX_Unmarshal",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.592658,
+        "hybrid_score": 0.250219,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "opencloud-4",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "deleted/moved WebUI OpenCloud rescan database storage index fucked few directly my folder instead via Now learned as metadata automatically Luckily don't much yet self-hosted instance So if there let rebuild they now within am using docker compose btw worst backup status completley container re-upload everything time only",
+    "technical_entities": ["deleted/moved", "WebUI", "OpenCloud"],
+    "query_understanding_ms": 0.303,
+    "lexical_ms": 18731,
+    "semantic_ms": 158.784,
+    "fusion_ms": 61.0378,
+    "total_retrieval_ms": 18959.2,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "Parse",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.653575,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/graph/pkg/identity/mocks/backend.go",
+        "symbol_name": "Return",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.642406,
+        "hybrid_score": 0.691608,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/minio/highwayhash/highwayhash.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.581442,
+        "hybrid_score": 0.3729,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "fts3TermSelectFinishMerge",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.580517,
+        "hybrid_score": 0.368066,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/docker/docker/api/types/container/hostconfig.go",
+        "symbol_name": "IsSame",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.567642,
+        "hybrid_score": 0.300755,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/RoaringBitmap/roaring/v2/roaring64/roaring64.go",
+        "symbol_name": "CloneCopyOnWriteContainers",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.560485,
+        "hybrid_score": 0.263343,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "fts3DocidRange",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.55964,
+        "hybrid_score": 0.258925,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/docker/docker/api/types/container/hostconfig.go",
+        "symbol_name": "IsAlways",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.555713,
+        "hybrid_score": 0.238392,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3TwoPartName",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.550798,
+        "hybrid_score": 0.2127,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "fts3IsEmpty",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.547817,
+        "hybrid_score": 0.197117,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "opencloud-9",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "ENV enable auth-app keycloak so as login provider still token suse nautilus upload webdav opencloud",
+    "technical_entities": ["ENV"],
+    "query_understanding_ms": 0.8621,
+    "lexical_ms": 19797.4,
+    "semantic_ms": 182.26,
+    "fusion_ms": 36.7422,
+    "total_retrieval_ms": 20030,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "stat4ValueFromExpr",
+        "kind": "Function",
+        "lexical_score": 32.9967,
+        "semantic_score": 0.675616,
+        "hybrid_score": 0.76035,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3AuthRead",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.677711,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/libre-graph-api-go/api_drives_permissions.go",
+        "symbol_name": "DriveItemCreateLink",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.65318,
+        "hybrid_score": 0.588076,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "winWrite",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.650757,
+        "hybrid_score": 0.572079,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "memjrnlWrite",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.642481,
+        "hybrid_score": 0.517454,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "(*xDestroy)(sqlite3_tokenizer *pTokenizer)",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.638522,
+        "hybrid_score": 0.49132,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3ExprListSetName",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.633601,
+        "hybrid_score": 0.458837,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3_get_auxdata",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.622432,
+        "hybrid_score": 0.385111,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/google.golang.org/grpc/clientconn.go",
+        "symbol_name": "exitIdleMode",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.617993,
+        "hybrid_score": 0.355813,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/descriptor.pb.go",
+        "symbol_name": "XXX_Unmarshal",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.613132,
+        "hybrid_score": 0.323727,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "opencloud-11",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "OpenCloud /var/lib/opencloud/data /mnt/user/data/opencloud/data /etc/opencloud /mnt/user/appdata/opencloud/config GUI uploaded just via Unraid docker template found #252 mapped expect but upload something don't see changes",
+    "technical_entities": ["OpenCloud", "/var/lib/opencloud/data", "/mnt/user/data/opencloud/data", "/etc/opencloud", "/mnt/user/appdata/opencloud/config", "GUI"],
+    "query_understanding_ms": 0.9467,
+    "lexical_ms": 47303.2,
+    "semantic_ms": 228.775,
+    "fusion_ms": 52.1643,
+    "total_retrieval_ms": 47601.1,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/text/transform/transform.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.75403,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v11/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.749575,
+        "hybrid_score": 0.719919,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v16/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.748186,
+        "hybrid_score": 0.710541,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v14/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.74337,
+        "hybrid_score": 0.678017,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/text/unicode/norm/readwriter.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.742763,
+        "hybrid_score": 0.673919,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v13/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.741881,
+        "hybrid_score": 0.667961,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v15/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.738778,
+        "hybrid_score": 0.647007,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/blevesearch/zapx/v12/count.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.736997,
+        "hybrid_score": 0.634983,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3BtreePayloadFetch",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.714181,
+        "hybrid_score": 0.480912,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/segmentio/kafka-go/protocol/conn.go",
+        "symbol_name": "Write",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.705806,
+        "hybrid_score": 0.424355,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-opencloud-01",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Project Architecture",
+    "difficulty": "3",
+    "is_negative": false,
+    "clean_query": "storage-users service interact metadata uploading opencloud",
+    "technical_entities": [],
+    "query_understanding_ms": 0.9358,
+    "lexical_ms": 19459.8,
+    "semantic_ms": 93.4217,
+    "fusion_ms": 6.5625,
+    "total_retrieval_ms": 19574.4,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/libre-graph-api-go/model_unified_role_definition.go",
+        "symbol_name": "UnifiedRoleDefinition",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.71953,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v2/emitterc.go",
+        "symbol_name": "write",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.674584,
+        "hybrid_score": 0.409536,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/tus/tusd/v2/pkg/handler/unrouted_handler.go",
+        "symbol_name": "finishUploadIfComplete",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.6737,
+        "hybrid_score": 0.402836,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "rbuTargetNameFunc",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.673652,
+        "hybrid_score": 0.402472,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/services/search/pkg/query/bleve/compiler.go",
+        "symbol_name": "Compiler",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.673405,
+        "hybrid_score": 0.400607,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/reva/v2/tests/cs3mocks/mocks/GatewayAPIClient.go",
+        "symbol_name": "GatewayAPIClient_GetOCMShare_Call",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.671111,
+        "hybrid_score": 0.383224,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/protogen/gen/opencloud/messages/store/v0/store.pb.go",
+        "symbol_name": "Descriptor",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66898,
+        "hybrid_score": 0.367084,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/opencloud/pkg/runtime/service/service.go",
+        "symbol_name": "serviceFuncMap",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.667508,
+        "hybrid_score": 0.355935,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/reva/v2/pkg/mentix/meshdata/service.go",
+        "symbol_name": "Verify",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.667022,
+        "hybrid_score": 0.352249,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v3/emitterc.go",
+        "symbol_name": "write",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.6654,
+        "hybrid_score": 0.339967,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-opencloud-02",
+    "repository": "opencloud-eu/opencloud",
+    "taxonomy": "Implementation Details",
+    "difficulty": "5",
+    "is_negative": true,
+    "clean_query": "GraphQL resolver opencloud",
+    "technical_entities": ["GraphQL"],
+    "query_understanding_ms": 0.3101,
+    "lexical_ms": 16428.8,
+    "semantic_ms": 77.4757,
+    "fusion_ms": 12.8647,
+    "total_retrieval_ms": 16533.8,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c",
+        "symbol_name": "sqlite3VdbeSwap",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.708278,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.yaml.in/yaml/v2/scannerc.go",
+        "symbol_name": "cache",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.691828,
+        "hybrid_score": 0.653498,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/golang.org/x/net/http2/gotrack.go",
+        "symbol_name": "parseUintBytes",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.689846,
+        "hybrid_score": 0.64187,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/go.yaml.in/yaml/v3/scannerc.go",
+        "symbol_name": "cache",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.683616,
+        "hybrid_score": 0.605321,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v2/scannerc.go",
+        "symbol_name": "cache",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.683133,
+        "hybrid_score": 0.602487,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/gopkg.in/yaml.v3/scannerc.go",
+        "symbol_name": "cache",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.674607,
+        "hybrid_score": 0.552471,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/icap-client/icap_client.go",
+        "symbol_name": "parsePreviewBodyBytes",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.669411,
+        "hybrid_score": 0.521992,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/samber/lo/mutable/slice.go",
+        "symbol_name": "Filter",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.664379,
+        "hybrid_score": 0.49247,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/spf13/afero/path.go",
+        "symbol_name": "lstatIfPossible",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.662708,
+        "hybrid_score": 0.482669,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/opencloud/vendor/github.com/opencloud-eu/libre-graph-api-go/api_drives_permissions.go",
+        "symbol_name": "GetPermissionExecute",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.651628,
+        "hybrid_score": 0.417671,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

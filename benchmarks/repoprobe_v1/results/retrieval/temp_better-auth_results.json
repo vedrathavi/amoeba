@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "better-auth-0",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "userRelations @better-auth/cli@latest :/ // many(Todo external table relations Better-auth enthousiaste I'd know proper one many let say todos user better-auth moment I'm adding custom directly but seems wrong as npx will erase settings export const relations(user => sessions many(session accounts many(account Custom It's surely somewhere docs i'm quite beginner Drizzle it's bit overwhelming ^^' already 🙏",
+    "technical_entities": ["userRelations", "@better-auth/cli@latest", ":/", "//", "many(Todo"],
+    "query_understanding_ms": 0.8385,
+    "lexical_ms": 7219.14,
+    "semantic_ms": 2.1894,
+    "fusion_ms": 0.3979,
+    "total_retrieval_ms": 7221.84,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/kysely-adapter/bun-sqlite-dialect.ts",
+        "symbol_name": "BunSqliteQueryCompiler",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.669573,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/haveibeenpwned/index.ts",
+        "symbol_name": "init",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.667935,
+        "hybrid_score": 0.733084,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.648789,
+        "hybrid_score": 0.535431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "better-auth-1",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "BetterAuth AAGUID WebAuthn BetterAuth's Identifying passkeys provider there I'm migrating need automatically identify passkey so assign default name proper logo Previously extracted directly used determine However appears plugin doesn't field existing implementation extend schema capture your",
+    "technical_entities": ["BetterAuth", "AAGUID", "WebAuthn", "BetterAuth's"],
+    "query_understanding_ms": 0.9235,
+    "lexical_ms": 7133.46,
+    "semantic_ms": 2.3357,
+    "fusion_ms": 0.5029,
+    "total_retrieval_ms": 7136.61,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 6,
+      "mrr": 0.166667
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 6,
+      "mrr": 0.166667
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/core/src/db/adapter/get-field-name.ts",
+        "symbol_name": "getFieldName",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.587195,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/api-method.tsx",
+        "symbol_name": "APIMethod",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.569307,
+        "hybrid_score": 0.682139,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/cli/src/utils/format-ms.ts",
+        "symbol_name": "formatMilliseconds",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.532475,
+        "hybrid_score": 0.542407,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/linking/org-assignment.ts",
+        "symbol_name": "AssignOrganizationByDomainOptions",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.487904,
+        "hybrid_score": 0.373312,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/two-factor/client.ts",
+        "symbol_name": "twoFactorClient",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.480205,
+        "hybrid_score": 0.344106,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/core/src/db/adapter/index.ts",
+        "symbol_name": "JoinOption",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.475111,
+        "hybrid_score": 0.324779,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/oauth-provider/src/oauthClient/index.ts",
+        "symbol_name": "rotateClientSecret",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.470247,
+        "hybrid_score": 0.306326,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/index.ts",
+        "symbol_name": "DomainVerificationEndpoints",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.462353,
+        "hybrid_score": 0.276378,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/oidc/discovery.ts",
+        "symbol_name": "normalizeUrl",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.458783,
+        "hybrid_score": 0.262833,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/ui/background-boxes.tsx",
+        "symbol_name": "BoxesCore",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.455095,
+        "hybrid_score": 0.248844,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "better-auth-2",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "/sign-in/email\" documentation endpoints better-auth available want see them swagger platform there",
+    "technical_entities": ["/sign-in/email\""],
+    "query_understanding_ms": 0.7425,
+    "lexical_ms": 7450.14,
+    "semantic_ms": 3.227,
+    "fusion_ms": 0.5837,
+    "total_retrieval_ms": 7454.33,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 30,
+      "mrr": 0.0333333
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 29,
+      "mrr": 0.0344828
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/routes/crud-org.ts",
+        "symbol_name": "OrganizationReturn",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.657201,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/routes/crud-org.ts",
+        "symbol_name": "OrganizationReturn",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.657201,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "constructor",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.634397,
+        "hybrid_score": 0.613638,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/organization/client.ts",
+        "symbol_name": "OrganizationReturn",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.631365,
+        "hybrid_score": 0.595511,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/routes/sso.ts",
+        "symbol_name": "extractAssertionId",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.621677,
+        "hybrid_score": 0.537578,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/sign-in/_components/sign-in.tsx",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.595478,
+        "hybrid_score": 0.380917,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/auth/auth.test.ts",
+        "symbol_name": "R",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.592914,
+        "hybrid_score": 0.365583,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/api-key/client.ts",
+        "symbol_name": "ApiKeyClientPlugin",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.592142,
+        "hybrid_score": 0.360966,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "WindowBroadcastChannel",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.589372,
+        "hybrid_score": 0.344404,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/path-to-object.ts",
+        "symbol_name": "InferCtx",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.584496,
+        "hybrid_score": 0.315247,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "better-auth-3",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "support web native Sign Apple same time",
+    "technical_entities": [],
+    "query_understanding_ms": 0.203,
+    "lexical_ms": 756.459,
+    "semantic_ms": 3.2524,
+    "fusion_ms": 0.6116,
+    "total_retrieval_ms": 760.982,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/line.ts",
+        "symbol_name": "line",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.604408,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/landing/hero.tsx",
+        "symbol_name": "TrafficLightsIcon",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.540922,
+        "hybrid_score": 0.540067,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/components/ui/carousel.tsx",
+        "symbol_name": "Carousel",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.513471,
+        "hybrid_score": 0.449292,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/saml/algorithms.ts",
+        "symbol_name": "validateSignatureAlgorithm",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.498096,
+        "hybrid_score": 0.39845,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/keycloak.ts",
+        "symbol_name": "keycloak",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.491298,
+        "hybrid_score": 0.37597,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/stripe/src/utils.ts",
+        "symbol_name": "getPlanByName",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.488055,
+        "hybrid_score": 0.365247,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/api-key/routes/index.ts",
+        "symbol_name": "deleteAllExpiredApiKeys",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.487763,
+        "hybrid_score": 0.364283,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/expo/src/client.ts",
+        "symbol_name": "normalizeCookieName",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.478278,
+        "hybrid_score": 0.332916,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/linking/org-assignment.ts",
+        "symbol_name": "assignOrganizationFromProvider",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.474407,
+        "hybrid_score": 0.320117,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/ui/code-block.tsx",
+        "symbol_name": "CodeBlock",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.470442,
+        "hybrid_score": 0.307004,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "better-auth-4",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "NextJs authClient auth.ts betterAuth prismaAdapter better-auth/adapters/prisma\" PrismaClient @/generated/prisma\" openAPI better-auth/plugins' _schema ReturnType<typeof auth.api.generateOpenAPISchema> getSchema auth.api.generateOpenAPISchema( PrismaClient( betterAuth({ basePath /api' prismaAdapter(prisma emailAndPassword socialProviders clientId process.env.GOOGLE_OAUTH_CLIENT_ID clientSecret process.env.GOOGLE_OAUTH_CLIENT_SECRET openAPI( process.env.NODE_ENV trustedOrigins http://localhost:3000' OpenAPI getPaths /auth/api' getSchema().then(({ Object.create(null Object.keys(paths Object.keys(paths[path operation.tags createAuthClient better-auth/react\" createAuthClient({ baseURL http://localhost:3001\" authClient.signIn.social({ callbackURL http://localhost:3000/' Better-auth Oauth seperate backend Google oauth better-auth frontend My my import better-auth\" let const async => ??= prisma export auth database provider postgresql\" enabled true google as string plugins logger level !== production\" debug\" info\" disabled === test\" prefix paths reference typeof path key reference[key paths[path method operation any)[method Auth' return Promise<any> components then await google\"",
+    "technical_entities": ["NextJs", "authClient", "auth.ts", "betterAuth", "prismaAdapter", "better-auth/adapters/prisma\"", "PrismaClient", "@/generated/prisma\"", "openAPI", "better-auth/plugins'", "_schema", "ReturnType<typeof", "auth.api.generateOpenAPISchema>", "getSchema", "auth.api.generateOpenAPISchema(", "PrismaClient(", "betterAuth({", "basePath", "/api'", "prismaAdapter(prisma", "emailAndPassword", "socialProviders", "clientId", "process.env.GOOGLE_OAUTH_CLIENT_ID", "clientSecret", "process.env.GOOGLE_OAUTH_CLIENT_SECRET", "openAPI(", "process.env.NODE_ENV", "trustedOrigins", "http://localhost:3000'", "OpenAPI", "getPaths", "/auth/api'", "getSchema().then(({", "Object.create(null", "Object.keys(paths", "Object.keys(paths[path", "operation.tags", "createAuthClient", "better-auth/react\"", "createAuthClient({", "baseURL", "http://localhost:3001\"", "authClient.signIn.social({", "callbackURL", "http://localhost:3000/'"],
+    "query_understanding_ms": 1.7771,
+    "lexical_ms": 7466.91,
+    "semantic_ms": 3.8225,
+    "fusion_ms": 0.9081,
+    "total_retrieval_ms": 7471.88,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 11,
+      "mrr": 0.0909091
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 11,
+      "mrr": 0.0909091
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "constructor",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.73701,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/okta.ts",
+        "symbol_name": "okta",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.716418,
+        "hybrid_score": 0.645582,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/types.ts",
+        "symbol_name": "AtomListener",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.669159,
+        "hybrid_score": 0.405939,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "setup",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.663602,
+        "hybrid_score": 0.377761,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/tests/adapter-factory.test.ts",
+        "symbol_name": "customTransformOutput",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66275,
+        "hybrid_score": 0.373438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/tests/adapter-factory.test.ts",
+        "symbol_name": "customTransformOutput",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66275,
+        "hybrid_score": 0.373438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/tests/adapter-factory.test.ts",
+        "symbol_name": "customTransformOutput",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66275,
+        "hybrid_score": 0.373438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/tests/adapter-factory.test.ts",
+        "symbol_name": "customTransformOutput",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.66275,
+        "hybrid_score": 0.373438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/test.ts",
+        "symbol_name": "runAdapterTest",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.660237,
+        "hybrid_score": 0.360696,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/query.ts",
+        "symbol_name": "isServer",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.659914,
+        "hybrid_score": 0.359057,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-better-auth-01",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "is_negative": false,
+    "clean_query": "session verification cookie token extraction better-auth core",
+    "technical_entities": [],
+    "query_understanding_ms": 0.5024,
+    "lexical_ms": 6063.06,
+    "semantic_ms": 3.3532,
+    "fusion_ms": 0.5867,
+    "total_retrieval_ms": 6067.4,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/oauth/select-organization/org-buttons.tsx",
+        "symbol_name": "useRouter",
+        "kind": "Hook",
+        "lexical_score": 0,
+        "semantic_score": 0.623468,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/app/community/_components/header.tsx",
+        "symbol_name": "CommunityHeader",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.608726,
+        "hybrid_score": 0.594191,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/magic-link/client.ts",
+        "symbol_name": "magicLinkClient",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.598597,
+        "hybrid_score": 0.487136,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/api/index.ts",
+        "symbol_name": "onError",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.585552,
+        "hybrid_score": 0.349266,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/ui/toggle-group.tsx",
+        "symbol_name": "ToggleGroupItem",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.583753,
+        "hybrid_score": 0.330243,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/phone-number/phone-number.test.ts",
+        "symbol_name": "sendPasswordResetOTP",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.580126,
+        "hybrid_score": 0.291912,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/phone-number/phone-number.test.ts",
+        "symbol_name": "sendPasswordResetOTP",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.580126,
+        "hybrid_score": 0.291912,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "getGlobalBroadcastChannel",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.579146,
+        "hybrid_score": 0.281556,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/phone-number/routes.ts",
+        "symbol_name": "generateOTP",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.578123,
+        "hybrid_score": 0.270741,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/multi-session/index.ts",
+        "symbol_name": "isMultiSessionCookie",
+        "kind": "Function",
+        "lexical_score": 25.7898,
+        "semantic_score": 0,
+        "hybrid_score": 0.25,
+        "provenance": "LexicalOnly",
+        "is_match": true
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-better-auth-02",
+    "repository": "better-auth/better-auth",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "is_negative": false,
+    "clean_query": "OAuth PKCE state verification during authentication flow better-auth",
+    "technical_entities": ["OAuth", "PKCE"],
+    "query_understanding_ms": 0.3677,
+    "lexical_ms": 9556.12,
+    "semantic_ms": 3.2245,
+    "fusion_ms": 0.8642,
+    "total_retrieval_ms": 9563.86,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 13,
+      "mrr": 0.0769231
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 12,
+      "mrr": 0.0833333
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/oidc/discovery.ts",
+        "symbol_name": "selectTokenEndpointAuthMethod",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.577658,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/accept-invitation/[id]/page.tsx",
+        "symbol_name": "handleReject",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.528391,
+        "hybrid_score": 0.502423,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/client/broadcast-channel.ts",
+        "symbol_name": "constructor",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.52702,
+        "hybrid_score": 0.495531,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/components/forms/two-factor-enable-form.tsx",
+        "symbol_name": "TwoFactorEnableFormProps",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.525676,
+        "hybrid_score": 0.488778,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/markdown-renderer.tsx",
+        "symbol_name": "MarkdownRendererProps",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.499896,
+        "hybrid_score": 0.359225,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/sign-in/loading.tsx",
+        "symbol_name": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/sign-in/loading.tsx",
+        "kind": "Route",
+        "lexical_score": 0,
+        "semantic_score": 0.484183,
+        "hybrid_score": 0.280266,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/api/to-auth-endpoints.ts",
+        "symbol_name": "runAfterHooks",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.479984,
+        "hybrid_score": 0.259164,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+        "symbol_name": "setupOAuthFlowAndGetCode",
+        "kind": "Function",
+        "lexical_score": 31.8848,
+        "semantic_score": 0,
+        "hybrid_score": 0.25,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/two-factor/otp/page.tsx",
+        "symbol_name": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/two-factor/otp/page.tsx",
+        "kind": "Route",
+        "lexical_score": 0,
+        "semantic_score": 0.47776,
+        "hybrid_score": 0.247986,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/two-factor/page.tsx",
+        "symbol_name": "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/app/(auth)/two-factor/page.tsx",
+        "kind": "Route",
+        "lexical_score": 0,
+        "semantic_score": 0.477696,
+        "hybrid_score": 0.247665,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

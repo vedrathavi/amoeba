@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "dokploy-0",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "HTTP2 HTTP3 surma/simplehttp2server 5000 *.traefik.me HTTPS traefik.http.services.monitoring-http2test-namyib-12-web.loadbalancer.server.scheme=https traefik.docker.network=dokploy-network traefik.http.routers.monitoring-http2test-namyib-12-web.rule=Host(`monitoring-http2test-namyib-c843b3-51-255-22-26.traefik.me` traefik.http.routers.monitoring-http2test-namyib-12-web.entrypoints=web traefik.http.services.monitoring-http2test-namyib-12-web.loadbalancer.server.port=5000 traefik.http.routers.monitoring-http2test-namyib-12-web.service=monitoring-http2test-namyib-12-web traefik.enable=true ERR 500 10.0.1.58 SANs\" ServersTransport HTTP `insecureSkipVerify` TLS traefik.http.services.Service01.loadBalancer.serversTransport=mytransport traefik.http.services.monitoring-http2test-namyib-12-web.loadBalancer.serversTransport=mytransport URL https://10.0.1.59:5000/ RoundTripper entryPointName=web routerName=monitoring-http2test-namyib-12-web@docker traefik.http.serversTransports.mytransport.insecureSkipVerify=true using dokploy I'm later services deployed smallest make reproduce my one Raw docker compose configuration test image expose random domain without terminaison forwarding port add extra label based newly name labels Preview Compose networks dokploy-network external true if browse Internal Server following message traefik logs 2025-11-17T21:49:06Z error=\"tls verify certificate x509 cannot validate because doesn't IP makes sense self-signed tell skip verification According Traefik documentation resource controls transport layer settings backend servers supports attached service via Docker ``` So tried Now says can't mytransport 2025-11-17T22:03:07Z error=\"error proxy server found mytransport@docker\" but same previous",
+    "technical_entities": ["HTTP2", "HTTP3", "surma/simplehttp2server", "5000", "*.traefik.me", "HTTPS", "traefik.http.services.monitoring-http2test-namyib-12-web.loadbalancer.server.scheme=https", "traefik.docker.network=dokploy-network", "traefik.http.routers.monitoring-http2test-namyib-12-web.rule=Host(`monitoring-http2test-namyib-c843b3-51-255-22-26.traefik.me`", "traefik.http.routers.monitoring-http2test-namyib-12-web.entrypoints=web", "traefik.http.services.monitoring-http2test-namyib-12-web.loadbalancer.server.port=5000", "traefik.http.routers.monitoring-http2test-namyib-12-web.service=monitoring-http2test-namyib-12-web", "traefik.enable=true", "ERR", "500", "10.0.1.58", "SANs\"", "ServersTransport", "HTTP", "`insecureSkipVerify`", "TLS", "traefik.http.services.Service01.loadBalancer.serversTransport=mytransport", "traefik.http.services.monitoring-http2test-namyib-12-web.loadBalancer.serversTransport=mytransport", "URL", "https://10.0.1.59:5000/", "RoundTripper", "entryPointName=web", "routerName=monitoring-http2test-namyib-12-web@docker", "traefik.http.serversTransports.mytransport.insecureSkipVerify=true"],
+    "query_understanding_ms": 4.9982,
+    "lexical_ms": 9528.57,
+    "semantic_ms": 3.1095,
+    "fusion_ms": 1.0288,
+    "total_retrieval_ms": 9533.29,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/mongo.ts",
+        "symbol_name": "deployMongo",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.52165,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/profile/profile-form.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.487425,
+        "hybrid_score": 0.631829,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/index.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.468223,
+        "hybrid_score": 0.56553,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitea/edit-gitea-provider.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.427322,
+        "hybrid_score": 0.42431,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/web-server/edit-traefik-env.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.426481,
+        "hybrid_score": 0.421408,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sign-in-with-sso.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.4238,
+        "hybrid_score": 0.412151,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/middleware.ts",
+        "symbol_name": "createPathMiddlewares",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.415544,
+        "hybrid_score": 0.383645,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/server/wss/docker-stats.ts",
+        "symbol_name": "setupDockerStatsMonitoringSocketServer",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.413028,
+        "hybrid_score": 0.374959,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "TcpRouter",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.407837,
+        "hybrid_score": 0.357033,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "RetryMiddleware",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.406805,
+        "hybrid_score": 0.353472,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "dokploy-1",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "user1.example.com userdomain.com Dokploy support wildcard subdomains custom domain routing allows users domains access specific content my My plan",
+    "technical_entities": ["user1.example.com", "userdomain.com"],
+    "query_understanding_ms": 0.5779,
+    "lexical_ms": 8569.24,
+    "semantic_ms": 3.1472,
+    "fusion_ms": 0.6739,
+    "total_retrieval_ms": 8574.53,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/hooks/use-keyboard-nav.tsx",
+        "symbol_name": "UseKeyboardNav",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.392396,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/send-reset-password.tsx",
+        "symbol_name": "getServerSideProps",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.38531,
+        "hybrid_score": 0.717566,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/emails/emails/volume-backup.tsx",
+        "symbol_name": "VolumeBackupEmail",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.348208,
+        "hybrid_score": 0.547755,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/notifications/database-backup.ts",
+        "symbol_name": "sendDatabaseBackupNotifications",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.340637,
+        "hybrid_score": 0.513103,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/templates/index.ts",
+        "symbol_name": "generateBase64",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.3104,
+        "hybrid_score": 0.374714,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/docker/domain.ts",
+        "symbol_name": "writeDomainsToCompose",
+        "kind": "Function",
+        "lexical_score": 19.3531,
+        "semantic_score": 0.295671,
+        "hybrid_score": 0.351611,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/api/[...trpc].ts",
+        "symbol_name": "handler",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.304586,
+        "hybrid_score": 0.348102,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/profile/enable-2fa.tsx",
+        "symbol_name": "handleCopyBackupCodes",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.29865,
+        "hybrid_score": 0.320935,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/reset-password.tsx",
+        "symbol_name": "getServerSideProps",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.296603,
+        "hybrid_score": 0.311563,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/restore/utils.ts",
+        "symbol_name": "getMongoRestoreCommand",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.290258,
+        "hybrid_score": 0.282523,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "dokploy-2",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "BunkerWeb WAF SSL replace Traefik I’m using as my reverse proxy balancing routing enhanced security rate limiting etc default Dokploy ingress controller disable instead Specifically I’d know expose services without depending so termination there integrations labels middlewares Let’s Encrypt handling break if removed you recommend front chained replacing completely your",
+    "technical_entities": ["BunkerWeb", "WAF", "SSL"],
+    "query_understanding_ms": 1.7059,
+    "lexical_ms": 8310.07,
+    "semantic_ms": 2.7924,
+    "fusion_ms": 0.8992,
+    "total_retrieval_ms": 8314.06,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 43,
+      "mrr": 0.0232558
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/types/with.ts",
+        "symbol_name": "Schema",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.538198,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitlab/add-gitlab-provider.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.51764,
+        "hybrid_score": 0.644393,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitlab/edit-gitlab-provider.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.50983,
+        "hybrid_score": 0.604271,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sign-in-with-sso.tsx",
+        "symbol_name": "SSOEmailForm",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.506637,
+        "hybrid_score": 0.587873,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/application.ts",
+        "symbol_name": "readMonitoringConfig",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.503681,
+        "hybrid_score": 0.572687,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/web-server/edit-traefik-env.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.501564,
+        "hybrid_score": 0.561811,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/handle-ai.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.498622,
+        "hybrid_score": 0.546699,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/servers/handle-servers.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.497687,
+        "hybrid_score": 0.541895,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "ContentTypeMiddleware",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.496292,
+        "hybrid_score": 0.534731,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/bitbucket/add-bitbucket-provider.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.494218,
+        "hybrid_score": 0.524074,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "dokploy-5",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "Automatic Certificate request domain Dokploy don't know if I've found made mistake add Let's Encrypt certificate my compose only requested redeployment instead immediately overlooked something misunderstood",
+    "technical_entities": [],
+    "query_understanding_ms": 0.612,
+    "lexical_ms": 8393.44,
+    "semantic_ms": 2.4889,
+    "fusion_ms": 0.796,
+    "total_retrieval_ms": 8398,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 9,
+      "mrr": 0.111111
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 12,
+      "mrr": 0.0833333
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/certificate.ts",
+        "symbol_name": "createCertificateFiles",
+        "kind": "Function",
+        "lexical_score": 17.3846,
+        "semantic_score": 0.395001,
+        "hybrid_score": 0.765304,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/templates/index.ts",
+        "symbol_name": "generateBase64",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.322502,
+        "hybrid_score": 0.542795,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/github.ts",
+        "symbol_name": "getIssueComment",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.317533,
+        "hybrid_score": 0.528592,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "HttpRouter",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.313652,
+        "hybrid_score": 0.517501,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/monitoring/database/cleanup.go",
+        "symbol_name": "CleanupMetrics",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.296495,
+        "hybrid_score": 0.468466,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/hooks/use-keyboard-nav.tsx",
+        "symbol_name": "ShortcutsDictionary",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.277215,
+        "hybrid_score": 0.413362,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/schedule.ts",
+        "symbol_name": "handleScript",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.265527,
+        "hybrid_score": 0.379958,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sso-settings.tsx",
+        "symbol_name": "SSOSettings",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.23601,
+        "hybrid_score": 0.295597,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/docker/domain.ts",
+        "symbol_name": "addDokployNetworkToService",
+        "kind": "Function",
+        "lexical_score": 19.6375,
+        "semantic_score": 0.211172,
+        "hybrid_score": 0.283844,
+        "provenance": "Both",
+        "is_match": true
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/application/advanced/cluster/swarm-forms/update-config-form.tsx",
+        "symbol_name": "UpdateConfigForm",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.228498,
+        "hybrid_score": 0.274126,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "dokploy-9",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "enable traefik metrics dokploy Traefik Dokploy",
+    "technical_entities": [],
+    "query_understanding_ms": 0.2388,
+    "lexical_ms": 8337.25,
+    "semantic_ms": 3.3035,
+    "fusion_ms": 0.9349,
+    "total_retrieval_ms": 8341.98,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 20,
+      "mrr": 0.05
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/profile/profile-form.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.612467,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/web-server/edit-traefik-env.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.566241,
+        "hybrid_score": 0.539576,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/handle-ai.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.555983,
+        "hybrid_score": 0.492878,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-oidc-dialog.tsx",
+        "symbol_name": "useFieldArray",
+        "kind": "Hook",
+        "lexical_score": 0,
+        "semantic_score": 0.534743,
+        "hybrid_score": 0.396191,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-oidc-dialog.tsx",
+        "symbol_name": "useFieldArray",
+        "kind": "Hook",
+        "lexical_score": 0,
+        "semantic_score": 0.534743,
+        "hybrid_score": 0.396191,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/settings/git/gitlab/add-gitlab-provider.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.526795,
+        "hybrid_score": 0.36001,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-saml-dialog.tsx",
+        "symbol_name": "useFieldArray",
+        "kind": "Hook",
+        "lexical_score": 0,
+        "semantic_score": 0.526688,
+        "hybrid_score": 0.359522,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/application/rollbacks/show-rollback-settings.tsx",
+        "symbol_name": "ShowRollbackSettings",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.526403,
+        "hybrid_score": 0.358226,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/hooks/use-mobile.tsx",
+        "symbol_name": "useIsMobile",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.515378,
+        "hybrid_score": 0.308036,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-oidc-dialog.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.514013,
+        "hybrid_score": 0.301826,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-dokploy-01",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "is_negative": false,
+    "clean_query": "backend services interact Traefik configuration manager dokploy",
+    "technical_entities": [],
+    "query_understanding_ms": 0.1684,
+    "lexical_ms": 7064.23,
+    "semantic_ms": 2.6138,
+    "fusion_ms": 0.7533,
+    "total_retrieval_ms": 7067.89,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 27,
+      "mrr": 0.037037
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 3,
+      "mrr": 0.333333
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "TcpRouter",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.492375,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "HttpMirroringService",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.470487,
+        "hybrid_score": 0.664618,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "BufferingMiddleware",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.426068,
+        "hybrid_score": 0.491345,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/sso-settings.tsx",
+        "symbol_name": "handleStartEdit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.417172,
+        "hybrid_score": 0.456644,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/project.ts",
+        "symbol_name": "updateProjectById",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.384136,
+        "hybrid_score": 0.327775,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/project/ai/template-generator.tsx",
+        "symbol_name": "isDisabled",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.369014,
+        "hybrid_score": 0.268786,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/environment.ts",
+        "symbol_name": "deleteEnvironment",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.364821,
+        "hybrid_score": 0.252432,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/dashboard/project/[projectId]/environment/[environmentId].tsx",
+        "symbol_name": "sortServices",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.364538,
+        "hybrid_score": 0.251328,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/project/ai/template-generator.tsx",
+        "symbol_name": "onSubmit",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.357232,
+        "hybrid_score": 0.222827,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+        "symbol_name": "ForwardAuthMiddleware",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.357132,
+        "hybrid_score": 0.222438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-dokploy-02",
+    "repository": "Dokploy/dokploy",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "is_negative": false,
+    "clean_query": "deployment state container lifecycle status maintained dokploy",
+    "technical_entities": [],
+    "query_understanding_ms": 0.067,
+    "lexical_ms": 1793.73,
+    "semantic_ms": 0.6883,
+    "fusion_ms": 0.2197,
+    "total_retrieval_ms": 1794.81,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 14,
+      "mrr": 0.0714286
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/docker/logs/terminal-line.tsx",
+        "symbol_name": "tooltip",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.702885,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/proprietary/sso/register-saml-dialog.tsx",
+        "symbol_name": "parseSamlConfig",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.677131,
+        "hybrid_score": 0.642133,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/preview-deployment.ts",
+        "symbol_name": "generateWildcardDomain",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.642036,
+        "hybrid_score": 0.495143,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/utils/gitea-utils.ts",
+        "symbol_name": "getGiteaOAuthUrl",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.632195,
+        "hybrid_score": 0.453929,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/application/patches/patch-editor.tsx",
+        "symbol_name": "toggleFolder",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.622961,
+        "hybrid_score": 0.415254,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/settings.ts",
+        "symbol_name": "reloadDockerResource",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.59218,
+        "hybrid_score": 0.286333,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/pages/dashboard/deployments.tsx",
+        "symbol_name": "setTab",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.586372,
+        "hybrid_score": 0.262009,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/ui/command.tsx",
+        "symbol_name": "CommandShortcut",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.585703,
+        "hybrid_score": 0.259204,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/dokploy/components/dashboard/application/advanced/cluster/show-cluster-settings.tsx",
+        "symbol_name": "ShowClusterSettings",
+        "kind": "Component",
+        "lexical_score": 24.4317,
+        "semantic_score": 0,
+        "hybrid_score": 0.25,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/settings.ts",
+        "symbol_name": "getUpdateData",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.580267,
+        "hybrid_score": 0.236439,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

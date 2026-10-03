@@ -583,15 +583,43 @@ target_link_libraries(amoeba_expansion_benchmark
         amoeba_engine
 )
 
-target_compile_features(amoeba_expansion_benchmark PRIVATE cxx_std_20)
+# -----------------------------------------------------------------------------
+# 11. amoeba_retrieval_benchmark (Phase 8.3 Fast Retrieval-Only Benchmark)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_retrieval_benchmark
+    benchmarks/repoprobe_v1/retrieval_benchmark_main.cpp
+)
+
+target_link_libraries(amoeba_retrieval_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_retrieval_benchmark PRIVATE cxx_std_20)
+
+# -----------------------------------------------------------------------------
+# 12. amoeba_test_fusion (Phase 8.3 Fusion Strategy Testing)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_test_fusion
+    benchmarks/repoprobe_v1/test_fusion_main.cpp
+)
+
+target_link_libraries(amoeba_test_fusion
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_test_fusion PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_expansion_benchmark PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_expansion_benchmark PRIVATE /STACK:67108864)
+    target_compile_options(amoeba_test_fusion PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_test_fusion PRIVATE /STACK:67108864)
 else()
-    target_compile_options(amoeba_expansion_benchmark PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_expansion_benchmark PRIVATE -Wl,--stack,67108864)
+    target_compile_options(amoeba_test_fusion PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_test_fusion PRIVATE -Wl,--stack,67108864)
 endif()
+
+
 
 
 

@@ -66,15 +66,15 @@ namespace amoeba::retrieval {
  * @brief Configuration for a primary retrieval search query.
  */
 struct PrimarySearchOptions {
-    double alpha{0.5};  ///< Lexical weight [0=semantic only, 1=lexical only]
-    hybrid::FusionMethod fusion_method{hybrid::FusionMethod::WeightedScore};
-    double rrf_k{60.0};  ///< RRF smoothing constant
+    double alpha{0.8};  ///< Phase 8.4: Recalibrated lexical weight (0.8 lexical, 0.2 semantic)
+    hybrid::FusionMethod fusion_method{hybrid::FusionMethod::WeightedScore};  ///< Phase 8.4: Weighted score fusion
+    double rrf_k{10.0};  ///< RRF smoothing constant (if RRF is selected)
     index::RankerType lexical_ranker{index::RankerType::CodeAware};
     std::size_t lexical_top_k{50};   ///< Candidate depth for lexical retrieval
     std::size_t semantic_top_k{50};  ///< Candidate depth for semantic retrieval
     std::size_t max_results{10};     ///< Maximum number of primary results to return
     std::optional<parser::ElementKind> kind_filter{std::nullopt};  ///< Optional kind filter
-    bool adaptive_fusion{true};  ///< Phase 6.6: adaptively tune fusion weights by query intent
+    bool adaptive_fusion{false};  ///< Phase 8.4: disabled in favor of calibrated alpha=0.8
 };
 
 /**

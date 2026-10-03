@@ -1,0 +1,8 @@
+question_id	repo_name	is_negative	alpha_0.0	alpha_0.1	alpha_0.2	alpha_0.3	alpha_0.4	alpha_0.5	alpha_0.6	alpha_0.7	alpha_0.8	alpha_0.9	alpha_1.0	rrf_k10	rrf_k20	rrf_k60	adaptive	lexical_only	semantic_only
+docling-0	docling-project/docling	0	5	5	5	5	5	6	6	2	2	2	2	6	4	1	5	2	5
+docling-1	docling-project/docling	0	22	22	22	23	23	23	23	23	14	5	5	23	23	23	23	5	22
+docling-2	docling-project/docling	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+docling-3	docling-project/docling	0	4	4	4	4	4	9	12	12	19	22	0	8	8	8	4	0	4
+docling-9	docling-project/docling	0	35	35	36	36	36	38	38	38	38	38	0	38	38	38	36	0	35
+amoeba-docling-01	docling-project/docling	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+amoeba-docling-02	docling-project/docling	0	19	19	19	20	21	22	22	22	22	22	0	21	21	21	20	0	19

@@ -1,0 +1,8 @@
+question_id	repo_name	is_negative	alpha_0.0	alpha_0.1	alpha_0.2	alpha_0.3	alpha_0.4	alpha_0.5	alpha_0.6	alpha_0.7	alpha_0.8	alpha_0.9	alpha_1.0	rrf_k10	rrf_k20	rrf_k60	adaptive	lexical_only	semantic_only
+better-auth-0	better-auth/better-auth	0	2	2	2	2	2	2	2	2	2	11	0	2	2	2	2	0	2
+better-auth-1	better-auth/better-auth	0	6	6	6	6	6	7	5	4	2	2	2	7	7	7	6	2	6
+better-auth-2	better-auth/better-auth	0	29	29	30	33	35	35	35	35	36	37	0	35	35	35	30	0	29
+better-auth-3	better-auth/better-auth	0	7	7	7	7	7	10	10	14	15	22	0	7	7	7	7	0	7
+better-auth-4	better-auth/better-auth	0	11	11	11	11	11	11	11	11	11	13	4	12	12	12	11	4	11
+amoeba-better-auth-01	better-auth/better-auth	0	4	4	4	4	3	2	1	1	1	1	1	2	2	2	4	1	4
+amoeba-better-auth-02	better-auth/better-auth	0	12	12	12	15	16	16	20	20	21	21	0	15	15	15	13	0	12

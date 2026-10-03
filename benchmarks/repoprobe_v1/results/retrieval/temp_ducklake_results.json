@@ -1,0 +1,920 @@
+[
+  {
+    "question_id": "ducklake-0",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "function/macro row_number( to_number(o current_localtimestamp( SQL DuckLake ducklake support custom want somethings replace macro rownum( as nvl(a coalesce(a nvl2(a null then else end cast(o double sysdate( systimestamp( transfer some script Oracle duckdb but functions",
+    "technical_entities": ["function/macro", "row_number(", "to_number(o", "current_localtimestamp(", "SQL", "DuckLake"],
+    "query_understanding_ms": 1.342,
+    "lexical_ms": 1237.73,
+    "semantic_ms": 1.6236,
+    "fusion_ms": 0.9516,
+    "total_retrieval_ms": 1240.77,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 12,
+      "mrr": 0.0833333
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 18,
+      "mrr": 0.0555556
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 12,
+      "mrr": 0.0833333
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp",
+        "symbol_name": "DuckLakeInlineData::OperatorFinalize",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.319437,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp",
+        "symbol_name": "InlineDataGlobalState",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.295588,
+        "hybrid_score": 0.669657,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/scripts/bootstrap-template.py",
+        "symbol_name": "replace_everywhere",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.275191,
+        "hybrid_score": 0.600945,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_compaction_functions.cpp",
+        "symbol_name": "operator()",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.266666,
+        "hybrid_score": 0.572224,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_add_data_files.cpp",
+        "symbol_name": "DuckLakeFileProcessor::ReadParquetFullMetadata",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.260771,
+        "hybrid_score": 0.552365,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+        "symbol_name": "DuckLakeTransaction::DropTableMacro",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.231699,
+        "hybrid_score": 0.454428,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_insert.cpp",
+        "symbol_name": "GeneratePartitionExpressions",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.225919,
+        "hybrid_score": 0.434954,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_catalog.hpp",
+        "symbol_name": "GenerateEncryptionKey",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.197246,
+        "hybrid_score": 0.338361,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_insert.cpp",
+        "symbol_name": "copy_input",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.189073,
+        "hybrid_score": 0.310828,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_options.cpp",
+        "symbol_name": "DuckLakeOptionsFunction::DuckLakeOptionsFunction",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.18443,
+        "hybrid_score": 0.295185,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "ducklake-1",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "JDBC MotherDuck DuckLake DuckDB PostgreSQL DataFrame API get_jdbc_writer( rangeDf spark.range(10 get_jdbc_writer(rangeDf .option('dbtable' range_10\" .mode(\"overwrite\" .save( DuckDB/Ducklake/JDBC 1.4.0 3.5.1 Writing ducklake spark via dataframe row becomes parquet am planning Ducklake Apache Spark Got initial blog post integrating demonstrates using bootstrap metadata catalog local Parquet data storage covers smart partitioning writing back Spark's caused here snippet used worked but resulted 10 target directory related partitions one partition if change range( parameter tried bigger several thousand rows never ended too many cannot even list them easily reproduced initially older versions design\" version info Duckdb",
+    "technical_entities": ["JDBC", "MotherDuck", "DuckLake", "DuckDB", "PostgreSQL", "DataFrame", "API", "get_jdbc_writer(", "rangeDf", "spark.range(10", "get_jdbc_writer(rangeDf", ".option('dbtable'", "range_10\"", ".mode(\"overwrite\"", ".save(", "DuckDB/Ducklake/JDBC", "1.4.0", "3.5.1"],
+    "query_understanding_ms": 2.4623,
+    "lexical_ms": 1371.38,
+    "semantic_ms": 3.137,
+    "fusion_ms": 0.9499,
+    "total_retrieval_ms": 1375.93,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 7,
+      "mrr": 0.142857
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_add_data_files.cpp",
+        "symbol_name": "AddFileToTable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.585735,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp",
+        "symbol_name": "MacroIndex",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.564241,
+        "hybrid_score": 0.665987,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+        "symbol_name": "table_size_bytes",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.505237,
+        "hybrid_score": 0.43536,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "GetFilesForCleanup",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.488212,
+        "hybrid_score": 0.368815,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp",
+        "symbol_name": "IsValid",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.484432,
+        "hybrid_score": 0.354039,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/ducklake_snapshot.hpp",
+        "symbol_name": "DuckLakeSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.483157,
+        "hybrid_score": 0.349056,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction_manager.cpp",
+        "symbol_name": "l",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.479906,
+        "hybrid_score": 0.336349,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction_manager.cpp",
+        "symbol_name": "l",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.475586,
+        "hybrid_score": 0.319462,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+        "symbol_name": "CommitCompaction",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.474778,
+        "hybrid_score": 0.316304,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "RemoveFilesScheduledForCleanup",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.470462,
+        "hybrid_score": 0.299434,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "ducklake-2",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "list parquet deletion what's simplest if particular table",
+    "technical_entities": [],
+    "query_understanding_ms": 0.2789,
+    "lexical_ms": 577.712,
+    "semantic_ms": 1.0883,
+    "fusion_ms": 0.5743,
+    "total_retrieval_ms": 579.658,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 11,
+      "mrr": 0.0909091
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "Copy",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.431451,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "LoadMacroImplementations",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.387125,
+        "hybrid_score": 0.575267,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_cleanup_files.cpp",
+        "symbol_name": "CleanupBind",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.359738,
+        "hybrid_score": 0.467307,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/ducklake_data_file.hpp",
+        "symbol_name": "DuckLakeFilePartition",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.348296,
+        "hybrid_score": 0.422201,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "DuckLakeMetadataManager::GetFilesDeletedOrDroppedAfterSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.339112,
+        "hybrid_score": 0.385997,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "GetFilesDeletedOrDroppedAfterSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.338732,
+        "hybrid_score": 0.3845,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_set_option.cpp",
+        "symbol_name": "DuckLakeSetOptionFunction::DuckLakeSetOptionFunction",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.33629,
+        "hybrid_score": 0.374875,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_table_entry.hpp",
+        "symbol_name": "GetNotNullFields",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.331116,
+        "hybrid_score": 0.354478,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "DuckLakeMetadataManager::GenerateConstantFilter",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.329027,
+        "hybrid_score": 0.346244,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "FilterPushdownInfo",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.328398,
+        "hybrid_score": 0.343766,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "ducklake-3",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "PostgreSQL ATTACH host=127.0.0.1' TYPE SCHEMA DuckLake specify schema using extension custom so dbname=postgres user=postgres AS db postgres ducklake' catalog",
+    "technical_entities": ["PostgreSQL", "ATTACH", "host=127.0.0.1'", "TYPE", "SCHEMA", "DuckLake"],
+    "query_understanding_ms": 0.6367,
+    "lexical_ms": 1218.59,
+    "semantic_ms": 1.887,
+    "fusion_ms": 0.766,
+    "total_retrieval_ms": 1221.52,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/ducklake_snapshot.hpp",
+        "symbol_name": "DuckLakeSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.532162,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+        "symbol_name": "DuckLakeTransaction::CheckForConflicts",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.531894,
+        "hybrid_score": 0.747888,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+        "symbol_name": "DuckLakeTransaction::GetLocalCatalogId",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.531695,
+        "hybrid_score": 0.746324,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+        "symbol_name": "null_count",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.530223,
+        "hybrid_score": 0.734763,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_inline_data.cpp",
+        "symbol_name": "UpdateStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.529276,
+        "hybrid_score": 0.727325,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+        "symbol_name": "DuckLakeTransaction::GetCatalogVersion",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.528892,
+        "hybrid_score": 0.724308,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "GetNewPartitions",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.528445,
+        "hybrid_score": 0.720799,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_table_insertions.cpp",
+        "symbol_name": "AtClauseFromValue",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.515404,
+        "hybrid_score": 0.618343,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/common/ducklake_name_map.cpp",
+        "symbol_name": "DuckLakeNameMapEntry::IsCompatibleWith",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.509437,
+        "hybrid_score": 0.571468,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_flush_inlined_data.cpp",
+        "symbol_name": "DuckLakeFlushData::Sink",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.506085,
+        "hybrid_score": 0.545136,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-ducklake-01",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Symbol Lookup",
+    "difficulty": "1",
+    "is_negative": false,
+    "clean_query": "DuckLake transaction management structure ducklake repository",
+    "technical_entities": ["DuckLake"],
+    "query_understanding_ms": 0.2381,
+    "lexical_ms": 888.717,
+    "semantic_ms": 1.0682,
+    "fusion_ms": 0.6324,
+    "total_retrieval_ms": 890.694,
+    "hybrid": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+        "symbol_name": "GetSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.603994,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_multi_file_list.cpp",
+        "symbol_name": "DuckLakeMultiFileList::IsDeleteScan",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.561012,
+        "hybrid_score": 0.510196,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/functions/ducklake_table_functions.hpp",
+        "symbol_name": "DuckLakeTableDeletionsFunction",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.555276,
+        "hybrid_score": 0.478191,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+        "symbol_name": "GetNewTable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.543394,
+        "hybrid_score": 0.411903,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+        "symbol_name": "CreateNumericStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.538426,
+        "hybrid_score": 0.384186,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_stats.cpp",
+        "symbol_name": "DuckLakeColumnStats::CreateNumericStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.538159,
+        "hybrid_score": 0.382696,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_transaction.cpp",
+        "symbol_name": "DuckLakeTransaction::GetSnapshot",
+        "kind": "Method",
+        "lexical_score": 20.0903,
+        "semantic_score": 0.533101,
+        "hybrid_score": 0.356399,
+        "provenance": "Both",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "DuckLakeMetadataManager::GenerateFilterPushdown",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.528088,
+        "hybrid_score": 0.326508,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_metadata_manager.cpp",
+        "symbol_name": "DuckLakeMetadataManager::GetCatalogForSnapshot",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.522746,
+        "hybrid_score": 0.296704,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_stats.cpp",
+        "symbol_name": "min_val",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.521168,
+        "hybrid_score": 0.287897,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-ducklake-02",
+    "repository": "duckdb/ducklake",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "is_negative": false,
+    "clean_query": "DuckLake storage extension S3 credential parameters ducklake",
+    "technical_entities": ["DuckLake"],
+    "query_understanding_ms": 0.1748,
+    "lexical_ms": 883.484,
+    "semantic_ms": 1.1532,
+    "fusion_ms": 0.9542,
+    "total_retrieval_ms": 885.816,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 16,
+      "mrr": 0.0625
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+        "symbol_name": "null_count",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.685599,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "GetAllSnapshots",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.621339,
+        "hybrid_score": 0.497563,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "GetFilesForCleanup",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.620441,
+        "hybrid_score": 0.494033,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/storage/ducklake_stats.cpp",
+        "symbol_name": "min_val",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.613696,
+        "hybrid_score": 0.467537,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "WriteNewViews",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.60204,
+        "hybrid_score": 0.421748,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_flush_data.hpp",
+        "symbol_name": "IsSource",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.570668,
+        "hybrid_score": 0.298506,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+        "symbol_name": "MigrateV02",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.565567,
+        "hybrid_score": 0.278471,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_field_data.hpp",
+        "symbol_name": "FieldIdFromColumn",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.562869,
+        "hybrid_score": 0.26787,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_storage.hpp",
+        "symbol_name": "DuckLakeStorageExtension",
+        "kind": "Method",
+        "lexical_score": 32.9054,
+        "semantic_score": 0,
+        "hybrid_score": 0.25,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_transaction.hpp",
+        "symbol_name": "IsEmpty",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.557822,
+        "hybrid_score": 0.248044,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

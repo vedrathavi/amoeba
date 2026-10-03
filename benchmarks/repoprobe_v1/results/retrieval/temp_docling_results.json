@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "docling-0",
+    "repository": "docling-project/docling",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "JS-rendered HTML JavaScript SPA/dynamic Convert/extract DOM post-JS id=\"content\">Loading...</div> // setTimeout(( document.getElementById('content').textContent 1500 </script> </body> </html> Playwright/Puppeteer networkidle/DOM parameter/hook DOMContentLoaded JS-heavy page.content( API DOM/HTML guide/snippet Extracting data — Docling wait finish I'm pages visible content pass raw only sees initial skeleton appears JS execution text require via fetch( injected I'd operate fully Minimal reproducible <!doctype html> <html> <body> <div <script> Simulate async => JS' extracted Loading…\" instead JS\" I've tried considered page directly no headless browser Considering pre-render stabilize then passing Before confirm recommended support waiting out box If yes there completion networkidle provide custom ready\" signal what's workflow intended pattern grab feed caveats practices timeouts stripping scripts sanitization suggestions if supported you consider accept already-rendered string small integration headless-browser",
+    "technical_entities": ["JS-rendered", "HTML", "JavaScript", "SPA/dynamic", "Convert/extract", "DOM", "post-JS", "id=\"content\">Loading...</div>", "//", "setTimeout((", "document.getElementById('content').textContent", "1500", "</script>", "</body>", "</html>", "Playwright/Puppeteer", "networkidle/DOM", "parameter/hook", "DOMContentLoaded", "JS-heavy", "page.content(", "API", "DOM/HTML", "guide/snippet"],
+    "query_understanding_ms": 0.5638,
+    "lexical_ms": 460.764,
+    "semantic_ms": 0.4764,
+    "fusion_ms": 0.3484,
+    "total_retrieval_ms": 461.73,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 5,
+      "mrr": 0.2
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 5,
+      "mrr": 0.2
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "_find_true_data_bounds",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.539652,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "_apply_style",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.514687,
+        "hybrid_score": 0.635443,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "_apply_style",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.514687,
+        "hybrid_score": 0.635443,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+        "symbol_name": "no_long_repeats",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.505484,
+        "hybrid_score": 0.593212,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/html_backend.py",
+        "symbol_name": "_walk",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.502795,
+        "hybrid_score": 0.580874,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "_find_table_bottom",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.50272,
+        "hybrid_score": 0.580529,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.489101,
+        "hybrid_score": 0.518034,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "get_last_text_item",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.486282,
+        "hybrid_score": 0.505098,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/document_converter.py",
+        "symbol_name": "initialize_pipeline",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.482867,
+        "hybrid_score": 0.489428,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/docx/latex/omml.py",
+        "symbol_name": "do_lim",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.461009,
+        "hybrid_score": 0.389127,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "docling-1",
+    "repository": "docling-project/docling",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "DoclingDocument Docling Document Serializer am safety manual documents same page header basic we customize docling markdown serializer given practice document specific style lead appreciated Cheers Ahm",
+    "technical_entities": ["DoclingDocument"],
+    "query_understanding_ms": 0.213,
+    "lexical_ms": 358.583,
+    "semantic_ms": 0.227,
+    "fusion_ms": 0.1452,
+    "total_retrieval_ms": 359.067,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 23,
+      "mrr": 0.0434783
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 5,
+      "mrr": 0.2
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 22,
+      "mrr": 0.0454545
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/verify_utils.py",
+        "symbol_name": "verify_docitems",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.596605,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/asciidoc_backend.py",
+        "symbol_name": "_parse",
+        "kind": "Method",
+        "lexical_score": 34.2539,
+        "semantic_score": 0.50193,
+        "hybrid_score": 0.69525,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_msword.py",
+        "symbol_name": "_test_e2e_docx_conversions_impl",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.558517,
+        "hybrid_score": 0.649445,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+        "symbol_name": "is_processable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.522272,
+        "hybrid_score": 0.553754,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.496783,
+        "hybrid_score": 0.486462,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_patent_uspto.py",
+        "symbol_name": "test_tables",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.482361,
+        "hybrid_score": 0.448386,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/html_backend.py",
+        "symbol_name": "_walk",
+        "kind": "Method",
+        "lexical_score": 34.2539,
+        "semantic_score": 0.408342,
+        "hybrid_score": 0.448169,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+        "symbol_name": "is_processable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.473457,
+        "hybrid_score": 0.424879,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msword_backend.py",
+        "symbol_name": "_add_header_footer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.461881,
+        "hybrid_score": 0.394316,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/document_picture_classifier.py",
+        "symbol_name": "is_processable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.445513,
+        "hybrid_score": 0.351104,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "docling-2",
+    "repository": "docling-project/docling",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "Make doctags document iterable",
+    "technical_entities": [],
+    "query_understanding_ms": 0.0301,
+    "lexical_ms": 28.2188,
+    "semantic_ms": 0.3419,
+    "fusion_ms": 0.3558,
+    "total_retrieval_ms": 29.1784,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/chunking/__init__.py",
+        "symbol_name": "__init__.py",
+        "kind": "Route",
+        "lexical_score": 14.9139,
+        "semantic_score": 0,
+        "hybrid_score": 0.653829,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_input_doc.py",
+        "symbol_name": "_make_input_doc",
+        "kind": "Function",
+        "lexical_score": 12.6285,
+        "semantic_score": 0,
+        "hybrid_score": 0.307004,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_image_native.py",
+        "symbol_name": "_make_png_stream",
+        "kind": "Function",
+        "lexical_score": 12.5098,
+        "semantic_score": 0,
+        "hybrid_score": 0.288987,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_image_native.py",
+        "symbol_name": "_make_multipage_tiff_stream",
+        "kind": "Function",
+        "lexical_score": 12.3954,
+        "semantic_score": 0,
+        "hybrid_score": 0.27163,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_input_doc.py",
+        "symbol_name": "_make_input_doc_from_stream",
+        "kind": "Function",
+        "lexical_score": 12.3954,
+        "semantic_score": 0,
+        "hybrid_score": 0.27163,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/document_converter.py",
+        "symbol_name": "_process_document",
+        "kind": "Method",
+        "lexical_score": 12.3867,
+        "semantic_score": 0,
+        "hybrid_score": 0.270311,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/document_extractor.py",
+        "symbol_name": "_process_document_extraction",
+        "kind": "Method",
+        "lexical_score": 12.3464,
+        "semantic_score": 0,
+        "hybrid_score": 0.264189,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/pipeline/standard_pdf_pipeline.py",
+        "symbol_name": "_make_ocr_model",
+        "kind": "Method",
+        "lexical_score": 12.2852,
+        "semantic_score": 0,
+        "hybrid_score": 0.254895,
+        "provenance": "LexicalOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/enrich_doclingdocument.py",
+        "symbol_name": "main",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.557373,
+        "hybrid_score": 0.25,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+        "symbol_name": "is_processable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.528594,
+        "hybrid_score": 0.216105,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "docling-3",
+    "repository": "docling-project/docling",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "Using Docling Offline I'm docling offline due api restrictions download model using jupyter terminal If also can't hugging face manuelly pc",
+    "technical_entities": [],
+    "query_understanding_ms": 0.1067,
+    "lexical_ms": 318.356,
+    "semantic_ms": 0.2205,
+    "fusion_ms": 0.1411,
+    "total_retrieval_ms": 318.768,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 4,
+      "mrr": 0.25
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+        "symbol_name": "_get_prompt",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.467704,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+        "symbol_name": "supported_formats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.439637,
+        "hybrid_score": 0.591696,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+        "symbol_name": "AbstractDocumentBackend",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.436697,
+        "hybrid_score": 0.575114,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/develop_picture_enrichment.py",
+        "symbol_name": "ExamplePictureClassifierPipelineOptions",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.434142,
+        "hybrid_score": 0.560703,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/base_model.py",
+        "symbol_name": "_build_prompt_safe",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.430034,
+        "hybrid_score": 0.53753,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/datamodel/document.py",
+        "symbol_name": "_guess_format",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.428867,
+        "hybrid_score": 0.530947,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/document_converter.py",
+        "symbol_name": "initialize_pipeline",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.425223,
+        "hybrid_score": 0.510398,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/utils/utils.py",
+        "symbol_name": "create_hash",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.396929,
+        "hybrid_score": 0.350809,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/exceptions.py",
+        "symbol_name": "ConversionError",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.395073,
+        "hybrid_score": 0.340342,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/datamodel/document.py",
+        "symbol_name": "_detect_mets_gbs",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.392518,
+        "hybrid_score": 0.325933,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "docling-9",
+    "repository": "docling-project/docling",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "pdf_data_pipeline PDF RAG Retrieval-Augmented `pdf_extraction.py` `chunking.py` `embedding.py` `rag_search.py` `chat.py` chat/conversation page_no\" print(list(chunk_iter)[11 DocLayNet ...]\" doc_items\" self_ref\" #/texts/28\" 53.29 287.14 295.56 212.37 data-pipeline/pdf_extraction.py DocumentConverter pipeline_options PdfPipelineOptions( artifacts_path=artifacts_path do_table_structure=True table_structure_options=dict( mode=TableFormerMode.FAST enable_remote_services=False doc_converter DocumentConverter( format_options={ InputFormat.PDF PdfFormatOption(pipeline_options=pipeline_options PDFs data-pipeline/chunking.py HybridChunker page_numbers prov.page_no chunk.meta.doc_items item.prov print(f\"Chunk page_numbers}\" data-pipeline/embedding.py chunk.meta.origin.filename page_numbers\" chunk.meta.headings[0 chunk.meta.headings ^2.22.0 3.12 pdf_extraction.py chunking.py embedding.py Page Numbers Appearing Correctly Provenance Metadata I'm referring repository owned Sims2k data pipeline Generation Python structure includes Extracts text content Splits extracted smaller manageable chunks vector embeddings retrieval-augmented generation search Provides interface our extraction subsequent chunking using Docling we expect document item include provenance metadata—with page numbers under property However final embedding metadata number information missing empty prevents us accurately associating their corresponding source pages Expected following We output similar text\" paper present dataset meta\" label\" prov\" bbox\" l\" t\" r\" b\" headings\" INTRODUCTION\" Here field doc attribute Unfortunately prov lists even though explicitly capture Reproduction Extraction configuration meant enable including Chunking converting partition inspect via sorted( set( if hasattr(prov despite logic printed Embedding chunk prepared as follows meta filename\" None title\" else Impact Without becomes challenging trace back original location negatively impacts ability debug related specific sections hinders downstream contextual Environment version Operating Windows 11 Additional Information refer relevant capturing break documents attempts retrieve Assembles before appears either objects they lost during assistance resolving clarifying captured processed greatly appreciated you",
+    "technical_entities": ["pdf_data_pipeline", "PDF", "RAG", "Retrieval-Augmented", "`pdf_extraction.py`", "`chunking.py`", "`embedding.py`", "`rag_search.py`", "`chat.py`", "chat/conversation", "page_no\"", "print(list(chunk_iter)[11", "DocLayNet", "...]\"", "doc_items\"", "self_ref\"", "#/texts/28\"", "53.29", "287.14", "295.56", "212.37", "data-pipeline/pdf_extraction.py", "DocumentConverter", "pipeline_options", "PdfPipelineOptions(", "artifacts_path=artifacts_path", "do_table_structure=True", "table_structure_options=dict(", "mode=TableFormerMode.FAST", "enable_remote_services=False", "doc_converter", "DocumentConverter(", "format_options={", "InputFormat.PDF", "PdfFormatOption(pipeline_options=pipeline_options", "PDFs", "data-pipeline/chunking.py", "HybridChunker", "page_numbers", "prov.page_no", "chunk.meta.doc_items", "item.prov", "print(f\"Chunk", "page_numbers}\"", "data-pipeline/embedding.py", "chunk.meta.origin.filename", "page_numbers\"", "chunk.meta.headings[0", "chunk.meta.headings", "^2.22.0", "3.12", "pdf_extraction.py", "chunking.py", "embedding.py"],
+    "query_understanding_ms": 0.8257,
+    "lexical_ms": 493.001,
+    "semantic_ms": 0.4922,
+    "fusion_ms": 0.349,
+    "total_retrieval_ms": 494.071,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 36,
+      "mrr": 0.0277778
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 35,
+      "mrr": 0.0285714
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/utils/api_image_request.py",
+        "symbol_name": "api_image_request_streaming",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.621263,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+        "symbol_name": "is_empty_fast_with_lines_pil",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.620617,
+        "hybrid_score": 0.747414,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "ExcelCell",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.572115,
+        "hybrid_score": 0.553028,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_msexcel.py",
+        "symbol_name": "test_bytesio_stream",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.569995,
+        "hybrid_score": 0.54453,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_html.py",
+        "symbol_name": "test_unicode_characters",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.561745,
+        "hybrid_score": 0.511463,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "ExcelTable",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.557914,
+        "hybrid_score": 0.496112,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/document_extractor.py",
+        "symbol_name": "_get_default_extraction_option",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.5575,
+        "hybrid_score": 0.494453,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/utils/utils.py",
+        "symbol_name": "chunkify",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.551882,
+        "hybrid_score": 0.471937,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/utils/generation_utils.py",
+        "symbol_name": "GenerationStopper",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.550601,
+        "hybrid_score": 0.466803,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/test_backend_msexcel.py",
+        "symbol_name": "test_chartsheet_data_values",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.548532,
+        "hybrid_score": 0.458509,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-docling-01",
+    "repository": "docling-project/docling",
+    "taxonomy": "Project Architecture",
+    "difficulty": "4",
+    "is_negative": false,
+    "clean_query": "DocumentConverter DoclingDocument document conversion request flow through backend models final",
+    "technical_entities": ["DocumentConverter", "DoclingDocument"],
+    "query_understanding_ms": 0.0688,
+    "lexical_ms": 339.16,
+    "semantic_ms": 0.2047,
+    "fusion_ms": 0.1205,
+    "total_retrieval_ms": 339.598,
+    "hybrid": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msword_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.638208,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/webvtt_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.576585,
+        "hybrid_score": 0.578573,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "parse",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.570736,
+        "hybrid_score": 0.562302,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.54815,
+        "hybrid_score": 0.499473,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/asciidoc_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.534755,
+        "hybrid_score": 0.462208,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/utils/accelerator_utils.py",
+        "symbol_name": "decide_device",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.519707,
+        "hybrid_score": 0.420348,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/jats_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.519673,
+        "hybrid_score": 0.420253,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/verify_utils.py",
+        "symbol_name": "verify_docitems",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.513337,
+        "hybrid_score": 0.402627,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/enrich_doclingdocument.py",
+        "symbol_name": "enrich_document",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.50947,
+        "hybrid_score": 0.39187,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/html_backend.py",
+        "symbol_name": "convert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.487048,
+        "hybrid_score": 0.329496,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-docling-02",
+    "repository": "docling-project/docling",
+    "taxonomy": "Implementation Details",
+    "difficulty": "3",
+    "is_negative": false,
+    "clean_query": "OCR bounding-box text segmenter coordinate normalizer docling",
+    "technical_entities": ["OCR"],
+    "query_understanding_ms": 0.0628,
+    "lexical_ms": 318.823,
+    "semantic_ms": 0.3088,
+    "fusion_ms": 0.1663,
+    "total_retrieval_ms": 319.389,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 20,
+      "mrr": 0.05
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 19,
+      "mrr": 0.0526316
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/tests/verify_utils.py",
+        "symbol_name": "verify_conversion_result_v1",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.544058,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/datamodel/pipeline_options.py",
+        "symbol_name": "ConvertPipelineOptions",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.48938,
+        "hybrid_score": 0.545644,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/utils/generation_utils.py",
+        "symbol_name": "__init__",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.483442,
+        "hybrid_score": 0.523452,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/page_preprocessing_model.py",
+        "symbol_name": "_parse_page_cells",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.465118,
+        "hybrid_score": 0.454968,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/pipeline/extraction_vlm_pipeline.py",
+        "symbol_name": "ExtractionVlmPipeline",
+        "kind": "Class",
+        "lexical_score": 0,
+        "semantic_score": 0.462184,
+        "hybrid_score": 0.444,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/md_backend.py",
+        "symbol_name": "_close_table",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.458607,
+        "hybrid_score": 0.430634,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "_start_registered_elements",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.44812,
+        "hybrid_score": 0.391439,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+        "symbol_name": "_start_registered_elements",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.44812,
+        "hybrid_score": 0.391439,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+        "symbol_name": "is_processable",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.446073,
+        "hybrid_score": 0.383788,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/cli/models.py",
+        "symbol_name": "download_hf_repo",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.440308,
+        "hybrid_score": 0.362244,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]

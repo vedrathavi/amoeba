@@ -1,0 +1,1073 @@
+[
+  {
+    "question_id": "beszel-0",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "SMART v0.17.0 SELinux NVMe SYS_ADMIN SYS_RAWIO /dev:/dev devices=nvme0/nvme0n1 /dev/nvme0 permissive/enforcing AVC UDisks2 6.x x86_64 Intel/AMD 0.17.0 Beszel empty panel no disks detected am experiencing Fedora 43 My Hub Docker Agent Host OS enforcing Drive Kioxia Compose includes privileged=true udev mounts host smartctl -a perfectly returns full data However Important notes my makes No denials appear ausearch devices visible container mode environment features normally understand provide attributes so agent cannot retrieve even privileges If switches backend fallback resolve since already correctly Just adding details here helps tracking Let me know if more logs Architecture Linux Enforcing 64-bit version method Configuration response Logs",
+    "technical_entities": ["SMART", "v0.17.0", "SELinux", "NVMe", "SYS_ADMIN", "SYS_RAWIO", "/dev:/dev", "devices=nvme0/nvme0n1", "/dev/nvme0", "permissive/enforcing", "AVC", "UDisks2", "6.x", "x86_64", "Intel/AMD", "0.17.0"],
+    "query_understanding_ms": 0.443,
+    "lexical_ms": 371.911,
+    "semantic_ms": 0.2756,
+    "fusion_ms": 0.1796,
+    "total_retrieval_ms": 372.463,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": true,
+      "target_rank": 43,
+      "mrr": 0.0232558
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "Remove",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.453676,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/smart_test.go",
+        "symbol_name": "TestResolveRefreshError",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.453293,
+        "hybrid_score": 0.747326,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client_test.go",
+        "symbol_name": "TestGetToken",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.439918,
+        "hybrid_score": 0.653988,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/smart_test.go",
+        "symbol_name": "TestParseSmartForSata",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.437788,
+        "hybrid_score": 0.639125,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "startCleaner",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.433593,
+        "hybrid_score": 0.609849,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "getContext",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.431722,
+        "hybrid_score": 0.596791,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/smart_test.go",
+        "symbol_name": "TestParseSmartOutputMarksVerified",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.43136,
+        "hybrid_score": 0.594269,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+        "symbol_name": "parseSemVer",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.421299,
+        "hybrid_score": 0.52406,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/tests/hub.go",
+        "symbol_name": "GetHubWithUser",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.41933,
+        "hybrid_score": 0.510317,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker_test.go",
+        "symbol_name": "TestGetCpuPreviousValues",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.418798,
+        "hybrid_score": 0.506607,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "beszel-1",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "REST API PocketBase beszel_hub_api_token_resp ansible.builtin.uri https://github.com/vaphes/pocketbase/blob/master/pocketbase/services/admin_service.py#L75 http://localhost:8090/api/collections/_superusers/auth-with-password POST molecule@example.com body_format beszel_universal_token_resp http://localhost:8090/api/beszel/universal-token GET beszel_hub_api_token_resp.json.token beszel_universal_token_resp.json.token TASK /Users/user/repos/community.beszel/extensions/molecule/agent_token/create.yml:22 content_length\" content_type\" application/json\" cookies_string\" 2025 200 http://localhost:8090/api/beszel/universal-token\" x_content_type_options\" x_frame_options\" x_xss_protection\" /Users/user/repos/community.beszel/extensions/molecule/agent_token/create.yml:34 linux/amd64 0.13.0 ghcr.io/henrygd/beszel/beszel:0.13.0 container_name USER_EMAIL=molecule@example.com USER_PASSWORD=molecule beszel_data:/beszel_data beszel_data 2025/10/05 http://0.0.0.0:8090 http://0.0.0.0:8090/api/ http://0.0.0.0:8090/_/ Enable Universal Token via using enable I've seems changing 😕 taken look Developer Tools replicate Ansible name Beszel Hub token register url method headers Authorization body identity password molecule json }}\" -1 Here output task ************************************* path ok localhost => changed\" false connection\" close\" 64\" cookies\" date\" Sun 05 Oct 11:44:50 GMT\" elapsed\" json\" active\" token\" ca995e6d-a8d1-416f-b77d-ea2d297060ae\" msg\" OK 64 bytes)\" redirected\" status\" url\" vary\" Origin\" nosniff\" SAMEORIGIN\" mode=block\" ********************************** 91511255-0787-427e-bb3d-67141f240323\" it's ca995e6d-a8d1-416f-b77d-ea2d297060ae but then succeeds changes 91511255-0787-427e-bb3d-67141f240323 🤔 CC @user OS Architecture version Docker Configuration --- services beszel image restart unless-stopped environment networks ports 8090:8090 volumes Logs 11:44:48 Server started ├─ └─ Dashboard Agent No response",
+    "technical_entities": ["REST", "API", "PocketBase", "beszel_hub_api_token_resp", "ansible.builtin.uri", "https://github.com/vaphes/pocketbase/blob/master/pocketbase/services/admin_service.py#L75", "http://localhost:8090/api/collections/_superusers/auth-with-password", "POST", "molecule@example.com", "body_format", "beszel_universal_token_resp", "http://localhost:8090/api/beszel/universal-token", "GET", "beszel_hub_api_token_resp.json.token", "beszel_universal_token_resp.json.token", "TASK", "/Users/user/repos/community.beszel/extensions/molecule/agent_token/create.yml:22", "content_length\"", "content_type\"", "application/json\"", "cookies_string\"", "2025", "200", "http://localhost:8090/api/beszel/universal-token\"", "x_content_type_options\"", "x_frame_options\"", "x_xss_protection\"", "/Users/user/repos/community.beszel/extensions/molecule/agent_token/create.yml:34", "linux/amd64", "0.13.0", "ghcr.io/henrygd/beszel/beszel:0.13.0", "container_name", "USER_EMAIL=molecule@example.com", "USER_PASSWORD=molecule", "beszel_data:/beszel_data", "beszel_data", "2025/10/05", "http://0.0.0.0:8090", "http://0.0.0.0:8090/api/", "http://0.0.0.0:8090/_/"],
+    "query_understanding_ms": 0.7535,
+    "lexical_ms": 394.093,
+    "semantic_ms": 0.3454,
+    "fusion_ms": 0.1448,
+    "total_retrieval_ms": 394.665,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "GetByValue",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.551031,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "startCleaner",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.51325,
+        "hybrid_score": 0.586908,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/server_test.go",
+        "symbol_name": "RemoteAddr",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.502131,
+        "hybrid_score": 0.538907,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/server_test.go",
+        "symbol_name": "Value",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.501356,
+        "hybrid_score": 0.535564,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "Remove",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.496695,
+        "hybrid_score": 0.515442,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+        "symbol_name": "compareSemVer",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.496062,
+        "hybrid_score": 0.51271,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker_test.go",
+        "symbol_name": "TestEdgeCasesWithRealData",
+        "kind": "Function",
+        "lexical_score": 38.3915,
+        "semantic_score": 0.472469,
+        "hybrid_score": 0.415431,
+        "provenance": "Both",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "fetchDataViaWebSocket",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.468521,
+        "hybrid_score": 0.39382,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap_test.go",
+        "symbol_name": "Get",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.464133,
+        "hybrid_score": 0.374875,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/expirymap/expirymap.go",
+        "symbol_name": "RemovebyValue",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.459023,
+        "hybrid_score": 0.352819,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "beszel-2",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "green/yellow/red linux/amd64 LXC 0.17.0 Threshold Average\" there thresholds colouring average supporting me OS Architecture agent Beszel version method Docker Configuration No response Hub Logs Agent",
+    "technical_entities": ["green/yellow/red", "linux/amd64", "LXC", "0.17.0"],
+    "query_understanding_ms": 0.1312,
+    "lexical_ms": 298.428,
+    "semantic_ms": 0.2469,
+    "fusion_ms": 0.1617,
+    "total_retrieval_ms": 298.919,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+        "symbol_name": "NewHub",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.391954,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go",
+        "symbol_name": "findOrCreateSystemForToken",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.390903,
+        "hybrid_score": 0.745121,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/sensors.go",
+        "symbol_name": "newSensorConfigWithEnv",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.38748,
+        "hybrid_score": 0.729227,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/disk.go",
+        "symbol_name": "initializeDiskInfo",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.385568,
+        "hybrid_score": 0.72035,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go",
+        "symbol_name": "handleNoRecords",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.380896,
+        "hybrid_score": 0.698656,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub_test_helpers.go",
+        "symbol_name": "SetPubkey",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.369082,
+        "hybrid_score": 0.6438,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_api.go",
+        "symbol_name": "UpsertUserAlerts",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.36253,
+        "hybrid_score": 0.613379,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go",
+        "symbol_name": "handleMultipleRecordsOrUniversalToken",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.357075,
+        "hybrid_score": 0.588051,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/use-intersection-observer.ts",
+        "symbol_name": "IntersectionReturn",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.350625,
+        "hybrid_score": 0.5581,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/use-intersection-observer.ts",
+        "symbol_name": "useIntersectionObserver",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.345948,
+        "hybrid_score": 0.536382,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "beszel-3",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "linux/amd64 0.12.3 Beszel client connection Host through Pangolin host reverse-proxy fine as long disable built-in auth I'd enable but naturally breaks can't reconnect add under Rules proper paths\" so generally required clients connect bypassing know path used establish remote Sadly docker logs only says doesnt log out tried reach OS Architecture agent hub version method Docker Configuration No response Hub Logs Agent",
+    "technical_entities": ["linux/amd64", "0.12.3"],
+    "query_understanding_ms": 0.2189,
+    "lexical_ms": 297.258,
+    "semantic_ms": 0.2518,
+    "fusion_ms": 0.1716,
+    "total_retrieval_ms": 297.762,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 15,
+      "mrr": 0.0666667
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+        "symbol_name": "NewHub",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.576986,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client.go",
+        "symbol_name": "OnOpen",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.542534,
+        "hybrid_score": 0.632389,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_api.go",
+        "symbol_name": "UpsertUserAlerts",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.539239,
+        "hybrid_score": 0.621141,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "getRecord",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.527167,
+        "hybrid_score": 0.579931,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_manager.go",
+        "symbol_name": "onRecordAfterCreateSuccess",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.497532,
+        "hybrid_score": 0.478764,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "closeWebSocketConnection",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.494343,
+        "hybrid_score": 0.467877,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client.go",
+        "symbol_name": "sendResponse",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.475975,
+        "hybrid_score": 0.405173,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/components/systems-table/systems-table-columns.tsx",
+        "symbol_name": "getMeterClass",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.475768,
+        "hybrid_score": 0.404466,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/users/users.go",
+        "symbol_name": "CreateFirstUser",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.467719,
+        "hybrid_score": 0.376988,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker.go",
+        "symbol_name": "RoundTrip",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.458237,
+        "hybrid_score": 0.344622,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "beszel-5",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "is_negative": false,
+    "clean_query": "2025 GIT GOOS Beszel Hub Windows Server couple attempts recompile source installed GO clean Standard server but am variables make command seems Without going through taken will if cannot solution installer exist without recompilation great addition look forward MS",
+    "technical_entities": ["2025", "GIT", "GOOS"],
+    "query_understanding_ms": 0.1702,
+    "lexical_ms": 316.156,
+    "semantic_ms": 0.3178,
+    "fusion_ms": 0.2583,
+    "total_retrieval_ms": 316.851,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "lexical_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": false,
+      "hit_at_20": false,
+      "hit_at_50": false,
+      "target_rank": 0,
+      "mrr": 0
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_manager.go",
+        "symbol_name": "onRecordAfterCreateSuccess",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.551146,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker.go",
+        "symbol_name": "getCpuPreviousValues",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.425315,
+        "hybrid_score": 0.413672,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "StartUpdater",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.422678,
+        "hybrid_score": 0.406624,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/systemd.go",
+        "symbol_name": "updateServiceStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.366406,
+        "hybrid_score": 0.256218,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_test_helpers.go",
+        "symbol_name": "GetPendingAlertsCount",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.36529,
+        "hybrid_score": 0.253234,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts.go",
+        "symbol_name": "SendShoutrrrAlert",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.365169,
+        "hybrid_score": 0.252911,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/ws/handlers.go",
+        "symbol_name": "HandleLegacy",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.361176,
+        "hybrid_score": 0.242237,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/common/common-ws.go",
+        "symbol_name": "FingerprintRequest",
+        "kind": "Struct",
+        "lexical_score": 0,
+        "semantic_score": 0.355681,
+        "hybrid_score": 0.22755,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/tests/api.go",
+        "symbol_name": "normalizedName",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.355109,
+        "hybrid_score": 0.226021,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "closeSSHConnection",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.352,
+        "hybrid_score": 0.217713,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-beszel-01",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "is_negative": false,
+    "clean_query": "CPU memory metrics collection beszel agent",
+    "technical_entities": ["CPU"],
+    "query_understanding_ms": 0.0459,
+    "lexical_ms": 303.361,
+    "semantic_ms": 0.3492,
+    "fusion_ms": 0.1944,
+    "total_retrieval_ms": 303.984,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 2,
+      "mrr": 0.5
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/connection_manager.go",
+        "symbol_name": "startSSHServer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.503948,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/system.go",
+        "symbol_name": "getSystemStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.479458,
+        "hybrid_score": 0.689476,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "closeWebSocketConnection",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.466984,
+        "hybrid_score": 0.658648,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/handlers.go",
+        "symbol_name": "Responder",
+        "kind": "Interface",
+        "lexical_score": 0,
+        "semantic_score": 0.378496,
+        "hybrid_score": 0.43996,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "StartUpdater",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.361806,
+        "hybrid_score": 0.398714,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/disk.go",
+        "symbol_name": "updateDiskIo",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.345487,
+        "hybrid_score": 0.358383,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/components/systems-table/systems-table-columns.tsx",
+        "symbol_name": "IndicatorDot",
+        "kind": "Component",
+        "lexical_score": 0,
+        "semantic_score": 0.344668,
+        "hybrid_score": 0.356357,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/agent_connect.go",
+        "symbol_name": "handleAgentConnect",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.324621,
+        "hybrid_score": 0.306814,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/network.go",
+        "symbol_name": "updateNetworkStats",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.321587,
+        "hybrid_score": 0.299317,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+        "symbol_name": "createRecords",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.318583,
+        "hybrid_score": 0.291892,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      }
+    ]
+  },
+  {
+    "question_id": "amoeba-beszel-02",
+    "repository": "henrygd/beszel",
+    "taxonomy": "Implementation Details",
+    "difficulty": "2",
+    "is_negative": false,
+    "clean_query": "alert thresholds notification endpoints beszel hub",
+    "technical_entities": [],
+    "query_understanding_ms": 0.0622,
+    "lexical_ms": 358.103,
+    "semantic_ms": 0.2452,
+    "fusion_ms": 0.1558,
+    "total_retrieval_ms": 358.681,
+    "hybrid": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 6,
+      "mrr": 0.166667
+    },
+    "lexical_only": {
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 1,
+      "mrr": 1
+    },
+    "semantic_only": {
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "hit_at_10": true,
+      "hit_at_20": true,
+      "hit_at_50": true,
+      "target_rank": 6,
+      "mrr": 0.166667
+    },
+    "top_10_details": [
+      {
+        "rank": 1,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/records/records_test.go",
+        "symbol_name": "TestDeleteOldAlertsHistoryEdgeCases",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.615025,
+        "hybrid_score": 0.75,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 2,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+        "symbol_name": "useBrowserStorage",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.592656,
+        "hybrid_score": 0.699106,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 3,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_realtime.go",
+        "symbol_name": "onRealtimeSubscriptionAdded",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.51164,
+        "hybrid_score": 0.514768,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 4,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/lib/utils.ts",
+        "symbol_name": "getStorageValue",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.505066,
+        "hybrid_score": 0.499811,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 5,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/components/charts/hooks.ts",
+        "symbol_name": "useNetworkInterfaces",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.483511,
+        "hybrid_score": 0.450766,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 6,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+        "symbol_name": "getSystemdInfo",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.475931,
+        "hybrid_score": 0.433519,
+        "provenance": "SemanticOnly",
+        "is_match": true
+      },
+      {
+        "rank": 7,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/docker.go",
+        "symbol_name": "shouldExcludeContainer",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.44688,
+        "hybrid_score": 0.36742,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 8,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_smart_test.go",
+        "symbol_name": "TestSmartDeviceAlertMultipleUsers",
+        "kind": "Function",
+        "lexical_score": 0,
+        "semantic_score": 0.432537,
+        "hybrid_score": 0.334785,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 9,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/site/src/components/routes/system/network-sheet.tsx",
+        "symbol_name": "useNetworkInterfaces",
+        "kind": "Hook",
+        "lexical_score": 0,
+        "semantic_score": 0.430563,
+        "hybrid_score": 0.330294,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      },
+      {
+        "rank": 10,
+        "file_path": "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client.go",
+        "symbol_name": "OnClose",
+        "kind": "Method",
+        "lexical_score": 0,
+        "semantic_score": 0.424245,
+        "hybrid_score": 0.315918,
+        "provenance": "SemanticOnly",
+        "is_match": false
+      }
+    ]
+  }
+]
