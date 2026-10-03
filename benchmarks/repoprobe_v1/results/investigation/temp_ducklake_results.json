@@ -1,0 +1,172 @@
+[
+  {
+    "question_id": "ducklake-0",
+    "repository": "duckdb/ducklake",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 25,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 23,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 8093,
+    "added_elements": 1,
+    "retrieval_ms": 124.987,
+    "base_sufficiency_ms": 2.9168,
+    "expansion_resolution_ms": 0.0167,
+    "expanded_sufficiency_ms": 3.3122,
+    "rel_kind_useful": {
+      "CALLS": 1,
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 21,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": ["CONTAINS -> DuckLakeCatalog (ducklake_catalog.hpp)", "CALLS -> DuckLakeCatalog::PlanDelete (ducklake_delete.cpp)"]
+  },
+  {
+    "question_id": "ducklake-1",
+    "repository": "duckdb/ducklake",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 10,
+    "useful_neighbors": 10,
+    "noisy_neighbors": 0,
+    "min_units_required": 9,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 31095,
+    "added_elements": 9,
+    "retrieval_ms": 148.593,
+    "base_sufficiency_ms": 2.4234,
+    "expansion_resolution_ms": 0.0118,
+    "expanded_sufficiency_ms": 60.3929,
+    "rel_kind_useful": {
+      "CALLS": 4,
+      "CONTAINS": 6
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CONTAINS -> DuckLakeFileProcessor (ducklake_add_data_files.cpp)", "CALLS -> DuckLakeFileProcessor::AddFiles (ducklake_add_data_files.cpp)", "CONTAINS -> MacroIndex (index.hpp)", "CONTAINS -> DuckLakeTableStats (ducklake_stats.hpp)", "CONTAINS -> DuckLakeMetadataManager (ducklake_metadata_manager.hpp)", "CALLS -> CleanupBind (ducklake_cleanup_files.cpp)", "CALLS -> IsTransactionLocal (index.hpp)", "CONTAINS -> DuckLakeSnapshot (ducklake_snapshot.hpp)", "CONTAINS -> DuckLakeTransaction (ducklake_transaction.hpp)", "CALLS -> DuckLakeCleanupExecute (ducklake_cleanup_files.cpp)"]
+  },
+  {
+    "question_id": "ducklake-2",
+    "repository": "duckdb/ducklake",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 20,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 20,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 78.3472,
+    "base_sufficiency_ms": 0.3643,
+    "expansion_resolution_ms": 0.0143,
+    "expanded_sufficiency_ms": 0.0129,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 17,
+      "CONTAINS": 3
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "ducklake-3",
+    "repository": "duckdb/ducklake",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 13,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 13,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 161.216,
+    "base_sufficiency_ms": 2.5792,
+    "expansion_resolution_ms": 0.0118,
+    "expanded_sufficiency_ms": 0.0133,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 11,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-ducklake-01",
+    "repository": "duckdb/ducklake",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 19,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 17,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 10242,
+    "added_elements": 1,
+    "retrieval_ms": 136.907,
+    "base_sufficiency_ms": 0.2989,
+    "expansion_resolution_ms": 0.0147,
+    "expanded_sufficiency_ms": 0.4052,
+    "rel_kind_useful": {
+      "CALLS": 1,
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 15,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": ["CONTAINS -> DuckLakeTransaction (ducklake_transaction.hpp)", "CALLS -> DuckLakeTransaction::GetNewTableInfo (ducklake_transaction.cpp)"]
+  },
+  {
+    "question_id": "amoeba-ducklake-02",
+    "repository": "duckdb/ducklake",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 15,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 15,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 127.122,
+    "base_sufficiency_ms": 0.2165,
+    "expansion_resolution_ms": 0.012,
+    "expanded_sufficiency_ms": 0.0048,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 9,
+      "CONTAINS": 6
+    },
+    "useful_descriptions": []
+  }
+]

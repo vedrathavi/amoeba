@@ -1,0 +1,200 @@
+[
+  {
+    "question_id": "dokploy-0",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 22,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 22,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1433.04,
+    "base_sufficiency_ms": 7.9271,
+    "expansion_resolution_ms": 0.0215,
+    "expanded_sufficiency_ms": 0.0115,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 20,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "dokploy-1",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 42,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 42,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1199.21,
+    "base_sufficiency_ms": 0.9117,
+    "expansion_resolution_ms": 0.0212,
+    "expanded_sufficiency_ms": 0.0149,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 27,
+      "CONTAINS": 8,
+      "REFERENCES": 7
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "dokploy-2",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 3,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 1,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 677,
+    "added_elements": 2,
+    "retrieval_ms": 1187.24,
+    "base_sufficiency_ms": 2.7099,
+    "expansion_resolution_ms": 0.0078,
+    "expanded_sufficiency_ms": 5.6688,
+    "rel_kind_useful": {
+      "CALLS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 1
+    },
+    "useful_descriptions": ["CALLS -> readMonitoringConfig (settings.ts)", "CALLS -> readMonitoringConfig (settings.ts)"]
+  },
+  {
+    "question_id": "dokploy-5",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 35,
+    "useful_neighbors": 6,
+    "noisy_neighbors": 29,
+    "min_units_required": 1,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 459,
+    "added_elements": 1,
+    "retrieval_ms": 1300.19,
+    "base_sufficiency_ms": 4.0971,
+    "expansion_resolution_ms": 0.0203,
+    "expanded_sufficiency_ms": 4.098,
+    "rel_kind_useful": {
+      "CALLS": 6
+    },
+    "rel_kind_noisy": {
+      "CALLS": 19,
+      "REFERENCES": 10
+    },
+    "useful_descriptions": ["CALLS -> addDokployNetworkToService (network-service.test.ts)", "CALLS -> addDokployNetworkToService (network-service.test.ts)", "CALLS -> addDokployNetworkToService (network-service.test.ts)", "CALLS -> addDokployNetworkToService (network-service.test.ts)", "CALLS -> addDokployNetworkToService (network-service.test.ts)", "CALLS -> addDomainToCompose (domain.ts)"]
+  },
+  {
+    "question_id": "dokploy-9",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 7,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 7,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1254.45,
+    "base_sufficiency_ms": 0.1006,
+    "expansion_resolution_ms": 0.0091,
+    "expanded_sufficiency_ms": 0.0116,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CONTAINS": 2,
+      "REFERENCES": 5
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-dokploy-01",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 7,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 7,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1204.61,
+    "base_sufficiency_ms": 0.1846,
+    "expansion_resolution_ms": 0.0088,
+    "expanded_sufficiency_ms": 0.0094,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 7
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-dokploy-02",
+    "repository": "Dokploy/dokploy",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 36,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 34,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 2374,
+    "added_elements": 1,
+    "retrieval_ms": 1461.67,
+    "base_sufficiency_ms": 0.255,
+    "expansion_resolution_ms": 0.0211,
+    "expanded_sufficiency_ms": 0.3655,
+    "rel_kind_useful": {
+      "CALLS": 1,
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 25,
+      "CONTAINS": 1,
+      "IMPORTS": 3,
+      "REFERENCES": 5
+    },
+    "useful_descriptions": ["CALLS -> createPreviewDeployment (preview-deployment.ts)", "CONTAINS -> DeploymentsPage (deployments.tsx)"]
+  }
+]

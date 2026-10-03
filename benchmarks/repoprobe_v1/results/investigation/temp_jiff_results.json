@@ -1,0 +1,228 @@
+[
+  {
+    "question_id": "jiff-0",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 15,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 14,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 733,
+    "added_elements": 1,
+    "retrieval_ms": 128.318,
+    "base_sufficiency_ms": 1.0705,
+    "expansion_resolution_ms": 0.0225,
+    "expanded_sufficiency_ms": 1.1664,
+    "rel_kind_useful": {
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 12,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": ["CONTAINS -> Span (span.rs)"]
+  },
+  {
+    "question_id": "jiff-1",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 10,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 8,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 857,
+    "added_elements": 2,
+    "retrieval_ms": 381.334,
+    "base_sufficiency_ms": 4.1314,
+    "expansion_resolution_ms": 0.0218,
+    "expanded_sufficiency_ms": 10.5803,
+    "rel_kind_useful": {
+      "CONTAINS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 4,
+      "CONTAINS": 4
+    },
+    "useful_descriptions": ["CONTAINS -> Zoned (zoned.rs)", "CONTAINS -> DateTimePrinter (printer.rs)"]
+  },
+  {
+    "question_id": "jiff-2",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 107,
+    "useful_neighbors": 6,
+    "noisy_neighbors": 101,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 8226,
+    "added_elements": 6,
+    "retrieval_ms": 458.688,
+    "base_sufficiency_ms": 2.0615,
+    "expansion_resolution_ms": 0.0373,
+    "expanded_sufficiency_ms": 16.6508,
+    "rel_kind_useful": {
+      "CALLS": 3,
+      "CONTAINS": 3
+    },
+    "rel_kind_noisy": {
+      "CALLS": 26,
+      "CONTAINS": 75
+    },
+    "useful_descriptions": ["CALLS -> time_zone_following_boa_vista (timezone.rs)", "CALLS -> every_hour_in_week (timestamp.rs)", "CALLS -> tzif_to_human_readable (tzif.rs)", "CONTAINS -> from_str (timestamp.rs)", "CONTAINS -> from (timestamp.rs)", "CONTAINS -> from (timestamp.rs)"]
+  },
+  {
+    "question_id": "jiff-3",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 89,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 87,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 1366,
+    "added_elements": 2,
+    "retrieval_ms": 229.786,
+    "base_sufficiency_ms": 1.0534,
+    "expansion_resolution_ms": 0.0457,
+    "expanded_sufficiency_ms": 3.3615,
+    "rel_kind_useful": {
+      "CONTAINS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 2,
+      "CONTAINS": 85
+    },
+    "useful_descriptions": ["CONTAINS -> round (timestamp.rs)", "CONTAINS -> round (timestamp.rs)"]
+  },
+  {
+    "question_id": "jiff-4",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 23,
+    "useful_neighbors": 13,
+    "noisy_neighbors": 10,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 10092,
+    "added_elements": 13,
+    "retrieval_ms": 436.659,
+    "base_sufficiency_ms": 9.3995,
+    "expansion_resolution_ms": 0.0249,
+    "expanded_sufficiency_ms": 154.979,
+    "rel_kind_useful": {
+      "CALLS": 10,
+      "CONTAINS": 3
+    },
+    "rel_kind_noisy": {
+      "CALLS": 6,
+      "CONTAINS": 4
+    },
+    "useful_descriptions": ["CALLS -> date (datetime.rs)", "CONTAINS -> DateTime (datetime.rs)", "CONTAINS -> Date (date.rs)", "CALLS -> new_ranged (iso_week_date.rs)", "CONTAINS -> ISOWeekDate (iso_week_date.rs)", "CALLS -> new_ranged_constrain (iso_week_date.rs)", "CALLS -> shrink (iso_week_date.rs)", "CALLS -> print_iso_week_date (printer.rs)", "CALLS -> date (zoned.rs)", "CALLS -> new (datetime.rs)", "CALLS -> from_day_of_year_no_leap (itime.rs)", "CALLS -> days_in_year (itime.rs)", "CALLS -> days_in_month (itime.rs)"]
+  },
+  {
+    "question_id": "amoeba-jiff-01",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 14,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 13,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 733,
+    "added_elements": 1,
+    "retrieval_ms": 469.795,
+    "base_sufficiency_ms": 0.1276,
+    "expansion_resolution_ms": 0.0151,
+    "expanded_sufficiency_ms": 0.1346,
+    "rel_kind_useful": {
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 12,
+      "CONTAINS": 1
+    },
+    "useful_descriptions": ["CONTAINS -> Span (span.rs)"]
+  },
+  {
+    "question_id": "amoeba-jiff-02",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "negative_refusal_correct",
+    "is_negative": true,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 18,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 17,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 2170,
+    "added_elements": 1,
+    "retrieval_ms": 461.456,
+    "base_sufficiency_ms": 0.2209,
+    "expansion_resolution_ms": 0.0155,
+    "expanded_sufficiency_ms": 0.2178,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 16,
+      "CONTAINS": 1
+    },
+    "useful_descriptions": ["CALLS -> to_civil_datetime_offset_conversion (timestamp.rs)"]
+  },
+  {
+    "question_id": "amoeba-jiff-03",
+    "repository": "BurntSushi/jiff",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 30,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 30,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 454.092,
+    "base_sufficiency_ms": 0.4215,
+    "expansion_resolution_ms": 0.0159,
+    "expanded_sufficiency_ms": 0.0142,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 1,
+      "CONTAINS": 29
+    },
+    "useful_descriptions": []
+  }
+]

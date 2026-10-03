@@ -1,0 +1,202 @@
+[
+  {
+    "question_id": "pkl-0",
+    "repository": "apple/pkl",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 52,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 50,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 1033,
+    "added_elements": 2,
+    "retrieval_ms": 14707.6,
+    "base_sufficiency_ms": 7.2087,
+    "expansion_resolution_ms": 0.2717,
+    "expanded_sufficiency_ms": 11.7903,
+    "rel_kind_useful": {
+      "CALLS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 22,
+      "CONTAINS": 25,
+      "INHERITS_FROM": 3
+    },
+    "useful_descriptions": ["CALLS -> createTypeConverters (PklConverter.java)", "CALLS -> getRegexClass (BaseModule.java)"]
+  },
+  {
+    "question_id": "pkl-1",
+    "repository": "apple/pkl",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 34,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 33,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 17115,
+    "added_elements": 1,
+    "retrieval_ms": 15106,
+    "base_sufficiency_ms": 9.8267,
+    "expansion_resolution_ms": 0.0658,
+    "expanded_sufficiency_ms": 14.2637,
+    "rel_kind_useful": {
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 12,
+      "CONTAINS": 11,
+      "INHERITS_FROM": 10
+    },
+    "useful_descriptions": ["CONTAINS -> EvaluatorImpl (EvaluatorImpl.java)"]
+  },
+  {
+    "question_id": "pkl-2",
+    "repository": "apple/pkl",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 23,
+    "useful_neighbors": 23,
+    "noisy_neighbors": 0,
+    "min_units_required": 23,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 44845,
+    "added_elements": 23,
+    "retrieval_ms": 15887.2,
+    "base_sufficiency_ms": 8.3409,
+    "expansion_resolution_ms": 0.0284,
+    "expanded_sufficiency_ms": 338.224,
+    "rel_kind_useful": {
+      "CALLS": 7,
+      "CONTAINS": 16
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CONTAINS -> MutableReference (MutableReference.java)", "CONTAINS -> get (MutableReference.java)", "CONTAINS -> getOrNull (MutableReference.java)", "CONTAINS -> isNull (MutableReference.java)", "CONTAINS -> set (MutableReference.java)", "CALLS -> push (JsonWriter.java)", "CALLS -> convert (VmValueConverter.java)", "CALLS -> visitProperty (AbstractRenderer.java)", "CALLS -> getAndSetFalse (MutableBoolean.java)", "CONTAINS -> AbstractRenderer (AbstractRenderer.java)", "CALLS -> visitTyped (AbstractRenderer.java)", "CALLS -> visitDynamic (AbstractRenderer.java)", "CONTAINS -> TypeAlias (TypeAlias.java)", "CONTAINS -> ResourceReader (ResourceReader.java)", "CONTAINS -> ConstantValueNode (ConstantValueNode.java)", "CONTAINS -> singleLine (VmValueRenderer.java)", "CONTAINS -> multiLine (VmValueRenderer.java)", "CONTAINS -> VmValueRenderer (VmValueRenderer.java)", "CONTAINS -> render (VmValueRenderer.java)", "CONTAINS -> render (VmValueRenderer.java)", "CONTAINS -> Composite (Composite.java)", "CALLS -> get (Composite.java)", "CONTAINS -> Project (Project.java)"]
+  },
+  {
+    "question_id": "pkl-3",
+    "repository": "apple/pkl",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 14,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 14,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 13901,
+    "base_sufficiency_ms": 0.8216,
+    "expansion_resolution_ms": 0.0142,
+    "expanded_sufficiency_ms": 0.0065,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 8,
+      "CONTAINS": 6
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "pkl-5",
+    "repository": "apple/pkl",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 39,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 38,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 1593,
+    "added_elements": 1,
+    "retrieval_ms": 15429,
+    "base_sufficiency_ms": 7.3153,
+    "expansion_resolution_ms": 0.0562,
+    "expanded_sufficiency_ms": 7.6151,
+    "rel_kind_useful": {
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 29,
+      "CONTAINS": 9
+    },
+    "useful_descriptions": ["CONTAINS -> ConfigEvaluator (ConfigEvaluator.java)"]
+  },
+  {
+    "question_id": "amoeba-pkl-01",
+    "repository": "apple/pkl",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 43,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 41,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 61997,
+    "added_elements": 1,
+    "retrieval_ms": 14020.2,
+    "base_sufficiency_ms": 0.2742,
+    "expansion_resolution_ms": 0.0305,
+    "expanded_sufficiency_ms": 0.989,
+    "rel_kind_useful": {
+      "CONTAINS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 26,
+      "CONTAINS": 14,
+      "INHERITS_FROM": 1
+    },
+    "useful_descriptions": ["CONTAINS -> Parser (Parser.java)", "CONTAINS -> ExternalModuleResolverImpl (ExternalModuleResolverImpl.java)"]
+  },
+  {
+    "question_id": "amoeba-pkl-02",
+    "repository": "apple/pkl",
+    "failure_category": "negative_refusal_correct",
+    "is_negative": true,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 28,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 28,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 13842.6,
+    "base_sufficiency_ms": 0.506,
+    "expansion_resolution_ms": 0.024,
+    "expanded_sufficiency_ms": 0.0242,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 6,
+      "CONTAINS": 18,
+      "INHERITS_FROM": 4
+    },
+    "useful_descriptions": []
+  }
+]

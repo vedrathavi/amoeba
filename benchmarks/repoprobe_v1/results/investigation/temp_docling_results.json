@@ -1,0 +1,204 @@
+[
+  {
+    "question_id": "docling-0",
+    "repository": "docling-project/docling",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 32,
+    "useful_neighbors": 3,
+    "noisy_neighbors": 29,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 69611,
+    "added_elements": 3,
+    "retrieval_ms": 287.612,
+    "base_sufficiency_ms": 7.2467,
+    "expansion_resolution_ms": 0.0203,
+    "expanded_sufficiency_ms": 59.1486,
+    "rel_kind_useful": {
+      "CALLS": 1,
+      "CONTAINS": 2
+    },
+    "rel_kind_noisy": {
+      "CALLS": 25,
+      "CONTAINS": 4
+    },
+    "useful_descriptions": ["CALLS -> find (layout_postprocessor.py)", "CONTAINS -> HTMLDocumentBackend (html_backend.py)", "CONTAINS -> DocumentConverter (document_converter.py)"]
+  },
+  {
+    "question_id": "docling-1",
+    "repository": "docling-project/docling",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 50,
+    "useful_neighbors": 50,
+    "noisy_neighbors": 0,
+    "min_units_required": 2,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 2232,
+    "added_elements": 2,
+    "retrieval_ms": 255.719,
+    "base_sufficiency_ms": 3.1221,
+    "expansion_resolution_ms": 0.0214,
+    "expanded_sufficiency_ms": 6.6277,
+    "rel_kind_useful": {
+      "CALLS": 43,
+      "CONTAINS": 7
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> verify_text (verify_utils.py)", "CALLS -> verify_table_v2 (verify_utils.py)", "CALLS -> get_image (base_models.py)", "CALLS -> verify_picture_image_v2 (verify_utils.py)", "CALLS -> verify_conversion_result_v2 (verify_utils.py)", "CALLS -> verify_document (verify_utils.py)", "CALLS -> _is_title (asciidoc_backend.py)", "CALLS -> _parse_title (asciidoc_backend.py)", "CALLS -> _is_section_header (asciidoc_backend.py)", "CALLS -> _parse_section_header (asciidoc_backend.py)", "CALLS -> _is_list_item (asciidoc_backend.py)", "CALLS -> _parse_list_item (asciidoc_backend.py)", "CALLS -> _get_current_level (asciidoc_backend.py)", "CALLS -> _get_current_parent (asciidoc_backend.py)", "CALLS -> _is_table_line (asciidoc_backend.py)", "CALLS -> _parse_table_line (asciidoc_backend.py)", "CALLS -> _populate_table_as_grid (asciidoc_backend.py)", "CALLS -> _is_picture (asciidoc_backend.py)", "CALLS -> _parse_picture (asciidoc_backend.py)", "CALLS -> _is_caption (asciidoc_backend.py)", "CALLS -> _parse_caption (asciidoc_backend.py)", "CALLS -> _parse_text (asciidoc_backend.py)", "CONTAINS -> AsciiDocBackend (asciidoc_backend.py)", "CALLS -> convert (asciidoc_backend.py)", "CALLS -> get_libreoffice_cmd (utils.py)", "CALLS -> verify_export (verify_utils.py)", "CALLS -> test_e2e_docx_conversions (test_backend_msword.py)", "CALLS -> test_textbox_conversion (test_backend_msword.py)", "CONTAINS -> CodeFormulaModel (code_formula_model.py)", "CALLS -> is_valid (msexcel_backend.py)", "CALLS -> _convert_workbook (msexcel_backend.py)", "CONTAINS -> MsExcelDocumentBackend (msexcel_backend.py)", "CALLS -> AnnotatedTextList (html_backend.py)", "CALLS -> _flush_buffer (html_backend.py)", "CALLS -> _emit_image (html_backend.py)", "CALLS -> _use_format (html_backend.py)", "CALLS -> _use_hyperlink (html_backend.py)", "CALLS -> _handle_block (html_backend.py)", "CALLS -> find (layout_postprocessor.py)", "CALLS -> _extract_text_and_hyperlink_recursively (html_backend.py)", "CONTAINS -> HTMLDocumentBackend (html_backend.py)", "CALLS -> convert (html_backend.py)", "CALLS -> parse_table_data (html_backend.py)", "CONTAINS -> PostOcrApiEnrichmentModel (post_process_ocr_with_vlm.py)", "CALLS -> prepare_element (post_process_ocr_with_vlm.py)", "CALLS -> _has_blip (msword_backend.py)", "CALLS -> _walk_linear (msword_backend.py)", "CONTAINS -> MsWordDocumentBackend (msword_backend.py)", "CALLS -> convert (msword_backend.py)", "CONTAINS -> DocumentPictureClassifier (document_picture_classifier.py)"]
+  },
+  {
+    "question_id": "docling-2",
+    "repository": "docling-project/docling",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 67,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 67,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 20.2593,
+    "base_sufficiency_ms": 0.1938,
+    "expansion_resolution_ms": 0.0468,
+    "expanded_sufficiency_ms": 0.012,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 34,
+      "CONTAINS": 4,
+      "IMPORTS": 29
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "docling-3",
+    "repository": "docling-project/docling",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 40,
+    "useful_neighbors": 2,
+    "noisy_neighbors": 38,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 4040,
+    "added_elements": 2,
+    "retrieval_ms": 246.61,
+    "base_sufficiency_ms": 1.1327,
+    "expansion_resolution_ms": 0.0182,
+    "expanded_sufficiency_ms": 2.4621,
+    "rel_kind_useful": {
+      "CALLS": 1,
+      "INHERITS_FROM": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 25,
+      "CONTAINS": 8,
+      "INHERITS_FROM": 5
+    },
+    "useful_descriptions": ["INHERITS_FROM -> PdfPipelineOptions (pipeline_options.py)", "CALLS -> __call__ (api_vlm_model.py)"]
+  },
+  {
+    "question_id": "docling-9",
+    "repository": "docling-project/docling",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 21,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 20,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 7868,
+    "added_elements": 1,
+    "retrieval_ms": 363.574,
+    "base_sufficiency_ms": 18.7186,
+    "expansion_resolution_ms": 0.0201,
+    "expanded_sufficiency_ms": 21.4412,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 18,
+      "CONTAINS": 1,
+      "INHERITS_FROM": 1
+    },
+    "useful_descriptions": ["CALLS -> prepare_element (post_process_ocr_with_vlm.py)"]
+  },
+  {
+    "question_id": "amoeba-docling-01",
+    "repository": "docling-project/docling",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 47,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 47,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 264.156,
+    "base_sufficiency_ms": 0.3494,
+    "expansion_resolution_ms": 0.0283,
+    "expanded_sufficiency_ms": 0.0182,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 40,
+      "CONTAINS": 7
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-docling-02",
+    "repository": "docling-project/docling",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 29,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 29,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 293.816,
+    "base_sufficiency_ms": 0.5498,
+    "expansion_resolution_ms": 0.0287,
+    "expanded_sufficiency_ms": 0.0344,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 14,
+      "CONTAINS": 11,
+      "INHERITS_FROM": 4
+    },
+    "useful_descriptions": []
+  }
+]

@@ -105,50 +105,60 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
 
     std::vector<std::string> action_terms = query_rep.action_terms;
 
-    // 3. Evaluate Subject concept matches across retrieved evidence
+    // 3. Evaluate Subject concept matches across retrieved evidence (tracking primary vs expanded)
+    std::vector<std::string> primary_matched_subjects;
+    std::vector<std::string> expanded_only_matched_subjects;
+
     for (const auto& subj : subject_terms) {
-        bool subj_matched = false;
+        bool matched_in_primary = false;
+        bool matched_in_expanded = false;
 
         for (const auto& item : bundle.items) {
+            bool item_has_subj = false;
+
             // Check primary symbol name
             if (contains_case_insensitive(item.primary_element().name, subj)) {
-                subj_matched = true;
-                break;
+                item_has_subj = true;
             }
 
             // Check file path
-            if (contains_case_insensitive(item.file_path().string(), subj)) {
-                subj_matched = true;
-                break;
+            if (!item_has_subj && contains_case_insensitive(item.file_path().string(), subj)) {
+                item_has_subj = true;
             }
 
             // Check element detail
-            if (contains_case_insensitive(item.primary_element().detail, subj)) {
-                subj_matched = true;
-                break;
+            if (!item_has_subj && contains_case_insensitive(item.primary_element().detail, subj)) {
+                item_has_subj = true;
             }
 
             // Check supporting elements
-            for (const auto& supp : item.supporting_elements()) {
-                if (contains_case_insensitive(supp.name, subj)) {
-                    subj_matched = true;
-                    break;
+            if (!item_has_subj) {
+                for (const auto& supp : item.supporting_elements()) {
+                    if (contains_case_insensitive(supp.name, subj)) {
+                        item_has_subj = true;
+                        break;
+                    }
                 }
-            }
-            if (subj_matched) {
-                break;
             }
 
             // Check source excerpt if present
-            if (item.source_excerpt.has_value() &&
+            if (!item_has_subj && item.source_excerpt.has_value() &&
                 contains_case_insensitive(item.source_excerpt->text, subj)) {
-                subj_matched = true;
-                break;
+                item_has_subj = true;
+            }
+
+            if (item_has_subj) {
+                if (!item.is_expanded_relationship) {
+                    matched_in_primary = true;
+                    break;
+                } else {
+                    matched_in_expanded = true;
+                }
             }
         }
 
         // Check for exact compound identifier match for this subject (e.g. "usecalendar" -> useCalendar)
-        if (!subj_matched) {
+        if (!matched_in_primary) {
             for (const auto& compound : query_rep.synthesized_identifiers) {
                 if (compound.size() < 3 || !contains_case_insensitive(compound, subj)) {
                     continue;
@@ -156,25 +166,34 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
                 for (const auto& item : bundle.items) {
                     if (contains_case_insensitive(item.primary_element().name, compound) ||
                         contains_case_insensitive(item.file_path().string(), compound)) {
-                        subj_matched = true;
+                        if (!item.is_expanded_relationship) {
+                            matched_in_primary = true;
+                        } else {
+                            matched_in_expanded = true;
+                        }
                         break;
                     }
                 }
-                if (subj_matched) {
+                if (matched_in_primary) {
                     break;
                 }
             }
         }
 
         // If lexical match didn't find the subject concept, check semantic evidence support
-        if (!subj_matched && semantic_evidence != nullptr) {
+        if (!matched_in_primary && !matched_in_expanded && semantic_evidence != nullptr) {
             const auto* concept_sup = semantic_evidence->find_concept(subj);
             if (concept_sup != nullptr && concept_sup->is_supported()) {
-                subj_matched = true;
+                matched_in_primary = true;
             }
         }
 
-        if (subj_matched) {
+        if (matched_in_primary) {
+            primary_matched_subjects.push_back(subj);
+            result.matched_subjects.push_back(subj);
+            result.matched_terms.push_back(subj);
+        } else if (matched_in_expanded) {
+            expanded_only_matched_subjects.push_back(subj);
             result.matched_subjects.push_back(subj);
             result.matched_terms.push_back(subj);
         } else {
@@ -238,6 +257,19 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         return result;
     }
 
+    // Rule A.1 (Phase 8.2.9.1 Safety Invariant: Primary Subject Grounding):
+    // Relationship expansion is strictly SUPPORTING evidence. It may enrich an already grounded
+    // primary subject (e.g. providing helper methods, subclasses, or annotations), but it MUST NOT
+    // independently manufacture subject grounding when ZERO primary candidates matched any query subject terms.
+    if (!subject_terms.empty() && primary_matched_subjects.empty() && options.require_subject_match) {
+        result.is_sufficient = false;
+        result.confidence_score = 0.0;
+        result.reason =
+            "None of the query subject concepts were grounded in primary retrieval candidates; "
+            "supporting relationship expansion cannot independently manufacture subject sufficiency.";
+        return result;
+    }
+
     // Rule B: Semantic-only candidates cannot establish sufficiency without Subject evidence
     if (top_result.provenance == retrieval::RetrievalProvenance::SemanticOnly) {
         if (result.matched_subjects.empty()) {
@@ -257,9 +289,10 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         }
     }
 
-    // Rule C: Subject concept coverage ratio threshold
+    // Rule C: Primary Subject concept coverage ratio threshold
     bool has_strong_primary_match = false;
     for (const auto& item : bundle.items) {
+        if (item.is_expanded_relationship) continue; // Strong primary anchors must originate from primary retrieval
         for (const auto& te : query_rep.technical_entities) {
             if (contains_case_insensitive(item.primary_element().name, te) ||
                 contains_case_insensitive(item.file_path().string(), te)) {
@@ -272,11 +305,17 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         }
     }
 
-    const double effective_min_coverage = (has_strong_primary_match && !result.matched_subjects.empty())
+    double primary_subject_coverage =
+        subject_terms.empty()
+            ? 1.0
+            : static_cast<double>(primary_matched_subjects.size()) /
+                  static_cast<double>(subject_terms.size());
+
+    const double effective_min_coverage = (has_strong_primary_match && !primary_matched_subjects.empty())
                                               ? std::min(0.50, options.min_term_coverage)
                                               : options.min_term_coverage;
 
-    if (!subject_terms.empty() && subject_coverage < effective_min_coverage) {
+    if (!subject_terms.empty() && primary_subject_coverage < effective_min_coverage) {
         result.is_sufficient = false;
         result.confidence_score = 0.0;
         result.reason = "Query subject concept coverage is below the required threshold.";
@@ -291,29 +330,26 @@ EvidenceSufficiencyResult EvidenceSufficiencyChecker::check(
         return result;
     }
 
-
-    // Rule E: Evidence Identity Rule (Phase 7.6.1)
+    // Rule E: Evidence Identity Rule (Phase 7.6.1 + Phase 8.2.9.1 Safety Hardening)
     // If the query contains at least one distinguishing domain subject term
-    // (e.g. "GraphQL" in "GraphQL resolver", "JWT" in "JWT authentication", "payment" in "payment checkout"),
-    // but NONE of the distinguishing domain subject terms were matched across the retrieved evidence,
-    // matching only generic architectural component terms (e.g. "resolver", "authentication", "checkout")
-    // is AMBIGUOUS and CANNOT establish sufficiency for the compound concept.
+    // (e.g. "GraphQL" in "GraphQL resolver", "JWT" in "JWT authentication", "Qdrant" in "Qdrant indexing"),
+    // at least one distinguishing domain subject term MUST be grounded in PRIMARY retrieval candidates.
     if (!query_rep.distinguishing_subject_terms.empty()) {
-        bool has_distinguishing_match = false;
+        bool has_primary_distinguishing_match = false;
         for (const auto& dist_subj : query_rep.distinguishing_subject_terms) {
-            if (std::find(result.matched_subjects.begin(), result.matched_subjects.end(), dist_subj) !=
-                result.matched_subjects.end()) {
-                has_distinguishing_match = true;
+            if (std::find(primary_matched_subjects.begin(), primary_matched_subjects.end(), dist_subj) !=
+                primary_matched_subjects.end()) {
+                has_primary_distinguishing_match = true;
                 break;
             }
         }
 
-        if (!has_distinguishing_match) {
+        if (!has_primary_distinguishing_match) {
             result.is_sufficient = false;
             result.confidence_score = 0.0;
             result.reason =
-                "Only generic component terms were matched; required distinguishing domain concept(s) "
-                "were not found in repository evidence.";
+                "Only generic component terms were matched in primary evidence; required distinguishing domain concept(s) "
+                "were not found in primary repository candidates.";
             return result;
         }
     }

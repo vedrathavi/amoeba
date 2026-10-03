@@ -340,4 +340,83 @@ TEST_F(EvidenceSufficiencyTest, NegativeBenchmarkCasesRefuseUnsupportedFeatures)
     EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
 }
 
+// 21. Phase 8.2.9.1 Safety Invariant: Expanded items cannot manufacture ungrounded subject
+TEST_F(EvidenceSufficiencyTest, ExpandedSupportingEvidenceCannotManufactureUngroundedSubject) {
+    EvidenceBundle bundle;
+    bundle.query = "Does adk-python provide built-in vector database indexing with Qdrant natively in core?";
+
+    // Primary item is ungrounded (just a random handler with zero Qdrant / vector matches)
+    auto primary_item = create_item("get_details", "src/adk/handlers.py", 0.15,
+                                    RetrievalProvenance::LexicalOnly,
+                                    "def get_details(): pass");
+    primary_item.is_expanded_relationship = false;
+    bundle.items.push_back(primary_item);
+
+    // Expanded supporting item has random generic words ("indexing", "options") but NOT in primary
+    auto expanded_item = create_item("LiveRequestQueue", "src/adk/queue.py", 0.10,
+                                     RetrievalProvenance::SemanticOnly,
+                                     "class LiveRequestQueue: \n    def indexing_options(self): pass");
+    expanded_item.is_expanded_relationship = true;
+    expanded_item.expansion_relationship_type = "CALLS";
+    expanded_item.expansion_depth = 1;
+    bundle.items.push_back(expanded_item);
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+    EXPECT_NE(res.reason.find("primary retrieval candidates"), std::string::npos);
+}
+
+// 22. Phase 8.2.9.1 Safety Invariant: Expanded items legally enrich grounded primary subject
+TEST_F(EvidenceSufficiencyTest, ExpandedSupportingEvidenceCanEnrichGroundedPrimarySubject) {
+    EvidenceBundle bundle;
+    bundle.query = "How do I print a Zoned timestamp with an offset formatting?";
+
+    // Primary item grounds the core subject: "Zoned" and "timestamp"
+    auto primary_item = create_item("Zoned", "src/zoned.rs", 0.85,
+                                    RetrievalProvenance::HybridBoth,
+                                    "pub struct Zoned { timestamp: Timestamp, offset: Offset }");
+    primary_item.is_expanded_relationship = false;
+    bundle.items.push_back(primary_item);
+
+    // Expanded item supplies the supporting helper detail: "offset formatting"
+    auto expanded_item = create_item("print_time_zone_annotation_buf", "src/fmt/rfc9557.rs", 0.70,
+                                     RetrievalProvenance::SemanticOnly,
+                                     "pub fn print_time_zone_annotation_buf(buf: &mut String, offset: Offset) {}");
+    expanded_item.is_expanded_relationship = true;
+    expanded_item.expansion_relationship_type = "CONTAINS";
+    expanded_item.expansion_depth = 2;
+    bundle.items.push_back(expanded_item);
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.4);
+}
+
+// 23. Phase 8.2.9.1 Safety Invariant: Spring Boot controller negative refusal
+TEST_F(EvidenceSufficiencyTest, NegativeSpringControllerQueryRefusedDespiteGenericCaller) {
+    EvidenceBundle bundle;
+    bundle.query = "Where is the Spring Boot auto-configuration controller implemented in pkl?";
+
+    // Primary item is ungrounded
+    auto primary_item = create_item("getSourceModulesAsUris", "src/cli/CliBaseOptions.java", 0.12,
+                                    RetrievalProvenance::LexicalOnly,
+                                    "public List<URI> getSourceModulesAsUris() { return null; }");
+    primary_item.is_expanded_relationship = false;
+    bundle.items.push_back(primary_item);
+
+    // Expanded item mentions "controller" in a generic sense
+    auto expanded_item = create_item("ProxySelector", "src/net/ProxySelector.java", 0.10,
+                                     RetrievalProvenance::SemanticOnly,
+                                     "// CLI controller options\npublic class ProxySelector { static ProxySelector create() { return null; } }");
+    expanded_item.is_expanded_relationship = true;
+    expanded_item.expansion_relationship_type = "CALLS";
+    expanded_item.expansion_depth = 1;
+    bundle.items.push_back(expanded_item);
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
 

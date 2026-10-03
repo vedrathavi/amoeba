@@ -1,0 +1,230 @@
+[
+  {
+    "question_id": "adk-python-0",
+    "repository": "google/adk-python",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 44,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 43,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 343,
+    "added_elements": 1,
+    "retrieval_ms": 2120.19,
+    "base_sufficiency_ms": 41.5215,
+    "expansion_resolution_ms": 0.0623,
+    "expanded_sufficiency_ms": 49.7106,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 31,
+      "CONTAINS": 9,
+      "INHERITS_FROM": 3
+    },
+    "useful_descriptions": ["CALLS -> LiteLlm (agent.py)"]
+  },
+  {
+    "question_id": "adk-python-1",
+    "repository": "google/adk-python",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 20,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 20,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 478.726,
+    "base_sufficiency_ms": 0.1064,
+    "expansion_resolution_ms": 0.0151,
+    "expanded_sufficiency_ms": 0.011,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 13,
+      "CONTAINS": 7
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "adk-python-2",
+    "repository": "google/adk-python",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 52,
+    "useful_neighbors": 8,
+    "noisy_neighbors": 44,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 9772,
+    "added_elements": 8,
+    "retrieval_ms": 2012.36,
+    "base_sufficiency_ms": 4.1795,
+    "expansion_resolution_ms": 0.046,
+    "expanded_sufficiency_ms": 37.2847,
+    "rel_kind_useful": {
+      "CALLS": 8
+    },
+    "rel_kind_noisy": {
+      "CALLS": 31,
+      "CONTAINS": 11,
+      "INHERITS_FROM": 2
+    },
+    "useful_descriptions": ["CALLS -> generate_auth_request (auth_handler.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)", "CALLS -> agent (test_pause_invocation.py)"]
+  },
+  {
+    "question_id": "adk-python-3",
+    "repository": "google/adk-python",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 44,
+    "useful_neighbors": 44,
+    "noisy_neighbors": 0,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 458,
+    "added_elements": 1,
+    "retrieval_ms": 2401.64,
+    "base_sufficiency_ms": 11.4229,
+    "expansion_resolution_ms": 0.0333,
+    "expanded_sufficiency_ms": 12.4689,
+    "rel_kind_useful": {
+      "CALLS": 36,
+      "CONTAINS": 7,
+      "INHERITS_FROM": 1
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> NotFoundError (not_found_error.py)", "CONTAINS -> LocalEvalSetsManager (local_eval_sets_manager.py)", "CALLS -> test_local_eval_sets_manager_list_eval_sets_success (test_local_eval_sets_manager.py)", "CALLS -> test_local_eval_sets_manager_list_eval_sets_not_found (test_local_eval_sets_manager.py)", "CALLS -> LlmAgent (llm_agent.py)", "CALLS -> LlmRequest (llm_request.py)", "CALLS -> ToolConfirmation (tool_confirmation.py)", "CALLS -> Event (event.py)", "CALLS -> patch (main-P3SSB3YR.js)", "CALLS -> run_async (request_confirmation.py)", "CALLS -> assert_called_once (test_computer_use_tool.py)", "CALLS -> FunctionTool (function_tool.py)", "CALLS -> _build_event (test_evaluation_generator.py)", "CONTAINS -> __init__ (global_instruction_plugin.py)", "CONTAINS -> before_model_callback (global_instruction_plugin.py)", "CONTAINS -> _resolve_global_instruction (global_instruction_plugin.py)", "INHERITS_FROM -> BasePlugin (base_plugin.py)", "CALLS -> test_global_instruction_plugin_with_string (test_global_instruction_plugin.py)", "CALLS -> test_global_instruction_plugin_with_instruction_provider (test_global_instruction_plugin.py)", "CALLS -> test_global_instruction_plugin_empty_instruction (test_global_instruction_plugin.py)", "CALLS -> test_global_instruction_plugin_leads_existing (test_global_instruction_plugin.py)", "CALLS -> test_global_instruction_plugin_prepends_to_list (test_global_instruction_plugin.py)", "CALLS -> pop (main-P3SSB3YR.js)", "CALLS -> close_runners (cleanup.py)", "CALLS -> load_dotenv_for_agent (envs.py)", "CALLS -> load_agent (base_agent_loader.py)", "CALLS -> _instantiate_extra_plugins (adk_web_server.py)", "CALLS -> App (app.py)", "CALLS -> _create_runner (adk_web_server.py)", "CONTAINS -> AdkWebServer (adk_web_server.py)", "CALLS -> run_agent (adk_web_server.py)", "CALLS -> event_generator (adk_web_server.py)", "CALLS -> forward_events (adk_web_server.py)", "CALLS -> _get_a2a_runner_async (fast_api.py)", "CALLS -> LongRunningFunctionTool (long_running_tool.py)", "CONTAINS -> TestLongRunningFunctionTool (test_long_running_tool.py)", "CALLS -> Runner (runners.py)", "CONTAINS -> TestRunnerCacheConfig (test_runners.py)", "CALLS -> get_session (adk_web_server.py)", "CALLS -> str (main-P3SSB3YR.js)", "CALLS -> EventActions (event_actions.py)", "CALLS -> append_event (base_session_service.py)", "CALLS -> InMemoryMemoryService (in_memory_memory_service.py)", "CALLS -> add_session_to_memory (in_memory_memory_service.py)"]
+  },
+  {
+    "question_id": "adk-python-4",
+    "repository": "google/adk-python",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 31,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 31,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1923.78,
+    "base_sufficiency_ms": 1.8047,
+    "expansion_resolution_ms": 0.022,
+    "expanded_sufficiency_ms": 0.0188,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 22,
+      "CONTAINS": 9
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "adk-python-5",
+    "repository": "google/adk-python",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 37,
+    "useful_neighbors": 37,
+    "noisy_neighbors": 0,
+    "min_units_required": 2,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 2084,
+    "added_elements": 2,
+    "retrieval_ms": 2427.48,
+    "base_sufficiency_ms": 98.3989,
+    "expansion_resolution_ms": 0.0342,
+    "expanded_sufficiency_ms": 248.163,
+    "rel_kind_useful": {
+      "CALLS": 34,
+      "CONTAINS": 3
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> _get_events (invocation_context.py)", "CALLS -> __get_transfer_to_agent_or_none (llm_agent.py)", "CALLS -> _find_matching_function_call (invocation_context.py)", "CONTAINS -> LlmAgent (llm_agent.py)", "CALLS -> _run_async_impl (llm_agent.py)", "CALLS -> add_eval_case (gcs_eval_sets_manager.py)", "CALLS -> add_eval_case (local_eval_sets_manager.py)", "CALLS -> getattr (main-P3SSB3YR.js)", "CALLS -> _resolve_agent_class (config_agent_utils.py)", "CALLS -> from_config (base_tool.py)", "CALLS -> from_config (crewai_tool.py)", "CALLS -> from_config (example_tool.py)", "CALLS -> from_config (langchain_tool.py)", "CALLS -> _replace_match (instructions_utils.py)", "CONTAINS -> SequentialAgent (sequential_agent.py)", "CALLS -> _run_async_impl (sequential_agent.py)", "CALLS -> ParsedArtifactUri (artifact_util.py)", "CALLS -> group (main-P3SSB3YR.js)", "CALLS -> save_artifact (in_memory_artifact_service.py)", "CALLS -> load_artifact (in_memory_artifact_service.py)", "CALLS -> test_parse_session_scoped_artifact_uri (test_artifact_util.py)", "CALLS -> test_parse_user_scoped_artifact_uri (test_artifact_util.py)", "CALLS -> test_parse_invalid_artifact_uri (test_artifact_util.py)", "CALLS -> ApiParameter (common.py)", "CALLS -> _prepare_auth_request_params (rest_api_tool.py)", "CALLS -> test_credential_to_param_api_key_header (test_auth_helper.py)", "CALLS -> test_credential_to_param_api_key_query (test_auth_helper.py)", "CALLS -> test_credential_to_param_api_key_cookie (test_auth_helper.py)", "CALLS -> test_credential_to_param_http_bearer (test_auth_helper.py)", "CALLS -> test_credential_to_param_http_basic_not_supported (test_auth_helper.py)", "CALLS -> test_credential_to_param_http_invalid_credentials_no_http (test_auth_helper.py)", "CALLS -> test_credential_to_param_oauth2 (test_auth_helper.py)", "CALLS -> test_credential_to_param_openid_connect (test_auth_helper.py)", "CALLS -> test_credential_to_param_openid_no_credential (test_auth_helper.py)", "CALLS -> test_credential_to_param_oauth2_no_credential (test_auth_helper.py)", "CALLS -> CredentialManager (credential_manager.py)", "CONTAINS -> BaseAuthenticatedTool (base_authenticated_tool.py)"]
+  },
+  {
+    "question_id": "amoeba-adk-python-01",
+    "repository": "google/adk-python",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 44,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 44,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 2253.64,
+    "base_sufficiency_ms": 0.1654,
+    "expansion_resolution_ms": 0.0279,
+    "expanded_sufficiency_ms": 0.0119,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 38,
+      "CONTAINS": 5,
+      "INHERITS_FROM": 1
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-adk-python-02",
+    "repository": "google/adk-python",
+    "failure_category": "negative_refusal_correct",
+    "is_negative": true,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 32,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 31,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 1722,
+    "added_elements": 1,
+    "retrieval_ms": 1920.22,
+    "base_sufficiency_ms": 0.3326,
+    "expansion_resolution_ms": 0.0215,
+    "expanded_sufficiency_ms": 0.3686,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 30,
+      "CONTAINS": 1
+    },
+    "useful_descriptions": ["CALLS -> get_booking_details (hotelbooker_core.py)"]
+  }
+]

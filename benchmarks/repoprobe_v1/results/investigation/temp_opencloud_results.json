@@ -1,0 +1,192 @@
+[
+  {
+    "question_id": "opencloud-0",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 40,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 39,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 7556,
+    "added_elements": 1,
+    "retrieval_ms": 3737.44,
+    "base_sufficiency_ms": 1.993,
+    "expansion_resolution_ms": 0.1837,
+    "expanded_sufficiency_ms": 2.9305,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 39
+    },
+    "useful_descriptions": ["CALLS -> CreateShare (shares.go)"]
+  },
+  {
+    "question_id": "opencloud-2",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 15,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 15,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1232.64,
+    "base_sufficiency_ms": 0.2661,
+    "expansion_resolution_ms": 0.2123,
+    "expanded_sufficiency_ms": 0.0131,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 15
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "opencloud-4",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 25,
+    "useful_neighbors": 25,
+    "noisy_neighbors": 0,
+    "min_units_required": 2,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 1613,
+    "added_elements": 2,
+    "retrieval_ms": 28214,
+    "base_sufficiency_ms": 5.1551,
+    "expansion_resolution_ms": 1.6535,
+    "expanded_sufficiency_ms": 10.7386,
+    "rel_kind_useful": {
+      "CALLS": 25
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> RunAndReturn (backend.go)", "CALLS -> encodeSnapshot (raft.go)", "CALLS -> loadLastSnapshot (raft.go)", "CALLS -> fts3DoclistOrMerge (sqlite3-binding.c)", "CALLS -> sqlite3_free (sqlite3-binding.c)", "CALLS -> fts3TermSelect (sqlite3-binding.c)", "CALLS -> sqlite3_value_numeric_type (sqlite3-binding.c)", "CALLS -> sqlite3_value_int64 (sqlite3-binding.c)", "CALLS -> fts3FilterMethod (sqlite3-binding.c)", "CALLS -> assert (sqlite3-binding.c)", "CALLS -> sqlite3ErrorMsg (sqlite3-binding.c)", "CALLS -> sqlite3FindDb (sqlite3-binding.c)", "CALLS -> sqlite3Analyze (sqlite3-binding.c)", "CALLS -> sqlite3StartTable (sqlite3-binding.c)", "CALLS -> sqlite3CreateView (sqlite3-binding.c)", "CALLS -> sqlite3CreateIndex (sqlite3-binding.c)", "CALLS -> sqlite3Reindex (sqlite3-binding.c)", "CALLS -> sqlite3Pragma (sqlite3-binding.c)", "CALLS -> sqlite3BeginTrigger (sqlite3-binding.c)", "CALLS -> sqlite3Vacuum (sqlite3-binding.c)", "CALLS -> fts3SqlStmt (sqlite3-binding.c)", "CALLS -> sqlite3_step (sqlite3-binding.c)", "CALLS -> sqlite3_column_int (sqlite3-binding.c)", "CALLS -> sqlite3_reset (sqlite3-binding.c)", "CALLS -> fts3DeleteByRowid (sqlite3-binding.c)"]
+  },
+  {
+    "question_id": "opencloud-9",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 35,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 35,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 15263,
+    "base_sufficiency_ms": 96.9365,
+    "expansion_resolution_ms": 1.6699,
+    "expanded_sufficiency_ms": 0.1926,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 34,
+      "CONTAINS": 1
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "opencloud-11",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 8,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 8,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 13461.4,
+    "base_sufficiency_ms": 0.5612,
+    "expansion_resolution_ms": 0.0179,
+    "expanded_sufficiency_ms": 0.0302,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 8
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-opencloud-01",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 30,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 30,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 13254.9,
+    "base_sufficiency_ms": 0.3539,
+    "expansion_resolution_ms": 2.6074,
+    "expanded_sufficiency_ms": 0.0259,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 30
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-opencloud-02",
+    "repository": "opencloud-eu/opencloud",
+    "failure_category": "negative_refusal_correct",
+    "is_negative": true,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 17,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 17,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 13408,
+    "base_sufficiency_ms": 0.1496,
+    "expansion_resolution_ms": 3.0115,
+    "expanded_sufficiency_ms": 0.0248,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 17
+    },
+    "useful_descriptions": []
+  }
+]

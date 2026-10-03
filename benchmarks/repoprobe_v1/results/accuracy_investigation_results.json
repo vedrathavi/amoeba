@@ -1,0 +1,15 @@
+{
+  "total_questions": 0,
+  "positive_questions": 0,
+  "negative_questions": 0,
+  "baseline_correct": 0,
+  "cat_a_retrieval_failure": 0,
+  "cat_b_evidence_failure": 0,
+  "cat_c_reasoning_failure": 0,
+  "cat_b_solved_by_1hop": 0,
+  "relationship_utility": {
+
+  },
+  "questions": [
+  ]
+}

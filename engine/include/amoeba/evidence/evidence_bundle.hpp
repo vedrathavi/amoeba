@@ -31,6 +31,14 @@ struct EvidenceItem {
     /// Resolved direct 1-hop relationships (callers, callees, inheritance, imports, etc.).
     std::vector<graph::RelationshipEvidence> direct_relationships;
 
+    /// Phase 8.2.9: Relationship expansion metadata (if this item was added via graph expansion)
+    bool is_expanded_relationship{false};
+    uint32_t expansion_depth{0};             ///< 0 = primary retrieval seed, 1 = 1-hop, 2 = 2-hop
+    std::string expansion_relationship_type; ///< e.g. "Calls", "Contains", "InheritsFrom"
+    std::string expansion_direction;         ///< "Outgoing", "Incoming"
+    index::ElementId expansion_seed_id{0};   ///< Primary seed element ID that triggered the expansion
+    std::string expansion_seed_name;         ///< Primary seed symbol name
+
     /// Convenience accessors
     [[nodiscard]] const parser::CodeElement& primary_element() const noexcept {
         return primary_result.unit.primary_element;

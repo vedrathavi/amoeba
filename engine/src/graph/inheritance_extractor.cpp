@@ -39,11 +39,16 @@ std::string clean_type_name(std::string_view raw) {
     return str;
 }
 
+struct ClassLookupIndex {
+    std::vector<ClassLookupTarget> lookup_table;
+    std::unordered_map<std::string, std::vector<const ClassLookupTarget*>> by_name;
+};
+
 std::optional<ElementId> resolve_target_class(const std::string& target_name,
                                               index::FileId source_file_id,
                                               const std::string& source_parent_context,
-                                              const std::vector<ClassLookupTarget>& lookup_table) {
-    if (target_name.empty() || lookup_table.empty()) {
+                                              const ClassLookupIndex& class_index) {
+    if (target_name.empty() || class_index.lookup_table.empty()) {
         return std::nullopt;
     }
 
@@ -56,36 +61,49 @@ std::optional<ElementId> resolve_target_class(const std::string& target_name,
         stem_target = stem_target.substr(last_dot + 1);
     }
 
+    auto get_candidates = [&](const std::string& name) -> const std::vector<const ClassLookupTarget*>* {
+        auto it = class_index.by_name.find(name);
+        if (it != class_index.by_name.end()) return &it->second;
+        return nullptr;
+    };
+
+    const auto* clean_cands = get_candidates(clean_target);
+    const auto* stem_cands = (clean_target != stem_target) ? get_candidates(stem_target) : nullptr;
+
     // 1. Same-file resolution
-    for (const auto& entry : lookup_table) {
-        if (entry.file_id == source_file_id &&
-            (entry.name == clean_target || entry.name == stem_target)) {
-            return entry.element_id;
+    if (clean_cands) {
+        for (const auto* entry : *clean_cands) {
+            if (entry->file_id == source_file_id) return entry->element_id;
+        }
+    }
+    if (stem_cands) {
+        for (const auto* entry : *stem_cands) {
+            if (entry->file_id == source_file_id) return entry->element_id;
         }
     }
 
     // 2. Same parent context / namespace resolution
     if (!source_parent_context.empty()) {
-        for (const auto& entry : lookup_table) {
-            if (entry.parent_context == source_parent_context &&
-                (entry.name == clean_target || entry.name == stem_target)) {
-                return entry.element_id;
+        if (clean_cands) {
+            for (const auto* entry : *clean_cands) {
+                if (entry->parent_context == source_parent_context) return entry->element_id;
+            }
+        }
+        if (stem_cands) {
+            for (const auto* entry : *stem_cands) {
+                if (entry->parent_context == source_parent_context) return entry->element_id;
             }
         }
     }
 
     // 3. Exact qualified or simple name match across the repository
-    for (const auto& entry : lookup_table) {
-        if (entry.name == clean_target) {
-            return entry.element_id;
-        }
+    if (clean_cands && !clean_cands->empty()) {
+        return clean_cands->front()->element_id;
     }
 
     // 4. Stem match across repository
-    for (const auto& entry : lookup_table) {
-        if (entry.name == stem_target) {
-            return entry.element_id;
-        }
+    if (stem_cands && !stem_cands->empty()) {
+        return stem_cands->front()->element_id;
     }
 
     return std::nullopt;
@@ -103,15 +121,15 @@ InheritanceExtractor::extract_and_populate(const index::InvertedIndex& index,
     }
 
     // Build class and interface lookup table
-    std::vector<ClassLookupTarget> lookup_table;
-    lookup_table.reserve(index.element_count());
+    ClassLookupIndex class_index;
+    class_index.lookup_table.reserve(index.element_count());
 
     for (ElementId id = 0; id < index.element_count(); ++id) {
         const auto& elem = index.get_element(id);
         if (elem.element.kind == parser::ElementKind::Class ||
             elem.element.kind == parser::ElementKind::Struct ||
             elem.element.kind == parser::ElementKind::Interface) {
-            lookup_table.push_back(ClassLookupTarget{
+            class_index.lookup_table.push_back(ClassLookupTarget{
                 .element_id = id,
                 .file_id = elem.file_id,
                 .name = elem.element.name,
@@ -119,6 +137,10 @@ InheritanceExtractor::extract_and_populate(const index::InvertedIndex& index,
                 .kind = elem.element.kind,
             });
         }
+    }
+
+    for (const auto& entry : class_index.lookup_table) {
+        class_index.by_name[entry.name].push_back(&entry);
     }
 
     // Process all classes, structs, and interfaces
@@ -179,7 +201,7 @@ InheritanceExtractor::extract_and_populate(const index::InvertedIndex& index,
                 };
 
                 if (auto match = resolve_target_class(target_name, elem.file_id,
-                                                      elem.element.parent_context, lookup_table)) {
+                                                      elem.element.parent_context, class_index)) {
                     res.target_element_id = *match;
                     res.is_resolved = true;
                     graph.add_relationship(id, *match, kind);

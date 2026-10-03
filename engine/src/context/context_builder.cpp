@@ -173,7 +173,13 @@ ContextPackage ContextBuilder::build(const evidence::EvidenceBundle& bundle) con
         const std::string symbol_name =
             elem.name.empty() ? item.file_path().filename().string() : elem.name;
 
-        item_ss << "## Result " << (i + 1) << ": `" << symbol_name << "`\n";
+        if (item.is_expanded_relationship) {
+            item_ss << "## Supporting Evidence (Expanded via " << item.expansion_direction
+                    << " " << item.expansion_relationship_type << " from `"
+                    << item.expansion_seed_name << "`): `" << symbol_name << "`\n";
+        } else {
+            item_ss << "## Result " << (i + 1) << ": `" << symbol_name << "`\n";
+        }
 
         if (options_.include_metadata) {
             item_ss << "- **Kind**: " << parser::to_string(elem.kind) << "\n";

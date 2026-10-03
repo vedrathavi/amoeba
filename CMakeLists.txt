@@ -250,6 +250,7 @@ add_library(amoeba_engine
     engine/src/graph/incremental_graph_updater.cpp
     engine/src/graph/graph_query_service.cpp
     engine/src/graph/relationship_evidence_resolver.cpp
+    engine/src/graph/relationship_expander.cpp
     engine/src/search/relationship_aware_search.cpp
     engine/src/semantic/similarity.cpp
     engine/src/semantic/semantic_document.cpp
@@ -384,6 +385,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/graph/incremental_graph_updater_test.cpp
         engine/tests/graph/graph_query_service_test.cpp
         engine/tests/graph/relationship_evidence_resolver_test.cpp
+        engine/tests/graph/relationship_expander_test.cpp
         engine/tests/search/relationship_aware_search_test.cpp
         engine/tests/audit/phase5_audit_validation_test.cpp
         engine/tests/semantic/similarity_test.cpp
@@ -428,6 +430,12 @@ if(AMOEBA_BUILD_TESTS)
     )
 
     target_compile_features(amoeba_engine_tests PRIVATE cxx_std_20)
+
+    if(MSVC)
+        target_link_options(amoeba_engine_tests PRIVATE /STACK:67108864)
+    else()
+        target_link_options(amoeba_engine_tests PRIVATE -Wl,--stack,67108864)
+    endif()
 
     include(GoogleTest)
     gtest_discover_tests(amoeba_engine_tests)
@@ -540,5 +548,50 @@ else()
     target_compile_options(amoeba_lifecycle_benchmark PRIVATE -Wall -Wextra -Wpedantic)
     target_link_options(amoeba_lifecycle_benchmark PRIVATE -Wl,--stack,67108864)
 endif()
+
+# -----------------------------------------------------------------------------
+# 9. amoeba_accuracy_investigation (Phase 8.2.8 Forensic Accuracy & Evidence Tool)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_accuracy_investigation
+    benchmarks/repoprobe_v1/accuracy_investigation_main.cpp
+)
+
+target_link_libraries(amoeba_accuracy_investigation
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_accuracy_investigation PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_accuracy_investigation PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_accuracy_investigation PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_accuracy_investigation PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_accuracy_investigation PRIVATE -Wl,--stack,67108864)
+endif()
+
+# -----------------------------------------------------------------------------
+# 10. amoeba_expansion_benchmark (Phase 8.2.9 Bounded Expansion Benchmark)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_expansion_benchmark
+    benchmarks/repoprobe_v1/expansion_benchmark_main.cpp
+)
+
+target_link_libraries(amoeba_expansion_benchmark
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_expansion_benchmark PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_expansion_benchmark PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_expansion_benchmark PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_expansion_benchmark PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_expansion_benchmark PRIVATE -Wl,--stack,67108864)
+endif()
+
 
 

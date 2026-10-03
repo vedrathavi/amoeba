@@ -119,10 +119,18 @@ struct FileLookupTarget {
     std::string parent_dir;
 };
 
+struct FileLookupIndex {
+    std::vector<FileLookupTarget> lookup_table;
+    std::unordered_map<std::string, const FileLookupTarget*> by_generic_path;
+    std::unordered_map<std::string, const FileLookupTarget*> by_filename;
+    std::unordered_map<std::string, const FileLookupTarget*> by_stem;
+    std::unordered_map<std::string, const FileLookupTarget*> by_parent_dir;
+};
+
 std::optional<FileLookupTarget>
 find_matching_file(const std::filesystem::path& source_file_path, const std::string& clean_import,
-                   const std::vector<FileLookupTarget>& lookup_table) {
-    if (clean_import.empty() || lookup_table.empty()) {
+                   const FileLookupIndex& file_index) {
+    if (clean_import.empty() || file_index.lookup_table.empty()) {
         return std::nullopt;
     }
 
@@ -140,41 +148,23 @@ find_matching_file(const std::filesystem::path& source_file_path, const std::str
 
         for (const auto& ext : kExtensions) {
             std::string candidate_with_ext = resolved_candidate + ext;
-            for (const auto& entry : lookup_table) {
-                if (entry.generic_path == candidate_with_ext ||
-                    entry.generic_path.ends_with("/" + candidate_with_ext) ||
-                    entry.path.lexically_normal().generic_string() == candidate_with_ext) {
-                    return entry;
-                }
+            if (auto it = file_index.by_generic_path.find(candidate_with_ext); it != file_index.by_generic_path.end()) {
+                return *it->second;
             }
         }
     }
 
-    // 2. Exact or suffix path match (e.g., "amoeba/scanner/repository_scanner.hpp")
-    for (const auto& entry : lookup_table) {
-        if (entry.generic_path == target || entry.generic_path.ends_with("/" + target)) {
-            return entry;
-        }
+    // 2. Exact path match (e.g., "amoeba/scanner/repository_scanner.hpp")
+    if (auto it = file_index.by_generic_path.find(target); it != file_index.by_generic_path.end()) {
+        return *it->second;
     }
 
-    // 3. Package / folder prefix match (e.g., Go "pkg/logger" matching "pkg/logger/logger.go")
-    for (const auto& entry : lookup_table) {
-        if (entry.parent_dir == target || entry.parent_dir.ends_with("/" + target) ||
-            entry.generic_path.starts_with(target + "/")) {
-            return entry;
-        }
+    // 3. Filename exact match (e.g., "repository_scanner.hpp" or "service.py")
+    if (auto it = file_index.by_filename.find(target); it != file_index.by_filename.end()) {
+        return *it->second;
     }
 
-    // 4. Filename exact match (e.g., "repository_scanner.hpp" or "service.py")
-    for (const auto& entry : lookup_table) {
-        if (entry.filename == target) {
-            return entry;
-        }
-    }
-
-    // 5. Stem/module name match for languages without file extensions in imports (Python, Java, Go,
-    // Rust) E.g. "import service" -> service.py E.g. "import com.example.UserService" ->
-    // UserService.java
+    // 4. Stem/module name match for languages without file extensions in imports
     std::string module_stem = target;
     if (auto last_dot = module_stem.rfind('.'); last_dot != std::string::npos) {
         module_stem = module_stem.substr(last_dot + 1);
@@ -187,10 +177,23 @@ find_matching_file(const std::filesystem::path& source_file_path, const std::str
     }
 
     if (!module_stem.empty()) {
-        for (const auto& entry : lookup_table) {
-            if (entry.stem == module_stem) {
-                return entry;
-            }
+        if (auto it = file_index.by_stem.find(module_stem); it != file_index.by_stem.end()) {
+            return *it->second;
+        }
+    }
+
+    // 5. Suffix path match fallback
+    for (const auto& entry : file_index.lookup_table) {
+        if (entry.generic_path.ends_with("/" + target)) {
+            return entry;
+        }
+    }
+
+    // 6. Package / folder prefix match
+    for (const auto& entry : file_index.lookup_table) {
+        if (entry.parent_dir == target || entry.parent_dir.ends_with("/" + target) ||
+            entry.generic_path.starts_with(target + "/")) {
+            return entry;
         }
     }
 
@@ -208,8 +211,8 @@ ImportExtractionResult ImportExtractor::extract_and_populate(const index::Invert
     }
 
     // Build file lookup table
-    std::vector<FileLookupTarget> lookup_table;
-    lookup_table.reserve(index.file_count());
+    FileLookupIndex file_index;
+    file_index.lookup_table.reserve(index.file_count());
 
     // Map file_id to its first/primary ElementId
     std::unordered_map<index::FileId, ElementId> file_primary_elem;
@@ -225,7 +228,7 @@ ImportExtractionResult ImportExtractor::extract_and_populate(const index::Invert
         const auto& file = index.get_file(fid);
         ElementId primary_elem = file_primary_elem.contains(fid) ? file_primary_elem[fid] : 0;
 
-        lookup_table.push_back(FileLookupTarget{
+        file_index.lookup_table.push_back(FileLookupTarget{
             .file_id = fid,
             .primary_element_id = primary_elem,
             .path = file.file_path,
@@ -234,6 +237,13 @@ ImportExtractionResult ImportExtractor::extract_and_populate(const index::Invert
             .stem = file.file_path.stem().generic_string(),
             .parent_dir = file.file_path.parent_path().generic_string(),
         });
+    }
+
+    for (const auto& entry : file_index.lookup_table) {
+        file_index.by_generic_path[entry.generic_path] = &entry;
+        file_index.by_filename[entry.filename] = &entry;
+        file_index.by_stem[entry.stem] = &entry;
+        file_index.by_parent_dir[entry.parent_dir] = &entry;
     }
 
     // Process all Include/Import elements
@@ -260,7 +270,7 @@ ImportExtractionResult ImportExtractor::extract_and_populate(const index::Invert
             .is_resolved = false,
         };
 
-        if (auto match = find_matching_file(source_file.file_path, clean_target, lookup_table)) {
+        if (auto match = find_matching_file(source_file.file_path, clean_target, file_index)) {
             res.target_element_id = match->primary_element_id;
             res.target_file_id = match->file_id;
             res.resolved_file_path = match->path;

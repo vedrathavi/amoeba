@@ -83,27 +83,37 @@ ParsedCallTarget parse_call_target(std::string_view raw) {
     return result;
 }
 
+struct DeclarationIndex {
+    std::vector<DeclarationInfo> all_declarations;
+    std::unordered_map<ElementId, DeclarationInfo> by_id;
+    std::unordered_map<index::FileId, std::vector<const DeclarationInfo*>> by_file;
+    std::unordered_map<std::string, std::vector<const DeclarationInfo*>> by_name;
+};
+
 ElementId find_enclosing_caller(const parser::SourceRange& call_loc, index::FileId file_id,
-                                const std::vector<DeclarationInfo>& declarations,
+                                const DeclarationIndex& decl_index,
                                 ElementId fallback_id) {
     ElementId best_match = fallback_id;
     uint32_t min_line_span = UINT32_MAX;
 
-    for (const auto& decl : declarations) {
-        if (decl.file_id != file_id)
-            continue;
-        if (decl.kind != parser::ElementKind::Function &&
-            decl.kind != parser::ElementKind::Method &&
-            decl.kind != parser::ElementKind::Component && decl.kind != parser::ElementKind::Hook) {
+    auto it = decl_index.by_file.find(file_id);
+    if (it == decl_index.by_file.end()) {
+        return fallback_id;
+    }
+
+    for (const auto* decl : it->second) {
+        if (decl->kind != parser::ElementKind::Function &&
+            decl->kind != parser::ElementKind::Method &&
+            decl->kind != parser::ElementKind::Component && decl->kind != parser::ElementKind::Hook) {
             continue;
         }
 
-        if (decl.location.start.line <= call_loc.start.line &&
-            decl.location.end.line >= call_loc.end.line) {
-            uint32_t span = decl.location.end.line - decl.location.start.line;
+        if (decl->location.start.line <= call_loc.start.line &&
+            decl->location.end.line >= call_loc.end.line) {
+            uint32_t span = decl->location.end.line - decl->location.start.line;
             if (span < min_line_span) {
                 min_line_span = span;
-                best_match = decl.element_id;
+                best_match = decl->element_id;
             }
         }
     }
@@ -118,7 +128,7 @@ struct MatchResult {
 };
 
 MatchResult resolve_call_layered(const ParsedCallTarget& target, const DeclarationInfo& caller_info,
-                                 const std::vector<DeclarationInfo>& declarations,
+                                 const DeclarationIndex& decl_index,
                                  const std::unordered_set<index::FileId>& imported_file_ids) {
 
     if (target.base_name.empty()) {
@@ -136,14 +146,24 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
         };
     }
 
+    auto name_it = decl_index.by_name.find(target.base_name);
+    if (name_it == decl_index.by_name.end() || name_it->second.empty()) {
+        return MatchResult{
+            .target_id = std::nullopt,
+            .status = ResolutionStatus::Unresolved,
+            .reason = "unresolved_external_or_stdlib",
+        };
+    }
+
+    const auto& name_matches = name_it->second;
+
     // 2. Enclosing class / method scope
     if (!caller_info.parent_context.empty()) {
         std::vector<ElementId> class_matches;
-        for (const auto& decl : declarations) {
-            if (decl.file_id == caller_info.file_id &&
-                decl.parent_context == caller_info.parent_context &&
-                decl.name == target.base_name) {
-                class_matches.push_back(decl.element_id);
+        for (const auto* decl : name_matches) {
+            if (decl->file_id == caller_info.file_id &&
+                decl->parent_context == caller_info.parent_context) {
+                class_matches.push_back(decl->element_id);
             }
         }
         if (class_matches.size() == 1) {
@@ -166,16 +186,16 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
     // 3. Same-file declarations
     {
         std::vector<const DeclarationInfo*> file_matches;
-        for (const auto& decl : declarations) {
-            if (decl.file_id == caller_info.file_id && decl.name == target.base_name) {
+        for (const auto* decl : name_matches) {
+            if (decl->file_id == caller_info.file_id) {
                 if (!target.qualifier.empty() && !target.is_self_or_this) {
-                    if (decl.parent_context != target.qualifier &&
-                        !decl.parent_context.ends_with("::" + target.qualifier) &&
-                        !decl.parent_context.ends_with("." + target.qualifier)) {
+                    if (decl->parent_context != target.qualifier &&
+                        !decl->parent_context.ends_with("::" + target.qualifier) &&
+                        !decl->parent_context.ends_with("." + target.qualifier)) {
                         continue;
                     }
                 }
-                file_matches.push_back(&decl);
+                file_matches.push_back(decl);
             }
         }
         if (file_matches.size() == 1) {
@@ -225,12 +245,11 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
     // 4. Namespace / Qualified Context
     if (!target.qualifier.empty() && !target.is_self_or_this) {
         std::vector<ElementId> qualified_matches;
-        for (const auto& decl : declarations) {
-            if (decl.name == target.base_name &&
-                (decl.parent_context == target.qualifier ||
-                 decl.parent_context.ends_with("::" + target.qualifier) ||
-                 decl.parent_context.ends_with("." + target.qualifier))) {
-                qualified_matches.push_back(decl.element_id);
+        for (const auto* decl : name_matches) {
+            if (decl->parent_context == target.qualifier ||
+                decl->parent_context.ends_with("::" + target.qualifier) ||
+                decl->parent_context.ends_with("." + target.qualifier)) {
+                qualified_matches.push_back(decl->element_id);
             }
         }
         if (qualified_matches.size() == 1) {
@@ -252,10 +271,9 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
 
     if (!caller_info.parent_context.empty()) {
         std::vector<ElementId> ns_matches;
-        for (const auto& decl : declarations) {
-            if (decl.name == target.base_name &&
-                decl.parent_context == caller_info.parent_context) {
-                ns_matches.push_back(decl.element_id);
+        for (const auto* decl : name_matches) {
+            if (decl->parent_context == caller_info.parent_context) {
+                ns_matches.push_back(decl->element_id);
             }
         }
         if (ns_matches.size() == 1) {
@@ -277,16 +295,16 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
     // 5. Imported symbols
     if (!imported_file_ids.empty()) {
         std::vector<ElementId> import_matches;
-        for (const auto& decl : declarations) {
-            if (imported_file_ids.contains(decl.file_id) && decl.name == target.base_name) {
+        for (const auto* decl : name_matches) {
+            if (imported_file_ids.contains(decl->file_id)) {
                 if (!target.qualifier.empty() && !target.is_self_or_this) {
-                    if (decl.parent_context != target.qualifier &&
-                        !decl.parent_context.ends_with("::" + target.qualifier) &&
-                        !decl.parent_context.ends_with("." + target.qualifier)) {
+                    if (decl->parent_context != target.qualifier &&
+                        !decl->parent_context.ends_with("::" + target.qualifier) &&
+                        !decl->parent_context.ends_with("." + target.qualifier)) {
                         continue;
                     }
                 }
-                import_matches.push_back(decl.element_id);
+                import_matches.push_back(decl->element_id);
             }
         }
         if (import_matches.size() == 1) {
@@ -308,25 +326,19 @@ MatchResult resolve_call_layered(const ParsedCallTarget& target, const Declarati
 
     // 6. Unique repository-wide declaration
     {
-        std::vector<ElementId> repo_matches;
-        for (const auto& decl : declarations) {
-            if (decl.name == target.base_name) {
-                repo_matches.push_back(decl.element_id);
-            }
-        }
-        if (repo_matches.size() == 1) {
+        if (name_matches.size() == 1) {
             return MatchResult{
-                .target_id = repo_matches.front(),
+                .target_id = name_matches.front()->element_id,
                 .status = ResolutionStatus::Resolved,
                 .reason = "unique_repo_declaration",
             };
         }
-        if (repo_matches.size() > 1) {
+        if (name_matches.size() > 1) {
             return MatchResult{
                 .target_id = std::nullopt,
                 .status = ResolutionStatus::Ambiguous,
                 .reason = "ambiguous_multiple_repo_declarations(" +
-                          std::to_string(repo_matches.size()) + ")",
+                          std::to_string(name_matches.size()) + ")",
             };
         }
     }
@@ -349,11 +361,9 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
         return result;
     }
 
-    // 1. Collect all indexed declarations
-    std::vector<DeclarationInfo> declarations;
-    declarations.reserve(index.element_count());
-
-    std::unordered_map<ElementId, DeclarationInfo> decl_by_id;
+    // 1. Collect and index all declarations
+    DeclarationIndex decl_index;
+    decl_index.all_declarations.reserve(index.element_count());
 
     for (ElementId id = 0; id < index.element_count(); ++id) {
         const auto& elem = index.get_element(id);
@@ -372,9 +382,14 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
                 .kind = elem.element.kind,
                 .location = elem.element.location,
             };
-            declarations.push_back(info);
-            decl_by_id[id] = info;
+            decl_index.all_declarations.push_back(info);
+            decl_index.by_id[id] = info;
         }
+    }
+
+    for (const auto& decl : decl_index.all_declarations) {
+        decl_index.by_file[decl.file_id].push_back(&decl);
+        decl_index.by_name[decl.name].push_back(&decl);
     }
 
     // 2. Pre-extract file imports to populate imported_file_ids mapping
@@ -405,7 +420,7 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
 
         // Find enclosing caller declaration
         ElementId caller_id =
-            find_enclosing_caller(elem.element.location, elem.file_id, declarations, id);
+            find_enclosing_caller(elem.element.location, elem.file_id, decl_index, id);
 
         DeclarationInfo caller_info{
             .element_id = caller_id,
@@ -416,7 +431,7 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
             .location = elem.element.location,
         };
 
-        if (auto it = decl_by_id.find(caller_id); it != decl_by_id.end()) {
+        if (auto it = decl_index.by_id.find(caller_id); it != decl_index.by_id.end()) {
             caller_info = it->second;
         }
 
@@ -425,7 +440,7 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
             is_call ? RelationshipKind::Calls : RelationshipKind::References;
 
         const auto& imported_set = file_imports[elem.file_id];
-        MatchResult match = resolve_call_layered(target, caller_info, declarations, imported_set);
+        MatchResult match = resolve_call_layered(target, caller_info, decl_index, imported_set);
 
         CallResolution resolution{
             .source_element_id = caller_id,
@@ -452,7 +467,6 @@ CallExtractionResult CallExtractor::extract_and_populate(const index::InvertedIn
 
         result.resolutions.push_back(std::move(resolution));
     }
-
     return result;
 }
 

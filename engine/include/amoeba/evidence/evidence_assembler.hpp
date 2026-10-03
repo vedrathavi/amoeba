@@ -2,6 +2,7 @@
 
 #include "amoeba/evidence/evidence_bundle.hpp"
 #include "amoeba/graph/relationship_evidence_resolver.hpp"
+#include "amoeba/graph/relationship_expander.hpp"
 #include "amoeba/retrieval/primary_search_result.hpp"
 #include "amoeba/source/source_snippet_reader.hpp"
 
@@ -25,8 +26,14 @@ struct EvidenceAssemblerOptions {
     /// Whether to extract source code snippets.
     bool include_source_snippets{true};
 
-    /// Whether to resolve direct graph relationships.
+    /// Whether to resolve direct graph relationships metadata.
     bool include_relationships{true};
+
+    /// Phase 8.2.9: Bounded typed relationship expansion configuration.
+    graph::ExpansionConfig expansion_config{};
+
+    /// Whether to perform bounded relationship expansion.
+    bool enable_expansion{false};
 };
 
 /**
@@ -36,14 +43,14 @@ struct EvidenceAssemblerOptions {
  * Orchestrates:
  *  - SourceSnippetReader (verbatim source code extraction)
  *  - SupportingEvidenceResolver / PrimarySearchResult (supporting AST elements)
- *  - RelationshipEvidenceResolver (bounded 1-hop graph relationships)
+ *  - RelationshipEvidenceResolver (direct 1-hop relationship metadata)
+ *  - RelationshipExpander (bounded typed 1-hop and 2-hop relationship expansion)
  *
  * Guarantees:
- *  - Deterministic ordering matching the input retrieval ranking.
+ *  - Deterministic ordering matching retrieval ranking + ranked expansions.
  *  - Complete data ownership in the returned EvidenceBundle.
- *  - Safe handling of missing source files, invalid ranges, or empty search results.
- *  - Zero mutation of input search results.
- *  - No recursive graph traversal, deep context budgeting, or prompt formatting.
+ *  - Full provenance tracing on every expanded evidence item.
+ *  - Strict unit and source character budgeting.
  */
 class EvidenceAssembler {
 public:
@@ -55,6 +62,10 @@ public:
 
     EvidenceAssembler(const source::SourceSnippetReader& snippet_reader,
                       const graph::RelationshipEvidenceResolver& relationship_resolver);
+
+    EvidenceAssembler(const source::SourceSnippetReader& snippet_reader,
+                      const graph::RelationshipEvidenceResolver& relationship_resolver,
+                      const graph::RelationshipExpander& relationship_expander);
 
     ~EvidenceAssembler() = default;
 
@@ -91,6 +102,7 @@ private:
     source::SourceSnippetReader default_snippet_reader_{};
     const source::SourceSnippetReader& snippet_reader_;
     const graph::RelationshipEvidenceResolver& relationship_resolver_;
+    const graph::RelationshipExpander* relationship_expander_{nullptr};
 };
 
 }  // namespace amoeba::evidence

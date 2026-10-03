@@ -1,0 +1,193 @@
+[
+  {
+    "question_id": "beszel-0",
+    "repository": "henrygd/beszel",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 65,
+    "useful_neighbors": 65,
+    "noisy_neighbors": 0,
+    "min_units_required": 3,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 2723,
+    "added_elements": 3,
+    "retrieval_ms": 324.248,
+    "base_sufficiency_ms": 10.1602,
+    "expansion_resolution_ms": 0.0365,
+    "expanded_sufficiency_ms": 32.3839,
+    "rel_kind_useful": {
+      "CALLS": 65
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> directoryIsWritable (data_dir.go)", "CALLS -> CleanUp (health.go)", "CALLS -> StartServer (server.go)", "CALLS -> TestStartServer (server_test.go)", "CALLS -> TestParseSingleKeyFromFile (server_test.go)", "CALLS -> downloadFile (main.go)", "CALLS -> update (ghupdate.go)", "CALLS -> GetOk (expirymap.go)", "CALLS -> GetByValue (expirymap.go)", "CALLS -> RemovebyValue (expirymap.go)", "CALLS -> cleanup (expirymap.go)", "CALLS -> TestExpiryMap_BasicOperations (expirymap_test.go)", "CALLS -> RemoveSystem (system_manager.go)", "CALLS -> New (expirymap.go)", "CALLS -> resolveRefreshError (smart.go)", "CALLS -> getToken (client.go)", "CALLS -> parseSmartForSata (smart.go)", "CALLS -> assertAttrValue (smart_test.go)", "CALLS -> NewSystem (system.go)", "CALLS -> AddSystem (system_manager.go)", "CALLS -> ContainersTableHead (containers-table.tsx)", "CALLS -> getContext (containers-table.tsx)", "CALLS -> AlertsHistoryDataTable (alerts-history-data-table.tsx)", "CALLS -> DisksTable (smart-table.tsx)", "CALLS -> DiskSheet (smart-table.tsx)", "CALLS -> SystemdTableHead (systemd-table.tsx)", "CALLS -> getContext (systemd-table.tsx)", "CALLS -> SystemsTableHead (systems-table.tsx)", "CALLS -> useMemo (systems-table.tsx)", "CALLS -> useMemo (systems-table.tsx)", "CALLS -> parseSmartOutput (smart.go)", "CALLS -> parseSemVer (chart-time-select.tsx)", "CALLS -> parseSemVer (cpu-sheet.tsx)", "CALLS -> useEffect (system.tsx)", "CALLS -> useEffect (system.tsx)", "CALLS -> useMemo (system.tsx)", "CALLS -> parseSemVer (system.tsx)", "CALLS -> parseSemVer (system.tsx)", "CALLS -> parseSemVer (system.tsx)", "CALLS -> cell (systems-table-columns.tsx)", "CALLS -> NewTestHub (hub.go)", "CALLS -> StartHub (hub.go)", "CALLS -> Initialize (system_manager.go)", "CALLS -> GetSystemManager (hub_test_helpers.go)", "CALLS -> CreateUser (hub.go)", "CALLS -> CreateRecord (hub.go)", "CALLS -> TestBatteryAlertLogic (alerts_battery_test.go)", "CALLS -> TestBatteryAlertNoBattery (alerts_battery_test.go)", "CALLS -> TestBatteryAlertAveragedSamples (alerts_battery_test.go)", "CALLS -> TestAlertSilencedOneTime (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedDaily (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedDailyMidnightCrossing (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedGlobal (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedSystemSpecific (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedMultiUser (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedWithActualAlert (alerts_quiet_hours_test.go)", "CALLS -> TestAlertSilencedNoWindows (alerts_quiet_hours_test.go)", "CALLS -> TestSmartDeviceAlert (alerts_smart_test.go)", "CALLS -> TestSmartDeviceAlertNoAlertOnNonPassedToFailed (alerts_smart_test.go)", "CALLS -> TestSmartDeviceAlertMultipleUsers (alerts_smart_test.go)", "CALLS -> TestSmartDeviceAlertWithoutModel (alerts_smart_test.go)", "CALLS -> TestStatusAlerts (alerts_test.go)", "CALLS -> TestAlertsHistory (alerts_test.go)", "CALLS -> TestResolveStatusAlerts (alerts_test.go)", "CALLS -> getCpuPreviousValues (docker.go)"]
+  },
+  {
+    "question_id": "beszel-1",
+    "repository": "henrygd/beszel",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 39,
+    "useful_neighbors": 39,
+    "noisy_neighbors": 0,
+    "min_units_required": 21,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 39512,
+    "added_elements": 21,
+    "retrieval_ms": 410.001,
+    "base_sufficiency_ms": 7.6639,
+    "expansion_resolution_ms": 0.0354,
+    "expanded_sufficiency_ms": 373.11,
+    "rel_kind_useful": {
+      "CALLS": 39
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> TestExpiryMap_GetByValue (expirymap_test.go)", "CALLS -> TestExpiryMap_GetByValue_Expiration (expirymap_test.go)", "CALLS -> TestExpiryMap_GetByValue_GenericTypes (expirymap_test.go)", "CALLS -> TestExpiryMap_ValueOperations_Integration (expirymap_test.go)", "CALLS -> getUniversalToken (hub.go)", "CALLS -> cleanup (expirymap.go)", "CALLS -> New (expirymap.go)", "CALLS -> StartServer (server.go)", "CALLS -> TestNewSensorConfigWithEnv (sensors_test.go)", "CALLS -> TestNewSensorConfig (sensors_test.go)", "CALLS -> getHubVersion (server.go)", "CALLS -> updateServiceStats (systemd.go)", "CALLS -> getServiceDetails (systemd.go)", "CALLS -> OnClose (ws.go)", "CALLS -> TestGetToken (client_test.go)", "CALLS -> directoryIsWritable (data_dir.go)", "CALLS -> CleanUp (health.go)", "CALLS -> TestStartServer (server_test.go)", "CALLS -> TestParseSingleKeyFromFile (server_test.go)", "CALLS -> downloadFile (main.go)", "CALLS -> update (ghupdate.go)", "CALLS -> GetOk (expirymap.go)", "CALLS -> TestExpiryMap_BasicOperations (expirymap_test.go)", "CALLS -> RemoveSystem (system_manager.go)", "CALLS -> compareSemVer (chart-time-select.tsx)", "CALLS -> compareSemVer (cpu-sheet.tsx)", "CALLS -> compareSemVer (system.tsx)", "CALLS -> compareSemVer (system.tsx)", "CALLS -> compareSemVer (system.tsx)", "CALLS -> calculateMemoryUsage (docker.go)", "CALLS -> CalculateCpuPercentLinux (container.go)", "CALLS -> IsConnected (ws.go)", "CALLS -> RequestSystemData (handlers.go)", "CALLS -> fetchDataFromAgent (system.go)", "CALLS -> TestExpiryMap_ZeroValues (expirymap_test.go)", "CALLS -> TestExpiryMap_Concurrent (expirymap_test.go)", "CALLS -> TestExpiryMap_RemoveValue (expirymap_test.go)", "CALLS -> TestExpiryMap_RemoveValue_GenericTypes (expirymap_test.go)", "CALLS -> TestExpiryMap_RemoveValue_WithExpiration (expirymap_test.go)"]
+  },
+  {
+    "question_id": "beszel-2",
+    "repository": "henrygd/beszel",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 22,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 21,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 690,
+    "added_elements": 1,
+    "retrieval_ms": 270.749,
+    "base_sufficiency_ms": 2.3216,
+    "expansion_resolution_ms": 0.0145,
+    "expanded_sufficiency_ms": 2.4281,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 21
+    },
+    "useful_descriptions": ["CALLS -> parseFilesystemEntry (disk.go)"]
+  },
+  {
+    "question_id": "beszel-3",
+    "repository": "henrygd/beszel",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 18,
+    "useful_neighbors": 18,
+    "noisy_neighbors": 0,
+    "min_units_required": 11,
+    "expansion_solves_sufficiency": true,
+    "added_source_chars": 8604,
+    "added_elements": 11,
+    "retrieval_ms": 260.55,
+    "base_sufficiency_ms": 3.1664,
+    "expansion_resolution_ms": 0.0131,
+    "expanded_sufficiency_ms": 48.1083,
+    "rel_kind_useful": {
+      "CALLS": 17,
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+
+    },
+    "useful_descriptions": ["CALLS -> NewAlertManager (alerts.go)", "CALLS -> NewUserManager (users.go)", "CALLS -> NewRecordManager (records.go)", "CALLS -> NewSystemManager (system_manager.go)", "CALLS -> GetEnv (hub.go)", "CALLS -> main (hub.go)", "CALLS -> createTestHub (agent_connect_test.go)", "CALLS -> NewTestHubWithConfig (hub.go)", "CALLS -> RemoveSystem (system_manager.go)", "CALLS -> createRecords (system.go)", "CALLS -> setDown (system.go)", "CALLS -> AddRecord (system_manager.go)", "CALLS -> fetchDataFromAgent (system.go)", "CALLS -> sendMessage (client.go)", "CALLS -> handleAuthChallenge (client.go)", "CALLS -> cn (utils.ts)", "CALLS -> getIndicatorColor (systems-table-columns.tsx)", "CONTAINS -> DiskCellWithMultiple (systems-table-columns.tsx)"]
+  },
+  {
+    "question_id": "beszel-5",
+    "repository": "henrygd/beszel",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 25,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 24,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 546,
+    "added_elements": 1,
+    "retrieval_ms": 263.279,
+    "base_sufficiency_ms": 1.6728,
+    "expansion_resolution_ms": 0.0177,
+    "expanded_sufficiency_ms": 1.4823,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 24
+    },
+    "useful_descriptions": ["CALLS -> Value (server_test.go)"]
+  },
+  {
+    "question_id": "amoeba-beszel-01",
+    "repository": "henrygd/beszel",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 32,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 32,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 270.556,
+    "base_sufficiency_ms": 0.1255,
+    "expansion_resolution_ms": 0.0167,
+    "expanded_sufficiency_ms": 0.0185,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 29,
+      "REFERENCES": 3
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-beszel-02",
+    "repository": "henrygd/beszel",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 14,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 14,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 359.563,
+    "base_sufficiency_ms": 0.1329,
+    "expansion_resolution_ms": 0.0112,
+    "expanded_sufficiency_ms": 0.0097,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 14
+    },
+    "useful_descriptions": []
+  }
+]

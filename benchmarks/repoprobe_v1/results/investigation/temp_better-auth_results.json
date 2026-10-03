@@ -1,0 +1,202 @@
+[
+  {
+    "question_id": "better-auth-0",
+    "repository": "better-auth/better-auth",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 4,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 4,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1208.77,
+    "base_sufficiency_ms": 3.8243,
+    "expansion_resolution_ms": 0.0201,
+    "expanded_sufficiency_ms": 0.0086,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CONTAINS": 4
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "better-auth-1",
+    "repository": "better-auth/better-auth",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 53,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 53,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1179.68,
+    "base_sufficiency_ms": 2.3821,
+    "expansion_resolution_ms": 0.0353,
+    "expanded_sufficiency_ms": 0.023,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 43,
+      "IMPORTS": 1,
+      "REFERENCES": 9
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "better-auth-2",
+    "repository": "better-auth/better-auth",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 9,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 8,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 12889,
+    "added_elements": 1,
+    "retrieval_ms": 1211.43,
+    "base_sufficiency_ms": 0.343,
+    "expansion_resolution_ms": 0.0176,
+    "expanded_sufficiency_ms": 0.5865,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 2,
+      "CONTAINS": 5,
+      "IMPLEMENTS": 1
+    },
+    "useful_descriptions": ["CALLS -> acsEndpoint (sso.ts)"]
+  },
+  {
+    "question_id": "better-auth-3",
+    "repository": "better-auth/better-auth",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 28,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 28,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 156.667,
+    "base_sufficiency_ms": 0.3224,
+    "expansion_resolution_ms": 0.0183,
+    "expanded_sufficiency_ms": 0.0144,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 21,
+      "CONTAINS": 3,
+      "REFERENCES": 4
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "better-auth-4",
+    "repository": "better-auth/better-auth",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 9,
+    "useful_neighbors": 6,
+    "noisy_neighbors": 3,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 3693,
+    "added_elements": 6,
+    "retrieval_ms": 1366.29,
+    "base_sufficiency_ms": 3.7268,
+    "expansion_resolution_ms": 0.0088,
+    "expanded_sufficiency_ms": 30.3385,
+    "rel_kind_useful": {
+      "CALLS": 5,
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 3
+    },
+    "useful_descriptions": ["CONTAINS -> WindowBroadcastChannel (broadcast-channel.ts)", "CALLS -> okta (generic-oauth.test.ts)", "CALLS -> okta (generic-oauth.test.ts)", "CALLS -> okta (generic-oauth.test.ts)", "CALLS -> okta (generic-oauth.test.ts)", "CALLS -> okta (generic-oauth.test.ts)"]
+  },
+  {
+    "question_id": "amoeba-better-auth-01",
+    "repository": "better-auth/better-auth",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 19,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 19,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1206.16,
+    "base_sufficiency_ms": 0.1916,
+    "expansion_resolution_ms": 0.0134,
+    "expanded_sufficiency_ms": 0.0107,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 14,
+      "CONTAINS": 2,
+      "IMPORTS": 2,
+      "REFERENCES": 1
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "amoeba-better-auth-02",
+    "repository": "better-auth/better-auth",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 24,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 24,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 1150.72,
+    "base_sufficiency_ms": 0.2144,
+    "expansion_resolution_ms": 0.02,
+    "expanded_sufficiency_ms": 0.0149,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 22,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": []
+  }
+]

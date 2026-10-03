@@ -1,0 +1,1012 @@
+[
+  {
+    "question_id": "ducklake-1",
+    "repository": "duckdb/ducklake",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/include/storage/ducklake_insert.hpp",
+      "src/storage/ducklake_insert.cpp",
+      "src/include/storage/ducklake_flush_data.hpp"
+    ],
+    "expected_symbols": [
+      "DuckLakeInsert",
+      "DuckLakeFlushData",
+      "DuckLakeTableEntry"
+    ],
+    "expected_relationships": [
+      "DuckLakeInsert -> DuckLakeFlushData"
+    ],
+    "expected_concepts": [
+      "JDBC dataframe write",
+      "Parquet file generation per row/batch",
+      "Transaction flush"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/functions/ducklake_add_data_files.cpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_stats.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/storage/ducklake_metadata_manager.hpp",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/ducklake/src/include/common/index.hpp"
+    ],
+    "retrieved_symbols": [
+      "AddFileToTable",
+      "MacroIndex",
+      "table_size_bytes",
+      "GetFilesForCleanup",
+      "IsValid"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 622.05,
+    "retrieval_latency_ms": 610.636,
+    "sufficiency_latency_ms": 8.5216,
+    "reasoning_latency_ms": 0.021,
+    "total_latency_ms": 622.05,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "adk-python-5",
+    "repository": "google/adk-python",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/google/adk/agents/mcp_instruction_provider.py",
+      "src/google/adk/agents/llm_agent.py"
+    ],
+    "expected_symbols": [
+      "McpInstructionProvider",
+      "LlmAgent"
+    ],
+    "expected_relationships": [
+      "LlmAgent -> McpInstructionProvider"
+    ],
+    "expected_concepts": [
+      "System prompt injection",
+      "Dynamic instruction rendering",
+      "Context composition"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/llm_agent.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/evaluation/_eval_sets_manager_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/config_agent_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/utils/instructions_utils.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/adk-python/src/google/adk/agents/sequential_agent.py"
+    ],
+    "retrieved_symbols": [
+      "_get_subagent_to_resume",
+      "add_eval_case_to_eval_set",
+      "resolve_fully_qualified_name",
+      "_is_valid_state_name",
+      "_get_start_index"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 11788.1,
+    "retrieval_latency_ms": 11286.6,
+    "sufficiency_latency_ms": 461.426,
+    "reasoning_latency_ms": 0.0518,
+    "total_latency_ms": 11788.1,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-0",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/api/routes/session.ts",
+      "packages/better-auth/src/cookies/index.ts"
+    ],
+    "expected_symbols": [
+      "getSession",
+      "parseCookies"
+    ],
+    "expected_relationships": [
+      "getSession -> parseCookies"
+    ],
+    "expected_concepts": [
+      "Session token validation",
+      "Multi-cookie handling",
+      "API endpoint headers"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/adapters/kysely-adapter/bun-sqlite-dialect.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/haveibeenpwned/index.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/oidc-provider/oidc.test.ts"
+    ],
+    "retrieved_symbols": [
+      "BunSqliteQueryCompiler",
+      "init",
+      "onError",
+      "onError",
+      "onError"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5325.82,
+    "retrieval_latency_ms": 5306.97,
+    "sufficiency_latency_ms": 7.7114,
+    "reasoning_latency_ms": 0.0175,
+    "total_latency_ms": 5325.82,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-1",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/better-auth/src/plugins/index.ts",
+      "docs/content/docs/plugins/passkey.mdx"
+    ],
+    "expected_symbols": [
+      "passkey",
+      "BetterAuthPlugin"
+    ],
+    "expected_relationships": [
+      "betterAuth -> passkeyPlugin"
+    ],
+    "expected_concepts": [
+      "Passkey credential provider identification",
+      "WebAuthn challenge verification",
+      "Plugin options"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/core/src/db/adapter/get-field-name.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/api-method.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/cli/src/utils/format-ms.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/linking/org-assignment.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/two-factor/client.ts"
+    ],
+    "retrieved_symbols": [
+      "getFieldName",
+      "APIMethod",
+      "formatMilliseconds",
+      "AssignOrganizationByDomainOptions",
+      "twoFactorClient"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 4854.12,
+    "retrieval_latency_ms": 4841.67,
+    "sufficiency_latency_ms": 9.541,
+    "reasoning_latency_ms": 0.0176,
+    "total_latency_ms": 4854.12,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "better-auth-3",
+    "repository": "better-auth/better-auth",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "packages/core/src/social-providers/apple.ts",
+      "packages/better-auth/src/oauth2/index.ts"
+    ],
+    "expected_symbols": [
+      "apple",
+      "socialProviders"
+    ],
+    "expected_relationships": [
+      "betterAuth -> appleProvider"
+    ],
+    "expected_concepts": [
+      "Sign In with Apple web vs native client IDs",
+      "JWT secret generation",
+      "Bundle ID configuration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/line.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/docs/components/landing/hero.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/demo/nextjs/components/ui/carousel.tsx",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/sso/src/saml/algorithms.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/better-auth/packages/better-auth/src/plugins/generic-oauth/providers/keycloak.ts"
+    ],
+    "retrieved_symbols": [
+      "line",
+      "TrafficLightsIcon",
+      "Carousel",
+      "validateSignatureAlgorithm",
+      "keycloak"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 765.541,
+    "retrieval_latency_ms": 758.803,
+    "sufficiency_latency_ms": 1.6912,
+    "reasoning_latency_ms": 0.0104,
+    "total_latency_ms": 765.541,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "dokploy-5",
+    "repository": "Dokploy/dokploy",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "apps/dokploy/server/api/routers/domain.ts",
+      "packages/server/src/setup/traefik-setup.ts"
+    ],
+    "expected_symbols": [
+      "generateCertificate",
+      "domainRouter"
+    ],
+    "expected_relationships": [
+      "domainRouter -> generateCertificate"
+    ],
+    "expected_concepts": [
+      "Let's Encrypt automated TLS certificates",
+      "ACME challenge",
+      "Traefik certificate resolver"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/certificate.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/templates/index.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/services/github.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/packages/server/src/utils/traefik/file-types.ts",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/dokploy/apps/monitoring/database/cleanup.go"
+    ],
+    "retrieved_symbols": [
+      "createCertificateFiles",
+      "generateBase64",
+      "getIssueComment",
+      "HttpRouter",
+      "CleanupMetrics"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 5148.62,
+    "retrieval_latency_ms": 5121.34,
+    "sufficiency_latency_ms": 20.4959,
+    "reasoning_latency_ms": 0.0135,
+    "total_latency_ms": 5148.62,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "pkl-1",
+    "repository": "apple/pkl",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "pkl-core/src/main/java/org/pkl/core/EvaluatorImpl.java",
+      "stdlib/base.pkl"
+    ],
+    "expected_symbols": [
+      "EvaluatorImpl",
+      "Dynamic"
+    ],
+    "expected_relationships": [
+      "EvaluatorImpl -> ModuleNode"
+    ],
+    "expected_concepts": [
+      "Pkl mixin application",
+      "Object inheritance and amend syntax",
+      "Code generator templates"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/ast/member/DefaultPropertyBodyNode.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/module/ModulePathResolver.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/util/paguro/RrbTree.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/runtime/VmMapping.java",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/pkl/pkl-core/src/main/java/org/pkl/core/stdlib/base/ListingNodes.java"
+    ],
+    "retrieved_symbols": [
+      "DefaultPropertyBodyNode",
+      "populateFileCache",
+      "subNodeAdjustedIndex",
+      "EmptyHolder",
+      "toList"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 64684.8,
+    "retrieval_latency_ms": 64636.2,
+    "sufficiency_latency_ms": 25.5531,
+    "reasoning_latency_ms": 0.2528,
+    "total_latency_ms": 64684.8,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "beszel-3",
+    "repository": "henrygd/beszel",
+    "source": "repoprobe",
+    "taxonomy": "Business Logic",
+    "difficulty": "Medium",
+    "expected_files": [
+      "agent/client.go",
+      "agent/connection_manager.go"
+    ],
+    "expected_symbols": [
+      "Client",
+      "ConnectionManager"
+    ],
+    "expected_relationships": [
+      "ConnectionManager -> Client.Connect"
+    ],
+    "expected_concepts": [
+      "Reverse proxy / tunnel through Pangolin",
+      "SSH / WebSocket agent-to-hub connection",
+      "TLS certificate verification"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/hub.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/agent/client.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/alerts/alerts_api.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system.go",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/beszel/internal/hub/systems/system_manager.go"
+    ],
+    "retrieved_symbols": [
+      "NewHub",
+      "OnOpen",
+      "UpsertUserAlerts",
+      "getRecord",
+      "onRecordAfterCreateSuccess"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1189.92,
+    "retrieval_latency_ms": 1174.11,
+    "sufficiency_latency_ms": 11.7692,
+    "reasoning_latency_ms": 0.0177,
+    "total_latency_ms": 1189.92,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-0",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/span.rs",
+      "src/signed_duration.rs"
+    ],
+    "expected_symbols": [
+      "Span",
+      "SignedDuration::MIN",
+      "SignedDuration::MAX"
+    ],
+    "expected_relationships": [
+      "Span -> SignedDuration"
+    ],
+    "expected_concepts": [
+      "Multi-unit calendar representation precludes single total MIN/MAX constant",
+      "Relative calendar field units vs fixed duration",
+      "Overflow handling"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/lib.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/span.rs"
+    ],
+    "retrieved_symbols": [
+      "sign_unchecked",
+      "maximally_long_span",
+      "relative",
+      "relative",
+      "imp"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 438.563,
+    "retrieval_latency_ms": 423.312,
+    "sufficiency_latency_ms": 3.1933,
+    "reasoning_latency_ms": 0.0101,
+    "total_latency_ms": 438.563,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-1",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/zoned.rs",
+      "src/fmt/rfc9557.rs",
+      "src/fmt/rfc2822.rs"
+    ],
+    "expected_symbols": [
+      "Zoned::strftime",
+      "DateTimePrinter",
+      "Zoned::datetime"
+    ],
+    "expected_relationships": [
+      "Zoned.strftime -> DateTimePrinter"
+    ],
+    "expected_concepts": [
+      "RFC 3339 offset formatting without time zone bracket annotation (`%FT%T%:z` / `.timestamp().to_string()`)",
+      "Zoned vs Timestamp representation",
+      "RFC 9557 extension suppression"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/zoned.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/zoned.rs"
+    ],
+    "retrieved_symbols": [
+      "display_with_offset",
+      "from_parts",
+      "series",
+      "new",
+      "into_parts"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1157.44,
+    "retrieval_latency_ms": 1134.29,
+    "sufficiency_latency_ms": 12.6527,
+    "reasoning_latency_ms": 0.0164,
+    "total_latency_ms": 1157.44,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-2",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/civil/date.rs",
+      "src/fmt/temporal/parser.rs"
+    ],
+    "expected_symbols": [
+      "Date::from_str",
+      "DateParser"
+    ],
+    "expected_relationships": [
+      "DateParser -> Date"
+    ],
+    "expected_concepts": [
+      "BCE / negative astronomical date parsing (`-0004-01-01`)",
+      "ISO 8601 expanded 6-digit year syntax",
+      "Astronomical year zero numbering"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/temporal/printer.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/signed_duration.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/strtime/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/tz/timezone.rs"
+    ],
+    "retrieved_symbols": [
+      "print_timestamp_buf",
+      "new",
+      "timestamp_until",
+      "set_timestamp",
+      "preceding"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": false,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1659.42,
+    "retrieval_latency_ms": 1632.79,
+    "sufficiency_latency_ms": 12.1541,
+    "reasoning_latency_ms": 0.0268,
+    "total_latency_ms": 1659.42,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-3",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/timestamp.rs",
+      "src/signed_duration.rs"
+    ],
+    "expected_symbols": [
+      "Timestamp::round",
+      "TimestampRound",
+      "SignedDuration"
+    ],
+    "expected_relationships": [
+      "Timestamp.round -> TimestampRound"
+    ],
+    "expected_concepts": [
+      "Timestamp rounding to nearest duration unit",
+      "Increment parameter in rounding options",
+      "Tie-breaking modes (`HalfExpand`, `Floor`, `Ceil`)"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/util/round/mode.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/util/round/mode.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/datetime.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/timestamp.rs"
+    ],
+    "retrieved_symbols": [
+      "Timestamp",
+      "round_to_increment_temporal_table_half_expand",
+      "round_to_increment_temporal_table_expand",
+      "mode",
+      "new_ranged"
+    ],
+    "retrieval_hit_at_1": true,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1098.28,
+    "retrieval_latency_ms": 1086.06,
+    "sufficiency_latency_ms": 3.9933,
+    "reasoning_latency_ms": 0.0129,
+    "total_latency_ms": 1098.28,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "jiff-4",
+    "repository": "BurntSushi/jiff",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/civil/date.rs",
+      "src/civil/iso_week_date.rs"
+    ],
+    "expected_symbols": [
+      "Date::iso_week_date",
+      "ISOWeekDate",
+      "Date::weekday"
+    ],
+    "expected_relationships": [
+      "Date.iso_week_date -> ISOWeekDate"
+    ],
+    "expected_concepts": [
+      "ISO 8601 week number computation via `date.iso_week_date().week()`",
+      "Explicit struct separation (`ISOWeekDate`) instead of direct accessor",
+      "Weekday computation"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/datetime.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/date.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/fmt/offset.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/tests/tc39_262/civil/datetime/round.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/jiff/src/civil/iso_week_date.rs"
+    ],
+    "retrieved_symbols": [
+      "day_of_year_no_leap",
+      "day_of_year_no_leap",
+      "colon",
+      "roundingincrement_does_not_divide",
+      "new"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1823.54,
+    "retrieval_latency_ms": 1789.67,
+    "sufficiency_latency_ms": 27.0612,
+    "reasoning_latency_ms": 0.0253,
+    "total_latency_ms": 1823.54,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "walker-2",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/config.rs",
+      "src/providers/clipboard.rs"
+    ],
+    "expected_symbols": [
+      "ClipboardConfig",
+      "ClipboardProvider"
+    ],
+    "expected_relationships": [
+      "ClipboardConfig -> ClipboardProvider"
+    ],
+    "expected_concepts": [
+      "Clipboard `max_entries` configuration key in `config.toml`",
+      "History size limit",
+      "Cliphist integration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/theme/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/ui/window.rs"
+    ],
+    "retrieved_symbols": [
+      "select_down",
+      "select_page_up",
+      "setup_css_provider",
+      "Clipboard",
+      "select_up"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 282.697,
+    "retrieval_latency_ms": 268.114,
+    "sufficiency_latency_ms": 9.1523,
+    "reasoning_latency_ms": 0.013,
+    "total_latency_ms": 282.697,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "walker-3",
+    "repository": "abenz1267/walker",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "src/config.rs",
+      "src/providers/files.rs"
+    ],
+    "expected_symbols": [
+      "FilesConfig",
+      "FilesProvider"
+    ],
+    "expected_relationships": [
+      "FilesConfig -> FilesProvider"
+    ],
+    "expected_concepts": [
+      "Case-insensitive file search option",
+      "Fuzzy scoring matcher case-sensitivity flag",
+      "Nucleo matcher configuration"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/mod.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/config.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/main.rs",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/walker/src/providers/clipboard.rs"
+    ],
+    "retrieved_symbols": [
+      "get_keybind_hint",
+      "handle_command_line",
+      "PartialShell",
+      "activate",
+      "text_transformer"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 235.4,
+    "retrieval_latency_ms": 208.882,
+    "sufficiency_latency_ms": 21.2583,
+    "reasoning_latency_ms": 0.0145,
+    "total_latency_ms": 235.4,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "docling-0",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Implementation Details",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/backend/html_backend.py",
+      "docling/document_converter.py"
+    ],
+    "expected_symbols": [
+      "HTMLDocumentBackend",
+      "DocumentConverter"
+    ],
+    "expected_relationships": [
+      "DocumentConverter -> HTMLDocumentBackend"
+    ],
+    "expected_concepts": [
+      "Static HTML parsing vs headless browser execution",
+      "No built-in JavaScript engine in default backend",
+      "Pre-rendering with Playwright/Selenium before Docling conversion"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/msexcel_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/xml/uspto_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/post_process_ocr_with_vlm.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/html_backend.py"
+    ],
+    "retrieved_symbols": [
+      "_find_true_data_bounds",
+      "_apply_style",
+      "_apply_style",
+      "no_long_repeats",
+      "_walk"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1218.3,
+    "retrieval_latency_ms": 1184.82,
+    "sufficiency_latency_ms": 28.3741,
+    "reasoning_latency_ms": 0.0282,
+    "total_latency_ms": 1218.3,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  },
+  {
+    "question_id": "docling-3",
+    "repository": "docling-project/docling",
+    "source": "repoprobe",
+    "taxonomy": "Project Architecture",
+    "difficulty": "Medium",
+    "expected_files": [
+      "docling/pipeline/standard_pdf_pipeline.py",
+      "docling/pipeline/base_pipeline.py"
+    ],
+    "expected_symbols": [
+      "StandardPdfPipeline",
+      "PipelineOptions"
+    ],
+    "expected_relationships": [
+      "PipelineOptions -> StandardPdfPipeline"
+    ],
+    "expected_concepts": [
+      "Offline execution mode with local model artifacts",
+      "HuggingFace local cache directory",
+      "Disabling network download requests in pipeline options"
+    ],
+    "retrieved_files": [
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/code_formula_model.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/backend/abstract_backend.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docs/examples/develop_picture_enrichment.py",
+      "d:/amoeba/benchmarks/repoprobe_v1/repos/docling/docling/models/base_model.py"
+    ],
+    "retrieved_symbols": [
+      "_get_prompt",
+      "supported_formats",
+      "AbstractDocumentBackend",
+      "ExamplePictureClassifierPipelineOptions",
+      "_build_prompt_safe"
+    ],
+    "retrieval_hit_at_1": false,
+    "retrieval_hit_at_5": true,
+    "retrieval_hit_at_10": true,
+    "sufficiency_decision": false,
+    "sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "tool_calls": 0,
+    "tool_names": [],
+    "evidence_items": 10,
+    "evidence_items_count": 10,
+    "final_answer": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "final_answer_status": "INSUFFICIENT_EVIDENCE",
+    "final_answer_text": "I couldn't establish this from the repository evidence available to Amoeba.",
+    "grounded": false,
+    "correctness": "incorrect",
+    "usefulness": false,
+    "latency_ms": 1067.58,
+    "retrieval_latency_ms": 1061.46,
+    "sufficiency_latency_ms": 3.5432,
+    "reasoning_latency_ms": 0.0068,
+    "total_latency_ms": 1067.58,
+    "failure_category": "sufficiency_failure",
+    "diagnostic_explanation": "Candidate retrieved but evidence sufficiency gate rejected due to missing domain subject terms: Query subject concept coverage is below the required threshold."
+  }
+]

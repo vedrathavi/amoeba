@@ -1,0 +1,168 @@
+[
+  {
+    "question_id": "walker-0",
+    "repository": "abenz1267/walker",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 59,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 59,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 11.6576,
+    "base_sufficiency_ms": 2.0021,
+    "expansion_resolution_ms": 0.0204,
+    "expanded_sufficiency_ms": 0.0138,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 58,
+      "CONTAINS": 1
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "walker-2",
+    "repository": "abenz1267/walker",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 29,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 29,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 39.6057,
+    "base_sufficiency_ms": 1.3508,
+    "expansion_resolution_ms": 0.0142,
+    "expanded_sufficiency_ms": 0.0118,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 23,
+      "CONTAINS": 6
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "walker-3",
+    "repository": "abenz1267/walker",
+    "failure_category": "evidence_failure",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 61,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 60,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 3898,
+    "added_elements": 1,
+    "retrieval_ms": 40.2512,
+    "base_sufficiency_ms": 3.4285,
+    "expansion_resolution_ms": 0.0175,
+    "expanded_sufficiency_ms": 4.1745,
+    "rel_kind_useful": {
+      "CONTAINS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 58,
+      "CONTAINS": 2
+    },
+    "useful_descriptions": ["CONTAINS -> Provider (mod.rs)"]
+  },
+  {
+    "question_id": "walker-4",
+    "repository": "abenz1267/walker",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 60,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 60,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 39.6964,
+    "base_sufficiency_ms": 1.5337,
+    "expansion_resolution_ms": 0.0196,
+    "expanded_sufficiency_ms": 0.0158,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 60
+    },
+    "useful_descriptions": []
+  },
+  {
+    "question_id": "walker-8",
+    "repository": "abenz1267/walker",
+    "failure_category": "retrieval_failure",
+    "is_negative": false,
+    "hit_at_10": false,
+    "base_sufficiency": false,
+    "base_sufficiency_reason": "Query subject concept coverage is below the required threshold.",
+    "total_1hop_neighbors": 26,
+    "useful_neighbors": 1,
+    "noisy_neighbors": 25,
+    "min_units_required": 99,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 2874,
+    "added_elements": 1,
+    "retrieval_ms": 40.2006,
+    "base_sufficiency_ms": 4.9083,
+    "expansion_resolution_ms": 0.0101,
+    "expanded_sufficiency_ms": 6.2579,
+    "rel_kind_useful": {
+      "CALLS": 1
+    },
+    "rel_kind_noisy": {
+      "CALLS": 11,
+      "CONTAINS": 14
+    },
+    "useful_descriptions": ["CALLS -> init_socket (data.rs)"]
+  },
+  {
+    "question_id": "amoeba-walker-01",
+    "repository": "abenz1267/walker",
+    "failure_category": "correct",
+    "is_negative": false,
+    "hit_at_10": true,
+    "base_sufficiency": true,
+    "base_sufficiency_reason": "Sufficient grounded evidence found in repository candidates.",
+    "total_1hop_neighbors": 59,
+    "useful_neighbors": 0,
+    "noisy_neighbors": 59,
+    "min_units_required": 0,
+    "expansion_solves_sufficiency": false,
+    "added_source_chars": 0,
+    "added_elements": 0,
+    "retrieval_ms": 38.0665,
+    "base_sufficiency_ms": 1.0704,
+    "expansion_resolution_ms": 0.0337,
+    "expanded_sufficiency_ms": 0.0291,
+    "rel_kind_useful": {
+
+    },
+    "rel_kind_noisy": {
+      "CALLS": 59
+    },
+    "useful_descriptions": []
+  }
+]
