@@ -1,0 +1,1 @@
+amoeba-adk-python-02	google/adk-python	amoeba_designed	Implementation Details	5	Does adk-python provide built-in vector database indexing with Qdrant natively in core?				Unsupported feature|Core framework scope|No native Qdrant engine

@@ -10,7 +10,9 @@
 #include "amoeba/evidence/evidence_sufficiency.hpp"
 #include "amoeba/graph/relationship_evidence_resolver.hpp"
 #include "amoeba/graph/relationship_graph.hpp"
+#include "amoeba/graph/repository_graph_builder.hpp"
 #include "amoeba/index/inverted_index.hpp"
+#include "amoeba/investigation/bounded_investigation_service.hpp"
 #include "amoeba/parser/source_parser.hpp"
 #include "amoeba/reasoning/fake_llm_runtime.hpp"
 #include "amoeba/reasoning/grounded_answer.hpp"
@@ -147,13 +149,15 @@ struct QueryItem {
 
 int main(int argc, char** argv) {
     if (argc < 4) {
-        std::cerr << "Usage: amoeba_repoprobe_benchmark <repo_dir> <queries_tsv_file> <output_json_file>\n";
+        std::cerr << "Usage: amoeba_repoprobe_benchmark <repo_dir> <queries_tsv_file> <output_json_file> [config_mode]\n"
+                  << "  config_mode: baseline_top10 | top50_no_investigation | top50_bounded_investigation (default)\n";
         return 1;
     }
 
     fs::path repo_dir = argv[1];
     fs::path tsv_file = argv[2];
     fs::path out_file = argv[3];
+    std::string config_mode = (argc >= 5) ? argv[4] : "top50_bounded_investigation";
 
     if (!fs::exists(repo_dir)) {
         std::cerr << "ERROR: Repo directory does not exist: " << repo_dir << "\n";
@@ -166,7 +170,8 @@ int main(int argc, char** argv) {
     }
 
     auto queries = load_queries_tsv(tsv_file);
-    std::cout << "Loaded " << queries.size() << " queries for " << repo_dir.filename().string() << "\n";
+    std::cout << "Loaded " << queries.size() << " queries for " << repo_dir.filename().string()
+              << " [Config: " << config_mode << "]\n";
 
     // 1. Scan Repository
     amoeba::scanner::RepositoryScanner scanner;
@@ -197,10 +202,19 @@ int main(int argc, char** argv) {
     amoeba::source::SourceSnippetReader snippet_reader;
     amoeba::semantic::DeterministicEmbeddingProvider embedding_provider{32};
 
+    auto graph_start = Clock::now();
+    amoeba::graph::RepositoryGraphBuilder::build_repository_graph(parsed_files, graph);
+    auto graph_ms = std::chrono::duration<double, std::milli>(Clock::now() - graph_start).count();
+    std::cout << "  Built relationship graph with " << graph.relationship_count() << " edges in "
+              << graph_ms << " ms.\n";
+
     auto rel_resolver = std::make_unique<amoeba::graph::RelationshipEvidenceResolver>(graph, index);
     auto pipeline = std::make_unique<amoeba::retrieval::PrimaryRetrievalPipeline>(
         parsed_files, index, embedding_provider);
     std::cout << "  Built primary retrieval pipeline with " << pipeline->primary_unit_count() << " primary units.\n";
+
+    amoeba::investigation::BoundedInvestigationService investigator(
+        index, graph, *pipeline, snippet_reader);
 
     amoeba::evidence::EvidenceAssembler assembler(snippet_reader, *rel_resolver);
     amoeba::context::ContextBuilder context_builder;
@@ -215,21 +229,101 @@ int main(int argc, char** argv) {
         const auto& q = queries[q_idx];
         auto q_start = Clock::now();
 
-        // Retrieval Stage
+        // Hop-0 Retrieval Stage (Top-10 for baseline_top10, Top-50 for broad reservoir)
         auto retr_start = Clock::now();
         amoeba::retrieval::PrimarySearchOptions search_opts;
-        search_opts.max_results = 10;
+        const uint32_t reservoir_size = (config_mode == "baseline_top10") ? 10 : 50;
+        search_opts.max_results = reservoir_size;
         auto search_results = pipeline->search(q.question_text, search_opts);
         double retr_ms = std::chrono::duration<double, std::milli>(Clock::now() - retr_start).count();
+
+        std::size_t target_rank_in_hop0 = 0;
+        bool hop0_hit_at_1 = false;
+        bool hop0_hit_at_5 = false;
+        bool hop0_hit_at_10 = false;
+        bool hop0_hit_at_20 = false;
+        bool hop0_hit_at_50 = false;
+
+        for (std::size_t i = 0; i < search_results.size(); ++i) {
+            const auto& sr = search_results[i];
+            auto f_str = sr.unit.file_path.generic_string();
+            bool hit = false;
+            for (const auto& exp_f : q.expected_files) {
+                if (path_matches(f_str, exp_f)) {
+                    hit = true;
+                    break;
+                }
+            }
+            if (!hit) {
+                for (const auto& exp_s : q.expected_symbols) {
+                    if (symbol_matches(sr.unit.primary_element.name, exp_s)) {
+                        hit = true;
+                        break;
+                    }
+                }
+            }
+            if (hit) {
+                if (target_rank_in_hop0 == 0) {
+                    target_rank_in_hop0 = i + 1;
+                }
+                if (i == 0) hop0_hit_at_1 = true;
+                if (i < 5) hop0_hit_at_5 = true;
+                if (i < 10) hop0_hit_at_10 = true;
+                if (i < 20) hop0_hit_at_20 = true;
+                if (i < 50) hop0_hit_at_50 = true;
+            }
+        }
+
+        // Investigation / Candidate Selection Stage
+        auto invest_start = Clock::now();
+        amoeba::investigation::InvestigationMetrics invest_metrics;
+        amoeba::investigation::InvestigationOptions invest_opts;
+        invest_opts.max_total_candidates = 10;
+        invest_opts.max_seeds = 3;
+        invest_opts.max_discovered_per_seed = 3;
+
+        std::vector<amoeba::investigation::InvestigatedCandidate> investigated_candidates;
+
+        if (config_mode == "top50_no_investigation") {
+            // Configuration B: Top-50 without Hop-1 investigation, bounded to Top-10
+            invest_opts.enabled = false;
+            investigated_candidates = investigator.investigate_candidates(
+                q.question_text, search_results, invest_opts, &invest_metrics);
+        } else if (config_mode == "baseline_top10") {
+            // Configuration A: Hop-0 Top-10 + Bounded Investigation
+            investigated_candidates = investigator.investigate_candidates(
+                q.question_text, search_results, invest_opts, &invest_metrics);
+        } else {
+            // Configuration C (Default): Top-50 Reservoir + Deterministic Seed Pruning + Bounded Hop-1
+            investigated_candidates = investigator.investigate_candidates(
+                q.question_text, search_results, invest_opts, &invest_metrics);
+        }
+        double invest_ms = std::chrono::duration<double, std::milli>(Clock::now() - invest_start).count();
 
         std::vector<std::string> retrieved_files;
         std::vector<std::string> retrieved_symbols;
         bool hit_at_1 = false;
         bool hit_at_5 = false;
         bool hit_at_10 = false;
+        bool hit_at_20 = false;
+        bool hit_at_50 = false;
+        bool target_selected_as_seed = false;
+        bool hop1_discovered_target = false;
 
-        for (std::size_t i = 0; i < search_results.size(); ++i) {
-            const auto& sr = search_results[i];
+        // Check if any selected seed matched expected targets
+        for (const auto& seed_name : invest_metrics.selected_seed_names) {
+            for (const auto& exp_s : q.expected_symbols) {
+                if (symbol_matches(seed_name, exp_s)) {
+                    target_selected_as_seed = true;
+                    break;
+                }
+            }
+            if (target_selected_as_seed) break;
+        }
+
+        for (std::size_t i = 0; i < investigated_candidates.size(); ++i) {
+            const auto& cand = investigated_candidates[i];
+            const auto& sr = cand.result;
             auto f_str = sr.unit.file_path.generic_string();
             retrieved_files.push_back(f_str);
             retrieved_symbols.push_back(sr.unit.primary_element.name);
@@ -254,13 +348,18 @@ int main(int argc, char** argv) {
                 if (i == 0) hit_at_1 = true;
                 if (i < 5) hit_at_5 = true;
                 if (i < 10) hit_at_10 = true;
+                if (i < 20) hit_at_20 = true;
+                if (i < 50) hit_at_50 = true;
+                if (cand.is_hop1_discovered || cand.role != amoeba::investigation::InvestigationCandidateRole::Hop0Primary) {
+                    hop1_discovered_target = true;
+                }
             }
         }
 
         const bool is_negative_case = q.expected_files.empty() && q.expected_symbols.empty();
 
         // Evidence Assembly Stage
-        auto bundle = assembler.assemble(q.question_text, search_results);
+        auto bundle = investigator.assemble_bundle(q.question_text, investigated_candidates, assembler);
 
         // Sufficiency Stage
         auto suff_start = Clock::now();
@@ -296,7 +395,7 @@ int main(int argc, char** argv) {
                 correctness = "incorrect";
                 usefulness = false;
                 failure_category = "retrieval_failure";
-                diagnostic_explanation = "Expected source file/symbol not recovered in top-10 search results.";
+                diagnostic_explanation = "Expected source file/symbol not recovered in top-10 candidate pool.";
             } else if (!sufficiency.is_sufficient) {
                 correctness = "incorrect";
                 usefulness = false;
@@ -353,9 +452,28 @@ int main(int argc, char** argv) {
             ofs << "\"" << escape_json(retrieved_symbols[si]) << "\"" << (si + 1 < std::min<std::size_t>(5, retrieved_symbols.size()) ? ", " : "");
         }
         ofs << "],\n"
+            << "    \"target_rank_in_hop0\": " << target_rank_in_hop0 << ",\n"
+            << "    \"in_top10\": " << (hop0_hit_at_10 ? "true" : "false") << ",\n"
+            << "    \"in_11_to_20\": " << (target_rank_in_hop0 >= 11 && target_rank_in_hop0 <= 20 ? "true" : "false") << ",\n"
+            << "    \"in_21_to_50\": " << (target_rank_in_hop0 >= 21 && target_rank_in_hop0 <= 50 ? "true" : "false") << ",\n"
+            << "    \"outside_top50\": " << (target_rank_in_hop0 == 0 ? "true" : "false") << ",\n"
+            << "    \"target_selected_as_seed\": " << (target_selected_as_seed ? "true" : "false") << ",\n"
+            << "    \"hop0_hit_at_1\": " << (hop0_hit_at_1 ? "true" : "false") << ",\n"
+            << "    \"hop0_hit_at_5\": " << (hop0_hit_at_5 ? "true" : "false") << ",\n"
+            << "    \"hop0_hit_at_10\": " << (hop0_hit_at_10 ? "true" : "false") << ",\n"
+            << "    \"hop0_hit_at_20\": " << (hop0_hit_at_20 ? "true" : "false") << ",\n"
+            << "    \"hop0_hit_at_50\": " << (hop0_hit_at_50 ? "true" : "false") << ",\n"
+            << "    \"hop1_triggered\": " << (invest_metrics.investigation_triggered ? "true" : "false") << ",\n"
+            << "    \"seeds_investigated\": " << invest_metrics.seeds_investigated << ",\n"
+            << "    \"hop1_candidates_discovered\": " << invest_metrics.hop1_candidates_discovered << ",\n"
+            << "    \"hop1_discovered_target\": " << (hop1_discovered_target ? "true" : "false") << ",\n"
+            << "    \"seed_selection_latency_ms\": " << invest_metrics.seed_selection_latency_ms << ",\n"
+            << "    \"investigation_latency_ms\": " << invest_ms << ",\n"
             << "    \"retrieval_hit_at_1\": " << (hit_at_1 ? "true" : "false") << ",\n"
             << "    \"retrieval_hit_at_5\": " << (hit_at_5 ? "true" : "false") << ",\n"
             << "    \"retrieval_hit_at_10\": " << (hit_at_10 ? "true" : "false") << ",\n"
+            << "    \"retrieval_hit_at_20\": " << (hit_at_20 ? "true" : "false") << ",\n"
+            << "    \"retrieval_hit_at_50\": " << (hit_at_50 ? "true" : "false") << ",\n"
             << "    \"sufficiency_decision\": " << (sufficiency.is_sufficient ? "true" : "false") << ",\n"
             << "    \"sufficiency_reason\": \"" << escape_json(sufficiency.reason) << "\",\n"
             << "    \"tool_calls\": 0,\n"

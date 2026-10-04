@@ -1,0 +1,120 @@
+{
+  "configuration": "top50_no_investigation",
+  "timestamp": "2026-10-04T08:54:48Z",
+  "total_questions": 70,
+  "positive_questions": 66,
+  "negative_questions": 4,
+  "metrics": {
+    "correctness_rate_pct": 41.42857142857143,
+    "groundedness_rate_pct": 58.57142857142858,
+    "negative_refusal_accuracy_pct": 100.0,
+    "retrieval_hit_at_1_pct": 28.78787878787879,
+    "retrieval_hit_at_5_pct": 51.515151515151516,
+    "retrieval_hit_at_10_pct": 54.54545454545454,
+    "retrieval_hit_at_20_pct": 54.54545454545454,
+    "retrieval_hit_at_50_pct": 54.54545454545454,
+    "hop0_hit_at_1_pct": 28.78787878787879,
+    "hop0_hit_at_5_pct": 51.515151515151516,
+    "hop0_hit_at_10_pct": 54.54545454545454,
+    "hop0_hit_at_20_pct": 65.15151515151516,
+    "hop0_hit_at_50_pct": 83.33333333333334,
+    "mrr": 0.39632854481538693,
+    "avg_retrieval_latency_ms": 3571.817035714286,
+    "avg_seed_selection_latency_ms": 2.0310557142857144,
+    "avg_investigation_latency_ms": 3.173231428571429,
+    "avg_sufficiency_latency_ms": 4.966988571428571,
+    "avg_reasoning_latency_ms": 0.13916142857142855,
+    "avg_total_latency_ms": 3643.019232857143
+  },
+  "failure_distribution": {
+    "retrieval_failure": 30,
+    "none": 29,
+    "sufficiency_failure": 11
+  },
+  "breakdown_by_source": {
+    "repoprobe": {
+      "total": 50,
+      "correct": 16,
+      "accuracy_pct": 32.0,
+      "hit10_pct": 46.0
+    },
+    "amoeba_designed": {
+      "total": 20,
+      "correct": 13,
+      "accuracy_pct": 65.0,
+      "hit10_pct": 65.0
+    }
+  },
+  "breakdown_by_repository": {
+    "duckdb/ducklake": {
+      "total": 6,
+      "correct": 1,
+      "accuracy_pct": 16.666666666666664,
+      "hit10_pct": 16.666666666666664,
+      "hit50_pct": 16.666666666666664
+    },
+    "google/adk-python": {
+      "total": 8,
+      "correct": 5,
+      "accuracy_pct": 62.5,
+      "hit10_pct": 75.0,
+      "hit50_pct": 75.0
+    },
+    "better-auth/better-auth": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.57142857142857,
+      "hit10_pct": 42.857142857142854,
+      "hit50_pct": 42.857142857142854
+    },
+    "Dokploy/dokploy": {
+      "total": 7,
+      "correct": 4,
+      "accuracy_pct": 57.14285714285714,
+      "hit10_pct": 71.42857142857143,
+      "hit50_pct": 71.42857142857143
+    },
+    "apple/pkl": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.57142857142857,
+      "hit10_pct": 28.57142857142857,
+      "hit50_pct": 28.57142857142857
+    },
+    "henrygd/beszel": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.57142857142857,
+      "hit10_pct": 57.14285714285714,
+      "hit50_pct": 57.14285714285714
+    },
+    "opencloud-eu/opencloud": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.57142857142857,
+      "hit10_pct": 14.285714285714285,
+      "hit50_pct": 14.285714285714285
+    },
+    "BurntSushi/jiff": {
+      "total": 8,
+      "correct": 6,
+      "accuracy_pct": 75.0,
+      "hit10_pct": 87.5,
+      "hit50_pct": 87.5
+    },
+    "abenz1267/walker": {
+      "total": 6,
+      "correct": 3,
+      "accuracy_pct": 50.0,
+      "hit10_pct": 83.33333333333334,
+      "hit50_pct": 83.33333333333334
+    },
+    "docling-project/docling": {
+      "total": 7,
+      "correct": 2,
+      "accuracy_pct": 28.57142857142857,
+      "hit10_pct": 28.57142857142857,
+      "hit50_pct": 28.57142857142857
+    }
+  }
+}

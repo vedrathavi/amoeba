@@ -1,0 +1,1460 @@
+- repository
+
+- taxonomy
+
+- difficulty
+
+- question
+
+- expected_files
+
+- expected_symbols
+
+- expected_concepts
+
+
+
+Retrieval:
+
+
+
+- lexical_rank
+
+- semantic_rank
+
+- fused_rank
+
+- hop0_rank
+
+- hop0_score
+
+- in_top10
+
+- in_top20
+
+- in_top50
+
+
+
+Candidate selection:
+
+
+
+- candidate_pool_size
+
+- seed_pool_size
+
+- target_in_seed_pool
+
+- selected_as_seed
+
+- candidates_from_same_file
+
+- candidates_from_same_directory
+
+- duplicate_candidate_count
+
+
+
+Investigation:
+
+
+
+- investigation_started
+
+- target_reached
+
+- hop_used
+
+- discovered_candidate_count
+
+
+
+Evidence:
+
+
+
+- target_in_final_evidence
+
+- evidence_unit_count
+
+- primary_evidence_present
+
+- expanded_evidence_present
+
+- sufficiency_result
+
+
+
+Final:
+
+
+
+- correctness
+
+- groundedness
+
+- refusal
+
+- failure_category
+
+
+
+If a field is unavailable, explicitly record it as unavailable rather than inventing it.
+
+
+
+============================================================
+
+9. CRITICAL DISTINCTION: RETRIEVAL VS CANDIDATE SELECTION
+
+============================================================
+
+
+
+Do NOT call every failure "retrieval".
+
+
+
+Examples:
+
+
+
+Target rank = 2
+
+Target is in Top-50
+
+Target is not selected as seed
+
+
+
+This is a CANDIDATE SELECTION FAILURE.
+
+
+
+Target rank = 48
+
+Target is in Top-50
+
+Target is not selected as seed
+
+
+
+Still a CANDIDATE SELECTION FAILURE.
+
+
+
+Target rank = 75
+
+Target is not in Top-50
+
+
+
+This is a RETRIEVAL RECALL FAILURE.
+
+
+
+Target is selected as seed
+
+Target is not reached
+
+
+
+This is an INVESTIGATION FAILURE.
+
+
+
+This distinction is mandatory.
+
+
+
+============================================================
+
+10. CANDIDATE SELECTION FORENSICS
+
+============================================================
+
+
+
+Determine exactly how the current system selects candidates/seeds.
+
+
+
+Identify whether the effective policy is:
+
+
+
+- Top-K only
+
+- Top-K after deduplication
+
+- Top-K after primary filtering
+
+- Top-K after candidate-type filtering
+
+- Top-K after another ranking
+
+- another mechanism
+
+
+
+Measure whether candidate selection causes:
+
+
+
+1. generic symbols to crowd out domain-specific symbols
+
+2. multiple symbols from one file to consume candidate slots
+
+3. multiple symbols from one subsystem to consume slots
+
+4. lexical/semantic duplicates to consume slots
+
+5. supporting AST units to crowd out primary units
+
+6. tests/mocks to crowd out production units
+
+7. facade files to crowd out implementation files
+
+8. vendor files to crowd out first-party files
+
+9. common symbols to crowd out domain-specific symbols
+
+
+
+Do not assume any of these are true.
+
+
+
+Prove or disprove them.
+
+
+
+============================================================
+
+11. CANDIDATE DIVERSITY ANALYSIS
+
+============================================================
+
+
+
+For each question measure:
+
+
+
+- unique files in Top-10
+
+- unique files in Top-20
+
+- unique files in Top-50
+
+- unique directories/modules
+
+- unique symbols
+
+- unique element kinds
+
+- number of candidates from the same file
+
+- number of candidates from the same subsystem
+
+- duplicate representations
+
+- lexical/semantic overlap
+
+
+
+Determine whether candidate crowding exists.
+
+
+
+Then determine whether diversity could help.
+
+
+
+Do NOT automatically conclude that more diversity is better.
+
+
+
+A diversity policy that improves recall but destroys precision is not automatically acceptable.
+
+
+
+============================================================
+
+12. CONTROLLED EXPERIMENTS
+
+============================================================
+
+
+
+Use the EXISTING experiment infrastructure where possible.
+
+
+
+Do not rewrite the benchmark unnecessarily.
+
+
+
+Run controlled single-pass experiments.
+
+
+
+At minimum compare:
+
+
+
+------------------------------------------------------------
+
+POLICY A — CURRENT BASELINE
+
+------------------------------------------------------------
+
+
+
+Current candidate selection behavior.
+
+
+
+No production changes.
+
+
+
+------------------------------------------------------------
+
+POLICY B — LARGER RESERVOIR / SEED WINDOW
+
+------------------------------------------------------------
+
+
+
+Allow a larger candidate/seed window WITHOUT changing retrieval ranking.
+
+
+
+Purpose:
+
+
+
+Determine whether relevant targets already exist in the retrieval reservoir but are being lost because the seed window is too small.
+
+
+
+Do not treat the larger window as evidence.
+
+
+
+Keep evidence sufficiency unchanged.
+
+
+
+------------------------------------------------------------
+
+POLICY C — DIVERSITY-AWARE SELECTION
+
+------------------------------------------------------------
+
+
+
+ONLY run this if forensic analysis shows candidate crowding.
+
+
+
+Test whether preserving diversity across relevant units improves target retention.
+
+
+
+Potential dimensions:
+
+
+
+- file
+
+- directory/module
+
+- symbol
+
+
+
+The policy must be:
+
+
+
+- deterministic
+
+- explainable
+
+- generic
+
+- bounded
+
+
+
+Do not introduce arbitrary benchmark-tuned weights.
+
+
+
+------------------------------------------------------------
+
+POLICY D — PRIMARY-UNIT PRESERVATION
+
+------------------------------------------------------------
+
+
+
+ONLY run this if evidence shows that supporting AST units or duplicate representations consume candidate slots and suppress primary symbols.
+
+
+
+Test whether primary-unit preservation improves target retention.
+
+
+
+Do not change evidence sufficiency.
+
+
+
+Do not change provenance.
+
+
+
+============================================================
+
+13. MEASURE EVERY POLICY
+
+============================================================
+
+
+
+For A/B/C/D report:
+
+
+
+Retrieval:
+
+
+
+- Hit@1
+
+- Hit@5
+
+- Hit@10
+
+- Hit@50
+
+- MRR
+
+
+
+Candidate pipeline:
+
+
+
+- targets in Top-50
+
+- targets in Top-20
+
+- targets in Top-10
+
+- targets in seed pool
+
+- target retention rate
+
+- average seed count
+
+- average candidate count
+
+
+
+Investigation:
+
+
+
+- investigation success
+
+- target discovery rate
+
+- average discovered candidates
+
+- hop distribution
+
+
+
+Evidence:
+
+
+
+- evidence sufficiency failures
+
+- groundedness
+
+- target-in-final-evidence rate
+
+
+
+Final:
+
+
+
+- overall correctness
+
+- positive accuracy
+
+- RepoProbe accuracy
+
+- Amoeba-designed accuracy
+
+- negative refusal
+
+
+
+Performance:
+
+
+
+- total latency
+
+- retrieval latency
+
+- candidate-selection latency
+
+- investigation latency
+
+- evidence latency
+
+- sufficiency latency
+
+
+
+============================================================
+
+14. QUESTION-LEVEL DELTA ANALYSIS
+
+============================================================
+
+
+
+Do not rely only on aggregate numbers.
+
+
+
+For every question that changes between policies, report:
+
+
+
+question_id
+
+repository
+
+previous status
+
+new status
+
+previous target rank
+
+new target rank
+
+target in Top-50
+
+target in seed pool
+
+investigation result
+
+sufficiency result
+
+final result
+
+reason for change
+
+
+
+Explicitly classify:
+
+
+
+- newly correct
+
+- newly incorrect
+
+- newly grounded
+
+- newly ungrounded
+
+- newly refused
+
+- newly non-refused
+
+- candidate-selection improvements
+
+- candidate-selection regressions
+
+
+
+This is mandatory.
+
+
+
+============================================================
+
+15. TARGET RETENTION ANALYSIS
+
+============================================================
+
+
+
+Answer explicitly:
+
+
+
+1. How many positive targets are present in Top-50?
+
+2. How many are present in Top-20?
+
+3. How many are present in Top-10?
+
+4. How many are lost between Top-50 and seed selection?
+
+5. How many are lost during investigation?
+
+6. How many are present in final evidence but fail sufficiency?
+
+7. How many failures are genuinely retrieval recall?
+
+8. How many failures are candidate selection?
+
+9. How many failures are investigation?
+
+10. How many failures are evidence assembly?
+
+11. How many failures are reasoning?
+
+
+
+This should give us a precise failure funnel.
+
+
+
+============================================================
+
+16. SAFETY REQUIREMENTS
+
+============================================================
+
+
+
+Negative refusal MUST remain:
+
+
+
+4/4 = 100%.
+
+
+
+Do not allow larger reservoirs or broader candidate selection to manufacture evidence.
+
+
+
+Permanent invariants:
+
+
+
+RULE A.1:
+
+Expanded evidence cannot independently manufacture primary sufficiency.
+
+
+
+RULE E:
+
+Distinguishing domain identity must be grounded in valid primary evidence.
+
+
+
+TOP-50 IS NOT EVIDENCE.
+
+
+
+Candidate selection is NOT evidence sufficiency.
+
+
+
+Investigation success is NOT authorization to answer.
+
+
+
+Tool success is NOT proof.
+
+
+
+Do NOT weaken:
+
+
+
+- evidence sufficiency
+
+- subject grounding
+
+- negative refusal
+
+- provenance
+
+- evidence identity
+
+- primary/expanded distinction
+
+
+
+============================================================
+
+17. PRESERVE SEARCHABILITY
+
+============================================================
+
+
+
+Do not solve ranking problems by blanket exclusion.
+
+
+
+The following must remain searchable:
+
+
+
+- vendor code
+
+- package facades
+
+- tests
+
+- mocks
+
+- build scripts
+
+- configuration files
+
+
+
+Phase 8.8 established that searchability and ranking priority are separate concerns.
+
+
+
+If source-role ranking is proposed, first prove from the experiment that it is actually responsible for candidate loss.
+
+
+
+Do not implement source-role penalties merely because they seem intuitively useful.
+
+
+
+============================================================
+
+18. DO NOT DO THESE THINGS
+
+============================================================
+
+
+
+DO NOT:
+
+
+
+- modify benchmark questions
+
+- modify ground truth
+
+- modify scoring logic
+
+- hardcode question IDs
+
+- hardcode repository names
+
+- hardcode expected files
+
+- add benchmark-specific keywords
+
+- add repository-specific dictionaries
+
+- add new embedding models
+
+- replace MiniLM
+
+- replace HNSW
+
+- introduce a vector database
+
+- introduce a graph database
+
+- implement unrestricted multi-hop
+
+- implement an autonomous agent
+
+- introduce LLM-driven retrieval planning
+
+- add arbitrary fusion weights
+
+- tune ranking constants blindly
+
+- relax evidence sufficiency
+
+- remove Rule A.1
+
+- weaken Rule E
+
+- globally exclude vendors
+
+- globally exclude facades
+
+- globally exclude tests
+
+- globally exclude build files
+
+- perform duplicate lexical searches
+
+- perform duplicate semantic searches
+
+- perform a full repository rescan per candidate
+
+- add an O(N²) candidate-selection algorithm
+
+
+
+Most importantly:
+
+
+
+DO NOT implement Hop-2 simply because the Phase 9.3A report recommends it.
+
+
+
+First determine whether the target is actually being lost at the candidate-selection boundary.
+
+
+
+============================================================
+
+19. IF A PRODUCTION CHANGE IS JUSTIFIED
+
+============================================================
+
+
+
+Only implement a production change if the experiment demonstrates a clear, repeatable, generic failure mode.
+
+
+
+The change should be:
+
+
+
+- small
+
+- deterministic
+
+- explainable
+
+- generic
+
+- testable
+
+- architecture-preserving
+
+- benchmark-independent
+
+
+
+Prefer a clean conceptual boundary:
+
+
+
+Retrieval Reservoir
+
+        ↓
+
+Candidate Selection Policy
+
+        ↓
+
+Investigation Seeds
+
+
+
+Candidate selection should answer only:
+
+
+
+"Which bounded candidates should be investigated?"
+
+
+
+It must NOT answer:
+
+
+
+"Is the evidence sufficient?"
+
+
+
+That remains the responsibility of EvidenceSufficiencyChecker.
+
+
+
+Do not move evidence logic into candidate selection.
+
+
+
+Do not move query-understanding logic into candidate selection.
+
+
+
+Do not move reasoning into candidate selection.
+
+
+
+============================================================
+
+20. PERFORMANCE REQUIREMENTS
+
+============================================================
+
+
+
+Measure candidate-selection overhead separately.
+
+
+
+Report:
+
+
+
+- reservoir construction time
+
+- candidate selection time
+
+- seed selection time
+
+- investigation time
+
+- total retrieval time
+
+- total query latency
+
+
+
+Do not introduce expensive repeated retrieval.
+
+
+
+Reuse existing retrieval results.
+
+
+
+Do not scan the entire repository again.
+
+
+
+Do not recompute embeddings.
+
+
+
+Do not perform another semantic index search unless required by the experiment itself.
+
+
+
+Candidate selection must remain cheap relative to repository indexing and retrieval.
+
+
+
+============================================================
+
+21. REGRESSION AUDIT
+
+============================================================
+
+
+
+After all experiments, compare against the CANONICAL Phase 9.3A baseline established during Step 0.
+
+
+
+Do not use a prose baseline if actual JSON is available.
+
+
+
+Perform a full 66-positive-question regression audit.
+
+
+
+Explicitly identify:
+
+
+
+- improved questions
+
+- unchanged questions
+
+- regressions
+
+- newly refused questions
+
+- newly ungrounded questions
+
+- newly grounded-but-wrong questions
+
+- candidate-selection regressions
+
+- retrieval regressions
+
+- investigation regressions
+
+- evidence regressions
+
+
+
+Do not hide regressions behind aggregate accuracy.
+
+
+
+============================================================
+
+22. TESTING
+
+============================================================
+
+
+
+During the forensic stage:
+
+
+
+NO production behavior changes.
+
+
+
+After a production change is justified:
+
+
+
+Add focused tests covering the exact mechanism.
+
+
+
+At minimum test:
+
+
+
+- high-ranked target preservation
+
+- lower-ranked relevant target preservation when justified
+
+- duplicate candidates
+
+- same-file crowding
+
+- same-directory crowding
+
+- same-symbol duplicates
+
+- lexical/semantic duplicates
+
+- primary/supporting distinction
+
+- vendor searchability
+
+- facade searchability
+
+- test searchability
+
+- deterministic ordering
+
+- negative refusal
+
+- Rule A.1
+
+- Rule E
+
+- reproducibility
+
+
+
+Run the full test suite.
+
+
+
+Record:
+
+
+
+- total tests
+
+- passed
+
+- failed
+
+- skipped
+
+- warnings
+
+
+
+Do not accept "all tests pass" as sufficient evidence.
+
+
+
+Benchmark behavior must also be inspected.
+
+
+
+============================================================
+
+23. DOCUMENTATION
+
+============================================================
+
+
+
+Create:
+
+
+
+docs/phase-09.3b-candidate-selection-forensics.md
+
+
+
+The report must contain:
+
+
+
+1. Objective
+
+2. Baseline reconciliation
+
+3. Canonical baseline
+
+4. Existing architecture
+
+5. Retrieval → Top-50 → seed-selection pipeline
+
+6. 66-question failure matrix
+
+7. Failure classification
+
+8. Candidate retention funnel
+
+9. Candidate diversity analysis
+
+10. Policy A results
+
+11. Policy B results
+
+12. Policy C results, if run
+
+13. Policy D results, if run
+
+14. Question-level deltas
+
+15. Safety analysis
+
+16. Performance analysis
+
+17. Regression analysis
+
+18. Root cause
+
+19. Production decision
+
+20. What was deliberately NOT changed
+
+21. Recommendation for 9.3C
+
+
+
+Clearly label sections:
+
+
+
+FACT
+
+INFERENCE
+
+DECISION
+
+
+
+Never present an inference as a fact.
+
+
+
+============================================================
+
+24. DECISION RULE
+
+============================================================
+
+
+
+At the end choose exactly ONE:
+
+
+
+BUILD
+
+DELAY
+
+STOP
+
+
+
+BUILD means:
+
+
+
+There is strong evidence for a specific candidate-selection mechanism that should be fixed generically.
+
+
+
+If BUILD:
+
+
+
+State the smallest justified production change.
+
+
+
+DELAY means:
+
+
+
+The experiment found a likely direction, but more evidence is required before modifying production.
+
+
+
+If DELAY:
+
+
+
+State exactly what evidence is missing.
+
+
+
+STOP means:
+
+
+
+Candidate selection is not the dominant bottleneck.
+
+
+
+If STOP:
+
+
+
+Identify the actual dominant bottleneck supported by the data.
+
+
+
+============================================================
+
+25. REQUIRED FINAL ANSWERS
+
+============================================================
+
+
+
+The final report MUST explicitly answer:
+
+
+
+1. What are the canonical Phase 9.3A results?
+
+2. Why did the different Phase 9.3A reports disagree?
+
+3. How many positive targets are inside Top-50?
+
+4. How many are inside Top-20?
+
+5. How many are inside Top-10?
+
+6. How many are lost between Top-50 and seed selection?
+
+7. How many are lost during investigation?
+
+8. How many are evidence/sufficiency failures?
+
+9. How many are reasoning failures?
+
+10. How many are genuine retrieval-recall failures?
+
+11. How many are candidate-selection failures?
+
+12. Does increasing the candidate/seed window help?
+
+13. Does diversity-aware selection help?
+
+14. Does primary-unit preservation help?
+
+15. Which policy has the best overall tradeoff?
+
+16. Which policy has the best Hit@5/Hit@10?
+
+17. Which policy has the best actual correctness?
+
+18. Does any policy regress negative refusal?
+
+19. Does any policy regress groundedness?
+
+20. What is the latency cost?
+
+21. Which individual questions improve?
+
+22. Which individual questions regress?
+
+23. Is candidate selection actually the bottleneck?
+
+24. Should we modify production code?
+
+25. Should Phase 9.3C proceed?
+
+26. What should Phase 9.3C investigate, if anything?
+
+
+
+============================================================
+
+26. PHASE 9.3C MUST NOT BE ASSUMED
+
+============================================================
+
+
+
+Do NOT automatically define 9.3C as:
+
+
+
+- Hop-2
+
+- multi-hop
+
+- graph expansion
+
+- agentic investigation
+
+- larger context
+
+- more candidates
+
+
+
+9.3C must be derived from the evidence produced by 9.3B.
+
+
+
+If 9.3B shows that candidate selection is the dominant problem:
+
+9.3C may investigate the next boundary.
+
+
+
+If 9.3B shows that investigation is the dominant problem:
+
+9.3C may investigate bounded investigation improvements.
+
+
+
+If 9.3B shows retrieval recall is the dominant problem:
+
+9.3C should address retrieval recall instead.
+
+
+
+If 9.3B shows none of these:
+
+STOP and reassess the architecture.
+
+
+
+Do not create a phase merely to continue the roadmap.
+
+
+
+============================================================
+
+27. FINAL RULE
+
+============================================================
+
+
+
+Do not optimize for a prettier benchmark number.
+
+
+
+Do not force a production change.
+
+
+
+Do not assume the Phase 9.3A report's roadmap is correct.
+
+
+
+Do not assume our own hypothesis is correct.
+
+
+
+The purpose of Phase 9.3B is to discover where relevant repository information is being lost.
+
+
+
+If candidate selection is the problem:
+
+prove it and fix it.
+
+
+
+If candidate selection is not the problem:
+
+say so.
+
+
+
+If the benchmark results are inconsistent:
+
+reconcile them first.
+
+
+
+If no safe generic improvement is justified:
+
+do not change production code.
+
+
+
+The correct outcome of this phase is not necessarily "more code".
+
+
+
+The correct outcome is:
+
+
+
+Amoeba has a measured, reproducible understanding of where candidate recall is lost and whether candidate selection is actually the next bottleneck.
+
+
+
+END PHASE 9.3B.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-04T13:47:14+05:30.
+
+The user's current state is as follows:
+Active Document: d:\amoeba\docs\phase-09.3a-query-normalization.md (LANGUAGE_MARKDOWN)
+Cursor is on line: 154
+Other open documents:
+- d:\amoeba\docs\phase-09.3a-query-normalization.md (LANGUAGE_MARKDOWN)
+- d:\amoeba\docs\phase-09.2-failure-analysis.md (LANGUAGE_MARKDOWN)
+- d:\amoeba\benchmarks\repoprobe_v1\README.md (LANGUAGE_MARKDOWN)
+- d:\amoeba\README.md (LANGUAGE_MARKDOWN)
+- d:\amoeba\docs\phase-08.5-evidence-sufficiency-forensic-investigation.md (LANGUAGE_MARKDOWN)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.7 Flash (Medium). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

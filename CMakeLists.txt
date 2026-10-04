@@ -284,6 +284,7 @@ add_library(amoeba_engine
     engine/src/tools/read_file_tool.cpp
     engine/src/tools/get_relationships_tool.cpp
     engine/src/tools/tool_evidence_adapter.cpp
+    engine/src/investigation/bounded_investigation_service.cpp
 )
 
 target_include_directories(amoeba_engine
@@ -420,6 +421,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/tools/tools_benchmark_test.cpp
         engine/tests/tools/phase_8_2_checkpoint_test.cpp
         engine/tests/tools/benchmark_compatibility_test.cpp
+        engine/tests/investigation/bounded_investigation_service_test.cpp
     )
 
     target_link_libraries(amoeba_engine_tests
@@ -618,6 +620,29 @@ else()
     target_compile_options(amoeba_test_fusion PRIVATE -Wall -Wextra -Wpedantic)
     target_link_options(amoeba_test_fusion PRIVATE -Wl,--stack,67108864)
 endif()
+
+# -----------------------------------------------------------------------------
+# 13. amoeba_candidate_selection_experiments (Phase 9.3B Candidate Selection Experiments)
+# -----------------------------------------------------------------------------
+add_executable(amoeba_candidate_selection_experiments
+    scratch/test_candidate_selection_experiments.cpp
+)
+
+target_link_libraries(amoeba_candidate_selection_experiments
+    PRIVATE
+        amoeba_engine
+)
+
+target_compile_features(amoeba_candidate_selection_experiments PRIVATE cxx_std_20)
+
+if(MSVC)
+    target_compile_options(amoeba_candidate_selection_experiments PRIVATE /W4 /permissive-)
+    target_link_options(amoeba_candidate_selection_experiments PRIVATE /STACK:67108864)
+else()
+    target_compile_options(amoeba_candidate_selection_experiments PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_options(amoeba_candidate_selection_experiments PRIVATE -Wl,--stack,67108864)
+endif()
+
 
 
 

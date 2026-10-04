@@ -19,7 +19,7 @@ const std::unordered_set<std::string_view> kStopwords = {
     "each",    "every",   "all",   "any",     "both",  "and",         "or",    "not",    "inside",
     "outside", "between", "about", "above",   "below", "rendered",    "does",  "show",   "this",
     "that",    "it",      "its",   "another", "other", "application", "app",   "system", "codebase",
-    "project"};
+    "project", "repo",    "repository"};
 
 const std::unordered_set<std::string_view> kInterrogatives = {"where", "what",  "when", "why",
                                                               "how",   "which", "who",  "whom"};
@@ -31,29 +31,33 @@ const std::unordered_set<std::string_view> kGenericActionBases = {
     "build",     "format",  "parse",   "process", "dispatch", "trigger",    "execute",
     "run",       "send",    "receive", "fetch",   "get",      "set",        "read",
     "write",     "show",    "view",    "find",    "obtain",   "check",      "contain",
-    "hold",      "perform"};
+    "hold",      "perform", "provide", "validate", "verify",   "test",       "convert",
+    "restrict",  "enforce", "access",  "search",   "export",     "extract",
+    "remove",    "add",     "pass",    "wait",    "finish",   "exist",      "describe",
+    "explain",   "allow",   "require", "return"};
 
 const std::unordered_set<std::string_view> kGenericComponentTerms = {
-    "resolver",      "handler",       "manager",        "service",      "client",
-    "provider",      "controller",    "parser",         "processor",    "factory",
-    "adapter",       "builder",       "helper",         "utility",      "validator",
-    "middleware",    "component",     "hook",           "store",        "storage",
-    "model",         "view",          "router",         "route",        "worker",
-    "runner",        "listener",      "emitter",        "consumer",     "producer",
-    "engine",        "pipeline",      "deployment",     "endpoint",     "driver",
-    "connector",     "serializer",    "deserializer",   "indexer",      "index",
-    "searcher",      "extractor",     "checker",        "inspector",    "evaluator",
-    "authenticator", "authorizer",    "auth",           "authentication","login",
-    "checkout",      "wrapper",       "registry",       "module",       "element",
-    "config",        "configuration", "core",           "database",     "db",
-    "executor",      "planner",       "conversion",     "converter",    "vector"};
+    "resolver",      "handler",       "manager",        "management",
+    "service",       "client",        "provider",       "controller",   "parser",
+    "processor",     "factory",       "adapter",        "builder",      "helper",
+    "utility",       "validator",     "middleware",     "component",    "hook",
+    "store",         "storage",       "model",          "view",         "router",
+    "route",         "worker",        "runner",         "listener",     "emitter",
+    "consumer",      "producer",      "engine",         "pipeline",     "deployment",
+    "deploy",        "endpoint",      "driver",         "connector",    "serializer",
+    "deserializer",  "indexer",       "index",          "searcher",     "extractor",
+    "checker",       "inspector",     "evaluator",      "authenticator","authorizer",
+    "auth",          "authentication","authorization",  "login",        "checkout",
+    "wrapper",       "registry",      "module",         "element",      "config",
+    "configuration", "core",          "database",       "db",           "executor",
+    "planner",       "conversion",    "converter",      "vector"};
 
 const std::unordered_set<std::string_view> kConversationalNoise = {
     "hello", "hi", "hey", "thanks", "thank", "please", "help", "anyone",
     "idea", "ideas", "advice", "wondering", "curious", "trying", "attempt",
     "attempting", "question", "questions", "issue", "issues", "problem",
     "problems", "bug", "bugs", "error", "errors", "failed", "failing",
-    "failure", "works", "working", "work", "possible", "impossible",
+    "failure", "fail", "fails", "works", "working", "work", "possible", "impossible",
     "feasible", "approach", "approaches", "tradeoff", "tradeoffs", "trade-off",
     "trade-offs", "difference", "differences", "pros", "cons", "vs", "versus",
     "best", "better", "good", "bad", "way", "ways", "setup",
@@ -67,7 +71,11 @@ const std::unordered_set<std::string_view> kConversationalNoise = {
     "someone", "anybody", "everybody", "everyone", "community", "folks",
     "team", "guys", "description", "summary", "file", "files", "code", "codes",
     "line", "lines", "builtin", "built-in", "built", "native", "natively",
-    "support", "supports", "supported"};
+    "support", "supports", "supported", "structure", "structured", "logic",
+    "definition", "mechanism", "construct", "concept", "syntax", "feature",
+    "functionality", "property", "attribute", "my", "also", "try", "tried",
+    "using", "custom", "mostly", "back", "pkl", "dokploy", "beszel", "opencloud",
+    "ducklake", "jiff", "walker", "docling", "adk", "better-auth"};
 
 }  // namespace
 
@@ -83,6 +91,12 @@ std::string QueryUnderstanding::conservative_stem(std::string_view term) {
     }
 
     if (s.size() <= 3) {
+        return s;
+    }
+
+    // Preservation exceptions
+    if (s == "authentication" || s == "authorization" || s == "authority" ||
+        s == "author" || s == "management" || s == "status" || s == "pass" || s == "this") {
         return s;
     }
 
@@ -118,7 +132,7 @@ std::string QueryUnderstanding::conservative_stem(std::string_view term) {
     }
 
     // 2. Verb -ing forms
-    if (s.size() > 5 && s.ends_with("ing")) {
+    if (s.size() > 5 && s.ends_with("ing") && s != "spring" && s != "string") {
         if (s.ends_with("ating") || s.ends_with("izing") || s.ends_with("aging") ||
             s.ends_with("iving") || s.ends_with("uting") || s.ends_with("uding") ||
             s.ends_with("aving") || s.ends_with("oring") || s.ends_with("osing") ||
@@ -195,6 +209,18 @@ std::string QueryUnderstanding::conservative_stem(std::string_view term) {
         return s;
     }
 
+    // 4. Derivational nominalizations (-ment)
+    if (s.size() > 6 && s.ends_with("ment")) {
+        if (s.ends_with("agement") || s.ends_with("edgement") || s.ends_with("odgement") ||
+            s.ends_with("oyment") || s.ends_with("opment") || s.ends_with("irement")) {
+            s.pop_back();
+            s.pop_back();
+            s.pop_back();
+            s.pop_back();
+            return s;
+        }
+    }
+
     return s;
 }
 
@@ -238,6 +264,18 @@ bool QueryUnderstanding::is_conversational_noise(std::string_view term) noexcept
 
 bool QueryUnderstanding::is_technical_entity(std::string_view term) noexcept {
     if (term.empty() || term.size() < 2) {
+        return false;
+    }
+
+    // Ignore pure numeric / version tokens like "2.0", "503", "1.5"
+    bool all_digits_dots = true;
+    for (char c : term) {
+        if (!std::isdigit(static_cast<unsigned char>(c)) && c != '.') {
+            all_digits_dots = false;
+            break;
+        }
+    }
+    if (all_digits_dots) {
         return false;
     }
 
@@ -306,6 +344,29 @@ QueryTermRole QueryUnderstanding::classify_term_role(std::string_view term) noex
     }
     if (lower_t.size() < 2 || is_stopword(lower_t) || is_interrogative(lower_t)) {
         return QueryTermRole::Context;
+    }
+    // Pure numbers, versions (e.g. 2.0, 503, 1.0.0), or punctuation-only tokens
+    bool has_alpha = false;
+    for (char c : lower_t) {
+        if (std::isalpha(static_cast<unsigned char>(c))) {
+            has_alpha = true;
+            break;
+        }
+    }
+    if (!has_alpha) {
+        return QueryTermRole::Context;
+    }
+    // Check for contractions with apostrophe: e.g. isn't, doesn't, i'd, what's, there's, you'd, won't, couldn't, that's, it's
+    if (lower_t.find('\'') != std::string::npos || lower_t.find('\x92') != std::string::npos) {
+        return QueryTermRole::Context;
+    }
+    // Check for adverbs ending in -ly (e.g. correctly, properly, easily, directly, currently, really, natively)
+    if (lower_t.size() > 4 && lower_t.ends_with("ly") && lower_t != "only" && lower_t != "apply" && lower_t != "rely") {
+        return QueryTermRole::ConversationalFraming;
+    }
+    // Check for conversational superlatives ending in -est (e.g. easiest, simplest, fastest, nearest)
+    if (lower_t.size() > 5 && (lower_t.ends_with("est") || lower_t.ends_with("iest"))) {
+        return QueryTermRole::ConversationalFraming;
     }
     if (is_conversational_noise(lower_t) || is_conversational_noise(term)) {
         return QueryTermRole::ConversationalFraming;
@@ -423,7 +484,48 @@ std::string_view QueryUnderstanding::extract_headline(std::string_view text) noe
         return text.substr(start, end - start);
     }
 
-    // 3. For single-line text, look for first sentence terminator (. ? !) followed by space
+    // 3. Look for 2+ consecutive spaces or tab (common title-body boundary in issue formats)
+    for (std::size_t i = start; i + 1 < text.size(); ++i) {
+        if ((text[i] == ' ' && text[i + 1] == ' ') || text[i] == '\t') {
+            if (i > start + 3) {
+                return text.substr(start, i - start);
+            }
+        }
+    }
+
+    // 4. For multi-sentence queries without newlines, check if a sentence contains an explicit interrogative question
+    // (e.g. "I tried config.toml. Why does WalkerConfig not load custom themes?")
+    std::size_t sent_start = start;
+    std::string_view best_question_sent;
+    while (sent_start < text.size()) {
+        while (sent_start < text.size() && std::isspace(static_cast<unsigned char>(text[sent_start]))) {
+            sent_start++;
+        }
+        if (sent_start >= text.size()) break;
+
+        std::size_t sent_end = sent_start;
+        while (sent_end < text.size() && text[sent_end] != '?' && text[sent_end] != '!' && text[sent_end] != '.') {
+            sent_end++;
+        }
+        if (sent_end < text.size()) {
+            sent_end++; // include punctuation
+        }
+
+        std::string_view sentence = text.substr(sent_start, sent_end - sent_start);
+        if (sentence.ends_with('?') || sentence.starts_with("Why") || sentence.starts_with("Where") ||
+            sentence.starts_with("How") || sentence.starts_with("What") || sentence.starts_with("Can") ||
+            sentence.starts_with("Does") || sentence.starts_with("Is") || sentence.starts_with("Which")) {
+            best_question_sent = sentence;
+        }
+
+        sent_start = sent_end;
+    }
+
+    if (!best_question_sent.empty()) {
+        return best_question_sent;
+    }
+
+    // 5. Fallback: first sentence
     for (std::size_t i = start; i < text.size(); ++i) {
         if ((text[i] == '?' || text[i] == '!' || text[i] == '.') &&
             (i + 1 == text.size() || std::isspace(static_cast<unsigned char>(text[i + 1])))) {
@@ -455,7 +557,8 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
     const auto headline = extract_headline(raw_query);
     const std::size_t headline_len = headline.size();
     const bool is_multi_clause_query =
-        (raw_query.size() > 120 || raw_query.find('\n') != std::string_view::npos);
+        (raw_query.size() > 120 || raw_query.find('\n') != std::string_view::npos ||
+         (headline_len < raw_query.size() && raw_query.size() > 60));
 
     // Extract and categorize primary query words
     std::unordered_set<std::string> seen_subjects;
@@ -483,10 +586,15 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
         std::string word(raw_query.substr(pos, end_pos - pos));
         pos = end_pos;
 
+        while (word.size() >= 2 && word.ends_with("()")) {
+            word.pop_back();
+            word.pop_back();
+        }
         while (!word.empty() &&
                (word.back() == '?' || word.back() == '!' || word.back() == '.' ||
                 word.back() == ',' || word.back() == ':' || word.back() == ';' ||
-                word.back() == ')' || word.back() == ']' || word.back() == '}' ||
+                word.back() == ')' || word.back() == '(' || word.back() == ']' || word.back() == '[' ||
+                word.back() == '}' || word.back() == '{' ||
                 word.back() == '"' || word.back() == '\'' || word.back() == '`')) {
             word.pop_back();
         }
@@ -494,11 +602,18 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
                                  word.front() == '"' || word.front() == '\'' || word.front() == '`')) {
             word.erase(word.begin());
         }
+        while (word.size() >= 2 && word.ends_with("()")) {
+            word.pop_back();
+            word.pop_back();
+        }
         if (word.empty()) {
             continue;
         }
-
-        const bool in_headline = (!is_multi_clause_query || token_start_pos < headline_len + 4);
+        const std::size_t headline_offset =
+            (headline.data() >= raw_query.data()) ? static_cast<std::size_t>(headline.data() - raw_query.data()) : 0;
+        const bool in_headline =
+            (!is_multi_clause_query || (token_start_pos >= headline_offset &&
+                                        token_start_pos <= headline_offset + headline_len + 2));
         const auto role = classify_term_role(word);
         const auto stem = conservative_stem(word);
 
@@ -512,12 +627,19 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
             if (seen_technical.insert(word).second) {
                 rep.technical_entities.push_back(word);
             }
-            if (seen_core_subjects.insert(stem).second) {
-                rep.core_subject_terms.push_back(stem);
-            }
-            if (seen_subjects.insert(stem).second) {
-                rep.subject_terms.push_back(stem);
-                rep.distinguishing_subject_terms.push_back(stem);
+            if (in_headline) {
+                if (seen_core_subjects.insert(stem).second) {
+                    rep.core_subject_terms.push_back(stem);
+                }
+                if (seen_subjects.insert(stem).second) {
+                    rep.subject_terms.push_back(stem);
+                    rep.distinguishing_subject_terms.push_back(stem);
+                }
+            } else {
+                if (seen_subjects.insert(stem).second) {
+                    rep.subject_terms.push_back(stem);
+                }
+                rep.conversational_noise_terms.push_back(stem);
             }
         } else if (role == QueryTermRole::Subject) {
             rep.meaningful_domain_terms.push_back(word);
@@ -525,12 +647,12 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
                 rep.subject_terms.push_back(stem);
             }
             if (in_headline) {
-                if (seen_core_subjects.insert(stem).second) {
-                    rep.core_subject_terms.push_back(stem);
-                }
                 if (is_generic_component_term(stem)) {
                     rep.generic_component_terms.push_back(stem);
                 } else {
+                    if (seen_core_subjects.insert(stem).second) {
+                        rep.core_subject_terms.push_back(stem);
+                    }
                     rep.distinguishing_subject_terms.push_back(stem);
                 }
             } else {
@@ -569,6 +691,8 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
     if (rep.core_subject_terms.empty()) {
         if (!rep.distinguishing_subject_terms.empty()) {
             rep.core_subject_terms = rep.distinguishing_subject_terms;
+        } else if (!rep.generic_component_terms.empty()) {
+            rep.core_subject_terms = rep.generic_component_terms;
         } else if (!rep.subject_terms.empty()) {
             rep.core_subject_terms = rep.subject_terms;
         }

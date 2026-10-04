@@ -537,4 +537,100 @@ TEST_F(EvidenceSufficiencyTest, Phase86UnknownVocabularyGroundedAndRefused) {
     EXPECT_DOUBLE_EQ(res_absent.confidence_score, 0.0);
 }
 
+// Phase 9.3A Tests
+TEST_F(EvidenceSufficiencyTest, Phase93ATransactionManagementStructuredDuckLake) {
+    EvidenceBundle bundle;
+    bundle.query = "How is transaction management structured?";
+    bundle.items.push_back(create_item(
+        "DuckLakeTransactionManager", "src/transaction/ducklake_transaction_manager.cpp", 0.90,
+        RetrievalProvenance::HybridBoth,
+        "class DuckLakeTransactionManager { void begin_transaction(); };"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93AContractionAdverbNegativeFilterADK) {
+    EvidenceBundle bundle;
+    bundle.query = "Why isn't after_agent_callback executed correctly when LLM returns error?";
+    bundle.items.push_back(create_item(
+        "after_agent_callback", "src/callbacks/agent_callback.py", 0.88,
+        RetrievalProvenance::HybridBoth,
+        "def after_agent_callback(state, error=None): pass"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93AOAuthFillerBetterAuth) {
+    EvidenceBundle bundle;
+    bundle.query = "I'd like to implement an OAuth provider. As an enthousiaste developer, how can I configure GitHub OAuth?";
+    bundle.items.push_back(create_item(
+        "githubOAuth", "src/providers/oauth/github.ts", 0.89,
+        RetrievalProvenance::HybridBoth,
+        "export const githubOAuth = (options: OAuthOptions) => createOAuthProvider(options);"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93APklRegexEnumValidation) {
+    EvidenceBundle bundle;
+    bundle.query = "How do I validate regex patterns and enum constraints in Pkl templates?";
+    bundle.items.push_back(create_item(
+        "Regex", "stdlib/pkl/Regex.pkl", 0.85,
+        RetrievalProvenance::HybridBoth,
+        "class Regex { function validate(str: String): Boolean }"));
+    bundle.items.push_back(create_item(
+        "Enum", "stdlib/pkl/Enum.pkl", 0.82,
+        RetrievalProvenance::HybridBoth,
+        "class Enum { function isMember(val: Any): Boolean }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93ASharedLinkPasswordDSGVOOpenCloud) {
+    EvidenceBundle bundle;
+    bundle.query = "Shared link password protection  I just fired up OpenCloud and noticed that shared link password protection is not working according to DSGVO requirements. Where is the password check logic?";
+    bundle.items.push_back(create_item(
+        "CheckPassword", "services/shares/pkg/service/v0/shares.go", 0.86,
+        RetrievalProvenance::HybridBoth,
+        "func (s *Shares) CheckPassword(ctx context.Context, link *Link, password string) bool {}"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93AWalkerConfigMultipleFilesBody) {
+    EvidenceBundle bundle;
+    bundle.query = "I have my config in ~/.config/walker/config.toml but also tried elephant.toml with KDE and wezterm. Why does WalkerConfig not load custom themes?";
+    bundle.items.push_back(create_item(
+        "WalkerConfig", "src/config/walker_config.rs", 0.91,
+        RetrievalProvenance::HybridBoth,
+        "pub struct WalkerConfig { pub fn load_theme(&self) -> Theme {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_TRUE(res.is_sufficient);
+    EXPECT_GT(res.confidence_score, 0.5);
+}
+
+TEST_F(EvidenceSufficiencyTest, Phase93AAbsentTechnicalConceptRefusal) {
+    EvidenceBundle bundle;
+    bundle.query = "How is Kubernetes cluster controller configured?";
+    bundle.items.push_back(create_item(
+        "DockerManager", "src/docker/manager.rs", 0.40,
+        RetrievalProvenance::SemanticOnly,
+        "pub struct DockerManager { pub fn configure() {} }"));
+
+    const auto res = EvidenceSufficiencyChecker::check(bundle.query, bundle);
+    EXPECT_FALSE(res.is_sufficient);
+    EXPECT_DOUBLE_EQ(res.confidence_score, 0.0);
+}
+
 

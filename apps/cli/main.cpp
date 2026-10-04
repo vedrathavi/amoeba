@@ -6,6 +6,7 @@
 #include "amoeba/graph/relationship_evidence_resolver.hpp"
 #include "amoeba/graph/repository_graph_builder.hpp"
 #include "amoeba/index/inverted_index.hpp"
+#include "amoeba/investigation/bounded_investigation_service.hpp"
 #include "amoeba/parser/source_parser.hpp"
 #include "amoeba/reasoning/local_llm_runtime.hpp"
 #include "amoeba/reasoning/reasoning_service.hpp"
@@ -15,6 +16,7 @@
 #include "amoeba/retrieval/retrieval_unit.hpp"
 #include "amoeba/scanner/repository_scanner.hpp"
 #include "amoeba/semantic/pretrained_embedding_provider.hpp"
+#include "amoeba/source/source_snippet_reader.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -318,10 +320,18 @@ void handle_ask_command(const path& repo_path, string_view question,
             .max_results = 5,
             .adaptive_fusion = true,
         };
-        const auto results = pipeline.search(question, search_opts);
+        const auto hop0_results = pipeline.search(question, search_opts);
+
+        // 5.1 Bounded Hop-1 Investigation
+        amoeba::source::SourceSnippetReader snippet_reader;
+        amoeba::investigation::BoundedInvestigationService investigator(
+            index, graph, pipeline, snippet_reader);
+        amoeba::investigation::InvestigationOptions invest_opts;
+        invest_opts.max_total_candidates = 5;
+        const auto candidates = investigator.investigate_candidates(question, hop0_results, invest_opts);
 
         // 6. Assemble evidence
-        const auto bundle = assembler.assemble(question, results);
+        const auto bundle = investigator.assemble_bundle(question, candidates, assembler);
 
         // 7. Evidence Sufficiency Gate with Semantic Evidence Support
         const auto query_rep = amoeba::retrieval::QueryUnderstanding::analyze(question);

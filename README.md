@@ -7,8 +7,9 @@
 ## Current Status
 
 > [!NOTE]
-> **Amoeba is in Phase 8 (Query Normalization, Hybrid Fusion & Grounded Reasoning).**
-> Amoeba provides end-to-end repository indexing, Tree-sitter powered syntax parsing across 12+ languages, inverted index lexical search (BM25), HNSW dense vector semantic search, hybrid rank fusion ($\alpha=0.8$), evidence sufficiency verification gates, and offline local LLM code reasoning (via Ollama & Qwen2.5-Coder).
+> **Amoeba is in Phase 9.1 (Broad Candidate Reservoir + Deterministic Seed Pruning).**
+> Amoeba provides end-to-end repository indexing, Tree-sitter syntax parsing across 12+ languages, inverted index lexical search (BM25), HNSW dense vector semantic search, hybrid rank fusion ($\alpha=0.8$), Top-50 candidate reservoir generation with multi-signal deterministic seed pruning (`BoundedInvestigationService`), bounded 1-hop graph investigation, evidence sufficiency verification gates with 100% negative refusal accuracy, and offline local LLM code reasoning (via Ollama & Qwen2.5-Coder).
+> Full evaluation report: [`docs/phase-09.1-top50-reservoir-investigation.md`](docs/phase-09.1-top50-reservoir-investigation.md).
 
 ---
 
@@ -16,7 +17,7 @@
 
 Amoeba is an open, high-performance source-code search and indexing engine engineered in modern C++20 to scale across large codebases. The project evolves through systematic milestones:
 
-$$\text{Source Scanning} \longrightarrow \text{AST Parsing} \longrightarrow \text{Hybrid Retrieval} \longrightarrow \text{Evidence Verification} \longrightarrow \text{Grounded Code Intelligence}$$
+$$\text{Source Scanning} \longrightarrow \text{AST Parsing} \longrightarrow \text{Hybrid Retrieval} \longrightarrow \text{Bounded Investigation} \longrightarrow \text{Evidence Verification} \longrightarrow \text{Grounded Code Intelligence}$$
 
 ---
 
@@ -26,6 +27,7 @@ $$\text{Source Scanning} \longrightarrow \text{AST Parsing} \longrightarrow \tex
 - **Inverted Index & Lexical Search**: Term frequency, inverse document frequency (TF-IDF/BM25), field-aware symbol weighting, and deterministic ranking.
 - **Dense Vector Semantic Index**: Approximate Nearest Neighbor (ANN) vector indexing powered by HNSW graphs (`hnswlib`) with deterministic local embeddings.
 - **Calibrated Hybrid Fusion**: Score fusion combining lexical and semantic rankings with tie-breaking determinism.
+- **Bounded 1-Hop Investigation**: Deterministic graph and AST vocabulary exploration linking callers, callees, and types in $< 2\text{ ms}$.
 - **Evidence Sufficiency Gate**: Algorithmic sufficiency validation enforcing domain term coverage and negative refusal to prevent LLM hallucinations.
 - **Offline Grounded Code Reasoning**: Direct natural language question-answering with local LLM integration (Ollama / Qwen2.5-Coder) bounded by verified source context slices.
 
@@ -49,7 +51,7 @@ $$\text{Source Scanning} \longrightarrow \text{AST Parsing} \longrightarrow \tex
 * **Parsing Runtime**: Tree-sitter (C, C++, Python, Java, Go, Rust, JS, TS, HTML, CSS grammars)
 * **Vector Index**: HNSW (Hierarchical Navigable Small World graphs via hnswlib)
 * **Local LLM Runtime**: Ollama REST Client (`qwen2.5-coder:1.5b` / `qwen2.5-coder:7b`)
-* **Testing Framework**: GoogleTest (511+ automated unit & integration tests)
+* **Testing Framework**: GoogleTest (518 automated unit & integration tests)
 * **Code Quality**: clang-format & clang-tidy
 
 ---
@@ -79,8 +81,8 @@ amoeba/
 │   └── repoprobe_v1/   # Canonical 70-question benchmark across 10 repos
 │
 ├── docs/               # System documentation, forensic reports, and ADRs
-│   ├── phase-08.4-hybrid-fusion-recalibration.md
-│   ├── phase-08.5-evidence-sufficiency-forensic-investigation.md
+│   ├── phase-09.0-bounded-investigation.md
+│   ├── phase-09.1-top50-reservoir-investigation.md
 │   ├── phase-08.6-query-subject-normalization.md
 │   └── phase-08.7-post-8.6-failure-forensic-checkpoint.md
 │
@@ -187,7 +189,7 @@ Extract structural code symbols (classes, functions, interfaces, methods) from a
 
 ## Running Test Suites
 
-Run the complete 511-assertion GoogleTest suite:
+Run the complete 518-assertion GoogleTest suite:
 
 ```bash
 ./build/amoeba_engine_tests

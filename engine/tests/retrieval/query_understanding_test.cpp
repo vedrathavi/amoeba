@@ -325,4 +325,62 @@ TEST(QueryUnderstandingTest, Phase86CodeHeavyQueryWithBackticksAndPaths) {
               rep.core_subject_terms.end());
 }
 
+// Phase 9.3A Tests
+TEST(QueryUnderstandingTest, Phase93AContractionsAndAdverbsFilteredFromCoreSubjects) {
+    const auto rep = QueryUnderstanding::analyze(
+        "Why isn't after_agent_callback executed correctly when LLM returns error?");
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "after_agent_callback"),
+              rep.technical_entities.end());
+    // "isn't" (contraction) and "correctly" (adverb) must not be in core subjects
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "isn't"),
+              rep.core_subject_terms.end());
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "correctly"),
+              rep.core_subject_terms.end());
+}
+
+TEST(QueryUnderstandingTest, Phase93AConversationalFillersAndDoubleSpaceHeadline) {
+    const auto rep = QueryUnderstanding::analyze(
+        "Shared link password protection  I just fired up OpenCloud and noticed that shared link password protection is not working according to DSGVO requirements.");
+    EXPECT_NE(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "password"),
+              rep.core_subject_terms.end());
+    // DSGVO from narrative body should not be in core subjects
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "dsgvo"),
+              rep.core_subject_terms.end());
+}
+
+TEST(QueryUnderstandingTest, Phase93AVersionNumbersAndQuotedStrings) {
+    const auto rep = QueryUnderstanding::analyze(
+        "When searching for 'asbest' in Walker 2.0, why is search results list empty?");
+    // Version "2.0" must not be treated as a technical entity or core subject
+    EXPECT_EQ(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "2.0"),
+              rep.technical_entities.end());
+    EXPECT_EQ(std::find(rep.core_subject_terms.begin(), rep.core_subject_terms.end(), "2.0"),
+              rep.core_subject_terms.end());
+}
+
+TEST(QueryUnderstandingTest, Phase93ACodePunctuationAndScopedMethods) {
+    const auto rep = QueryUnderstanding::analyze(
+        "How do I call Zoned::iso_week() and Zoned::iso_week_day() when there is no calendar?");
+    EXPECT_FALSE(rep.technical_entities.empty());
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "Zoned::iso_week"),
+              rep.technical_entities.end());
+}
+
+TEST(QueryUnderstandingTest, Phase93AContextualTermsWhenActuallyCodeRelevant) {
+    const auto rep = QueryUnderstanding::analyze(
+        "Where is WindowsCredentialStore or LinuxPlatformAdapter implemented?");
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "WindowsCredentialStore"),
+              rep.technical_entities.end());
+    EXPECT_NE(std::find(rep.technical_entities.begin(), rep.technical_entities.end(), "LinuxPlatformAdapter"),
+              rep.technical_entities.end());
+}
+
+TEST(QueryUnderstandingTest, Phase93AEmptyAndAmbiguousQueries) {
+    const auto rep_empty = QueryUnderstanding::analyze("");
+    EXPECT_TRUE(rep_empty.core_subject_terms.empty());
+
+    const auto rep_punct = QueryUnderstanding::analyze("??? ... !!!");
+    EXPECT_TRUE(rep_punct.core_subject_terms.empty());
+}
+
 }  // namespace
