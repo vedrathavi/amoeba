@@ -2,149 +2,63 @@
 
 #include "amoeba/reasoning/prompt_builder.hpp"
 
-#include <algorithm>
 #include <chrono>
-#include <iostream>
-#include <sstream>
+#include <cstring>
+#include <memory>
+#include <mutex>
 #include <string>
 #include <string_view>
-#include <vector>
 
-#if defined(_WIN32)
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
-#include <winhttp.h>
-#endif
+#include <httplib.h>
+#include <nlohmann/json.hpp>
 
 namespace amoeba::reasoning {
 
 namespace {
 
-[[nodiscard]] std::string escape_json(std::string_view s) {
-    std::string out;
-    out.reserve(s.size() + s.size() / 8);
-    for (char c : s) {
-        switch (c) {
-        case '"':
-            out += "\\\"";
-            break;
-        case '\\':
-            out += "\\\\";
-            break;
-        case '\b':
-            out += "\\b";
-            break;
-        case '\f':
-            out += "\\f";
-            break;
-        case '\n':
-            out += "\\n";
-            break;
-        case '\r':
-            out += "\\r";
-            break;
-        case '\t':
-            out += "\\t";
-            break;
-        default:
-            if (static_cast<unsigned char>(c) < 0x20) {
-                char buf[8];
-                std::snprintf(buf, sizeof(buf), "\\u%04x", static_cast<unsigned int>(c));
-                out += buf;
-            } else {
-                out += c;
-            }
-            break;
-        }
-    }
-    return out;
-}
-
-[[nodiscard]] std::string unescape_json(std::string_view s) {
-    std::string out;
-    out.reserve(s.size());
-    for (std::size_t i = 0; i < s.size(); ++i) {
-        if (s[i] == '\\' && i + 1 < s.size()) {
-            char next = s[++i];
-            switch (next) {
-            case '"':
-                out += '"';
-                break;
-            case '\\':
-                out += '\\';
-                break;
-            case '/':
-                out += '/';
-                break;
-            case 'b':
-                out += '\b';
-                break;
-            case 'f':
-                out += '\f';
-                break;
-            case 'n':
-                out += '\n';
-                break;
-            case 'r':
-                out += '\r';
-                break;
-            case 't':
-                out += '\t';
-                break;
-            case 'u':
-                if (i + 4 < s.size()) {
-                    // Simple hex decode for basic ASCII range
-                    std::string hex_str(s.substr(i + 1, 4));
-                    try {
-                        auto val = static_cast<unsigned long>(std::stoul(hex_str, nullptr, 16));
-                        if (val < 128) {
-                            out += static_cast<char>(val);
-                        } else {
-                            out += '?';
-                        }
-                    } catch (...) {
-                        out += '?';
-                    }
-                    i += 4;
-                }
-                break;
-            default:
-                out += next;
-                break;
-            }
-        } else {
-            out += s[i];
-        }
-    }
-    return out;
-}
-
 struct ParsedUrl {
-    std::wstring host{L"127.0.0.1"};
-    INTERNET_PORT port{11434};
-    std::wstring path{L"/api/generate"};
+    std::string host{"127.0.0.1"};
+    int port{11434};
+    std::string path{"/api/generate"};
     bool is_https{false};
+    bool valid{true};
+    std::string error_message;
 };
 
 [[nodiscard]] ParsedUrl parse_endpoint_url(std::string_view endpoint,
                                            std::string_view default_path) {
     ParsedUrl res;
+    if (endpoint.empty()) {
+        res.host = "127.0.0.1";
+        res.port = 11434;
+        res.path = std::string(default_path);
+        res.valid = true;
+        return res;
+    }
+
     std::string ep(endpoint);
 
-    bool https = false;
+    // 1. Explicit HTTPS detection and rejection (plain loopback HTTP only in Phase B/B.1)
     if (ep.rfind("https://", 0) == 0) {
-        https = true;
-        ep = ep.substr(8);
-    } else if (ep.rfind("http://", 0) == 0) {
-        ep = ep.substr(7);
+        res.is_https = true;
+        res.valid = false;
+        res.error_message = "HTTPS endpoints are not supported by LocalLLMRuntime (plain loopback HTTP only: " +
+                            std::string(endpoint) + ").";
+        return res;
     }
-    res.is_https = https;
 
+    if (ep.rfind("http://", 0) == 0) {
+        ep = ep.substr(7);
+    } else {
+        auto scheme_sep = ep.find("://");
+        if (scheme_sep != std::string::npos) {
+            res.valid = false;
+            res.error_message = "Unsupported URL scheme in endpoint: " + std::string(endpoint);
+            return res;
+        }
+    }
+
+    // 2. Separate host:port from path
     std::string host_port = ep;
     std::string path_part = std::string(default_path);
 
@@ -156,83 +70,305 @@ struct ParsedUrl {
         }
     }
 
-    std::string host_str = host_port;
-    INTERNET_PORT port_num = https ? 443 : 11434;
+    if (host_port.empty()) {
+        res.valid = false;
+        res.error_message = "Empty host in endpoint: " + std::string(endpoint);
+        return res;
+    }
 
-    auto colon_pos = host_port.find(':');
-    if (colon_pos != std::string::npos) {
-        host_str = host_port.substr(0, colon_pos);
-        try {
-            port_num = static_cast<INTERNET_PORT>(std::stoi(host_port.substr(colon_pos + 1)));
-        } catch (...) {
+    // 3. Parse host and port: Handle IPv6 literals in brackets vs IPv4 / hostname
+    if (host_port.front() == '[') {
+        auto close_bracket = host_port.find(']');
+        if (close_bracket == std::string::npos) {
+            res.valid = false;
+            res.error_message = "Malformed IPv6 endpoint (missing closing bracket): " + std::string(endpoint);
+            return res;
+        }
+        if (close_bracket == 1) {
+            res.valid = false;
+            res.error_message = "Empty IPv6 address in brackets: " + std::string(endpoint);
+            return res;
+        }
+
+        std::string ipv6_host = host_port.substr(1, close_bracket - 1);
+        int port_num = 11434;
+
+        if (close_bracket + 1 < host_port.size()) {
+            if (host_port[close_bracket + 1] != ':') {
+                res.valid = false;
+                res.error_message = "Malformed IPv6 endpoint (expected ':' before port): " + std::string(endpoint);
+                return res;
+            }
+            std::string port_str = host_port.substr(close_bracket + 2);
+            if (port_str.empty()) {
+                res.valid = false;
+                res.error_message = "Missing port after colon in endpoint: " + std::string(endpoint);
+                return res;
+            }
+            try {
+                std::size_t idx = 0;
+                long p = std::stol(port_str, &idx);
+                if (idx != port_str.size() || p <= 0 || p > 65535) {
+                    res.valid = false;
+                    res.error_message = "Invalid port in endpoint: " + std::string(endpoint);
+                    return res;
+                }
+                port_num = static_cast<int>(p);
+            } catch (...) {
+                res.valid = false;
+                res.error_message = "Invalid port in endpoint: " + std::string(endpoint);
+                return res;
+            }
+        }
+
+        res.host = ipv6_host;
+        res.port = port_num;
+        res.path = path_part.empty() ? "/" : path_part;
+        res.valid = true;
+        return res;
+    }
+
+    // Check for unbracketed IPv6 literal with multiple colons
+    auto first_colon = host_port.find(':');
+    if (first_colon != std::string::npos) {
+        auto second_colon = host_port.find(':', first_colon + 1);
+        if (second_colon != std::string::npos) {
+            res.valid = false;
+            res.error_message = "IPv6 endpoint addresses must be enclosed in brackets (e.g. http://[::1]:11434): " +
+                                std::string(endpoint);
+            return res;
         }
     }
 
-    res.host = std::wstring(host_str.begin(), host_str.end());
+    // Standard IPv4 or hostname with optional :port
+    std::string host_str = host_port;
+    int port_num = 11434;
+
+    if (first_colon != std::string::npos) {
+        host_str = host_port.substr(0, first_colon);
+        std::string port_str = host_port.substr(first_colon + 1);
+        if (port_str.empty()) {
+            res.valid = false;
+            res.error_message = "Missing port after colon in endpoint: " + std::string(endpoint);
+            return res;
+        }
+        try {
+            std::size_t idx = 0;
+            long p = std::stol(port_str, &idx);
+            if (idx != port_str.size() || p <= 0 || p > 65535) {
+                res.valid = false;
+                res.error_message = "Invalid port in endpoint: " + std::string(endpoint);
+                return res;
+            }
+            port_num = static_cast<int>(p);
+        } catch (...) {
+            res.valid = false;
+            res.error_message = "Invalid port in endpoint: " + std::string(endpoint);
+            return res;
+        }
+    }
+
+    if (host_str.empty()) {
+        res.valid = false;
+        res.error_message = "Empty host in endpoint: " + std::string(endpoint);
+        return res;
+    }
+
+    res.host = host_str;
     res.port = port_num;
-    res.path = std::wstring(path_part.begin(), path_part.end());
+    res.path = path_part.empty() ? "/" : path_part;
+    res.valid = true;
     return res;
 }
 
-// Parses JSON key value: "key": "value" or "key": true/false
-[[nodiscard]] std::string extract_json_string(std::string_view json, std::string_view key) {
-    std::string pattern = "\"" + std::string(key) + "\"";
-    auto pos = json.find(pattern);
-    if (pos == std::string::npos) {
-        return "";
-    }
-    pos += pattern.size();
-    while (pos < json.size() && (json[pos] == ' ' || json[pos] == ':' || json[pos] == '\t')) {
-        ++pos;
-    }
-    if (pos >= json.size() || json[pos] != '"') {
-        return "";
-    }
-    ++pos;
-    std::size_t start = pos;
-    while (pos < json.size()) {
-        if (json[pos] == '"' && json[pos - 1] != '\\') {
-            break;
-        }
-        ++pos;
-    }
-    return unescape_json(json.substr(start, pos - start));
-}
+/**
+ * @brief Bounded, line-oriented NDJSON parser for local LLM token streams.
+ *
+ * Requirements:
+ * - Line-buffering: preserves partial lines between chunk callbacks.
+ * - Multi-record parsing: processes all complete lines in a chunk.
+ * - UTF-8 safety: newlines (0x0A) never occur in multi-byte UTF-8 sequences,
+ *   preventing cross-boundary character slicing.
+ * - Trailing flush: parses non-newline-terminated final line at EOF.
+ * - Validates JSON structure, 'response' string, 'done' boolean.
+ * - Handles provider error objects ('error').
+ * - Detects malformed records, buffer overflow, and premature EOF.
+ * - Rejects unexpected records after terminal 'done: true'.
+ * - 1 MB buffer limit per incomplete record (DoS defense).
+ * - Allocates dynamically via std::string and nlohmann::json (not zero-allocation).
+ */
+class NdjsonStreamParser {
+public:
+    static constexpr std::size_t kMaxRecordBufferSize = 1024 * 1024;  // 1 MB limit per incomplete record
 
-[[nodiscard]] bool extract_json_bool(std::string_view json, std::string_view key) {
-    std::string pattern = "\"" + std::string(key) + "\"";
-    auto pos = json.find(pattern);
-    if (pos == std::string::npos) {
-        return false;
-    }
-    pos += pattern.size();
-    while (pos < json.size() && (json[pos] == ' ' || json[pos] == ':' || json[pos] == '\t')) {
-        ++pos;
-    }
-    if (pos + 4 <= json.size() && json.substr(pos, 4) == "true") {
+    enum class ErrorType {
+        None,
+        BufferOverflow,
+        MalformedJson,
+        InvalidFieldType,
+        ProviderError,
+        UnexpectedRecordAfterDone
+    };
+
+    explicit NdjsonStreamParser(ResponseSink& sink) : sink_(sink) {}
+
+    bool feed(const char* data, std::size_t length) {
+        if (has_fatal_error_) {
+            return false;
+        }
+
+        std::size_t offset = 0;
+        while (offset < length) {
+            // Find next newline in the unconsumed slice
+            const char* nl = static_cast<const char*>(std::memchr(data + offset, '\n', length - offset));
+            if (nl) {
+                std::size_t piece_len = static_cast<std::size_t>(nl - (data + offset));
+                if (stream_buffer_.size() + piece_len > kMaxRecordBufferSize) {
+                    record_error(ErrorType::BufferOverflow, "Individual NDJSON record exceeds 1 MB limit.");
+                    return false;
+                }
+                stream_buffer_.append(data + offset, piece_len);
+                offset += piece_len + 1;  // skip past '\n'
+
+                if (!process_line(stream_buffer_)) {
+                    return false;
+                }
+                stream_buffer_.clear();
+            } else {
+                // No newline in remaining data
+                std::size_t remaining = length - offset;
+                if (stream_buffer_.size() + remaining > kMaxRecordBufferSize) {
+                    record_error(ErrorType::BufferOverflow, "Individual NDJSON record exceeds 1 MB limit.");
+                    return false;
+                }
+                stream_buffer_.append(data + offset, remaining);
+                offset += remaining;
+            }
+        }
         return true;
     }
-    return false;
-}
+
+    bool finish() {
+        if (has_fatal_error_) {
+            return false;
+        }
+
+        // Flush final record if non-empty (trailing record without trailing newline)
+        if (!stream_buffer_.empty()) {
+            if (!process_line(stream_buffer_)) {
+                return false;
+            }
+            stream_buffer_.clear();
+        }
+
+        // Detect premature EOF without completion
+        if (!is_done_) {
+            record_error(ErrorType::MalformedJson,
+                         "Local LLM stream terminated prematurely before generation completed.");
+            return false;
+        }
+
+        return true;
+    }
+
+    [[nodiscard]] bool has_fatal_error() const noexcept { return has_fatal_error_; }
+    [[nodiscard]] bool is_done() const noexcept { return is_done_; }
+    [[nodiscard]] const std::string& accumulated_response() const noexcept { return accumulated_response_; }
+    [[nodiscard]] const std::string& error_message() const noexcept { return error_message_; }
+    [[nodiscard]] ErrorType error_type() const noexcept { return error_type_; }
+
+private:
+    bool process_line(std::string_view line) {
+        // Strip trailing '\r' if present
+        if (!line.empty() && line.back() == '\r') {
+            line.remove_suffix(1);
+        }
+        if (line.empty()) {
+            return true;
+        }
+
+        // Reject unexpected records after terminal completion record
+        if (is_done_) {
+            record_error(ErrorType::UnexpectedRecordAfterDone,
+                         "Received unexpected record after terminal completion record.");
+            return false;
+        }
+
+        // Parse JSON non-throwingly
+        auto j = nlohmann::json::parse(line, nullptr, /*allow_exceptions=*/false);
+        if (j.is_discarded()) {
+            record_error(ErrorType::MalformedJson, "Malformed JSON record received in NDJSON stream.");
+            return false;
+        }
+
+        if (!j.is_object()) {
+            record_error(ErrorType::MalformedJson, "NDJSON record is not a JSON object.");
+            return false;
+        }
+
+        // Handle provider error objects independently
+        if (j.contains("error")) {
+            std::string err_desc;
+            if (j["error"].is_string()) {
+                err_desc = j["error"].get<std::string>();
+            } else if (j["error"].is_object() && j["error"].contains("message") &&
+                       j["error"]["message"].is_string()) {
+                err_desc = j["error"]["message"].get<std::string>();
+            } else {
+                err_desc = j["error"].dump();
+            }
+            record_error(ErrorType::ProviderError, "Provider error: " + err_desc);
+            return false;
+        }
+
+        // Validate and extract response field
+        if (j.contains("response")) {
+            if (!j["response"].is_string()) {
+                record_error(ErrorType::InvalidFieldType,
+                             "Field 'response' in NDJSON record is not a string.");
+                return false;
+            }
+            std::string token = j["response"].get<std::string>();
+            if (!token.empty()) {
+                accumulated_response_ += token;
+                sink_.on_event(ReasoningEvent::text(token));
+            }
+        }
+
+        // Validate and extract done field
+        if (j.contains("done")) {
+            if (!j["done"].is_boolean()) {
+                record_error(ErrorType::InvalidFieldType, "Field 'done' in NDJSON record is not a boolean.");
+                return false;
+            }
+            if (j["done"].get<bool>()) {
+                is_done_ = true;
+            }
+        }
+
+        return true;
+    }
+
+    void record_error(ErrorType type, std::string message) {
+        has_fatal_error_ = true;
+        error_type_ = type;
+        error_message_ = std::move(message);
+        sink_.on_event(ReasoningEvent::error(error_message_));
+    }
+
+    ResponseSink& sink_;
+    std::string stream_buffer_;
+    std::string accumulated_response_;
+    std::string error_message_;
+    ErrorType error_type_{ErrorType::None};
+    bool is_done_{false};
+    bool has_fatal_error_{false};
+};
 
 }  // namespace
 
 struct LocalLLMRuntime::Impl {
-#if defined(_WIN32)
-    HINTERNET session{nullptr};
-
-    Impl() {
-        session = WinHttpOpen(L"Amoeba-Local-LLM/1.0", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
-                              WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
-    }
-
-    ~Impl() {
-        if (session) {
-            WinHttpCloseHandle(session);
-            session = nullptr;
-        }
-    }
-#endif
+    mutable std::mutex config_mutex;
 };
 
 LocalLLMRuntime::LocalLLMRuntime() : LocalLLMRuntime(LocalLLMConfig{}) {}
@@ -254,40 +390,29 @@ const LocalLLMConfig& LocalLLMRuntime::config() const noexcept {
 }
 
 void LocalLLMRuntime::set_config(LocalLLMConfig config) {
+    std::lock_guard lock(impl_->config_mutex);
     config_ = std::move(config);
 }
 
 bool LocalLLMRuntime::is_endpoint_reachable() const noexcept {
-#if defined(_WIN32)
-    if (!impl_ || !impl_->session) {
+    try {
+        LocalLLMConfig cfg;
+        {
+            std::lock_guard lock(impl_->config_mutex);
+            cfg = config_;
+        }
+        ParsedUrl parsed = parse_endpoint_url(cfg.endpoint, "/");
+        if (!parsed.valid) {
+            return false;
+        }
+        httplib::Client cli(parsed.host, parsed.port);
+        cli.set_connection_timeout(std::chrono::milliseconds(2000));
+        cli.set_read_timeout(std::chrono::milliseconds(2000));
+        auto res = cli.Get(parsed.path);
+        return (res != nullptr);
+    } catch (...) {
         return false;
     }
-    ParsedUrl parsed = parse_endpoint_url(config_.endpoint, "/api/tags");
-    HINTERNET connect = WinHttpConnect(impl_->session, parsed.host.c_str(), parsed.port, 0);
-    if (!connect) {
-        return false;
-    }
-    HINTERNET req =
-        WinHttpOpenRequest(connect, L"GET", parsed.path.c_str(), nullptr, WINHTTP_NO_REFERER,
-                           WINHTTP_DEFAULT_ACCEPT_TYPES, parsed.is_https ? WINHTTP_FLAG_SECURE : 0);
-    if (!req) {
-        WinHttpCloseHandle(connect);
-        return false;
-    }
-
-    DWORD timeout = 2000;  // 2s quick probe
-    WinHttpSetTimeouts(req, timeout, timeout, timeout, timeout);
-
-    BOOL sent =
-        WinHttpSendRequest(req, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0);
-    BOOL received = sent ? WinHttpReceiveResponse(req, nullptr) : FALSE;
-
-    WinHttpCloseHandle(req);
-    WinHttpCloseHandle(connect);
-    return (received == TRUE);
-#else
-    return false;
-#endif
 }
 
 LLMResponse LocalLLMRuntime::generate(const LLMRequest& request) {
@@ -295,7 +420,10 @@ LLMResponse LocalLLMRuntime::generate(const LLMRequest& request) {
     generate_stream(request, sink);
 
     LLMResponse resp;
-    resp.model_name = config_.model_name;
+    {
+        std::lock_guard lock(impl_->config_mutex);
+        resp.model_name = config_.model_name;
+    }
     resp.content = sink.text();
     resp.success = !sink.has_error();
     resp.error_message = sink.error_message();
@@ -304,13 +432,21 @@ LLMResponse LocalLLMRuntime::generate(const LLMRequest& request) {
 }
 
 void LocalLLMRuntime::generate_stream(const LLMRequest& request, ResponseSink& sink) {
-#if defined(_WIN32)
-    if (!impl_ || !impl_->session) {
-        sink.on_event(ReasoningEvent::error("Local HTTP client session initialization failed."));
+    // 0. Safely snapshot configuration under lock; release before any network operations
+    LocalLLMConfig cfg;
+    {
+        std::lock_guard lock(impl_->config_mutex);
+        cfg = config_;
+    }
+
+    // 1. Parse and validate endpoint URL (rejecting HTTPS and malformed formats early)
+    ParsedUrl parsed = parse_endpoint_url(cfg.endpoint, "/api/generate");
+    if (!parsed.valid) {
+        sink.on_event(ReasoningEvent::error(parsed.error_message));
         return;
     }
 
-    // 1. Prepare prompts
+    // 2. Prepare prompts
     const std::string system_prompt =
         request.system_prompt_override.has_value() && !request.system_prompt_override->empty()
             ? *request.system_prompt_override
@@ -319,127 +455,104 @@ void LocalLLMRuntime::generate_stream(const LLMRequest& request, ResponseSink& s
     const std::string user_prompt =
         PromptBuilder::build_user_prompt(request.user_question, request.context_package);
 
-    // 2. Build JSON payload for Ollama /api/generate
-    std::ostringstream body_ss;
-    body_ss << "{\n"
-            << "  \"model\": \"" << escape_json(config_.model_name) << "\",\n"
-            << "  \"system\": \"" << escape_json(system_prompt) << "\",\n"
-            << "  \"prompt\": \"" << escape_json(user_prompt) << "\",\n"
-            << "  \"stream\": true,\n"
-            << "  \"options\": {\n"
-            << "    \"temperature\": " << config_.temperature << ",\n"
-            << "    \"num_predict\": " << (request.max_tokens.value_or(config_.max_tokens)) << "\n"
-            << "  }\n"
-            << "}";
+    // 3. Build JSON payload for Ollama /api/generate using nlohmann::json
+    nlohmann::json payload;
+    payload["model"] = cfg.model_name;
+    payload["system"] = system_prompt;
+    payload["prompt"] = user_prompt;
+    payload["stream"] = true;
+    payload["options"] = {
+        {"temperature", cfg.temperature},
+        {"num_predict", request.max_tokens.value_or(cfg.max_tokens)}
+    };
 
-    const std::string json_body = body_ss.str();
+    const std::string json_body = payload.dump();
 
-    // 3. Connect to local endpoint
-    ParsedUrl parsed = parse_endpoint_url(config_.endpoint, "/api/generate");
-    HINTERNET connect = WinHttpConnect(impl_->session, parsed.host.c_str(), parsed.port, 0);
-    if (!connect) {
-        const DWORD err = GetLastError();
-        std::string err_msg = "Failed to connect to local LLM at " + config_.endpoint +
-                              " (Error code " + std::to_string(err) +
-                              "). Please verify your local model runner is running.";
-        sink.on_event(ReasoningEvent::error(err_msg));
-        return;
-    }
+    // 4. Connect to local endpoint via cpp-httplib
+    httplib::Client cli(parsed.host, parsed.port);
 
-    HINTERNET http_req =
-        WinHttpOpenRequest(connect, L"POST", parsed.path.c_str(), nullptr, WINHTTP_NO_REFERER,
-                           WINHTTP_DEFAULT_ACCEPT_TYPES, parsed.is_https ? WINHTTP_FLAG_SECURE : 0);
-    if (!http_req) {
-        WinHttpCloseHandle(connect);
-        sink.on_event(ReasoningEvent::error("Failed to open local HTTP request."));
-        return;
-    }
+    const auto timeout_duration = std::chrono::milliseconds(cfg.timeout_ms);
+    // Connection timeout floor (at least 5s) prevents slow CI runner scheduling
+    // from triggering a premature connection failure during read timeout checks.
+    const auto conn_timeout = std::chrono::milliseconds(std::max<uint32_t>(cfg.timeout_ms, 5000));
+    cli.set_connection_timeout(conn_timeout);
+    cli.set_read_timeout(timeout_duration);
+    cli.set_write_timeout(conn_timeout);
 
-    DWORD timeout = config_.timeout_ms;
-    WinHttpSetTimeouts(http_req, timeout, timeout, timeout, timeout);
+    httplib::Headers headers = {
+        {"Content-Type", "application/json"}
+    };
 
-    const std::wstring headers = L"Content-Type: application/json\r\n";
-    BOOL send_ok = WinHttpSendRequest(http_req, headers.c_str(), static_cast<DWORD>(headers.size()),
-                                      const_cast<char*>(json_body.data()),
-                                      static_cast<DWORD>(json_body.size()),
-                                      static_cast<DWORD>(json_body.size()), 0);
-    if (!send_ok) {
-        const DWORD err = GetLastError();
-        WinHttpCloseHandle(http_req);
-        WinHttpCloseHandle(connect);
-        std::string err_msg = "Failed to connect or send request to local LLM at " +
-                              config_.endpoint + " (Error " + std::to_string(err) +
-                              "). Check that local model server is reachable.";
-        sink.on_event(ReasoningEvent::error(err_msg));
-        return;
-    }
+    NdjsonStreamParser parser(sink);
+    bool http_status_error = false;
 
-    BOOL recv_ok = WinHttpReceiveResponse(http_req, nullptr);
-    if (!recv_ok) {
-        WinHttpCloseHandle(http_req);
-        WinHttpCloseHandle(connect);
-        sink.on_event(
-            ReasoningEvent::error("Local LLM request failed to receive response header."));
-        return;
-    }
+    httplib::Request req;
+    req.method = "POST";
+    req.path = parsed.path;
+    req.headers = headers;
+    req.body = json_body;
+    req.set_header("Content-Type", "application/json");
 
-    DWORD status_code = 0;
-    DWORD status_size = sizeof(status_code);
-    WinHttpQueryHeaders(http_req, WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER,
-                        WINHTTP_HEADER_NAME_BY_INDEX, &status_code, &status_size,
-                        WINHTTP_NO_HEADER_INDEX);
-
-    if (status_code != 200) {
-        WinHttpCloseHandle(http_req);
-        WinHttpCloseHandle(connect);
-        std::string err_msg = "Local LLM endpoint returned HTTP status " +
-                              std::to_string(status_code) + " (Model '" + config_.model_name +
-                              "' may not be pulled or loaded. Run 'ollama pull " +
-                              config_.model_name + "').";
-        sink.on_event(ReasoningEvent::error(err_msg));
-        return;
-    }
-
-    // 4. Stream response tokens
-    std::string stream_buffer;
-    std::string accumulated_response;
-    char buffer[4096];
-    DWORD bytes_read = 0;
-
-    while (WinHttpReadData(http_req, buffer, sizeof(buffer) - 1, &bytes_read) && bytes_read > 0) {
-        buffer[bytes_read] = '\0';
-        stream_buffer.append(buffer, bytes_read);
-
-        std::size_t newline_pos = 0;
-        while ((newline_pos = stream_buffer.find('\n')) != std::string::npos) {
-            std::string line = stream_buffer.substr(0, newline_pos);
-            stream_buffer.erase(0, newline_pos + 1);
-
-            if (line.empty() || line == "\r") {
-                continue;
-            }
-
-            // Extract "response" from Ollama JSON line
-            std::string chunk = extract_json_string(line, "response");
-            if (!chunk.empty()) {
-                accumulated_response += chunk;
-                sink.on_event(ReasoningEvent::text(chunk));
-            }
-
-            bool done = extract_json_bool(line, "done");
-            if (done) {
-                break;
-            }
+    req.response_handler = [&](const httplib::Response& response) -> bool {
+        if (response.status != 200) {
+            http_status_error = true;
+            std::string err_msg = "Local LLM endpoint returned HTTP status " +
+                                  std::to_string(response.status) + " (Model '" + cfg.model_name +
+                                  "' may not be pulled or loaded. Run 'ollama pull " +
+                                  cfg.model_name + "').";
+            sink.on_event(ReasoningEvent::error(err_msg));
+            return false;  // Abort reading body
         }
+        return true;
+    };
+
+    req.content_receiver = [&](const char* data, size_t data_length, size_t /*offset*/,
+                               size_t /*total*/) -> bool {
+        return parser.feed(data, data_length);
+    };
+
+    auto res = cli.send(req);
+
+    // If response handler aborted due to non-200 HTTP status, error event was already emitted
+    if (http_status_error) {
+        return;
     }
 
-    WinHttpCloseHandle(http_req);
-    WinHttpCloseHandle(connect);
+    // If parser encountered fatal error (e.g. malformed JSON, provider error, buffer limit),
+    // preserve the parser's specific error event rather than overwriting with generic transport failure
+    if (parser.has_fatal_error()) {
+        return;
+    }
 
-    sink.on_event(ReasoningEvent::completed(accumulated_response));
-#else
-    sink.on_event(ReasoningEvent::error("Local LLM runtime currently requires Windows WinHTTP."));
-#endif
+    // Handle transport errors reported by cpp-httplib
+    if (!res) {
+        std::string err_msg;
+        auto err = res.error();
+        if (err == httplib::Error::Connection) {
+            err_msg = "Failed to connect to local LLM at " + cfg.endpoint +
+                      " (Connection refused or host unreachable). Please verify your local model runner is running.";
+        } else if (err == httplib::Error::Read) {
+            err_msg = "Read timeout waiting for response from local LLM at " + cfg.endpoint +
+                      " (" + std::to_string(cfg.timeout_ms) + " ms).";
+        } else if (err == httplib::Error::Write) {
+            err_msg = "Failed to send request to local LLM at " + cfg.endpoint +
+                      " (Write error). Check that local model server is reachable.";
+        } else {
+            err_msg = "Failed to connect or communicate with local LLM at " + cfg.endpoint +
+                      " (" + httplib::to_string(err) + ").";
+        }
+        sink.on_event(ReasoningEvent::error(err_msg));
+        return;
+    }
+
+    // 5. Flush trailing record at EOF and verify completion
+    if (!parser.finish()) {
+        // If finish() failed (e.g. premature EOF without 'done: true'), error event was emitted
+        return;
+    }
+
+    // 6. Successful completion: only reached if all records parsed and done: true was received
+    sink.on_event(ReasoningEvent::completed(parser.accumulated_response()));
 }
 
 }  // namespace amoeba::reasoning

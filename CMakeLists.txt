@@ -137,6 +137,30 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
+# 14. cpp-httplib for portable HTTP client & mock server
+set(HTTPLIB_USE_OPENSSL_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+set(HTTPLIB_USE_ZLIB_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+set(HTTPLIB_USE_ZSTD_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+set(HTTPLIB_USE_BROTLI_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+    httplib
+    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
+    GIT_TAG v0.65.0
+    GIT_SHALLOW TRUE
+)
+
+# 15. nlohmann_json for robust RFC 8259 JSON serialization & NDJSON parsing
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+set(JSON_Install OFF CACHE INTERNAL "")
+
+FetchContent_Declare(
+    nlohmann_json
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.12.0
+    GIT_SHALLOW TRUE
+)
+
 FetchContent_MakeAvailable(
     tree_sitter
     tree_sitter_cpp
@@ -151,7 +175,14 @@ FetchContent_MakeAvailable(
     tree_sitter_css
     hnswlib
     libgit2
+    httplib
+    nlohmann_json
 )
+
+# Target modern Windows 10/11 API for cpp-httplib consumers
+if(TARGET httplib AND WIN32)
+    target_compile_definitions(httplib INTERFACE _WIN32_WINNT=0x0A00 WINVER=0x0A00)
+endif()
 
 function(amoeba_add_c_grammar target_name source_files include_dirs)
     if(NOT TARGET ${target_name})
@@ -348,7 +379,8 @@ target_link_libraries(amoeba_engine
         tree_sitter_css_lib
         libgit2package
         Threads::Threads
-        $<$<PLATFORM_ID:Windows>:winhttp>
+        httplib::httplib
+        nlohmann_json::nlohmann_json
 )
 
 target_compile_features(amoeba_engine PUBLIC cxx_std_20)
@@ -466,6 +498,7 @@ if(AMOEBA_BUILD_TESTS)
     target_link_libraries(amoeba_engine_tests
         PRIVATE
             amoeba_engine
+            httplib::httplib
             $<$<TARGET_EXISTS:GTest::gtest_main>:GTest::gtest_main>
             $<$<NOT:$<TARGET_EXISTS:GTest::gtest_main>>:gtest_main>
     )
