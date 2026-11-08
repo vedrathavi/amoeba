@@ -7,6 +7,13 @@
 #include <fstream>
 #include <gtest/gtest.h>
 
+#if defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#endif
+
 namespace {
 
 using namespace std;
@@ -395,6 +402,72 @@ TEST_F(RepositoryScannerTest, GitIgnoreTrackedFilePrecedence) {
     EXPECT_EQ(result.total_files_included(), 1U);
     ASSERT_EQ(result.files.size(), 1U);
     EXPECT_EQ(result.files[0].path.filename(), "app.tracked.cpp");
+}
+
+TEST_F(RepositoryScannerTest, UnicodeRootDirectoryGitIgnoreSupport) {
+    const auto ts = chrono::steady_clock::now().time_since_epoch().count();
+    const path unicode_root = temp_directory_path() / ("amoeba_日本語_ગુજરાતી_test_" + to_string(ts));
+    error_code ec;
+    create_directories(unicode_root, ec);
+    ASSERT_FALSE(ec) << "Failed to create unicode directory: " << ec.message();
+
+    struct DirCleanup {
+        path p;
+        ~DirCleanup() {
+            error_code ec_del;
+            remove_all(p, ec_del);
+        }
+    } cleanup{unicode_root};
+
+    git_libgit2_init();
+    git_repository* repo = nullptr;
+
+#if defined(_WIN32)
+    const wstring ws = unicode_root.native();
+    int len = WideCharToMultiByte(CP_UTF8, 0, ws.data(), static_cast<int>(ws.size()), nullptr, 0, nullptr, nullptr);
+    string utf8_root(len, '\0');
+    WideCharToMultiByte(CP_UTF8, 0, ws.data(), static_cast<int>(ws.size()), utf8_root.data(), len, nullptr, nullptr);
+#else
+    string utf8_root = unicode_root.generic_string();
+#endif
+
+    ASSERT_EQ(git_repository_init(&repo, utf8_root.c_str(), 0), 0);
+    ASSERT_NE(repo, nullptr);
+
+    {
+        ofstream gi(unicode_root / ".gitignore");
+        gi << "ignored_dir/\n*.ignored.cpp\n";
+    }
+    create_directories(unicode_root / "ignored_dir");
+    {
+        ofstream f1(unicode_root / "ignored_dir" / "ignored.cpp");
+        f1 << "int i = 1;";
+    }
+    {
+        ofstream f2(unicode_root / "sample.ignored.cpp");
+        f2 << "int i2 = 2;";
+    }
+    {
+        ofstream f3(unicode_root / "valid.cpp");
+        f3 << "int valid = 3;";
+    }
+
+    amoeba::scanner::ScanOptions opts;
+    opts.enable_git_ignore = true;
+    opts.collect_skipped_details = true;
+
+    amoeba::scanner::ScanResult result;
+    EXPECT_NO_THROW({
+        result = scanner.scan(unicode_root, opts);
+    });
+
+    git_repository_free(repo);
+    git_libgit2_shutdown();
+
+    EXPECT_EQ(result.total_files_included(), 1U);
+    ASSERT_EQ(result.files.size(), 1U);
+    EXPECT_EQ(result.files[0].path.filename(), "valid.cpp");
+    EXPECT_GE(result.total_files_git_ignored, 1U);
 }
 
 TEST(RepositoryScannerStaticTest, HelperFilters) {

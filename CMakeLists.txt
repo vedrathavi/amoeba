@@ -168,6 +168,21 @@ function(amoeba_add_c_grammar target_name source_files include_dirs)
     endif()
 endfunction()
 
+function(amoeba_set_stack_size target_name bytes)
+    if(WIN32)
+        if(MSVC)
+            target_link_options(${target_name} PRIVATE /STACK:${bytes})
+        else()
+            target_link_options(${target_name} PRIVATE -Wl,--stack,${bytes})
+        endif()
+    elseif(APPLE)
+        # On macOS Mach-O ld64, configure stack size for deep AST traversals
+        target_link_options(${target_name} PRIVATE -Wl,-stack_size,${bytes})
+    # On Linux, thread stack size is governed by the OS runtime environment (ulimit -s).
+    # ELF linkers (GNU ld and lld) do not support the PE --stack option.
+    endif()
+endfunction()
+
 if(NOT TARGET tree_sitter_lib)
     add_library(tree_sitter_lib STATIC
         ${tree_sitter_SOURCE_DIR}/lib/src/lib.c
@@ -315,6 +330,8 @@ target_include_directories(amoeba_engine
         ${hnswlib_SOURCE_DIR}
 )
 
+find_package(Threads REQUIRED)
+
 target_link_libraries(amoeba_engine
     PRIVATE
         tree_sitter_lib
@@ -330,6 +347,7 @@ target_link_libraries(amoeba_engine
         tree_sitter_html_lib
         tree_sitter_css_lib
         libgit2package
+        Threads::Threads
         $<$<PLATFORM_ID:Windows>:winhttp>
 )
 
@@ -454,11 +472,7 @@ if(AMOEBA_BUILD_TESTS)
 
     target_compile_features(amoeba_engine_tests PRIVATE cxx_std_20)
 
-    if(MSVC)
-        target_link_options(amoeba_engine_tests PRIVATE /STACK:67108864)
-    else()
-        target_link_options(amoeba_engine_tests PRIVATE -Wl,--stack,67108864)
-    endif()
+    amoeba_set_stack_size(amoeba_engine_tests 67108864)
 
     include(GoogleTest)
     gtest_discover_tests(amoeba_engine_tests)
@@ -500,11 +514,10 @@ target_compile_features(amoeba_repoprobe_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_repoprobe_benchmark PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_repoprobe_benchmark PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_repoprobe_benchmark PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_repoprobe_benchmark PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_repoprobe_benchmark 67108864)
 
 # -----------------------------------------------------------------------------
 # 6. amoeba_semantic_audit (Semantic Retrieval Forensic Audit Target)
@@ -522,11 +535,10 @@ target_compile_features(amoeba_semantic_audit PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_semantic_audit PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_semantic_audit PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_semantic_audit PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_semantic_audit PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_semantic_audit 67108864)
 
 # -----------------------------------------------------------------------------
 # 7. amoeba_ann_benchmark (Fast ANN Benchmark: Exact vs HNSW)
@@ -544,11 +556,10 @@ target_compile_features(amoeba_ann_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_ann_benchmark PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_ann_benchmark PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_ann_benchmark PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_ann_benchmark PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_ann_benchmark 67108864)
 
 # -----------------------------------------------------------------------------
 # 8. amoeba_lifecycle_benchmark (Cold vs Warm Lifecycle & Persistence Benchmark)
@@ -566,11 +577,10 @@ target_compile_features(amoeba_lifecycle_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_lifecycle_benchmark PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_lifecycle_benchmark PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_lifecycle_benchmark PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_lifecycle_benchmark PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_lifecycle_benchmark 67108864)
 
 # -----------------------------------------------------------------------------
 # 9. amoeba_accuracy_investigation (Phase 8.2.8 Forensic Accuracy & Evidence Tool)
@@ -588,11 +598,10 @@ target_compile_features(amoeba_accuracy_investigation PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_accuracy_investigation PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_accuracy_investigation PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_accuracy_investigation PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_accuracy_investigation PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_accuracy_investigation 67108864)
 
 # -----------------------------------------------------------------------------
 # 10. amoeba_expansion_benchmark (Phase 8.2.9 Bounded Expansion Benchmark)
@@ -636,11 +645,10 @@ target_compile_features(amoeba_test_fusion PRIVATE cxx_std_20)
 
 if(MSVC)
     target_compile_options(amoeba_test_fusion PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_test_fusion PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_test_fusion PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_test_fusion PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_test_fusion 67108864)
 
 # -----------------------------------------------------------------------------
 # 13. amoeba_candidate_selection_experiments (Phase 9.3B Candidate Selection Experiments)
@@ -658,11 +666,10 @@ target_compile_features(amoeba_candidate_selection_experiments PRIVATE cxx_std_2
 
 if(MSVC)
     target_compile_options(amoeba_candidate_selection_experiments PRIVATE /W4 /permissive-)
-    target_link_options(amoeba_candidate_selection_experiments PRIVATE /STACK:67108864)
 else()
     target_compile_options(amoeba_candidate_selection_experiments PRIVATE -Wall -Wextra -Wpedantic)
-    target_link_options(amoeba_candidate_selection_experiments PRIVATE -Wl,--stack,67108864)
 endif()
+amoeba_set_stack_size(amoeba_candidate_selection_experiments 67108864)
 
 
 

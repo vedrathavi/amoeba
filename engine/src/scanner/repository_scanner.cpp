@@ -294,7 +294,8 @@ struct GitRepoHandle {
     git_index* index{nullptr};
 
     explicit GitRepoHandle(const path& root_path) {
-        if (git_repository_open_ext(&repo, root_path.string().c_str(), 0, nullptr) == 0 && repo != nullptr) {
+        const string utf8_root = path_to_utf8(root_path);
+        if (git_repository_open_ext(&repo, utf8_root.c_str(), 0, nullptr) == 0 && repo != nullptr) {
             git_repository_index(&index, repo);
         }
     }
