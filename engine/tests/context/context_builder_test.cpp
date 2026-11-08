@@ -470,4 +470,116 @@ TEST_F(ContextBuilderTest, FullPipelineEndToEndIntegration) {
     EXPECT_NE(pkg.rendered_markdown.find("Calls → `logOperation`"), std::string::npos);
 }
 
+// =============================================================================
+// Phase 11A — Workstream E: Context Construction and Evidence Selection Tests
+// =============================================================================
+
+TEST_F(ContextBuilderTest, Phase11ACompleteFunctionPreservationWithinLineBudget) {
+    EvidenceBundle bundle;
+    bundle.query = "small function";
+
+    // Symbol definition spans 10 lines (L20 to L29)
+    auto item = create_dummy_item("computeHash", ElementKind::Function, "src/hash.cpp", 20, 29);
+    std::string func_src;
+    for (int i = 20; i <= 29; ++i) {
+        func_src += "    int step_" + std::to_string(i) + " = " + std::to_string(i) + ";\n";
+    }
+    item.source_excerpt->text = func_src;
+    item.source_excerpt->start_line = 20;
+    item.source_excerpt->end_line = 29;
+    bundle.items.push_back(item);
+
+    ContextBuilderOptions opts;
+    opts.max_source_lines_per_item = 15; // Budget of 15 lines easily accommodates all 10 lines
+    ContextBuilder builder(opts);
+    auto pkg = builder.build(bundle);
+
+    EXPECT_FALSE(pkg.truncated);
+    EXPECT_NE(pkg.rendered_markdown.find("### Source Excerpt (Lines 20-29):"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("step_20"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("step_29"), std::string::npos);
+    // Should NOT have truncation notice because entire function fit within the line budget
+    EXPECT_EQ(pkg.rendered_markdown.find("[truncated"), std::string::npos);
+}
+
+TEST_F(ContextBuilderTest, Phase11AAnchorCenteredWindowForOversizedSymbol) {
+    EvidenceBundle bundle;
+    bundle.query = "large function";
+
+    // Symbol starts at L30 and ends at L100 (71 lines)
+    auto item = create_dummy_item("largeHandler", ElementKind::Function, "src/large.cpp", 30, 100);
+    std::string excerpt_text;
+    for (int i = 20; i <= 100; ++i) {
+        excerpt_text += "    op_line_" + std::to_string(i) + "();\n";
+    }
+    item.source_excerpt->text = excerpt_text;
+    item.source_excerpt->start_line = 20;
+    item.source_excerpt->end_line = 100;
+    bundle.items.push_back(item);
+
+    ContextBuilderOptions opts;
+    opts.max_source_lines_per_item = 20; // 20 lines max
+    ContextBuilder builder(opts);
+    auto pkg = builder.build(bundle);
+
+    // Anchor-centered window: start at L30 - 5 = L25, span 20 lines => L25 to L44
+    EXPECT_NE(pkg.rendered_markdown.find("### Source Excerpt (Lines 25-44):"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("op_line_25();"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("op_line_44();"), std::string::npos);
+    // Must contain truncation notice
+    EXPECT_NE(pkg.rendered_markdown.find("[truncated"), std::string::npos);
+}
+
+TEST_F(ContextBuilderTest, Phase11ACandidateCompressionFallbackUnderBudget) {
+    EvidenceBundle bundle;
+    bundle.query = "compression fallback";
+
+    // Item 1: Full item with source snippet
+    auto item1 = create_dummy_item("PrimaryAlpha", ElementKind::Function, "src/alpha.cpp", 1, 20);
+    std::string src1;
+    for (int i = 1; i <= 15; ++i) {
+        src1 += "    alpha_statement_" + std::to_string(i) + "();\n";
+    }
+    item1.source_excerpt->text = src1;
+    item1.source_excerpt->start_line = 1;
+    item1.source_excerpt->end_line = 15;
+    bundle.items.push_back(item1);
+
+    // Item 2: Another item with large source
+    auto item2 = create_dummy_item("SecondaryBeta", ElementKind::Class, "src/beta.cpp", 10, 80);
+    std::string src2;
+    for (int i = 10; i <= 40; ++i) {
+        src2 += "    beta_method_" + std::to_string(i) + "();\n";
+    }
+    item2.source_excerpt->text = src2;
+    item2.source_excerpt->start_line = 10;
+    item2.source_excerpt->end_line = 40;
+    bundle.items.push_back(item2);
+
+    // Set budget such that Item 1 full fits (~800 chars), Item 2 full would exceed (~1600 chars total),
+    // but Item 2 compressed (~200 chars) fits within 1200 characters!
+    ContextBuilderOptions opts;
+    opts.max_primary_items = 5;
+    opts.max_character_budget = 1200;
+    ContextBuilder builder(opts);
+    auto pkg = builder.build(bundle);
+
+    EXPECT_TRUE(pkg.truncated);
+    // Crucial check: Both items are retained in selected_items instead of Item 2 being dropped!
+    EXPECT_EQ(pkg.selected_items.size(), 2u);
+    EXPECT_EQ(pkg.selected_item_count, 2u);
+    EXPECT_LE(pkg.used_characters, 1200u);
+
+    // Item 1 is rendered in full with its source
+    EXPECT_NE(pkg.rendered_markdown.find("## Result 1: `PrimaryAlpha`"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("alpha_statement_1();"), std::string::npos);
+
+    // Item 2 is rendered in compressed form
+    EXPECT_NE(pkg.rendered_markdown.find("## Result 2 (Compressed): `SecondaryBeta`"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("- **Kind**: Class"), std::string::npos);
+    EXPECT_NE(pkg.rendered_markdown.find("- **File**: src/beta.cpp"), std::string::npos);
+    // Compressed form omits the source excerpt
+    EXPECT_EQ(pkg.rendered_markdown.find("beta_method_10();"), std::string::npos);
+}
+
 }  // namespace

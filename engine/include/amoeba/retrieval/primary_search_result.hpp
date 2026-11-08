@@ -24,9 +24,12 @@ namespace amoeba::retrieval {
  * @brief Indicates which retrieval modalities contributed to this result.
  */
 enum class RetrievalProvenance : uint8_t {
-    LexicalOnly = 0x01,   ///< Matched by lexical retrieval only
-    SemanticOnly = 0x02,  ///< Matched by semantic retrieval only
-    HybridBoth = 0x03,    ///< Matched by both lexical and semantic retrieval
+    LexicalOnly = 0x01,       ///< Matched by lexical retrieval only
+    SemanticOnly = 0x02,      ///< Matched by semantic retrieval only
+    HybridBoth = 0x03,        ///< Matched by both lexical and semantic retrieval
+    OriginalQueryOnly = 0x04, ///< Matched by original query retrieval only
+    ExpandedQueryOnly = 0x05, ///< Matched by expanded query retrieval only
+    BothQueries = 0x06,       ///< Matched by both original and expanded queries
 };
 
 [[nodiscard]] constexpr std::string_view to_string(RetrievalProvenance p) noexcept {
@@ -37,6 +40,12 @@ enum class RetrievalProvenance : uint8_t {
         return "semantic";
     case RetrievalProvenance::HybridBoth:
         return "hybrid";
+    case RetrievalProvenance::OriginalQueryOnly:
+        return "original_query";
+    case RetrievalProvenance::ExpandedQueryOnly:
+        return "expanded_query";
+    case RetrievalProvenance::BothQueries:
+        return "both_queries";
     }
     return "unknown";
 }

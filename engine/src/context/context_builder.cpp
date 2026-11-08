@@ -104,35 +104,163 @@ namespace {
     return ss.str();
 }
 
-[[nodiscard]] std::string truncate_source_lines(std::string_view text, std::size_t max_lines) {
-    if (max_lines == 0) {
-        return std::string(text);
+struct WindowSlice {
+    std::string text;
+    uint32_t start_line{0};
+    uint32_t end_line{0};
+    bool truncated{false};
+    std::size_t truncated_lines_count{0};
+};
+
+[[nodiscard]] WindowSlice extract_anchor_centered_source(
+    const source::SourceExcerpt& exc,
+    const parser::CodeElement& elem,
+    std::size_t max_lines) {
+
+    if (max_lines == 0 || exc.text.empty()) {
+        return WindowSlice{
+            .text = exc.text,
+            .start_line = exc.start_line,
+            .end_line = exc.end_line,
+            .truncated = false,
+            .truncated_lines_count = 0,
+        };
     }
 
-    std::size_t line_count = 0;
+    std::vector<std::string_view> lines;
     std::size_t pos = 0;
-    std::size_t cut_pos = std::string_view::npos;
-
-    while (pos < text.size()) {
-        std::size_t next_nl = text.find('\n', pos);
-        ++line_count;
-        if (line_count == max_lines) {
-            cut_pos = (next_nl == std::string_view::npos) ? text.size() : next_nl;
-        }
+    while (pos < exc.text.size()) {
+        std::size_t next_nl = exc.text.find('\n', pos);
         if (next_nl == std::string_view::npos) {
+            lines.push_back(std::string_view(exc.text).substr(pos));
             break;
         }
+        lines.push_back(std::string_view(exc.text).substr(pos, next_nl - pos));
         pos = next_nl + 1;
     }
 
-    if (line_count > max_lines && cut_pos != std::string_view::npos) {
-        std::string result(text.substr(0, cut_pos));
-        result +=
-            "\n// ... [truncated " + std::to_string(line_count - max_lines) + " remaining lines]";
-        return result;
+    const uint32_t exc_start = exc.start_line;
+    const uint32_t exc_end = exc.end_line;
+    const std::size_t total_lines = lines.size();
+
+    const uint32_t sym_start = elem.location.start.line;
+    const uint32_t sym_end = elem.location.end.line;
+
+    if (sym_start > 0 && sym_end >= sym_start) {
+        const uint32_t sym_span = sym_end - sym_start + 1;
+
+        // 1. If focal symbol fits in max_lines, extract complete definition
+        if (sym_span <= max_lines) {
+            if (sym_start >= exc_start && sym_start <= exc_end) {
+                const std::size_t offset_start = sym_start - exc_start;
+                const std::size_t count = std::min(
+                    static_cast<std::size_t>(sym_span),
+                    lines.size() > offset_start ? lines.size() - offset_start : 0);
+                std::string result;
+                for (std::size_t idx = 0; idx < count; ++idx) {
+                    result.append(lines[offset_start + idx]);
+                    result.push_back('\n');
+                }
+                return WindowSlice{
+                    .text = std::move(result),
+                    .start_line = sym_start,
+                    .end_line = static_cast<uint32_t>(sym_start + count - 1),
+                    .truncated = false,
+                    .truncated_lines_count = 0,
+                };
+            }
+        } else {
+            // 2. Focal symbol exceeds max_lines: extract anchor-centered window [sym_start - 5, sym_start + max_lines - 5]
+            const uint32_t win_start = (sym_start > 5) ? (sym_start - 5) : 1;
+            const uint32_t win_end = win_start + static_cast<uint32_t>(max_lines) - 1;
+
+            const uint32_t clamped_start = std::max(win_start, exc_start);
+            const uint32_t clamped_end = std::min(win_end, exc_end);
+
+            if (clamped_start <= clamped_end && clamped_start >= exc_start) {
+                const std::size_t offset_start = clamped_start - exc_start;
+                const std::size_t count = std::min(
+                    static_cast<std::size_t>(clamped_end - clamped_start + 1),
+                    lines.size() > offset_start ? lines.size() - offset_start : 0);
+                std::string result;
+                for (std::size_t idx = 0; idx < count; ++idx) {
+                    result.append(lines[offset_start + idx]);
+                    result.push_back('\n');
+                }
+                const std::size_t remaining = (total_lines > count) ? (total_lines - count) : 0;
+                if (remaining > 0) {
+                    result += "// ... [truncated " + std::to_string(remaining) + " remaining lines]";
+                }
+                return WindowSlice{
+                    .text = std::move(result),
+                    .start_line = clamped_start,
+                    .end_line = clamped_end,
+                    .truncated = (remaining > 0),
+                    .truncated_lines_count = remaining,
+                };
+            }
+        }
     }
 
-    return std::string(text);
+    // Fallback: standard line truncation from top of excerpt
+    if (lines.size() <= max_lines) {
+        return WindowSlice{
+            .text = std::string(exc.text),
+            .start_line = exc.start_line,
+            .end_line = exc.end_line,
+            .truncated = false,
+            .truncated_lines_count = 0,
+        };
+    }
+
+    std::string result;
+    for (std::size_t i = 0; i < max_lines; ++i) {
+        result.append(lines[i]);
+        result.push_back('\n');
+    }
+    const std::size_t remaining = lines.size() - max_lines;
+    result += "// ... [truncated " + std::to_string(remaining) + " remaining lines]";
+    return WindowSlice{
+        .text = std::move(result),
+        .start_line = exc.start_line,
+        .end_line = static_cast<uint32_t>(exc.start_line + max_lines - 1),
+        .truncated = true,
+        .truncated_lines_count = remaining,
+    };
+}
+
+[[nodiscard]] std::string render_compressed_item(const evidence::EvidenceItem& item,
+                                                  std::size_t result_index) {
+    std::ostringstream ss;
+    const auto& elem = item.primary_element();
+    const std::string symbol_name =
+        elem.name.empty() ? item.file_path().filename().string() : elem.name;
+
+    if (item.is_expanded_relationship) {
+        ss << "## Supporting Evidence (Compressed): `" << symbol_name << "`\n";
+    } else {
+        ss << "## Result " << (result_index + 1) << " (Compressed): `" << symbol_name << "`\n";
+    }
+    ss << "- **Kind**: " << parser::to_string(elem.kind) << "\n";
+    ss << "- **File**: " << item.file_path().generic_string() << "\n";
+    if (elem.location.start.line > 0) {
+        ss << "- **Range**: L" << elem.location.start.line << ":C" << elem.location.start.column
+           << " - L" << elem.location.end.line << ":C" << elem.location.end.column << "\n";
+    }
+    if (!elem.parent_context.empty()) {
+        ss << "- **Parent**: `" << elem.parent_context << "`\n";
+    }
+    if (!elem.detail.empty()) {
+        ss << "- **Detail**: `" << elem.detail << "`\n";
+    }
+    if (!elem.signature.empty() && elem.signature != elem.detail) {
+        ss << "- **Signature**: `" << elem.signature << "`\n";
+    }
+    if (!elem.documentation.empty()) {
+        ss << "- **Doc**: " << elem.documentation << "\n";
+    }
+    ss << "\n---\n\n";
+    return ss.str();
 }
 
 }  // namespace
@@ -201,14 +329,18 @@ ContextPackage ContextBuilder::build(const evidence::EvidenceBundle& bundle) con
         if (options_.include_source) {
             if (item.source_excerpt.has_value()) {
                 const auto& exc = *item.source_excerpt;
-                item_ss << "\n### Source Excerpt (Lines " << exc.start_line << "-" << exc.end_line
+                const auto slice = extract_anchor_centered_source(
+                    exc, elem, options_.max_source_lines_per_item);
+                item_ss << "\n### Source Excerpt (Lines " << slice.start_line << "-" << slice.end_line
                         << "):\n";
                 const std::string& lang = item.primary_result.unit.language.empty()
                                               ? "cpp"
                                               : item.primary_result.unit.language;
                 item_ss << "```" << lang << "\n";
-                item_ss << truncate_source_lines(exc.text, options_.max_source_lines_per_item)
-                        << "\n";
+                item_ss << slice.text;
+                if (!slice.text.ends_with('\n')) {
+                    item_ss << "\n";
+                }
                 item_ss << "```\n";
             } else {
                 item_ss << "\n### Source Excerpt:\n*[Source code unavailable]*\n";
@@ -253,6 +385,22 @@ ContextPackage ContextBuilder::build(const evidence::EvidenceBundle& bundle) con
         // Budget check
         if (options_.max_character_budget > 0 &&
             current_markdown.size() + item_text.size() > options_.max_character_budget) {
+
+            // Candidate Compression Fallback:
+            // Attempt to render in compressed form without full source or relationship tree
+            const std::string compressed_text = render_compressed_item(item, i);
+            if (current_markdown.size() + compressed_text.size() <= options_.max_character_budget) {
+                pkg.truncated = true;
+                if (pkg.truncation_reason.empty()) {
+                    pkg.truncation_reason = "Exceeded character budget (" +
+                                            std::to_string(options_.max_character_budget) +
+                                            " chars); subsequent items compressed";
+                }
+                current_markdown += compressed_text;
+                pkg.selected_items.push_back(item);
+                continue;
+            }
+
             pkg.truncated = true;
             if (pkg.truncation_reason.empty()) {
                 pkg.truncation_reason = "Exceeded character budget (" +

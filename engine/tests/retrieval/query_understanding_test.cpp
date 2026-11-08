@@ -383,4 +383,70 @@ TEST(QueryUnderstandingTest, Phase93AEmptyAndAmbiguousQueries) {
     EXPECT_TRUE(rep_punct.core_subject_terms.empty());
 }
 
+// =============================================================================
+// Phase 11A — Workstream B: Query Understanding & Classification Tests
+// =============================================================================
+
+TEST(QueryUnderstandingTest, Phase11APrioritizesExactSymbolOverInterrogativePrefix) {
+    // "Where is PromptBuilder implemented?" contains interrogative "Where", but exact symbol PromptBuilder
+    // must take priority and classify as ExactSymbolLookup (alpha >= 0.75)
+    const auto rep = QueryUnderstanding::analyze("Where is PromptBuilder implemented?");
+    EXPECT_EQ(rep.intent, QueryIntent::ExactSymbolLookup);
+    EXPECT_GE(rep.recommended_alpha, 0.75);
+    EXPECT_TRUE(rep.has_code_syntax);
+    EXPECT_FALSE(rep.technical_entities.empty());
+    EXPECT_EQ(rep.technical_entities[0], "PromptBuilder");
+}
+
+TEST(QueryUnderstandingTest, Phase11ABehavioralInvestigationIntent) {
+    const auto rep = QueryUnderstanding::analyze("Why does parser fail on nested templates?");
+    EXPECT_EQ(rep.intent, QueryIntent::BehavioralInvestigation);
+    EXPECT_EQ(rep.recommended_alpha, 0.60);
+    // "fail" must NOT be in conversational noise
+    EXPECT_EQ(std::find(rep.conversational_noise_terms.begin(), rep.conversational_noise_terms.end(), "fail"),
+              rep.conversational_noise_terms.end());
+    // "fail" is classified as action
+    EXPECT_NE(std::find(rep.action_terms.begin(), rep.action_terms.end(), "fail"),
+              rep.action_terms.end());
+}
+
+TEST(QueryUnderstandingTest, Phase11ACallerCalleeDiscoveryIntent) {
+    const auto rep1 = QueryUnderstanding::analyze("Who calls validateToken?");
+    EXPECT_EQ(rep1.intent, QueryIntent::CallerCalleeDiscovery);
+    EXPECT_GE(rep1.recommended_alpha, 0.75);
+
+    const auto rep2 = QueryUnderstanding::analyze("callers of parse_source");
+    EXPECT_EQ(rep2.intent, QueryIntent::CallerCalleeDiscovery);
+}
+
+TEST(QueryUnderstandingTest, Phase11AFileOrDirectoryDiscoveryIntent) {
+    const auto rep = QueryUnderstanding::analyze("src/parser/source_parser.cpp");
+    EXPECT_EQ(rep.intent, QueryIntent::FileOrDirectoryDiscovery);
+    EXPECT_GE(rep.recommended_alpha, 0.85);
+}
+
+TEST(QueryUnderstandingTest, Phase11ATechnicalVocabularyPreservedFromConversationalNoise) {
+    // Verify error, failure, and behavior are no longer conversational noise
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("error"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("errors"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("failure"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("fail"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("fails"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("failed"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("behavior"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("behaviour"));
+
+    // Verify benchmark repo names are no longer hardcoded as conversational noise
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("pkl"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("dokploy"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("beszel"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("opencloud"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("ducklake"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("jiff"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("walker"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("docling"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("adk"));
+    EXPECT_FALSE(QueryUnderstanding::is_conversational_noise("better-auth"));
+}
+
 }  // namespace

@@ -16,20 +16,30 @@ namespace amoeba::retrieval {
  * @brief High-level query intent category determined by deterministic lexical inspection.
  */
 enum class QueryIntent : uint8_t {
-    IdentifierOrTechnical,  ///< Query contains code identifiers, camelCase/PascalCase tokens, code
-                            ///< symbols, or file terms
-    NaturalLanguage,        ///< Conversational question or conceptual description with multiple
-                            ///< stopwords/interrogatives
-    GeneralSearch           ///< Short generic or multi-term query without clear interrogatives or
-                            ///< identifiers
+    ExactSymbolLookup,        ///< Query targets an exact identifier, camelCase/PascalCase, or qualified symbol
+    CallerCalleeDiscovery,    ///< Inquiry regarding callers, callees, or references of a symbol
+    BehavioralInvestigation,  ///< Inquiries into behavior under failure, errors, conditions ("why does X fail")
+    FileOrDirectoryDiscovery, ///< Explicit search for file/directory paths or definition locations
+    ConceptualQuestion,       ///< Natural language conceptual or exploratory question
+    GeneralSearch,            ///< Generic or short multi-term search query
+
+    // Backward-compatibility aliases
+    IdentifierOrTechnical = ExactSymbolLookup,
+    NaturalLanguage = ConceptualQuestion
 };
 
 [[nodiscard]] constexpr std::string_view to_string(QueryIntent intent) noexcept {
     switch (intent) {
-    case QueryIntent::IdentifierOrTechnical:
-        return "IdentifierOrTechnical";
-    case QueryIntent::NaturalLanguage:
-        return "NaturalLanguage";
+    case QueryIntent::ExactSymbolLookup:
+        return "ExactSymbolLookup";
+    case QueryIntent::CallerCalleeDiscovery:
+        return "CallerCalleeDiscovery";
+    case QueryIntent::BehavioralInvestigation:
+        return "BehavioralInvestigation";
+    case QueryIntent::FileOrDirectoryDiscovery:
+        return "FileOrDirectoryDiscovery";
+    case QueryIntent::ConceptualQuestion:
+        return "ConceptualQuestion";
     case QueryIntent::GeneralSearch:
         return "GeneralSearch";
     }

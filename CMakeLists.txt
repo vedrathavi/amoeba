@@ -121,6 +121,22 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
+# 13. libgit2 for Git repository ignore & index inspection
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(BUILD_CLI OFF CACHE BOOL "" FORCE)
+set(USE_SSH OFF CACHE BOOL "" FORCE)
+set(USE_HTTPS OFF CACHE BOOL "" FORCE)
+set(USE_BUNDLED_ZLIB ON CACHE BOOL "" FORCE)
+set(REGEX_BACKEND "builtin" CACHE STRING "" FORCE)
+
+FetchContent_Declare(
+    libgit2
+    GIT_REPOSITORY https://github.com/libgit2/libgit2.git
+    GIT_TAG v1.8.4
+    GIT_SHALLOW TRUE
+)
+
 FetchContent_MakeAvailable(
     tree_sitter
     tree_sitter_cpp
@@ -134,6 +150,7 @@ FetchContent_MakeAvailable(
     tree_sitter_html
     tree_sitter_css
     hnswlib
+    libgit2
 )
 
 function(amoeba_add_c_grammar target_name source_files include_dirs)
@@ -268,6 +285,7 @@ add_library(amoeba_engine
     engine/src/retrieval/supporting_evidence_resolver.cpp
     engine/src/retrieval/query_understanding.cpp
     engine/src/retrieval/primary_retrieval_pipeline.cpp
+    engine/src/retrieval/query_expansion_service.cpp
     engine/src/source/source_snippet_reader.cpp
     engine/src/evidence/evidence_assembler.cpp
     engine/src/evidence/evidence_sufficiency.cpp
@@ -291,6 +309,7 @@ target_include_directories(amoeba_engine
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/engine/include>
         $<INSTALL_INTERFACE:include>
+        ${libgit2_SOURCE_DIR}/include
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/engine/src
         ${hnswlib_SOURCE_DIR}
@@ -310,6 +329,7 @@ target_link_libraries(amoeba_engine
         tree_sitter_tsx_lib
         tree_sitter_html_lib
         tree_sitter_css_lib
+        libgit2package
         $<$<PLATFORM_ID:Windows>:winhttp>
 )
 
@@ -405,6 +425,7 @@ if(AMOEBA_BUILD_TESTS)
         engine/tests/retrieval/primary_retrieval_pipeline_test.cpp
         engine/tests/retrieval/retrieval_hardening_test.cpp
         engine/tests/retrieval/cli_retrieval_integration_test.cpp
+        engine/tests/retrieval/query_expansion_service_test.cpp
         engine/tests/source/source_snippet_reader_test.cpp
         engine/tests/evidence/evidence_assembler_test.cpp
         engine/tests/evidence/evidence_sufficiency_test.cpp

@@ -34,7 +34,7 @@ const std::unordered_set<std::string_view> kGenericActionBases = {
     "hold",      "perform", "provide", "validate", "verify",   "test",       "convert",
     "restrict",  "enforce", "access",  "search",   "export",     "extract",
     "remove",    "add",     "pass",    "wait",    "finish",   "exist",      "describe",
-    "explain",   "allow",   "require", "return"};
+    "explain",   "allow",   "require", "return",  "fail",     "throw",      "reference"};
 
 const std::unordered_set<std::string_view> kGenericComponentTerms = {
     "resolver",      "handler",       "manager",        "management",
@@ -56,15 +56,14 @@ const std::unordered_set<std::string_view> kConversationalNoise = {
     "hello", "hi", "hey", "thanks", "thank", "please", "help", "anyone",
     "idea", "ideas", "advice", "wondering", "curious", "trying", "attempt",
     "attempting", "question", "questions", "issue", "issues", "problem",
-    "problems", "bug", "bugs", "error", "errors", "failed", "failing",
-    "failure", "fail", "fails", "works", "working", "work", "possible", "impossible",
+    "problems", "bug", "bugs", "works", "working", "work", "possible", "impossible",
     "feasible", "approach", "approaches", "tradeoff", "tradeoffs", "trade-off",
     "trade-offs", "difference", "differences", "pros", "cons", "vs", "versus",
     "best", "better", "good", "bad", "way", "ways", "setup",
     "step", "steps", "guide", "tutorial", "example", "examples", "sample",
     "samples", "perspective", "thought", "thoughts", "opinion", "opinions",
     "direction", "promising", "testing", "installation", "scenario",
-    "scenarios", "case", "cases", "behavior", "behaviour", "option", "options",
+    "scenarios", "case", "cases", "option", "options",
     "notice", "noticed", "seeing", "seen", "looks",
     "looking", "like", "current", "currently", "latest", "new", "old",
     "first", "second", "simple", "complex", "e.g", "eg", "ie", "i.e",
@@ -74,8 +73,7 @@ const std::unordered_set<std::string_view> kConversationalNoise = {
     "support", "supports", "supported", "structure", "structured", "logic",
     "definition", "mechanism", "construct", "concept", "syntax", "feature",
     "functionality", "property", "attribute", "my", "also", "try", "tried",
-    "using", "custom", "mostly", "back", "pkl", "dokploy", "beszel", "opencloud",
-    "ducklake", "jiff", "walker", "docling", "adk", "better-auth"};
+    "using", "custom", "mostly", "back"};
 
 }  // namespace
 
@@ -792,20 +790,114 @@ QueryRepresentation QueryUnderstanding::analyze(std::string_view raw_query) {
 
     rep.has_interrogative = has_interrogative;
 
-    // Intent determination:
-    // NaturalLanguage: has interrogative OR (3+ stopwords and word count >= 6 and not pure code
-    // syntax)
-    if (has_interrogative ||
-        (stopword_count >= 3 && rep.raw_terms.size() >= 6 && !has_code_punct)) {
-        rep.intent = QueryIntent::NaturalLanguage;
-        rep.recommended_alpha = 0.25;  // Semantic dominant
-    } else if (rep.has_code_syntax || rep.raw_terms.size() <= 3 ||
-               !rep.synthesized_identifiers.empty()) {
-        rep.intent = QueryIntent::IdentifierOrTechnical;
-        rep.recommended_alpha = 0.75;  // Lexical dominant
-    } else {
+    // Check for Caller/Callee discovery patterns
+    bool is_caller_callee_query = false;
+    for (const auto& term : rep.raw_terms) {
+        const auto stem = conservative_stem(term);
+        if (stem == "caller" || stem == "callee" || stem == "reference") {
+            is_caller_callee_query = true;
+            break;
+        }
+    }
+    if (!is_caller_callee_query) {
+        const std::string lower_raw = normalize_text(raw_query);
+        if (lower_raw.find("who calls") != std::string::npos ||
+            lower_raw.find("what calls") != std::string::npos ||
+            lower_raw.find("called by") != std::string::npos ||
+            lower_raw.find("calls to") != std::string::npos ||
+            (lower_raw.find("where is") != std::string::npos &&
+             lower_raw.find("called") != std::string::npos)) {
+            is_caller_callee_query = true;
+        }
+    }
+
+    // Check for Behavioral investigation patterns (why/how ... fail/error/behave)
+    bool is_behavioral_query = false;
+    bool has_failure_term = false;
+    for (const auto& term : rep.raw_terms) {
+        const auto stem = conservative_stem(term);
+        if (stem == "fail" || stem == "error" || stem == "failure" || stem == "crash" ||
+            stem == "panic" || stem == "behavior" || stem == "behaviour" || stem == "throw" ||
+            stem == "exception" || stem == "timeout" || stem == "leak") {
+            has_failure_term = true;
+            break;
+        }
+    }
+    if (has_failure_term &&
+        (has_interrogative || rep.normalized_query.find("when") != std::string::npos)) {
+        is_behavioral_query = true;
+    }
+
+    // Check for File or Directory discovery patterns
+    bool is_file_discovery_query = false;
+    const std::string lower_raw = normalize_text(raw_query);
+    const bool asks_for_file_or_dir =
+        (lower_raw.find("file ") != std::string::npos ||
+         lower_raw.find("directory ") != std::string::npos ||
+         lower_raw.find("folder ") != std::string::npos ||
+         lower_raw.find("path ") != std::string::npos);
+
+    const bool has_path_separator = (raw_query.find('/') != std::string_view::npos ||
+                                     raw_query.find('\\') != std::string_view::npos);
+
+    bool has_concrete_source_file = false;
+    for (const auto& term : rep.raw_terms) {
+        if (term.find('.') != std::string::npos) {
+            if (term.ends_with(".cpp") || term.ends_with(".hpp") || term.ends_with(".h") ||
+                term.ends_with(".c") || term.ends_with(".tsx") || term.ends_with(".ts") ||
+                term.ends_with(".jsx") || term.ends_with(".py") || term.ends_with(".rs") ||
+                term.ends_with(".go") || term.ends_with(".java") || term.ends_with(".toml") ||
+                term.ends_with(".json") || term.ends_with(".yaml") || term.ends_with(".yml") ||
+                term.ends_with(".cmake") || term == "cmakelists.txt") {
+                has_concrete_source_file = true;
+                break;
+            }
+        }
+    }
+
+    if (!is_behavioral_query &&
+        (has_path_separator || (has_concrete_source_file && rep.raw_terms.size() <= 4) ||
+         (asks_for_file_or_dir && (has_path_separator || has_concrete_source_file)))) {
+        if (has_path_separator || !rep.has_code_syntax) {
+            is_file_discovery_query = true;
+        }
+    }
+
+    // Prioritized Intent Assignment:
+    // 1. Caller/Callee discovery
+    if (is_caller_callee_query) {
+        rep.intent = QueryIntent::CallerCalleeDiscovery;
+        rep.recommended_alpha = 0.75;
+    }
+    // 2. Behavioral investigation
+    else if (is_behavioral_query) {
+        rep.intent = QueryIntent::BehavioralInvestigation;
+        rep.recommended_alpha = 0.60;
+    }
+    // 3. File or directory discovery
+    else if (is_file_discovery_query) {
+        rep.intent = QueryIntent::FileOrDirectoryDiscovery;
+        rep.recommended_alpha = 0.85;
+    }
+    // 4. Exact code symbol & technical entity lookup:
+    // Prioritized over generic interrogatives when exact code symbols exist,
+    // OR for short multi-term identifier queries without interrogatives (e.g. "use calendar")
+    else if (rep.has_code_syntax || !rep.technical_entities.empty() ||
+             (!has_interrogative && !rep.synthesized_identifiers.empty() &&
+              rep.raw_terms.size() <= 3)) {
+        rep.intent = QueryIntent::ExactSymbolLookup;
+        rep.recommended_alpha = 0.80;
+    }
+    // 5. Conceptual / exploratory question
+    else if (has_interrogative ||
+             (stopword_count >= 3 && rep.raw_terms.size() >= 5)) {
+        rep.intent = QueryIntent::ConceptualQuestion;
+        rep.recommended_alpha = 0.25;
+    }
+    // 6. General fallback
+    else {
         rep.intent = QueryIntent::GeneralSearch;
-        rep.recommended_alpha = 0.50;  // Balanced
+        rep.recommended_alpha = 0.50;
     }
 
     return rep;
