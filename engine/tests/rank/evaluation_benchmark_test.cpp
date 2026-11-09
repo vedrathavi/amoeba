@@ -6,6 +6,7 @@
 #include "amoeba/rank/code_aware_ranker.hpp"
 #include "amoeba/scanner/repository_scanner.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <filesystem>
 #include <fstream>
