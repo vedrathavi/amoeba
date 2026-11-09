@@ -1,38 +1,180 @@
-name: Amoeba CI
+name: Amoeba Cross-Platform CI
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "master", "main" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "master", "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build-and-test:
-    name: Build & Test (${{ matrix.os }} - ${{ matrix.build_type }})
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        build_type: [Debug, Release]
-
+  ubuntu-gcc:
+    name: "Ubuntu 24.04 (GCC)"
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup CMake & Ninja
-        uses: lukka/get-cmake@latest
+      - name: System Environment Diagnostics
+        run: |
+          uname -a
+          uname -m
+          which gcc g++
+          gcc --version
+          g++ --version
+          cmake --version
+          ninja --version
 
       - name: Configure CMake
         run: >
-          cmake -B build
-          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER=gcc
+          -DCMAKE_CXX_COMPILER=g++
           -DAMOEBA_BUILD_TESTS=ON
           -DAMOEBA_BUILD_CLI=ON
 
-      - name: Build
-        run: cmake --build build --config ${{ matrix.build_type }} --parallel
+      - name: Build (All Targets)
+        run: cmake --build build --parallel
 
       - name: Run Tests
-        run: ctest --test-dir build --build-config ${{ matrix.build_type }} --output-on-failure
+        run: ctest --test-dir build --output-on-failure
+
+  ubuntu-clang:
+    name: "Ubuntu 24.04 (Clang 18)"
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: System Environment Diagnostics
+        run: |
+          uname -a
+          uname -m
+          which clang clang++
+          clang --version
+          clang++ --version
+          cmake --version
+          ninja --version
+
+      - name: Configure CMake
+        run: >
+          cmake -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER=clang
+          -DCMAKE_CXX_COMPILER=clang++
+          -DAMOEBA_BUILD_TESTS=ON
+          -DAMOEBA_BUILD_CLI=ON
+
+      - name: Build (All Targets)
+        run: cmake --build build --parallel
+
+      - name: Run Tests
+        run: ctest --test-dir build --output-on-failure
+
+  macos-appleclang:
+    name: "macOS 14 (Apple Clang - ARM64)"
+    runs-on: macos-14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: System Environment Diagnostics
+        run: |
+          uname -a
+          uname -m
+          sw_vers
+          which clang clang++
+          clang --version
+          clang++ --version
+          cmake --version
+          ninja --version
+
+      - name: Configure CMake
+        run: >
+          cmake -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER=clang
+          -DCMAKE_CXX_COMPILER=clang++
+          -DAMOEBA_BUILD_TESTS=ON
+          -DAMOEBA_BUILD_CLI=ON
+
+      - name: Build (All Targets)
+        run: cmake --build build --parallel
+
+      - name: Run Tests
+        run: ctest --test-dir build --output-on-failure
+
+  windows-msvc:
+    name: "Windows 2022 (MSVC VS 2022)"
+    runs-on: windows-2022
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: System Environment Diagnostics
+        shell: pwsh
+        run: |
+          cmake --version
+          ninja --version
+
+      - name: Configure CMake
+        run: >
+          cmake -B build -G "Visual Studio 17 2022" -A x64
+          -DCMAKE_BUILD_TYPE=Release
+          -DAMOEBA_BUILD_TESTS=ON
+          -DAMOEBA_BUILD_CLI=ON
+
+      - name: Build (All Targets)
+        run: cmake --build build --config Release --parallel
+
+      - name: Run Tests
+        run: ctest --test-dir build --build-config Release --output-on-failure
+
+  windows-mingw-clang:
+    name: "Windows 2022 (MinGW-Clang UCRT)"
+    runs-on: windows-2022
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2 (MinGW-Clang / UCRT64)
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: false
+          install: >-
+            mingw-w64-ucrt-x86_64-clang
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-cmake
+
+      - name: System Environment Diagnostics
+        shell: msys2 {0}
+        run: |
+          echo "MSYSTEM: $MSYSTEM"
+          which clang clang++
+          clang --version
+          clang++ --version
+          ninja --version
+          cmake --version
+
+      - name: Configure CMake
+        shell: msys2 {0}
+        run: >
+          cmake -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER=clang
+          -DCMAKE_CXX_COMPILER=clang++
+          -DAMOEBA_BUILD_TESTS=ON
+          -DAMOEBA_BUILD_CLI=ON
+
+      - name: Build (All Targets)
+        shell: msys2 {0}
+        run: cmake --build build --parallel
+
+      - name: Run Tests
+        shell: msys2 {0}
+        run: ctest --test-dir build --output-on-failure

@@ -387,7 +387,7 @@ target_compile_features(amoeba_engine PUBLIC cxx_std_20)
 
 # Compiler warnings configuration
 if(MSVC)
-    target_compile_options(amoeba_engine PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_engine PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_engine PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -408,7 +408,7 @@ if(AMOEBA_BUILD_CLI)
     target_compile_features(amoeba_cli PRIVATE cxx_std_20)
 
     if(MSVC)
-        target_compile_options(amoeba_cli PRIVATE /W4 /permissive-)
+        target_compile_options(amoeba_cli PRIVATE /W4 /permissive- /utf-8)
     else()
         target_compile_options(amoeba_cli PRIVATE -Wall -Wextra -Wpedantic)
     endif()
@@ -505,6 +505,10 @@ if(AMOEBA_BUILD_TESTS)
 
     target_compile_features(amoeba_engine_tests PRIVATE cxx_std_20)
 
+    if(MSVC)
+        target_compile_options(amoeba_engine_tests PRIVATE /W4 /permissive- /utf-8)
+    endif()
+
     amoeba_set_stack_size(amoeba_engine_tests 67108864)
 
     include(GoogleTest)
@@ -526,7 +530,7 @@ target_link_libraries(amoeba_phase_06_5_benchmark
 target_compile_features(amoeba_phase_06_5_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_phase_06_5_benchmark PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_phase_06_5_benchmark PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_phase_06_5_benchmark PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -546,7 +550,7 @@ target_link_libraries(amoeba_repoprobe_benchmark
 target_compile_features(amoeba_repoprobe_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_repoprobe_benchmark PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_repoprobe_benchmark PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_repoprobe_benchmark PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -567,7 +571,7 @@ target_link_libraries(amoeba_semantic_audit
 target_compile_features(amoeba_semantic_audit PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_semantic_audit PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_semantic_audit PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_semantic_audit PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -588,7 +592,7 @@ target_link_libraries(amoeba_ann_benchmark
 target_compile_features(amoeba_ann_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_ann_benchmark PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_ann_benchmark PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_ann_benchmark PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -609,7 +613,7 @@ target_link_libraries(amoeba_lifecycle_benchmark
 target_compile_features(amoeba_lifecycle_benchmark PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_lifecycle_benchmark PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_lifecycle_benchmark PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_lifecycle_benchmark PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -630,7 +634,7 @@ target_link_libraries(amoeba_accuracy_investigation
 target_compile_features(amoeba_accuracy_investigation PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_accuracy_investigation PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_accuracy_investigation PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_accuracy_investigation PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -677,7 +681,7 @@ target_link_libraries(amoeba_test_fusion
 target_compile_features(amoeba_test_fusion PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_test_fusion PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_test_fusion PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_test_fusion PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -698,7 +702,7 @@ target_link_libraries(amoeba_candidate_selection_experiments
 target_compile_features(amoeba_candidate_selection_experiments PRIVATE cxx_std_20)
 
 if(MSVC)
-    target_compile_options(amoeba_candidate_selection_experiments PRIVATE /W4 /permissive-)
+    target_compile_options(amoeba_candidate_selection_experiments PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(amoeba_candidate_selection_experiments PRIVATE -Wall -Wextra -Wpedantic)
 endif()

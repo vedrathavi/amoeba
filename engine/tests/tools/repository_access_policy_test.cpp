@@ -19,6 +19,11 @@ TEST_F(RepositoryAccessPolicyTest, AllowValidRelativeSourceFiles) {
     EXPECT_EQ(policy.check_read(repo_root, "config/database_config.cpp"), AccessDecision::Allowed);
 }
 
+TEST_F(RepositoryAccessPolicyTest, AllowValidRelativeBackslashPaths) {
+    EXPECT_EQ(policy.check_read(repo_root, "src\\main.cpp"), AccessDecision::Allowed);
+    EXPECT_EQ(policy.check_read(repo_root, "src\\auth\\auth_service.cpp"), AccessDecision::Allowed);
+}
+
 TEST_F(RepositoryAccessPolicyTest, RejectEmptyPath) {
     EXPECT_EQ(policy.check_read(repo_root, ""), AccessDecision::InvalidPath);
 }
@@ -28,6 +33,12 @@ TEST_F(RepositoryAccessPolicyTest, RejectAbsoluteWindowsPaths) {
     EXPECT_EQ(policy.check_read(repo_root, "C:\\Windows\\System32\\cmd.exe"), AccessDecision::PathOutsideRepository);
     EXPECT_EQ(policy.check_read(repo_root, "D:/amoeba/secret.txt"), AccessDecision::PathOutsideRepository);
     EXPECT_EQ(policy.check_read(repo_root, "d:\\amoeba\\secret.txt"), AccessDecision::PathOutsideRepository);
+}
+
+TEST_F(RepositoryAccessPolicyTest, RejectUncPaths) {
+    EXPECT_EQ(policy.check_read(repo_root, "\\\\server\\share\\secret.txt"), AccessDecision::PathOutsideRepository);
+    EXPECT_EQ(policy.check_read(repo_root, "\\\\127.0.0.1\\c$\\secret.txt"), AccessDecision::PathOutsideRepository);
+    EXPECT_EQ(policy.check_read(repo_root, "//server/share/secret.txt"), AccessDecision::PathOutsideRepository);
 }
 
 TEST_F(RepositoryAccessPolicyTest, RejectAbsoluteUnixPaths) {

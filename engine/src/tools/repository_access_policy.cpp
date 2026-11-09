@@ -43,6 +43,52 @@ namespace {
     return true;
 }
 
+[[nodiscard]] std::string normalize_separators(const std::filesystem::path& p) {
+    std::string s;
+#if defined(_WIN32)
+    s = p.generic_string();
+#else
+    s = p.string();
+    for (char& c : s) {
+        if (c == '\\') {
+            c = '/';
+        }
+    }
+#endif
+    return s;
+}
+
+[[nodiscard]] bool is_foreign_or_absolute_path(const std::filesystem::path& p,
+                                              const std::string& normalized_str) noexcept {
+    // 1. Host OS standard filesystem properties (catches native absolute/root paths)
+    if (p.is_absolute() || p.has_root_name() || p.has_root_directory()) {
+        return true;
+    }
+
+    if (normalized_str.empty()) {
+        return false;
+    }
+
+    // 2. Leading slash (POSIX root, or drive-relative root on Windows)
+    if (normalized_str[0] == '/') {
+        return true;
+    }
+
+    // 3. UNC network path prefix (e.g. "//server/share" or "\\server\share")
+    if (normalized_str.starts_with("//")) {
+        return true;
+    }
+
+    // 4. Windows drive-letter prefix: e.g. "C:", "c:", "D:/...", "d:\..."
+    if (normalized_str.size() >= 2 &&
+        std::isalpha(static_cast<unsigned char>(normalized_str[0])) &&
+        normalized_str[1] == ':') {
+        return true;
+    }
+
+    return false;
+}
+
 }  // namespace
 
 RepositoryAccessPolicy::RepositoryAccessPolicy() {
@@ -117,25 +163,23 @@ RepositoryAccessPolicy::check_read(const std::filesystem::path& repository_root,
         return AccessDecision::InvalidPath;
     }
 
-    // 1. Absolute paths are strictly rejected to prevent arbitrary filesystem access
-    if (requested_path.is_absolute() || requested_path.has_root_name() ||
-        requested_path.has_root_directory()) {
+    const std::string norm_rel_str = normalize_separators(requested_path);
+
+    // 1. Foreign-platform and host-platform absolute / root-oriented paths are strictly rejected
+    if (is_foreign_or_absolute_path(requested_path, norm_rel_str)) {
         return AccessDecision::PathOutsideRepository;
     }
 
-    // 2. Traversal component check in raw path string before and after normalization
-    const std::string raw_str = requested_path.generic_string();
-    if (raw_str.find("..") != std::string::npos) {
-        // Detailed check for parent directory escape
-        auto rel_normal = requested_path.lexically_normal();
-        if (rel_normal.empty() || rel_normal.string().starts_with("..")) {
-            return AccessDecision::PathOutsideRepository;
-        }
+    // 2. Traversal component check in normalized relative path
+    const auto norm_rel = std::filesystem::path(norm_rel_str).lexically_normal();
+    const std::string norm_str = norm_rel.generic_string();
+    if (norm_str.empty() || norm_str == ".." || norm_str.starts_with("../")) {
+        return AccessDecision::PathOutsideRepository;
     }
 
     // 3. Resolve combined path and verify containment
     const auto norm_root = repository_root.lexically_normal();
-    const auto combined = (norm_root / requested_path).lexically_normal();
+    const auto combined = (norm_root / norm_rel).lexically_normal();
 
     const auto root_str = norm_root.generic_string();
     const auto combined_str = combined.generic_string();
@@ -151,11 +195,11 @@ RepositoryAccessPolicy::check_read(const std::filesystem::path& repository_root,
     }
 
     // 4. Sensitive file and directory checks
-    if (is_sensitive_file(requested_path) || is_sensitive_file(combined)) {
+    if (is_sensitive_file(norm_rel) || is_sensitive_file(combined)) {
         return AccessDecision::SensitiveFile;
     }
 
-    if (is_sensitive_directory(requested_path) || is_sensitive_directory(combined)) {
+    if (is_sensitive_directory(norm_rel) || is_sensitive_directory(combined)) {
         return AccessDecision::SensitiveFile;
     }
 
@@ -168,8 +212,10 @@ RepositoryAccessPolicy::resolve_safe_path(const std::filesystem::path& repositor
     if (check_read(repository_root, requested_path) != AccessDecision::Allowed) {
         return std::nullopt;
     }
+    const std::string norm_rel_str = normalize_separators(requested_path);
     const auto norm_root = repository_root.lexically_normal();
-    const auto combined = (norm_root / requested_path).lexically_normal();
+    const auto norm_rel = std::filesystem::path(norm_rel_str).lexically_normal();
+    const auto combined = (norm_root / norm_rel).lexically_normal();
 
     // Reparse point / Symlink / Junction safety:
     // If the path exists on disk, ensure its canonical target does not escape canonical repository root.
